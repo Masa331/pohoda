@@ -1,38 +1,29 @@
 # Pohoda
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/pohoda`. To experiment with that code, run `bin/console` for an interactive prompt.
+Very simple parser and builder for Pohoda XML invoices
 
-TODO: Delete this and the text above, and describe your gem
+_Note: This is not complete and until 1.0.0 can contain breaking changes in ANY version._
+
+Content:
+1. [Installation](#installation)
+2. [Api](#api)
+    1. [Parser](#parser)
+    2. [Builder](#builder)
+3. [License](#license)
 
 ## Installation
 
-Add this line to your application's Gemfile:
+You know how to install a gem right?
 
-```ruby
-gem 'pohoda'
-```
+## Api
 
-And then execute:
+### Parser
 
-    $ bundle
+Parser doc here
 
-Or install it yourself as:
+### Builder
 
-    $ gem install pohoda
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/pohoda.
+Builder doc here
 
 ## License
 
