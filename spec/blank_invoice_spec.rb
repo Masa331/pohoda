@@ -287,29 +287,14 @@ RSpec.describe Pohoda::Invoice do
       expect(i.type_currency_home.round).to eq ''
     end
 
-    it '#foreign_total' do
-      expect(i.foreign_total.rate).to eq ''
-      expect(i.foreign_total.amount).to eq ''
+    it '#type_currency_foreign' do
+      expect(i.type_currency_foreign.currency.id).to eq ''
+      expect(i.type_currency_foreign.currency.ids).to eq ''
+      expect(i.type_currency_foreign.currency.value_type).to eq ''
 
-      expect(i.foreign_total.currency.id).to eq ''
-      expect(i.foreign_total.currency.ids).to eq ''
-      expect(i.foreign_total.currency.value_type).to eq ''
-
-      expect(i.foreign_total.zero_rate.without_vat).to eq ''
-
-      expect(i.foreign_total.low_rate.without_vat).to eq ''
-      expect(i.foreign_total.low_rate.vat).to eq ''
-      expect(i.foreign_total.low_rate.total).to eq ''
-
-      expect(i.foreign_total.standard_rate.without_vat).to eq ''
-      expect(i.foreign_total.standard_rate.vat).to eq ''
-      expect(i.foreign_total.standard_rate.total).to eq ''
-
-      expect(i.foreign_total.third_rate.without_vat).to eq ''
-      expect(i.foreign_total.third_rate.vat).to eq ''
-      expect(i.foreign_total.third_rate.total).to eq ''
-
-      expect(i.foreign_total.rounding).to eq ''
+      expect(i.type_currency_foreign.rate).to eq ''
+      expect(i.type_currency_foreign.amount).to eq ''
+      expect(i.type_currency_foreign.price_sum).to eq ''
     end
   end
 end

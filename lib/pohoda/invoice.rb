@@ -191,8 +191,10 @@ module Pohoda
       TypeCurrencyHome.new(e 'inv:invoiceSummary/inv:homeCurrency')
     end
 
-    def foreign_total
-      ForeignTotal.new(e 'inv:invoiceSummary/inv:foreignCurrency')
+    def type_currency_foreign
+      TypeCurrencyForeign.new(e 'inv:invoiceSummary/inv:foreignCurrency')
+    end
+
     end
   end
 end
