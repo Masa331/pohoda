@@ -2,24 +2,8 @@ module Pohoda
   class InvoiceItem
     include BaseElement
 
-    class Price
-      include BaseElement
-
-      def unit_price
-        t 'typ:unitPrice'
-      end
-
-      def price
-        t 'typ:price'
-      end
-
-      def vat
-        t 'typ:priceVAT'
-      end
-
-      def total
-        t 'typ:priceSum'
-      end
+    def id
+      t 'inv:id'
     end
 
     def text
@@ -35,22 +19,31 @@ module Pohoda
     end
 
     def coefficient
-    end
-
-    def vat_rate
-      t 'inv:rateVAT'
+      t 'inv:coefficient'
     end
 
     def pay_vat
       t 'inv:payVAT'
     end
 
+    def rate_vat
+      t 'inv:rateVAT'
+    end
+
+    def percentVAT
+      t 'inv:percentVAT'
+    end
+
+    def discount_percentage
+      t 'inv:discountPercentage'
+    end
+
     def home_currency
-      Price.new(e 'inv:homeCurrency')
+      TypeCurrencyHomeItem.new(e 'inv:homeCurrency')
     end
 
     def foreign_currency
-      Price.new(e 'inv:foreignCurrency')
+      TypeCurrencyForeignItem.new(e 'inv:foreignCurrency')
     end
   end
 end
