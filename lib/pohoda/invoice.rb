@@ -187,8 +187,8 @@ module Pohoda
       t 'inv:invoiceSummary/inv:calculateVAT'
     end
 
-    def czk_total
-      CzkTotal.new(e 'inv:invoiceSummary/inv:homeCurrency')
+    def type_currency_home
+      TypeCurrencyHome.new(e 'inv:invoiceSummary/inv:homeCurrency')
     end
 
     def foreign_total

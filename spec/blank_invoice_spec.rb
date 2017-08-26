@@ -269,22 +269,22 @@ RSpec.describe Pohoda::Invoice do
       expect(i.vat_from_rounding).to eq ''
     end
 
-    it 'czk_total' do
-      expect(i.czk_total.zero_rate.without_vat).to eq ''
+    it '#type_currency_home' do
+      expect(i.type_currency_home.price_none).to eq ''
 
-      expect(i.czk_total.low_rate.without_vat).to eq ''
-      expect(i.czk_total.low_rate.vat).to eq ''
-      expect(i.czk_total.low_rate.total).to eq ''
+      expect(i.type_currency_home.price_low).to eq ''
+      expect(i.type_currency_home.price_low_vat).to eq ''
+      expect(i.type_currency_home.price_low_sum).to eq ''
 
-      expect(i.czk_total.standard_rate.without_vat).to eq ''
-      expect(i.czk_total.standard_rate.vat).to eq ''
-      expect(i.czk_total.standard_rate.total).to eq ''
+      expect(i.type_currency_home.price_high).to eq ''
+      expect(i.type_currency_home.price_high_vat).to eq ''
+      expect(i.type_currency_home.price_high_sum).to eq ''
 
-      expect(i.czk_total.third_rate.without_vat).to eq ''
-      expect(i.czk_total.third_rate.vat).to eq ''
-      expect(i.czk_total.third_rate.total).to eq ''
+      expect(i.type_currency_home.price_3).to eq ''
+      expect(i.type_currency_home.price_3_vat).to eq ''
+      expect(i.type_currency_home.price_3_sum).to eq ''
 
-      expect(i.czk_total.rounding).to eq ''
+      expect(i.type_currency_home.round).to eq ''
     end
 
     it '#foreign_total' do
