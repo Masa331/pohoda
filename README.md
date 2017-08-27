@@ -5,15 +5,10 @@ Very simple parser and builder for Pohoda XML invoices
 _Note: This is not complete and until 1.0.0 can contain breaking changes in ANY version._
 
 Content:
-1. [Installation](#installation)
-2. [Api](#api)
+1. [Api](#api)
     1. [Parser](#parser)
     2. [Builder](#builder)
-3. [License](#license)
-
-## Installation
-
-You know how to install a gem right?
+2. [License](#license)
 
 ## Api
 
