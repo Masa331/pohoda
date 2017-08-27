@@ -45,5 +45,19 @@ module Pohoda
     def round
       t 'typ:round/typ:priceRound'
     end
+
+    def to_h
+      { price_none: price_none,
+        price_low: price_low,
+        price_low_vat: price_low_vat,
+        price_low_sum: price_low_sum,
+        price_high: price_high,
+        price_high_vat: price_high_vat,
+        price_high_sum: price_high_sum,
+        price_3: price_3,
+        price_3_vat: price_3_vat,
+        price_3_sum: price_3_sum,
+        round: round }
+    end
   end
 end

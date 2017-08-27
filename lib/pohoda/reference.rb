@@ -13,5 +13,11 @@ module Pohoda
     def value_type
       t 'typ:valueType'
     end
+
+    def to_h
+      { id: ids,
+        ids: ids,
+        value_type: value_type }
+    end
   end
 end

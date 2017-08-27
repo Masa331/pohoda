@@ -17,5 +17,12 @@ module Pohoda
     def zip
       t 'typ:zip'
     end
+
+    def to_h
+      { company: company,
+        city: city,
+        street: street,
+        zip: zip }
+    end
   end
 end

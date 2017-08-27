@@ -65,5 +65,24 @@ module Pohoda
     def www
       t 'typ:www'
     end
+
+    def to_h
+      { company: company,
+        title: title,
+        surname: surname,
+        name: name,
+        city: city,
+        street: street,
+        number: number,
+        postal_code: postal_code,
+        company_number: company_number,
+        vatin: vatin,
+        tin: tin,
+        phone: phone,
+        mobile_phone: mobile_phone,
+        fax: fax,
+        email: email,
+        www: www }
+    end
   end
 end

@@ -13,5 +13,11 @@ module Pohoda
     def accounting_type
       t 'typ:accountingType'
     end
+
+    def to_h
+      { id: id,
+        ids: ids,
+        accounting_type: accounting_type }
+    end
   end
 end

@@ -1,4 +1,4 @@
-require "spec_helper"
+require 'spec_helper'
 
 RSpec.describe Pohoda::Invoice do
   context 'basic invoice' do
@@ -85,7 +85,7 @@ RSpec.describe Pohoda::Invoice do
       let(:partner) { i.partner_identity }
 
       it '#id' do
-        expect(partner.id).to eq ""
+        expect(partner.id).to eq ''
       end
 
       it '#external_reference' do
@@ -295,6 +295,121 @@ RSpec.describe Pohoda::Invoice do
       expect(i.type_currency_foreign.rate).to eq ''
       expect(i.type_currency_foreign.amount).to eq ''
       expect(i.type_currency_foreign.price_sum).to eq ''
+    end
+
+    it '#to_h' do
+      hsh =
+        { id: '',
+          ext_id: { ids: '', ex_system_name: '', ex_system_text: '' },
+          invoice_type: '',
+          storno: '',
+          sphere_type: '',
+          number: { id: '', ids: '', number_requested: '' },
+          sym_var: '',
+          sym_par: '',
+          date: '',
+          date_tax: '',
+          date_accounting: '',
+          date_khdph: '',
+          date_due: '',
+          date_application_vat: '',
+          accounting: { id: '', ids: '', accounting_type: '' },
+          classification_vat: { id: '', ids: '', classification_vat_type: '' },
+          number_khdph: '',
+          text: '',
+          partner_identity: {
+            id: '',
+            external_reference: { ids: '', ex_system_name: '', ex_system_text: '' },
+            address: {
+              company: '',
+              name: '',
+              division: '',
+              street: '',
+              city: '',
+              postal_code: '',
+              company_number: '',
+              vatin: '',
+              tin: '',
+              country_id: '',
+              phone: '',
+              mobile_phone: '',
+              fax: '',
+              email: ''
+            },
+            ship_to_address: { id: '',
+                               company: '',
+                               division: '',
+                               name: '',
+                               city: '',
+                               street: '',
+                               postal_code: '',
+                               country_id: '',
+                               phone: '',
+                               email: '',
+                               default: '' }
+          },
+          my_identity: { address: { company: '',
+                                    title: '',
+                                    surname: '',
+                                    name: '',
+                                    city: '',
+                                    street: '',
+                                    number: '',
+                                    postal_code: '',
+                                    company_number: '',
+                                    vatin: '',
+                                    tin: '',
+                                    phone: '',
+                                    mobile_phone: '',
+                                    fax: '',
+                                    email: '',
+                                    www: ''
+          },
+          establishment: { company: '',
+                           city: '',
+                           street: '',
+                           zip: ''
+          }},
+          order: { id: '', ids: '', value_type: '' },
+          number_order: '',
+          date_order: '',
+          price_level: { id: '', ids: '', value_type: '' },
+          payment_type: { id: '', ids: '', payment_type: '' },
+          account: { id: '', ids: '', accounting_type: '' },
+          sym_const: '',
+          sym_spec: '',
+          payment_account: { account_no: '', bank_code: '' },
+          payment_terminal: '',
+          centre: { id: '', ids: '', value_type: '' },
+          activity: { id: '', ids: '', value_type: '' },
+          contract: { id: '', ids: '', value_type: '' },
+          reg_vat_in_eu: { id: '', ids: '', value_type: '' },
+          moss: '',
+          evidentiary_resource_moss: '',
+          accounting_period_moss: '',
+          carrier: { id: '', ids: '', value_type: '' },
+          note: '',
+          int_note: '',
+          items: [],
+          rounding_type: '',
+          vat_rounding_type: '',
+          vat_from_rounding: '',
+          type_currency_home: { price_none: '',
+                                price_low: '',
+                                price_low_vat: '',
+                                price_low_sum: '',
+                                price_high: '',
+                                price_high_vat: '',
+                                price_high_sum: '',
+                                price_3: '',
+                                price_3_vat: '',
+                                price_3_sum: '',
+                                round: '' },
+                                type_currency_foreign: { currency: { id: '', ids: '', value_type: '' },
+                                                         rate: '', amount: '', price_sum: '' }
+          }
+
+      expect(i.to_h).to match(hsh)
     end
   end
 end

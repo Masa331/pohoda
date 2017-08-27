@@ -45,5 +45,19 @@ module Pohoda
     def default
       t 'typ:defaultShipAddress'
     end
+
+    def to_h
+      { id: id,
+        company: company,
+        division: division,
+        name: name,
+        city: city,
+        street: street,
+        postal_code: postal_code,
+        country_id: country_id,
+        phone: phone,
+        email: email,
+        default: default }
+    end
   end
 end

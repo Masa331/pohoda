@@ -57,5 +57,22 @@ module Pohoda
     def email
       t 'typ:email'
     end
+
+    def to_h
+      { company: company,
+        name: name,
+        division: division,
+        street: street,
+        city: city,
+        postal_code: postal_code,
+        company_number: company_number,
+        vatin: vatin,
+        tin: tin,
+        country_id: country_id,
+        phone: phone,
+        mobile_phone: mobile_phone,
+        fax: fax,
+        email: email }
+    end
   end
 end

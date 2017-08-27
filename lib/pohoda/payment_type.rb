@@ -13,5 +13,11 @@ module Pohoda
     def payment_type
       t 'typ:paymentType'
     end
+
+    def to_h
+      { id: id,
+        ids: ids,
+        payment_type: payment_type }
+    end
   end
 end
