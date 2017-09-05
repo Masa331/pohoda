@@ -1,3 +1,7 @@
+# 0.3.0
+
+- Rename couple of methods and classes to be in line with Pohoda naming
+
 # 0.2.0
 
 - Rename couple of methods to be in line with Pohoda naming
