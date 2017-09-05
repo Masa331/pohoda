@@ -89,9 +89,9 @@ RSpec.describe Pohoda::Invoice do
       end
 
       it '#external_reference' do
-        expect(partner.external_reference.ids).to eq ''
-        expect(partner.external_reference.ex_system_name).to eq ''
-        expect(partner.external_reference.ex_system_text).to eq ''
+        expect(partner.ext_id.ids).to eq ''
+        expect(partner.ext_id.ex_system_name).to eq ''
+        expect(partner.ext_id.ex_system_text).to eq ''
       end
 
       it '#address' do
@@ -100,15 +100,18 @@ RSpec.describe Pohoda::Invoice do
         expect(partner.address.name).to eq ''
         expect(partner.address.city).to eq ''
         expect(partner.address.street).to eq ''
-        expect(partner.address.postal_code).to eq ''
-        expect(partner.address.company_number).to eq ''
-        expect(partner.address.vatin).to eq ''
-        expect(partner.address.tin).to eq ''
-        expect(partner.address.country_id).to eq ''
+        expect(partner.address.zip).to eq ''
+        expect(partner.address.ico).to eq ''
+        expect(partner.address.dic).to eq ''
+        expect(partner.address.ic_dph).to eq ''
         expect(partner.address.phone).to eq ''
         expect(partner.address.mobile_phone).to eq ''
         expect(partner.address.fax).to eq ''
         expect(partner.address.email).to eq ''
+
+        expect(partner.address.country.id).to eq ''
+        expect(partner.address.country.ids).to eq ''
+        expect(partner.address.country.value_type).to eq ''
       end
 
       it '#ship_to_address' do
@@ -118,11 +121,14 @@ RSpec.describe Pohoda::Invoice do
         expect(partner.ship_to_address.name).to eq ''
         expect(partner.ship_to_address.city).to eq ''
         expect(partner.ship_to_address.street).to eq ''
-        expect(partner.ship_to_address.postal_code).to eq ''
-        expect(partner.ship_to_address.country_id).to eq ''
+        expect(partner.ship_to_address.zip).to eq ''
         expect(partner.ship_to_address.phone).to eq ''
         expect(partner.ship_to_address.email).to eq ''
-        expect(partner.ship_to_address.default).to eq ''
+        expect(partner.ship_to_address.default_ship_to_address).to eq ''
+
+        expect(partner.ship_to_address.country.id).to eq ''
+        expect(partner.ship_to_address.country.ids).to eq ''
+        expect(partner.ship_to_address.country.value_type).to eq ''
       end
     end
 
@@ -135,10 +141,10 @@ RSpec.describe Pohoda::Invoice do
         expect(i.my_identity.address.city).to eq ''
         expect(i.my_identity.address.street).to eq ''
         expect(i.my_identity.address.number).to eq ''
-        expect(i.my_identity.address.postal_code).to eq ''
-        expect(i.my_identity.address.company_number).to eq ''
-        expect(i.my_identity.address.vatin).to eq ''
-        expect(i.my_identity.address.tin).to eq ''
+        expect(i.my_identity.address.zip).to eq ''
+        expect(i.my_identity.address.ico).to eq ''
+        expect(i.my_identity.address.dic).to eq ''
+        expect(i.my_identity.address.ic_dph).to eq ''
         expect(i.my_identity.address.phone).to eq ''
         expect(i.my_identity.address.mobile_phone).to eq ''
         expect(i.my_identity.address.fax).to eq ''
@@ -180,7 +186,7 @@ RSpec.describe Pohoda::Invoice do
       expect(i.payment_type.payment_type).to eq ''
     end
 
-    it '#account' do
+    it '#account_type' do
       expect(i.account.id).to eq ''
       expect(i.account.ids).to eq ''
       expect(i.account.account_no).to eq ''
@@ -257,44 +263,44 @@ RSpec.describe Pohoda::Invoice do
       expect(i.items).to eq []
     end
 
-    it '#rounding_type' do
-      expect(i.rounding_type).to eq ''
+    it '#rounding_document' do
+      expect(i.rounding_document).to eq ''
     end
 
-    it '#vat_rounding_type' do
-      expect(i.vat_rounding_type).to eq ''
+    it '#rounding_vat' do
+      expect(i.rounding_vat).to eq ''
     end
 
-    it '#vat_from_rounding' do
-      expect(i.vat_from_rounding).to eq ''
+    it '#calculate_vat' do
+      expect(i.calculate_vat).to eq ''
     end
 
-    it '#type_currency_home' do
-      expect(i.type_currency_home.price_none).to eq ''
+    it '#home_currency' do
+      expect(i.home_currency.price_none).to eq ''
 
-      expect(i.type_currency_home.price_low).to eq ''
-      expect(i.type_currency_home.price_low_vat).to eq ''
-      expect(i.type_currency_home.price_low_sum).to eq ''
+      expect(i.home_currency.price_low).to eq ''
+      expect(i.home_currency.price_low_vat).to eq ''
+      expect(i.home_currency.price_low_sum).to eq ''
 
-      expect(i.type_currency_home.price_high).to eq ''
-      expect(i.type_currency_home.price_high_vat).to eq ''
-      expect(i.type_currency_home.price_high_sum).to eq ''
+      expect(i.home_currency.price_high).to eq ''
+      expect(i.home_currency.price_high_vat).to eq ''
+      expect(i.home_currency.price_high_sum).to eq ''
 
-      expect(i.type_currency_home.price_3).to eq ''
-      expect(i.type_currency_home.price_3_vat).to eq ''
-      expect(i.type_currency_home.price_3_sum).to eq ''
+      expect(i.home_currency.price_3).to eq ''
+      expect(i.home_currency.price_3_vat).to eq ''
+      expect(i.home_currency.price_3_sum).to eq ''
 
-      expect(i.type_currency_home.round).to eq ''
+      expect(i.home_currency.round.price_round).to eq ''
     end
 
-    it '#type_currency_foreign' do
-      expect(i.type_currency_foreign.currency.id).to eq ''
-      expect(i.type_currency_foreign.currency.ids).to eq ''
-      expect(i.type_currency_foreign.currency.value_type).to eq ''
+    it '#foreign_currency' do
+      expect(i.foreign_currency.currency.id).to eq ''
+      expect(i.foreign_currency.currency.ids).to eq ''
+      expect(i.foreign_currency.currency.value_type).to eq ''
 
-      expect(i.type_currency_foreign.rate).to eq ''
-      expect(i.type_currency_foreign.amount).to eq ''
-      expect(i.type_currency_foreign.price_sum).to eq ''
+      expect(i.foreign_currency.rate).to eq ''
+      expect(i.foreign_currency.amount).to eq ''
+      expect(i.foreign_currency.price_sum).to eq ''
     end
 
     it '#to_h' do
@@ -319,18 +325,18 @@ RSpec.describe Pohoda::Invoice do
           text: '',
           partner_identity: {
             id: '',
-            external_reference: { ids: '', ex_system_name: '', ex_system_text: '' },
+            ext_id: { ids: '', ex_system_name: '', ex_system_text: '' },
             address: {
               company: '',
               name: '',
               division: '',
               street: '',
               city: '',
-              postal_code: '',
-              company_number: '',
-              vatin: '',
-              tin: '',
-              country_id: '',
+              zip: '',
+              ico: '',
+              dic: '',
+              ic_dph: '',
+              country: { id: '', ids: '', value_type: '' },
               phone: '',
               mobile_phone: '',
               fax: '',
@@ -342,11 +348,11 @@ RSpec.describe Pohoda::Invoice do
                                name: '',
                                city: '',
                                street: '',
-                               postal_code: '',
-                               country_id: '',
+                               zip: '',
+                               country: { id: '', ids: '', value_type: '' },
                                phone: '',
                                email: '',
-                               default: '' }
+                               default_ship_to_address: '' }
           },
           my_identity: { address: { company: '',
                                     title: '',
@@ -355,10 +361,10 @@ RSpec.describe Pohoda::Invoice do
                                     city: '',
                                     street: '',
                                     number: '',
-                                    postal_code: '',
-                                    company_number: '',
-                                    vatin: '',
-                                    tin: '',
+                                    zip: '',
+                                    ico: '',
+                                    dic: '',
+                                    ic_dph: '',
                                     phone: '',
                                     mobile_phone: '',
                                     fax: '',
@@ -375,7 +381,7 @@ RSpec.describe Pohoda::Invoice do
           date_order: '',
           price_level: { id: '', ids: '', value_type: '' },
           payment_type: { id: '', ids: '', payment_type: '' },
-          account: { id: '', ids: '', accounting_type: '' },
+          account: { id: '', ids: '', account_no: '', bank_code: '' },
           sym_const: '',
           sym_spec: '',
           payment_account: { account_no: '', bank_code: '' },
@@ -391,10 +397,10 @@ RSpec.describe Pohoda::Invoice do
           note: '',
           int_note: '',
           items: [],
-          rounding_type: '',
-          vat_rounding_type: '',
-          vat_from_rounding: '',
-          type_currency_home: { price_none: '',
+          rounding_document: '',
+          rounding_vat: '',
+          calculate_vat: '',
+          home_currency: { price_none: '',
                                 price_low: '',
                                 price_low_vat: '',
                                 price_low_sum: '',
@@ -404,8 +410,8 @@ RSpec.describe Pohoda::Invoice do
                                 price_3: '',
                                 price_3_vat: '',
                                 price_3_sum: '',
-                                round: '' },
-                                type_currency_foreign: { currency: { id: '', ids: '', value_type: '' },
+                                round: { price_round: '' } },
+                                foreign_currency: { currency: { id: '', ids: '', value_type: '' },
                                                          rate: '', amount: '', price_sum: '' }
           }
 

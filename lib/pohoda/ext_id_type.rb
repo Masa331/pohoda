@@ -1,5 +1,5 @@
 module Pohoda
-  class ExternalReference
+  class ExtIdType
     include BaseElement
 
     def ids

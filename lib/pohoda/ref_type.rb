@@ -1,5 +1,5 @@
 module Pohoda
-  class Reference
+  class RefType
     include BaseElement
 
     def id

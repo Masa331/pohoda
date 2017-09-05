@@ -1,5 +1,5 @@
 module Pohoda
-  class ShippingToAddress
+  class ShipToAddress
     include BaseElement
 
     def id
@@ -26,12 +26,12 @@ module Pohoda
       t 'typ:street'
     end
 
-    def postal_code
+    def zip
       t 'typ:zip'
     end
 
-    def country_id
-      t 'typ:country/typ:ids'
+    def country
+      RefType.new(e 'typ:country')
     end
 
     def phone
@@ -42,7 +42,7 @@ module Pohoda
       t 'typ:email'
     end
 
-    def default
+    def default_ship_to_address
       t 'typ:defaultShipAddress'
     end
 
@@ -53,11 +53,11 @@ module Pohoda
         name: name,
         city: city,
         street: street,
-        postal_code: postal_code,
-        country_id: country_id,
+        zip: zip,
+        country: country.to_h,
         phone: phone,
         email: email,
-        default: default }
+        default_ship_to_address: default_ship_to_address }
     end
   end
 end

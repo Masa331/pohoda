@@ -22,24 +22,24 @@ module Pohoda
       t 'typ:city'
     end
 
-    def postal_code
+    def zip
       t 'typ:zip'
     end
 
-    def company_number
+    def ico
       t 'typ:ico'
     end
 
-    def vatin
-      t 'typ:vatin'
+    def dic
+      t 'typ:dic'
     end
 
-    def tin
+    def ic_dph
       t 'typ:icDph'
     end
 
-    def country_id
-      t 'typ:country/typ:ids'
+    def country
+      RefType.new(e 'typ:country')
     end
 
     def phone
@@ -64,11 +64,11 @@ module Pohoda
         division: division,
         street: street,
         city: city,
-        postal_code: postal_code,
-        company_number: company_number,
-        vatin: vatin,
-        tin: tin,
-        country_id: country_id,
+        zip: zip,
+        ico: ico,
+        dic: dic,
+        ic_dph: ic_dph,
+        country: country.to_h,
         phone: phone,
         mobile_phone: mobile_phone,
         fax: fax,

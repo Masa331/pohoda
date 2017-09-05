@@ -6,8 +6,8 @@ module Pohoda
       t 'typ:id'
     end
 
-    def external_reference
-      ExternalReference.new(e 'typ:extId')
+    def ext_id
+      ExtIdType.new(e 'typ:extId')
     end
 
     def address
@@ -15,12 +15,12 @@ module Pohoda
     end
 
     def ship_to_address
-      ShippingToAddress.new(e 'typ:shipToAddress')
+      ShipToAddress.new(e 'typ:shipToAddress')
     end
 
     def to_h
       { id: id,
-        external_reference: external_reference.to_h,
+        ext_id: ext_id.to_h,
         address: address.to_h,
         ship_to_address: ship_to_address.to_h }
     end

@@ -31,19 +31,19 @@ module Pohoda
     end
 
     def price_3
-      t 'typ:priceThird'
+      t 'typ:price3'
     end
 
     def price_3_vat
-      t 'typ:priceThirdVAT'
+      t 'typ:price3VAT'
     end
 
     def price_3_sum
-      t 'typ:priceThirdSum'
+      t 'typ:price3Sum'
     end
 
     def round
-      t 'typ:round/typ:priceRound'
+      TypeRound.new(e 'typ:round')
     end
 
     def to_h
@@ -57,7 +57,7 @@ module Pohoda
         price_3: price_3,
         price_3_vat: price_3_vat,
         price_3_sum: price_3_sum,
-        round: round }
+        round: round.to_h }
     end
   end
 end

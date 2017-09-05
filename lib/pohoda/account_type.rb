@@ -1,5 +1,5 @@
 module Pohoda
-  class Account
+  class AccountType
     include BaseElement
 
     def id

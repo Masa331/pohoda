@@ -30,19 +30,19 @@ module Pohoda
       t 'typ:number'
     end
 
-    def postal_code
+    def zip
       t 'typ:zip'
     end
 
-    def company_number
+    def ico
       t 'typ:ico'
     end
 
-    def vatin
+    def dic
       t 'typ:dic'
     end
 
-    def tin
+    def ic_dph
       t 'typ:icDph'
     end
 
@@ -74,10 +74,10 @@ module Pohoda
         city: city,
         street: street,
         number: number,
-        postal_code: postal_code,
-        company_number: company_number,
-        vatin: vatin,
-        tin: tin,
+        zip: zip,
+        ico: ico,
+        dic: dic,
+        ic_dph: ic_dph,
         phone: phone,
         mobile_phone: mobile_phone,
         fax: fax,

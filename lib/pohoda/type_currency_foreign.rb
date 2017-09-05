@@ -3,7 +3,7 @@ module Pohoda
     include BaseElement
 
     def currency
-      Reference.new(e 'typ:currency')
+      RefType.new(e 'typ:currency')
     end
 
     def rate

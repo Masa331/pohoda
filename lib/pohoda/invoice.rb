@@ -13,7 +13,7 @@ module Pohoda
     end
 
     def ext_id
-      ExternalReference.new(e 'inv:invoiceHeader/inv:extId')
+      ExtIdType.new(e 'inv:invoiceHeader/inv:extId')
     end
 
     def invoice_type
@@ -92,7 +92,7 @@ module Pohoda
     end
 
     def order
-      Reference.new(e 'inv:invoiceHeader/inv:order')
+      RefType.new(e 'inv:invoiceHeader/inv:order')
     end
 
     def number_order
@@ -104,7 +104,7 @@ module Pohoda
     end
 
     def price_level
-      Reference.new(e 'inv:invoiceHeader/inv:priceLevel')
+      RefType.new(e 'inv:invoiceHeader/inv:priceLevel')
     end
 
     def payment_type
@@ -112,7 +112,7 @@ module Pohoda
     end
 
     def account
-      Account.new(e 'inv:invoiceHeader/inv:account')
+      AccountType.new(e 'inv:invoiceHeader/inv:account')
     end
 
     def sym_const
@@ -124,7 +124,7 @@ module Pohoda
     end
 
     def payment_account
-      PaymentAccount.new(e 'inv:invoiceHeader/inv:account')
+      PaymentAccount.new(e 'inv:invoiceHeader/inv:payment_account')
     end
 
     def payment_terminal
@@ -132,19 +132,19 @@ module Pohoda
     end
 
     def centre
-      Reference.new(e 'inv:invoiceHeader/inv:centre')
+      RefType.new(e 'inv:invoiceHeader/inv:centre')
     end
 
     def activity
-      Reference.new(e 'inv:invoiceHeader/inv:centre')
+      RefType.new(e 'inv:invoiceHeader/inv:activity')
     end
 
     def contract
-      Reference.new(e 'inv:invoiceHeader/inv:contract')
+      RefType.new(e 'inv:invoiceHeader/inv:contract')
     end
 
     def reg_vat_in_eu
-      Reference.new(e 'inv:invoiceHeader/inv:regVATinEU')
+      RefType.new(e 'inv:invoiceHeader/inv:regVATinEU')
     end
 
     def moss
@@ -160,7 +160,7 @@ module Pohoda
     end
 
     def carrier
-      Reference.new(e 'inv:invoiceHeader/inv:carrier')
+      RefType.new(e 'inv:invoiceHeader/inv:carrier')
     end
 
     def note
@@ -175,23 +175,23 @@ module Pohoda
       xml.xpath('inv:invoiceDetail/inv:invoiceItem').map { |i| InvoiceItem.new(i) }
     end
 
-    def rounding_type
+    def rounding_document
       t 'inv:invoiceSummary/inv:roundingDocument'
     end
 
-    def vat_rounding_type
+    def rounding_vat
       t 'inv:invoiceSummary/inv:roundingVAT'
     end
 
-    def vat_from_rounding
+    def calculate_vat
       t 'inv:invoiceSummary/inv:calculateVAT'
     end
 
-    def type_currency_home
+    def home_currency
       TypeCurrencyHome.new(e 'inv:invoiceSummary/inv:homeCurrency')
     end
 
-    def type_currency_foreign
+    def foreign_currency
       TypeCurrencyForeign.new(e 'inv:invoiceSummary/inv:foreignCurrency')
     end
 
@@ -221,7 +221,7 @@ module Pohoda
         date_order: date_order,
         price_level: price_level.to_h,
         payment_type: payment_type.to_h,
-        account: accounting.to_h,
+        account: account.to_h,
         sym_const: sym_const,
         sym_spec: sym_spec,
         payment_account: payment_account.to_h,
@@ -237,11 +237,11 @@ module Pohoda
         note: note,
         int_note: int_note,
         items: items.map(&:to_h),
-        rounding_type: rounding_type,
-        vat_rounding_type: vat_rounding_type,
-        vat_from_rounding: vat_from_rounding,
-        type_currency_home: type_currency_home.to_h,
-        type_currency_foreign: type_currency_foreign.to_h }
+        rounding_document: rounding_document,
+        rounding_vat: rounding_vat,
+        calculate_vat: calculate_vat,
+        home_currency: home_currency.to_h,
+        foreign_currency: foreign_currency.to_h }
     end
   end
 end
