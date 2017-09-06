@@ -6,7 +6,7 @@ RSpec.describe Pohoda::DataPackType do
 
   it '#data_pack_items' do
     expect(data_pack.data_pack_items.size).to eq 1
-    expect(data_pack.data_pack_items.first).to be_a Pohoda::Invoice
+    expect(data_pack.data_pack_items.first).to be_a Pohoda::InvoiceType
   end
 
   it "#['version']" do

@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-RSpec.describe Pohoda::Invoice do
+RSpec.describe Pohoda::InvoiceType do
   context 'invoice with no data' do
     let(:xml) { xml_invoice('blank_invoice.xml') }
-    let(:i) { Pohoda::Invoice.new(xml) }
+    let(:i) { Pohoda::InvoiceType.new(xml) }
 
     it '#id' do
       expect(i.id).to eq ''

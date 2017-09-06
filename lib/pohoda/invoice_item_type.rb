@@ -1,5 +1,5 @@
 module Pohoda
-  class InvoiceItem
+  class InvoiceItemType
     include BaseElement
 
     def id

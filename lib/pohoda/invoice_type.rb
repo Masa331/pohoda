@@ -1,5 +1,5 @@
 module Pohoda
-  class Invoice
+  class InvoiceType
     include Utils
 
     attr_accessor :xml
@@ -172,7 +172,7 @@ module Pohoda
     end
 
     def items
-      xml.xpath('inv:invoiceDetail/inv:invoiceItem').map { |i| InvoiceItem.new(i) }
+      xml.xpath('inv:invoiceDetail/inv:invoiceItem').map { |i| InvoiceItemType.new(i) }
     end
 
     def rounding_document

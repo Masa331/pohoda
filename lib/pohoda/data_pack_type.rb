@@ -10,7 +10,7 @@ module Pohoda
 
     def data_pack_items
       xml.xpath('//inv:invoice').map do |raw|
-        Pohoda::Invoice.new(xml)
+        Pohoda::InvoiceType.new(xml)
       end
     end
   end
