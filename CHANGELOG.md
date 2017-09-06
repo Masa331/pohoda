@@ -1,3 +1,9 @@
+# 0.4.0
+
+- Add DataPackType and DataPackItemType with basic api for whole xml parsing
+- Rename Invoice and InvoiceItem classes to conform to Pohoda naming
+- Parse stock_item element on invoice item
+
 # 0.3.0
 
 - Rename couple of methods and classes to be in line with Pohoda naming
