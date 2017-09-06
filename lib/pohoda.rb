@@ -23,6 +23,10 @@ require "pohoda/address"
 require "pohoda/ship_to_address"
 require "pohoda/account_type"
 require "pohoda/type_round"
+require "pohoda/stock_item_type"
+require "pohoda/stock_ref_type"
+require "pohoda/data_pack_type"
+require "pohoda/data_pack_item_type"
 
 module Pohoda
 end

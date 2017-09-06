@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe Pohoda::Invoice do
-  context 'basic invoice' do
+  context 'invoice with no data' do
     let(:xml) { xml_invoice('blank_invoice.xml') }
     let(:i) { Pohoda::Invoice.new(xml) }
 

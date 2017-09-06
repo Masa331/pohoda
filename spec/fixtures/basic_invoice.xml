@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dat:dataPack id="fa001" ico="00000001" application="StwTest" version="2.0" note="Import" xmlns:dat="http://www.stormware.cz/schema/version_2/data.xsd" xmlns:inv="http://www.stormware.cz/schema/version_2/invoice.xsd" xmlns:typ="http://www.stormware.cz/schema/version_2/type.xsd">
+
+  <dat:dataPackItem id="2016001938" version="2.0">
+    <inv:invoice version="2.0">
+      <inv:invoiceHeader>
+        <inv:invoiceType>issuedInvoice</inv:invoiceType>
+        <inv:number>
+          <typ:numberRequested>2016001938</typ:numberRequested>
+        </inv:number>
+        <inv:numberOrder>2016001748</inv:numberOrder>
+        <inv:symVar>2016001938</inv:symVar>
+        <inv:date>2016-10-17</inv:date>
+        <inv:dateTax>2016-10-17</inv:dateTax>
+        <inv:dateDue>2016-10-31</inv:dateDue>
+        <inv:partnerIdentity>
+          <typ:address>
+            <typ:company></typ:company>
+            <typ:name>John Doe</typ:name>
+            <typ:city>Písečná</typ:city>
+            <typ:street>Studený Zejf 7</typ:street>
+            <typ:zip>79082</typ:zip>
+            <typ:country>
+              <typ:ids>CZE</typ:ids>
+            </typ:country>
+            <typ:ico></typ:ico>
+            <typ:dic></typ:dic>
+          </typ:address>
+        </inv:partnerIdentity>
+      </inv:invoiceHeader>
+      <inv:invoiceDetail>
+        <inv:invoiceItem>
+          <inv:text>Perla přání</inv:text>
+          <inv:quantity>3</inv:quantity>
+          <inv:unit>ks</inv:unit>
+          <inv:payVAT>false</inv:payVAT>
+          <inv:rateVAT>high</inv:rateVAT>
+          <inv:homeCurrency>
+            <typ:unitPrice>164.46</typ:unitPrice>
+            <typ:price>493.39</typ:price>
+            <typ:priceVAT>103.61</typ:priceVAT>
+          </inv:homeCurrency>
+          <inv:stockItem>
+            <typ:store>
+              <typ:ids>Sklad</typ:ids>
+            </typ:store>
+            <typ:stockItem>
+              <typ:ids>83</typ:ids>
+            </typ:stockItem>
+          </inv:stockItem>
+          <inv:code>83</inv:code>
+        </inv:invoiceItem>
+
+        <inv:invoiceItem>
+          <inv:text>Česká pošta - Balík do ruky</inv:text>
+          <inv:quantity>1</inv:quantity>
+          <inv:unit></inv:unit>
+          <inv:payVAT>false</inv:payVAT>
+          <inv:rateVAT>high</inv:rateVAT>
+          <inv:homeCurrency>
+            <typ:unitPrice>0</typ:unitPrice>
+            <typ:price>0</typ:price>
+            <typ:priceVAT>0</typ:priceVAT>
+          </inv:homeCurrency>
+        </inv:invoiceItem>
+      </inv:invoiceDetail>
+      <inv:invoiceSummary>
+        <inv:roundingDocument>math2one</inv:roundingDocument>
+        <inv:homeCurrency>
+          <typ:priceHighSum>715</typ:priceHighSum>
+          <typ:round><typ:priceRound>0</typ:priceRound></typ:round>
+        </inv:homeCurrency>
+      </inv:invoiceSummary>
+    </inv:invoice>
+  </dat:dataPackItem>
+</dat:dataPack>
