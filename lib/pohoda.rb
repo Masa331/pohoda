@@ -28,5 +28,8 @@ require "pohoda/stock_ref_type"
 require "pohoda/data_pack_type"
 require "pohoda/data_pack_item_type"
 
+require 'pohoda/builder/data_pack'
+require 'pohoda/builder/data_pack_item'
+
 module Pohoda
 end
