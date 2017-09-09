@@ -5,14 +5,14 @@ RSpec.describe Pohoda::Builder::DataPack do
     describe '#to_xml' do
       it 'retuns xml string' do
         builder = Pohoda::Builder::DataPack.new
-        expected_output = File.read('spec/fixtures/builded_empty_data_pack.xml')
+        expected_output = File.read('spec/builders/data_pack/builded_empty_data_pack.xml')
 
         expect(builder.to_xml).to eq expected_output
       end
 
       it "returned string is valid against data pack XSD(minus it's emptiness :D)" do
         builder = Pohoda::Builder::DataPack.new
-        expected_output = File.read('spec/fixtures/builded_data_pack.xml')
+        expected_output = File.read('spec/builders/data_pack/builded_data_pack.xml')
 
         raw_schema = File.read('spec/fixtures/pohoda_xsd/data-package.xsd')
         schema = Nokogiri::XML::Schema(raw_schema)
@@ -31,7 +31,7 @@ RSpec.describe Pohoda::Builder::DataPack do
       builder = Pohoda::Builder::DataPack.new
       builder.data_pack_items = [Pohoda::Builder::DataPackItem.new]
 
-      expected_output = File.read('spec/fixtures/builded_data_pack.xml')
+      expected_output = File.read('spec/builders/data_pack/builded_data_pack.xml')
 
       expect(builder.to_xml).to eq expected_output
     end
