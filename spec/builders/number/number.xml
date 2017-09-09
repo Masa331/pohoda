@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<inv:number xmlns:inv="http://www.stormware.cz/schema/version_2/invoice.xsd" xmlns:typ="http://www.stormware.cz/schema/version_2/type.xsd">
+  <typ:id>1</typ:id>
+  <typ:ids>string identifier</typ:ids>
+  <typ:numberRequested>2017000025</typ:numberRequested>
+</inv:number>

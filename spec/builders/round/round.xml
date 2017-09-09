@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<typ:round xmlns:typ="http://www.stormware.cz/schema/version_2/type.xsd">
+  <typ:priceRound>1</typ:priceRound>
+</typ:round>

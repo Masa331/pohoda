@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<inv:foreignCurrency xmlns:inv="http://www.stormware.cz/schema/version_2/invoice.xsd" xmlns:typ="http://www.stormware.cz/schema/version_2/type.xsd">
+  <typ:amount>33</typ:amount>
+</inv:foreignCurrency>

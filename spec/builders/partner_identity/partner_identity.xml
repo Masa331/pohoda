@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<inv:partnerIdentity xmlns:inv="http://www.stormware.cz/schema/version_2/invoice.xsd" xmlns:typ="http://www.stormware.cz/schema/version_2/type.xsd">
+  <typ:id>1</typ:id>
+  <typ:extId>
+    <typ:ids>1</typ:ids>
+  </typ:extId>
+  <typ:address>
+    <typ:name>Premysl Donat</typ:name>
+  </typ:address>
+  <typ:shipToAddress>
+    <typ:street>Sunny Boulevard</typ:street>
+  </typ:shipToAddress>
+</inv:partnerIdentity>

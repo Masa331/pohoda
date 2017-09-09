@@ -27,9 +27,25 @@ require "pohoda/stock_item_type"
 require "pohoda/stock_ref_type"
 require "pohoda/data_pack_type"
 require "pohoda/data_pack_item_type"
-
 require 'pohoda/builder/data_pack'
 require 'pohoda/builder/data_pack_item'
+require 'pohoda/builder/invoice'
+require 'pohoda/builder/number'
+require 'pohoda/builder/partner_identity'
+require 'pohoda/builder/ext_id'
+require 'pohoda/builder/address'
+require 'pohoda/builder/country'
+require 'pohoda/builder/ship_to_address'
+require 'pohoda/builder/invoice_item'
+require 'pohoda/builder/home_currency'
+require 'pohoda/builder/foreign_currency'
+require 'pohoda/builder/stock_item'
+require 'pohoda/builder/stock_item2'
+require 'pohoda/builder/store'
+require 'pohoda/builder/home_currency2'
+require 'pohoda/builder/round'
+require 'pohoda/builder/foreign_currency2'
+require 'pohoda/builder/currency'
 
 module Pohoda
 end

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="Windows-1250"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			xmlns:typ="http://www.stormware.cz/schema/version_2/type.xsd"
+			xmlns:rdc="http://www.stormware.cz/schema/version_2/documentresponse.xsd"
+      xmlns:ftr="http://www.stormware.cz/schema/version_2/filter.xsd"
+			xmlns:prn="http://www.stormware.cz/schema/version_2/print.xsd"
+			xmlns="http://www.stormware.cz/schema/version_2/print.xsd"
+			targetNamespace="http://www.stormware.cz/schema/version_2/print.xsd"
+			elementFormDefault="qualified"
+>
+
+<xsd:import namespace="http://www.stormware.cz/schema/version_2/type.xsd" 					schemaLocation="type.xsd"/>
+<xsd:import namespace="http://www.stormware.cz/schema/version_2/filter.xsd" 					schemaLocation="filter.xsd"/>
+<xsd:import namespace="http://www.stormware.cz/schema/version_2/documentresponse.xsd" 	schemaLocation="documentresponse.xsd"/>
+
+<!-- **************************************************************************
+		root element must be <print>
+	 ************************************************************************** -->
+
+<!-- REQUEST -->
+
+<xsd:element name="print" type="prn:printType">
+  <xsd:annotation>
+	 <xsd:documentation>Tisk vybraného záznamu.</xsd:documentation>
+	</xsd:annotation>
+</xsd:element>
+
+<!-- **************************************************************************
+		print
+	 ************************************************************************** -->
+
+<xsd:complexType name="printType">
+	<xsd:sequence>
+		<xsd:element name="record" type="ftr:recordPrintType">
+			<xsd:annotation>
+				<xsd:documentation>Výběr záznamu.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:element>
+    <xsd:element name="printerSettings" type="prn:printerSettingsType" minOccurs="0" maxOccurs="unbounded">
+			<xsd:annotation>
+				<xsd:documentation>Parametry tisku.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:element>
+	</xsd:sequence>
+	<xsd:attribute name="version" type="prn:printVerType" use="required"/>		
+</xsd:complexType>
+
+<xsd:simpleType name="printVerType">
+	<xsd:annotation>
+		<xsd:documentation>Verze, které jsou dostupné k tomuto dokladu. Podrobnosti k jednotlivým verzím najdete na www.stormware.cz/xml.</xsd:documentation>
+	</xsd:annotation>
+	<xsd:restriction base="xsd:string">
+		<xsd:enumeration value="1.0"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:complexType name="agendaPrintType">
+	<xsd:sequence>		
+    <xsd:element name="printerSettings" type="prn:printerSettingsType" minOccurs="0" maxOccurs="unbounded"/>
+	</xsd:sequence>		
+</xsd:complexType>
+
+<xsd:complexType name="printerSettingsType">
+	<xsd:all>
+    <xsd:element name="report" type="prn:reportType">
+			<xsd:annotation>
+				<xsd:documentation>Výběr sestavy.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:element>
+    <xsd:element name="printer" type="xsd:string" minOccurs="0">
+    	<xsd:annotation>
+    		<xsd:documentation>Název tiskárny. Hodnotu lze zkopírovat z dialogu tisk. Pokud hodnota není uvedena, použije se výchozí tiskárna. Při současném použití elementu "printer" a "PDF" má přednost element "printer".</xsd:documentation>
+    	</xsd:annotation>
+    </xsd:element>
+    <xsd:element name="pdf" type="prn:PDFType" minOccurs="0">
+      <xsd:annotation>
+        <xsd:documentation>Uložení tiskové sestavy do PDF souboru. Pro vytvoření PDF souboru bude použita tiskárna "Stormware PDF Printer".</xsd:documentation>
+      </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="parameters" type="prn:parametersType" minOccurs="0"/>
+	</xsd:all>	
+</xsd:complexType>
+
+  <xsd:complexType name="PDFType">
+    <xsd:all>
+      <xsd:element name="fileName" type="typ:nonEmptyString" minOccurs="0" maxOccurs="1">
+        <xsd:annotation>
+          <xsd:documentation>Název a umístění PDF souboru (př. "C:\PDF\faktura_c_FV160006.pdf").Pokud nebude element uveden, bude použito výchozí nastavení z programu POHODA.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:all>
+  </xsd:complexType>
+
+  <xsd:complexType name="reportType">
+	<xsd:all>
+   	<xsd:element name="id" type="typ:idType">
+	    	<xsd:annotation>
+	    		<xsd:documentation>Identifikátor sestavy. Hodnotu naleznete v informacích o sestavě. Pokud hodnota není uvedena, použije se výchozí sestava.</xsd:documentation>
+	    	</xsd:annotation>
+	    </xsd:element>	     
+	</xsd:all>	
+</xsd:complexType>
+
+<xsd:complexType name="parametersType">
+	<xsd:all>
+    <xsd:element name="copy" type="prn:copyType" minOccurs="0" default="1">
+    	<xsd:annotation>
+    		<xsd:documentation>Počet kopií.</xsd:documentation>
+    	</xsd:annotation>
+	  </xsd:element>
+	  <xsd:element name="datePrint" type="xsd:date" minOccurs="0">
+	    	<xsd:annotation>
+	    		<xsd:documentation>Datum tisku.</xsd:documentation>
+	    	</xsd:annotation>
+	  </xsd:element>
+  </xsd:all>	
+</xsd:complexType> 	
+
+<xsd:simpleType name="copyType">
+	<xsd:restriction base="xsd:decimal">
+	   <xsd:minInclusive value="1"/>
+     <xsd:maxInclusive value="20"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+
+<!-- RESPONSE -->
+
+  <xsd:element name="printResponse" type="prn:printResponseType"/>
+
+  <xsd:complexType name="printResponseType">
+    <xsd:complexContent>
+      <xsd:extension  base="rdc:documentResponseType"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+</xsd:schema>
