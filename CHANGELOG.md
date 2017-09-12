@@ -1,3 +1,7 @@
+# 0.5.0
+
+- Add builders for DataPack, DataPackItem and Invoice with all dependencies
+
 # 0.4.0
 
 - Add DataPackType and DataPackItemType with basic api for whole xml parsing
