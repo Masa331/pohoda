@@ -6,6 +6,8 @@ module Pohoda
       attr_reader :number, :partner_identity, :items, :home_currency, :foreign_currency
 
       def initialize(attributes = {})
+        attributes ||= {}
+
         number_attrs = attributes.delete :number
         @number = Pohoda::Builder::Number.new(number_attrs)
 

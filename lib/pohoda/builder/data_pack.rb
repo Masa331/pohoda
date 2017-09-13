@@ -8,7 +8,14 @@ module Pohoda
       end
 
       def to_xml
-        builder.to_xml
+        doc.to_xml
+      end
+
+      def doc
+        b = builder
+        doc = b.doc
+        doc.at_xpath('//dat:dataPack').children.each { |c| traverse_and_clean(c) }
+        doc
       end
 
       def builder
@@ -20,10 +27,17 @@ module Pohoda
         Nokogiri::XML::Builder.new do |xml|
           xml['dat'].dataPack(attributes.merge(namespaces)) {
             data_pack_items.each do |item|
-              xml << item.builder.doc.root.to_xml
+              xml << item.doc.root.to_xml
             end
           }
         end
+      end
+
+      private
+
+      def traverse_and_clean(kid)
+        kid.children.map { |child| traverse_and_clean(child) }
+        kid.remove if kid.content.empty?
       end
     end
   end

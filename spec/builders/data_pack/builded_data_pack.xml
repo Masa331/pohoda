@@ -1,4 +1,3 @@
 <?xml version="1.0"?>
 <dat:dataPack xmlns:dat="http://www.stormware.cz/schema/version_2/data.xsd" xmlns:inv="http://www.stormware.cz/schema/version_2/invoice.xsd" xmlns:typ="http://www.stormware.cz/schema/version_2/type.xsd" application="damedata.cz" version="2.0" ico="00000001" note="Exportovano z aplikace damedata.cz" id="1">
-  <dat:dataPackItem version="2.0" id="1"/>
 </dat:dataPack>

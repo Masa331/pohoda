@@ -25,15 +25,4 @@ RSpec.describe Pohoda::Builder::DataPack do
       end
     end
   end
-
-  context 'data pack with one item' do
-    it 'retuns xml string' do
-      builder = Pohoda::Builder::DataPack.new
-      builder.data_pack_items = [Pohoda::Builder::DataPackItem.new]
-
-      expected_output = File.read('spec/builders/data_pack/builded_data_pack.xml')
-
-      expect(builder.to_xml).to eq expected_output
-    end
-  end
 end
