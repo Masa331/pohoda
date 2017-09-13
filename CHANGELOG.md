@@ -1,3 +1,7 @@
+# 0.5.1
+
+- DataPackItem builder now outputs it's content(invoice) into xml
+
 # 0.5.0
 
 - Add builders for DataPack, DataPackItem and Invoice with all dependencies
