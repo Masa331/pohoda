@@ -5,8 +5,10 @@ module Pohoda
       attr_reader :invoice
 
       def initialize(attributes = {})
+        attributes ||= {}
+
         invoice_attrs = attributes.delete :invoice
-        @invoice = Pohoda::Builder::Invoice.new(invoice)
+        @invoice = Pohoda::Builder::Invoice.new(invoice_attrs)
       end
 
       def to_xml

@@ -57,7 +57,7 @@ module Pohoda
     def to_h
       { id: id,
         text: text,
-        quanitty: quantity,
+        quantity: quantity,
         unit: unit,
         coefficient: coefficient,
         pay_vat: pay_vat,

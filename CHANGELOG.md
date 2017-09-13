@@ -1,3 +1,7 @@
+# 0.5.2
+
+- Fixed various issues with exporting whole dataset into xml
+
 # 0.5.1
 
 - DataPackItem builder now outputs it's content(invoice) into xml

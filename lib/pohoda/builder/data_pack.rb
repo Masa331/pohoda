@@ -7,6 +7,13 @@ module Pohoda
         @data_pack_items = []
       end
 
+      def initialize(attributes = {})
+        attributes ||= {}
+
+        items_attrs = attributes.delete(:data_pack_items) || []
+        @data_pack_items = items_attrs.map { |attrs| Pohoda::Builder::DataPackItem.new(attrs) }
+      end
+
       def to_xml
         doc.to_xml
       end
