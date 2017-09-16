@@ -1,6 +1,7 @@
 require "bundler/setup"
 require "pohoda"
 require "spec_helpers"
+require 'rspec/its'
 
 RSpec.configure do |config|
   config.include SpecHelpers
