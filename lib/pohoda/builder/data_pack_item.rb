@@ -1,26 +1,9 @@
 module Pohoda
   module Builder
     class DataPackItem
+      include BaseBuilder
 
-      attr_reader :invoice
-
-      def initialize(attributes = {})
-        attributes ||= {}
-
-        invoice_attrs = attributes.delete :invoice
-        @invoice = Pohoda::Builder::Invoice.new(invoice_attrs)
-      end
-
-      def to_xml
-        doc.to_xml
-      end
-
-      def doc
-        b = builder
-        doc = b.doc
-        doc.at_xpath('//dat:dataPackItem').children.each { |c| traverse_and_clean(c) }
-        doc
-      end
+      attr_accessor :invoice
 
       def builder
         namespaces = { 'xmlns:dat' => 'http://www.stormware.cz/schema/version_2/data.xsd' }
@@ -28,16 +11,9 @@ module Pohoda
 
         Nokogiri::XML::Builder.new do |xml|
           xml['dat'].dataPackItem(attributes.merge(namespaces)) {
-            xml << invoice.doc.root.to_xml
+            xml << Pohoda::Builder::Invoice.new(invoice).doc.root.to_xml
           }
         end
-      end
-
-      private
-
-      def traverse_and_clean(kid)
-        kid.children.map { |child| traverse_and_clean(child) }
-        kid.remove if kid.content.empty?
       end
     end
   end
