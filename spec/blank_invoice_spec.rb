@@ -5,6 +5,7 @@ RSpec.describe Pohoda::InvoiceType do
     let(:xml) { xml_invoice('blank_invoice.xml') }
     subject(:invoice) { Pohoda::InvoiceType.new(xml) }
 
+    its(:links) { is_expected.to eq [] }
     its(:id) { is_expected.to eq '' }
 
     its('ext_id.ids') { is_expected.to eq '' }
@@ -271,6 +272,8 @@ RSpec.describe Pohoda::InvoiceType do
           note: '',
           int_note: '',
           items: [],
+          advance_payments: [],
+          links: [],
           rounding_document: '',
           rounding_vat: '',
           calculate_vat: '',

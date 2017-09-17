@@ -2,6 +2,10 @@ module Pohoda
   class InvoiceItemType
     include BaseElement
 
+    def link
+      LinkItemType.new(e 'inv:link')
+    end
+
     def id
       t 'inv:id'
     end
@@ -42,6 +46,14 @@ module Pohoda
       t 'inv:code'
     end
 
+    def guarantee
+      t 'inv:guarantee'
+    end
+
+    def guarantee_type
+      t 'inv:guaranteeType'
+    end
+
     def home_currency
       TypeCurrencyHomeItem.new(e 'inv:homeCurrency')
     end
@@ -55,7 +67,8 @@ module Pohoda
     end
 
     def to_h
-      { id: id,
+      { link: link.to_h,
+        id: id,
         text: text,
         quantity: quantity,
         unit: unit,
@@ -66,6 +79,8 @@ module Pohoda
         discount_percentage: discount_percentage,
         stock_item: stock_item.to_h,
         code: code,
+        guarantee: guarantee,
+        guarantee_type: guarantee_type,
         home_currency: home_currency.to_h,
         foreign_currency: foreign_currency.to_h }
     end

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<dat:dataPack id="fa004" ico="12345678" application="StwTest" version = "2.0" note="Import FA"    
+  xmlns:dat="http://www.stormware.cz/schema/version_2/data.xsd" 
+  xmlns:inv="http://www.stormware.cz/schema/version_2/invoice.xsd"    
+  xmlns:typ="http://www.stormware.cz/schema/version_2/type.xsd" >
+  <dat:dataPackItem id="ExtID001" version="2.0">
+    <!-- faktura s vazbou adresy přes extId -->
+    <inv:invoice version="2.0">
+      <inv:invoiceHeader>
+        <inv:partnerIdentity>
+          <typ:extId>
+            <typ:ids>EXT-001</typ:ids>
+            <typ:exSystemName>Externi system</typ:exSystemName>
+          </typ:extId>
+        </inv:partnerIdentity>
+        <inv:paymentAccount>
+          <typ:accountNo>1071743463</typ:accountNo>
+          <typ:bankCode>2700</typ:bankCode>
+        </inv:paymentAccount>
+      </inv:invoiceHeader>
+      <inv:invoiceDetail>
+        <inv:invoiceItem>
+          <inv:link>
+            <typ:sourceAgenda>receivedOrder</typ:sourceAgenda>
+            <typ:sourceItemId>8</typ:sourceItemId>
+          </inv:link>
+        </inv:invoiceItem>
+      </inv:invoiceDetail>
+    </inv:invoice>
+  </dat:dataPackItem>
+</dat:dataPack>

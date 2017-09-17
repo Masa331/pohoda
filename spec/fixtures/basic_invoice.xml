@@ -9,24 +9,57 @@
           <typ:numberRequested>2016001938</typ:numberRequested>
         </inv:number>
         <inv:numberOrder>2016001748</inv:numberOrder>
+        <inv:dateOrder>2014-10-02</inv:dateOrder>
         <inv:symVar>2016001938</inv:symVar>
         <inv:date>2016-10-17</inv:date>
         <inv:dateTax>2016-10-17</inv:dateTax>
         <inv:dateDue>2016-10-31</inv:dateDue>
+        <inv:dateAccounting>2014-10-14</inv:dateAccounting>
+        <inv:classificationVAT>
+          <typ:classificationVATType>inland</typ:classificationVATType>
+        </inv:classificationVAT>
+        <inv:accounting>
+          <typ:ids>3FV</typ:ids>
+        </inv:accounting>
+        <inv:text>Faktura za zboží s adresou bez vazby na Adresář</inv:text>
         <inv:partnerIdentity>
           <typ:address>
-            <typ:company></typ:company>
+            <typ:company>firma</typ:company>
+            <typ:division>Obchodní oddělení</typ:division>
             <typ:name>John Doe</typ:name>
             <typ:city>Písečná</typ:city>
             <typ:street>Studený Zejf 7</typ:street>
             <typ:zip>79082</typ:zip>
+            <typ:ico>789456</typ:ico>
+            <typ:dic>CZ789456</typ:dic>
             <typ:country>
               <typ:ids>CZE</typ:ids>
             </typ:country>
-            <typ:ico></typ:ico>
-            <typ:dic></typ:dic>
           </typ:address>
+          <typ:shipToAddress>
+            <typ:name>Soukop Bohumil</typ:name>
+            <typ:city>Praha</typ:city>
+            <typ:street>Nová 1475</typ:street>
+          </typ:shipToAddress>
         </inv:partnerIdentity>
+        <inv:paymentType>
+          <typ:ids>Master Card</typ:ids>
+        </inv:paymentType>
+        <inv:account>
+          <typ:accountNo>1117780287</typ:accountNo>
+          <typ:bankCode>0300</typ:bankCode>
+        </inv:account>
+        <inv:note>Načteno z XML</inv:note>
+        <inv:intNote>Tento doklad byl vytvořen importem přes XML.</inv:intNote>
+        <inv:centre>
+          <typ:ids>BRNO</typ:ids>
+        </inv:centre>
+        <inv:activity>
+          <typ:ids>SLUŽBY</typ:ids>
+        </inv:activity>
+        <inv:contract>
+          <typ:ids>10Zak00002</typ:ids>
+        </inv:contract>
       </inv:invoiceHeader>
       <inv:invoiceDetail>
         <inv:invoiceItem>
@@ -35,10 +68,13 @@
           <inv:unit>ks</inv:unit>
           <inv:payVAT>false</inv:payVAT>
           <inv:rateVAT>high</inv:rateVAT>
+          <inv:guarantee>48</inv:guarantee>
+          <inv:guaranteeType>month</inv:guaranteeType>
           <inv:homeCurrency>
             <typ:unitPrice>164.46</typ:unitPrice>
             <typ:price>493.39</typ:price>
             <typ:priceVAT>103.61</typ:priceVAT>
+            <typ:priceSum>2381.28</typ:priceSum>
           </inv:homeCurrency>
           <inv:stockItem>
             <typ:store>
@@ -68,6 +104,8 @@
         <inv:roundingDocument>math2one</inv:roundingDocument>
         <inv:homeCurrency>
           <typ:priceHighSum>715</typ:priceHighSum>
+          <typ:priceNone>100</typ:priceNone>
+          <typ:priceLow>200</typ:priceLow>
           <typ:round><typ:priceRound>0</typ:priceRound></typ:round>
         </inv:homeCurrency>
       </inv:invoiceSummary>

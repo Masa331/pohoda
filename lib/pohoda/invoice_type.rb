@@ -8,6 +8,10 @@ module Pohoda
       @xml = xml
     end
 
+    def links
+      xml.xpath('inv:links/typ:link').map { |i| LinkElemetType.new(i) }
+    end
+
     def id
       t 'inv:invoiceHeader/inv:id'
     end
@@ -124,7 +128,7 @@ module Pohoda
     end
 
     def payment_account
-      PaymentAccount.new(e 'inv:invoiceHeader/inv:payment_account')
+      PaymentAccount.new(e 'inv:invoiceHeader/inv:paymentAccount')
     end
 
     def payment_terminal
@@ -173,6 +177,10 @@ module Pohoda
 
     def items
       xml.xpath('inv:invoiceDetail/inv:invoiceItem').map { |i| InvoiceItemType.new(i) }
+    end
+
+    def advance_payments
+      xml.xpath('inv:invoiceDetail/inv:invoiceAdvancePaymentItem').map { |i| InvoiceAdvancePaymentItemType.new(i) }
     end
 
     def rounding_document
@@ -237,6 +245,8 @@ module Pohoda
         note: note,
         int_note: int_note,
         items: items.map(&:to_h),
+        advance_payments: advance_payments.map(&:to_h),
+        links: links.map(&:to_h),
         rounding_document: rounding_document,
         rounding_vat: rounding_vat,
         calculate_vat: calculate_vat,

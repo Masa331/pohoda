@@ -15,7 +15,7 @@ module Pohoda
     end
 
     def to_h
-      { id: ids,
+      { id: id,
         ids: ids,
         value_type: value_type }
     end

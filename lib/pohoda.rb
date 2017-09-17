@@ -27,6 +27,12 @@ require "pohoda/stock_item_type"
 require "pohoda/stock_ref_type"
 require "pohoda/data_pack_type"
 require "pohoda/data_pack_item_type"
+require "pohoda/link_elemet_type"
+require "pohoda/link_item_type"
+require "pohoda/source_document_type"
+require "pohoda/invoice_advance_payment_item_type"
+require "pohoda/type_currency_home_item2"
+
 require 'pohoda/builder/base_builder'
 require 'pohoda/builder/data_pack'
 require 'pohoda/builder/data_pack_item'

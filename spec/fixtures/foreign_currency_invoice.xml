@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<dat:dataPack id="fa003" ico="12345678" application="StwTest" version = "2.0" note="Import FA"
+  xmlns:dat="http://www.stormware.cz/schema/version_2/data.xsd"
+  xmlns:inv="http://www.stormware.cz/schema/version_2/invoice.xsd"
+  xmlns:typ="http://www.stormware.cz/schema/version_2/type.xsd" >
+
+  <dat:dataPackItem id="CM002" version="2.0">
+    <inv:invoice version="2.0">
+      <inv:invoiceDetail>
+        <inv:invoiceItem>
+          <inv:foreignCurrency>
+            <typ:unitPrice>1000</typ:unitPrice>
+          </inv:foreignCurrency>
+        </inv:invoiceItem>
+      </inv:invoiceDetail>
+
+      <inv:invoiceSummary>
+        <inv:roundingVAT>noneEveryRate</inv:roundingVAT>
+        <inv:foreignCurrency>
+          <typ:currency>
+            <typ:ids>EUR</typ:ids>
+          </typ:currency>
+          <typ:rate>21.232</typ:rate>
+          <typ:amount>1</typ:amount>
+          <typ:priceSum>580</typ:priceSum>
+        </inv:foreignCurrency>
+      </inv:invoiceSummary>
+    </inv:invoice>
+  </dat:dataPackItem>
+</dat:dataPack>
