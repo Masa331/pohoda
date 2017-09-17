@@ -9,9 +9,13 @@ module Pohoda
     end
 
     def data_pack_items
-      xml.xpath('//inv:invoice').map do |raw|
-        Pohoda::InvoiceType.new(xml)
+      xml.xpath('//dat:dataPackItem').map do |raw|
+        Pohoda::DataPackItemType.new(xml)
       end
+    end
+
+    def to_h
+      { data_pack_items: data_pack_items.map(&:to_h) }
     end
   end
 end

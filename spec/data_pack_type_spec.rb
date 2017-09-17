@@ -6,7 +6,7 @@ RSpec.describe Pohoda::DataPackType do
 
   it '#data_pack_items' do
     expect(data_pack.data_pack_items.size).to eq 1
-    expect(data_pack.data_pack_items.first).to be_a Pohoda::InvoiceType
+    expect(data_pack.data_pack_items.first).to be_a Pohoda::DataPackItemType
   end
 
   it "#['version']" do
@@ -27,5 +27,13 @@ RSpec.describe Pohoda::DataPackType do
 
   it "#['note']" do
     expect(data_pack['note']).to eq 'Import'
+  end
+
+  describe '#to_h' do
+    it '#to_h' do
+      hash = data_pack.to_h
+
+      expect(hash[:data_pack_items].first[:invoice]).to include({ invoice_type: 'issuedInvoice' })
+    end
   end
 end
