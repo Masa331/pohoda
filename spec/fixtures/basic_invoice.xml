@@ -3,6 +3,15 @@
 
   <dat:dataPackItem id="2016001938" version="2.0">
     <inv:invoice version="2.0">
+      <inv:links>
+        <typ:link>
+          <typ:sourceAgenda>receivedOrder</typ:sourceAgenda>
+          <typ:sourceDocument>
+            <typ:number>142100003</typ:number>
+          </typ:sourceDocument>
+        </typ:link>
+      </inv:links>
+
       <inv:invoiceHeader>
         <inv:invoiceType>issuedInvoice</inv:invoiceType>
         <inv:number>
@@ -23,6 +32,11 @@
         </inv:accounting>
         <inv:text>Faktura za zboží s adresou bez vazby na Adresář</inv:text>
         <inv:partnerIdentity>
+          <typ:id>25</typ:id>
+          <typ:extId>
+            <typ:ids>EXT-001</typ:ids>
+            <typ:exSystemName>Externi system</typ:exSystemName>
+          </typ:extId>
           <typ:address>
             <typ:company>firma</typ:company>
             <typ:division>Obchodní oddělení</typ:division>
@@ -44,10 +58,16 @@
         </inv:partnerIdentity>
         <inv:paymentType>
           <typ:ids>Master Card</typ:ids>
+          <typ:paymentType>draft</typ:paymentType>
         </inv:paymentType>
+        <inv:paymentAccount>
+          <typ:accountNo>1071743463</typ:accountNo>
+          <typ:bankCode>2700</typ:bankCode>
+        </inv:paymentAccount>
         <inv:account>
           <typ:accountNo>1117780287</typ:accountNo>
           <typ:bankCode>0300</typ:bankCode>
+          <typ:ids>KB</typ:ids>
         </inv:account>
         <inv:note>Načteno z XML</inv:note>
         <inv:intNote>Tento doklad byl vytvořen importem přes XML.</inv:intNote>
@@ -76,6 +96,9 @@
             <typ:priceVAT>103.61</typ:priceVAT>
             <typ:priceSum>2381.28</typ:priceSum>
           </inv:homeCurrency>
+          <inv:foreignCurrency>
+            <typ:unitPrice>1000</typ:unitPrice>
+          </inv:foreignCurrency>
           <inv:stockItem>
             <typ:store>
               <typ:ids>Sklad</typ:ids>
@@ -85,6 +108,13 @@
             </typ:stockItem>
           </inv:stockItem>
           <inv:code>83</inv:code>
+        </inv:invoiceItem>
+
+        <inv:invoiceItem>
+          <inv:link>
+            <typ:sourceAgenda>receivedOrder</typ:sourceAgenda>
+            <typ:sourceItemId>8</typ:sourceItemId>
+          </inv:link>
         </inv:invoiceItem>
 
         <inv:invoiceItem>
@@ -99,15 +129,52 @@
             <typ:priceVAT>0</typ:priceVAT>
           </inv:homeCurrency>
         </inv:invoiceItem>
+
+        <inv:invoiceAdvancePaymentItem>
+          <inv:quantity>1.0</inv:quantity>
+          <inv:payVAT>false</inv:payVAT>
+          <inv:rateVAT>none</inv:rateVAT>
+          <inv:homeCurrency>
+            <typ:unitPrice>-1000</typ:unitPrice>
+            <typ:price>-1000</typ:price>
+            <typ:priceVAT>0</typ:priceVAT>
+            <typ:priceSum>-1000</typ:priceSum>
+          </inv:homeCurrency>
+        </inv:invoiceAdvancePaymentItem>
+
+        <inv:invoiceAdvancePaymentItem>
+          <!--Pokud není tento element uveden, nastaví se ruční odpočet zálohy.-->
+          <inv:sourceDocument>
+            <typ:number>150800001</typ:number>
+          </inv:sourceDocument>
+          <inv:quantity>1.0</inv:quantity>
+          <inv:payVAT>false</inv:payVAT>
+          <inv:rateVAT>none</inv:rateVAT>
+          <inv:homeCurrency>
+            <typ:unitPrice>-3000</typ:unitPrice>
+            <typ:price>-3000</typ:price>
+            <typ:priceVAT>0</typ:priceVAT>
+            <typ:priceSum>-3000</typ:priceSum>
+          </inv:homeCurrency>
+        </inv:invoiceAdvancePaymentItem>
       </inv:invoiceDetail>
       <inv:invoiceSummary>
         <inv:roundingDocument>math2one</inv:roundingDocument>
+        <inv:roundingVAT>noneEveryRate</inv:roundingVAT>
         <inv:homeCurrency>
           <typ:priceHighSum>715</typ:priceHighSum>
           <typ:priceNone>100</typ:priceNone>
           <typ:priceLow>200</typ:priceLow>
           <typ:round><typ:priceRound>0</typ:priceRound></typ:round>
         </inv:homeCurrency>
+        <inv:foreignCurrency>
+          <typ:currency>
+            <typ:ids>EUR</typ:ids>
+          </typ:currency>
+          <typ:rate>21.232</typ:rate>
+          <typ:amount>1</typ:amount>
+          <typ:priceSum>580</typ:priceSum>
+        </inv:foreignCurrency>
       </inv:invoiceSummary>
     </inv:invoice>
   </dat:dataPackItem>
