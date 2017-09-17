@@ -58,20 +58,20 @@ invoice = item.invoice
 => InvoiceType
 
 # Now you are on the invoice level and can start to read it's data
-invoice.sym_var
+invoice.invoice_header.sym_var
 => '2017000123'
 
-invoice.date_accounting
+invoice.invoice_header.date_accounting
 => '2017-10-14'
 
 ...
 
 # Invoice items are under #items method
-invoice.items
+invoice.invoice_detail.items
 => [#<Pohoda::InvoiceItemType:0x00000001ec9cc0, #<Pohoda::InvoiceItemType:0x00000001ec9cc0, ...]
 
 # Invoice advance payment items are under #advance_payments method
-invoice.advance_payments
+invoice.invoice_detail.advance_payments
 => [#<Pohoda::InvoiceAdvancePaymentItemType:0x00000001d3f418, ...]
 
 ```
@@ -81,7 +81,7 @@ For each special complex element in Pohoda XML there is a separate parser equiva
 xml = Nokogiri::XML(File.open "./invoices.xml").at_xpath('//inv:invoice')
 invoice = Pohoda::InvoiceType.new(xml)
 
-invoice.sym_var
+invoice.invoice_header.sym_var
 => '2017000123'
 
 ...
@@ -90,10 +90,13 @@ invoice.sym_var
 Each parser also has a `#to_h` method, which converts all it's attributes into hash:
 ```ruby
 invoice.to_h
-=> { invoice_type: 'issuedInvoice',
-     sym_var: '2017000123',
-     items: [{ id: '1', text: 'Some cool item' }],
-     ...  }
+=> { invoice_header: {
+       invoice_type: 'issuedInvoice',
+       sym_var: '2017000123',
+       items: [{ id: '1', text: 'Some cool item' }],
+       ...
+     }
+   }
 ```
 
 

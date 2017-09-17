@@ -32,6 +32,9 @@ require "pohoda/link_item_type"
 require "pohoda/source_document_type"
 require "pohoda/invoice_advance_payment_item_type"
 require "pohoda/type_currency_home_item2"
+require "pohoda/invoice_header_type"
+require "pohoda/invoice_detail_type"
+require "pohoda/invoice_summary_type"
 
 require 'pohoda/builder/base_builder'
 require 'pohoda/builder/data_pack'

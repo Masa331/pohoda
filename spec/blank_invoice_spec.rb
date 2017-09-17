@@ -6,181 +6,186 @@ RSpec.describe Pohoda::InvoiceType do
     subject(:invoice) { Pohoda::InvoiceType.new(xml) }
 
     its(:links) { is_expected.to eq [] }
-    its(:id) { is_expected.to eq '' }
+    its('invoice_header.id') { is_expected.to eq '' }
 
-    its('ext_id.ids') { is_expected.to eq '' }
-    its('ext_id.ex_system_name') { is_expected.to eq '' }
-    its('ext_id.ex_system_text') { is_expected.to eq '' }
+    its('invoice_header.ext_id.ids') { is_expected.to eq '' }
+    its('invoice_header.ext_id.ex_system_name') { is_expected.to eq '' }
+    its('invoice_header.ext_id.ex_system_text') { is_expected.to eq '' }
 
-    its(:invoice_type) { is_expected.to eq '' }
-    its(:sphere_type) { is_expected.to eq '' }
+    its('invoice_header.invoice_type') { is_expected.to eq '' }
+    its('invoice_header.sphere_type') { is_expected.to eq '' }
 
-    its('number.id') { is_expected.to eq '' }
-    its('number.ids') { is_expected.to eq '' }
-    its('number.number_requested') { is_expected.to eq '' }
+    its('invoice_header.number.id') { is_expected.to eq '' }
+    its('invoice_header.number.ids') { is_expected.to eq '' }
+    its('invoice_header.number.number_requested') { is_expected.to eq '' }
 
-    its(:sym_var) { is_expected.to eq '' }
-    its(:sym_par) { is_expected.to eq '' }
-    its(:date) { is_expected.to eq '' }
-    its(:date_tax) { is_expected.to eq '' }
-    its(:date_accounting) { is_expected.to eq '' }
-    its(:date_khdph) { is_expected.to eq '' }
-    its(:date_due) { is_expected.to eq '' }
-    its(:date_application_vat) { is_expected.to eq '' }
+    its('invoice_header.sym_var') { is_expected.to eq '' }
+    its('invoice_header.sym_par') { is_expected.to eq '' }
+    its('invoice_header.date') { is_expected.to eq '' }
+    its('invoice_header.date_tax') { is_expected.to eq '' }
+    its('invoice_header.date_accounting') { is_expected.to eq '' }
+    its('invoice_header.date_khdph') { is_expected.to eq '' }
+    its('invoice_header.date_due') { is_expected.to eq '' }
+    its('invoice_header.date_application_vat') { is_expected.to eq '' }
 
-    its('accounting.id') { is_expected.to eq '' }
-    its('accounting.ids') { is_expected.to eq '' }
-    its('accounting.accounting_type') { is_expected.to eq '' }
+    its('invoice_header.accounting.id') { is_expected.to eq '' }
+    its('invoice_header.accounting.ids') { is_expected.to eq '' }
+    its('invoice_header.accounting.accounting_type') { is_expected.to eq '' }
 
-    its('classification_vat.id') { is_expected.to eq '' }
-    its('classification_vat.ids') { is_expected.to eq '' }
-    its('classification_vat.classification_vat_type') { is_expected.to eq '' }
+    its('invoice_header.classification_vat.id') { is_expected.to eq '' }
+    its('invoice_header.classification_vat.ids') { is_expected.to eq '' }
+    its('invoice_header.classification_vat.classification_vat_type') { is_expected.to eq '' }
 
-    its(:number_khdph) { is_expected.to eq '' }
-    its(:text) { is_expected.to eq '' }
-    let(:partner) { i.partner_identity }
-    its(:id) { is_expected.to eq '' }
+    its('invoice_header.number_khdph') { is_expected.to eq '' }
+    its('invoice_header.text') { is_expected.to eq '' }
+    let('invoice_header.partner') { i.partner_identity }
+    its('invoice_header.id') { is_expected.to eq '' }
 
-    its('partner_identity.ext_id.ids') { is_expected.to eq '' }
-    its('partner_identity.ext_id.ex_system_name') { is_expected.to eq '' }
-    its('partner_identity.ext_id.ex_system_text') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.ext_id.ids') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.ext_id.ex_system_name') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.ext_id.ex_system_text') { is_expected.to eq '' }
 
-    its('partner_identity.address.company') { is_expected.to eq '' }
-    its('partner_identity.address.division') { is_expected.to eq '' }
-    its('partner_identity.address.name') { is_expected.to eq '' }
-    its('partner_identity.address.city') { is_expected.to eq '' }
-    its('partner_identity.address.street') { is_expected.to eq '' }
-    its('partner_identity.address.zip') { is_expected.to eq '' }
-    its('partner_identity.address.ico') { is_expected.to eq '' }
-    its('partner_identity.address.dic') { is_expected.to eq '' }
-    its('partner_identity.address.ic_dph') { is_expected.to eq '' }
-    its('partner_identity.address.phone') { is_expected.to eq '' }
-    its('partner_identity.address.mobile_phone') { is_expected.to eq '' }
-    its('partner_identity.address.fax') { is_expected.to eq '' }
-    its('partner_identity.address.email') { is_expected.to eq '' }
-    its('partner_identity.address.country.id') { is_expected.to eq '' }
-    its('partner_identity.address.country.ids') { is_expected.to eq '' }
-    its('partner_identity.address.country.value_type') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.address.company') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.address.division') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.address.name') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.address.city') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.address.street') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.address.zip') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.address.ico') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.address.dic') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.address.ic_dph') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.address.phone') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.address.mobile_phone') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.address.fax') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.address.email') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.address.country.id') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.address.country.ids') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.address.country.value_type') { is_expected.to eq '' }
 
-    its('partner_identity.ship_to_address.id') { is_expected.to eq '' }
-    its('partner_identity.ship_to_address.company') { is_expected.to eq '' }
-    its('partner_identity.ship_to_address.division') { is_expected.to eq '' }
-    its('partner_identity.ship_to_address.name') { is_expected.to eq '' }
-    its('partner_identity.ship_to_address.city') { is_expected.to eq '' }
-    its('partner_identity.ship_to_address.street') { is_expected.to eq '' }
-    its('partner_identity.ship_to_address.zip') { is_expected.to eq '' }
-    its('partner_identity.ship_to_address.phone') { is_expected.to eq '' }
-    its('partner_identity.ship_to_address.email') { is_expected.to eq '' }
-    its('partner_identity.ship_to_address.default_ship_to_address') { is_expected.to eq '' }
-    its('partner_identity.ship_to_address.country.id') { is_expected.to eq '' }
-    its('partner_identity.ship_to_address.country.ids') { is_expected.to eq '' }
-    its('partner_identity.ship_to_address.country.value_type') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.ship_to_address.id') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.ship_to_address.company') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.ship_to_address.division') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.ship_to_address.name') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.ship_to_address.city') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.ship_to_address.street') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.ship_to_address.zip') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.ship_to_address.phone') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.ship_to_address.email') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.ship_to_address.default_ship_to_address') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.ship_to_address.country.id') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.ship_to_address.country.ids') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.ship_to_address.country.value_type') { is_expected.to eq '' }
 
-    its('my_identity.address.company') { is_expected.to eq '' }
-    its('my_identity.address.title') { is_expected.to eq '' }
-    its('my_identity.address.surname') { is_expected.to eq '' }
-    its('my_identity.address.name') { is_expected.to eq '' }
-    its('my_identity.address.city') { is_expected.to eq '' }
-    its('my_identity.address.street') { is_expected.to eq '' }
-    its('my_identity.address.number') { is_expected.to eq '' }
-    its('my_identity.address.zip') { is_expected.to eq '' }
-    its('my_identity.address.ico') { is_expected.to eq '' }
-    its('my_identity.address.dic') { is_expected.to eq '' }
-    its('my_identity.address.ic_dph') { is_expected.to eq '' }
-    its('my_identity.address.phone') { is_expected.to eq '' }
-    its('my_identity.address.mobile_phone') { is_expected.to eq '' }
-    its('my_identity.address.fax') { is_expected.to eq '' }
-    its('my_identity.address.email') { is_expected.to eq '' }
-    its('my_identity.address.www') { is_expected.to eq '' }
+    its('invoice_header.my_identity.address.company') { is_expected.to eq '' }
+    its('invoice_header.my_identity.address.title') { is_expected.to eq '' }
+    its('invoice_header.my_identity.address.surname') { is_expected.to eq '' }
+    its('invoice_header.my_identity.address.name') { is_expected.to eq '' }
+    its('invoice_header.my_identity.address.city') { is_expected.to eq '' }
+    its('invoice_header.my_identity.address.street') { is_expected.to eq '' }
+    its('invoice_header.my_identity.address.number') { is_expected.to eq '' }
+    its('invoice_header.my_identity.address.zip') { is_expected.to eq '' }
+    its('invoice_header.my_identity.address.ico') { is_expected.to eq '' }
+    its('invoice_header.my_identity.address.dic') { is_expected.to eq '' }
+    its('invoice_header.my_identity.address.ic_dph') { is_expected.to eq '' }
+    its('invoice_header.my_identity.address.phone') { is_expected.to eq '' }
+    its('invoice_header.my_identity.address.mobile_phone') { is_expected.to eq '' }
+    its('invoice_header.my_identity.address.fax') { is_expected.to eq '' }
+    its('invoice_header.my_identity.address.email') { is_expected.to eq '' }
+    its('invoice_header.my_identity.address.www') { is_expected.to eq '' }
 
-    its('my_identity.establishment.company') { is_expected.to eq '' }
-    its('my_identity.establishment.city') { is_expected.to eq '' }
-    its('my_identity.establishment.street') { is_expected.to eq '' }
-    its('my_identity.establishment.zip') { is_expected.to eq '' }
+    its('invoice_header.my_identity.establishment.company') { is_expected.to eq '' }
+    its('invoice_header.my_identity.establishment.city') { is_expected.to eq '' }
+    its('invoice_header.my_identity.establishment.street') { is_expected.to eq '' }
+    its('invoice_header.my_identity.establishment.zip') { is_expected.to eq '' }
 
-    its('order.id') { is_expected.to eq '' }
-    its('order.ids') { is_expected.to eq '' }
-    its('order.value_type') { is_expected.to eq '' }
+    its('invoice_header.order.id') { is_expected.to eq '' }
+    its('invoice_header.order.ids') { is_expected.to eq '' }
+    its('invoice_header.order.value_type') { is_expected.to eq '' }
 
-    its(:number_order) { is_expected.to eq '' }
-    its(:date_order) { is_expected.to eq '' }
+    its('invoice_header.number_order') { is_expected.to eq '' }
+    its('invoice_header.date_order') { is_expected.to eq '' }
 
-    its('price_level.id') { is_expected.to eq '' }
-    its('price_level.ids') { is_expected.to eq '' }
-    its('price_level.value_type') { is_expected.to eq '' }
+    its('invoice_header.price_level.id') { is_expected.to eq '' }
+    its('invoice_header.price_level.ids') { is_expected.to eq '' }
+    its('invoice_header.price_level.value_type') { is_expected.to eq '' }
 
-    its('payment_type.id') { is_expected.to eq '' }
-    its('payment_type.ids') { is_expected.to eq '' }
-    its('payment_type.payment_type') { is_expected.to eq '' }
+    its('invoice_header.payment_type.id') { is_expected.to eq '' }
+    its('invoice_header.payment_type.ids') { is_expected.to eq '' }
+    its('invoice_header.payment_type.payment_type') { is_expected.to eq '' }
 
-    its('account.id') { is_expected.to eq '' }
-    its('account.ids') { is_expected.to eq '' }
-    its('account.account_no') { is_expected.to eq '' }
-    its('account.bank_code') { is_expected.to eq '' }
+    its('invoice_header.account.id') { is_expected.to eq '' }
+    its('invoice_header.account.ids') { is_expected.to eq '' }
+    its('invoice_header.account.account_no') { is_expected.to eq '' }
+    its('invoice_header.account.bank_code') { is_expected.to eq '' }
 
-    its(:sym_const) { is_expected.to eq '' }
-    its(:sym_spec) { is_expected.to eq '' }
-    its(:payment_terminal) { is_expected.to eq '' }
+    its('invoice_header.sym_const') { is_expected.to eq '' }
+    its('invoice_header.sym_spec') { is_expected.to eq '' }
+    its('invoice_header.payment_terminal') { is_expected.to eq '' }
 
-    its('payment_account.account_no') { is_expected.to eq '' }
-    its('payment_account.bank_code') { is_expected.to eq '' }
+    its('invoice_header.payment_account.account_no') { is_expected.to eq '' }
+    its('invoice_header.payment_account.bank_code') { is_expected.to eq '' }
 
-    its('centre.id') { is_expected.to eq '' }
-    its('centre.ids') { is_expected.to eq '' }
-    its('centre.value_type') { is_expected.to eq '' }
+    its('invoice_header.centre.id') { is_expected.to eq '' }
+    its('invoice_header.centre.ids') { is_expected.to eq '' }
+    its('invoice_header.centre.value_type') { is_expected.to eq '' }
 
-    its('activity.id') { is_expected.to eq '' }
-    its('activity.ids') { is_expected.to eq '' }
-    its('activity.value_type') { is_expected.to eq '' }
+    its('invoice_header.activity.id') { is_expected.to eq '' }
+    its('invoice_header.activity.ids') { is_expected.to eq '' }
+    its('invoice_header.activity.value_type') { is_expected.to eq '' }
 
-    its('contract.id') { is_expected.to eq '' }
-    its('contract.ids') { is_expected.to eq '' }
-    its('contract.value_type') { is_expected.to eq '' }
+    its('invoice_header.contract.id') { is_expected.to eq '' }
+    its('invoice_header.contract.ids') { is_expected.to eq '' }
+    its('invoice_header.contract.value_type') { is_expected.to eq '' }
 
-    its('reg_vat_in_eu.id') { is_expected.to eq '' }
-    its('reg_vat_in_eu.ids') { is_expected.to eq '' }
+    its('invoice_header.reg_vat_in_eu.id') { is_expected.to eq '' }
+    its('invoice_header.reg_vat_in_eu.ids') { is_expected.to eq '' }
 
-    its(:moss) { is_expected.to eq '' }
-    its(:evidentiary_resource_moss) { is_expected.to eq '' }
-    its(:accounting_period_moss) { is_expected.to eq '' }
+    its('invoice_header.moss') { is_expected.to eq '' }
+    its('invoice_header.evidentiary_resource_moss') { is_expected.to eq '' }
+    its('invoice_header.accounting_period_moss') { is_expected.to eq '' }
 
-    its('carrier.id') { is_expected.to eq '' }
-    its('carrier.ids') { is_expected.to eq '' }
-    its('carrier.value_type') { is_expected.to eq '' }
+    its('invoice_header.carrier.id') { is_expected.to eq '' }
+    its('invoice_header.carrier.ids') { is_expected.to eq '' }
+    its('invoice_header.carrier.value_type') { is_expected.to eq '' }
 
-    its(:note) { is_expected.to eq '' }
-    its(:int_note) { is_expected.to eq '' }
-    its(:items) { is_expected.to eq [] }
-    its(:rounding_document) { is_expected.to eq '' }
-    its(:rounding_vat) { is_expected.to eq '' }
-    its(:calculate_vat) { is_expected.to eq '' }
+    its('invoice_header.note') { is_expected.to eq '' }
+    its('invoice_header.int_note') { is_expected.to eq '' }
 
-    its('home_currency.price_none') { is_expected.to eq '' }
-    its('home_currency.price_low') { is_expected.to eq '' }
-    its('home_currency.price_low_vat') { is_expected.to eq '' }
-    its('home_currency.price_low_sum') { is_expected.to eq '' }
+    its('invoice_detail.items') { is_expected.to eq [] }
+    its('invoice_detail.advance_payments') { is_expected.to eq [] }
 
-    its('home_currency.price_high') { is_expected.to eq '' }
-    its('home_currency.price_high_vat') { is_expected.to eq '' }
-    its('home_currency.price_high_sum') { is_expected.to eq '' }
+    its('invoice_summary.rounding_document') { is_expected.to eq '' }
+    its('invoice_summary.rounding_vat') { is_expected.to eq '' }
+    its('invoice_summary.calculate_vat') { is_expected.to eq '' }
 
-    its('home_currency.price_3') { is_expected.to eq '' }
-    its('home_currency.price_3_vat') { is_expected.to eq '' }
-    its('home_currency.price_3_sum') { is_expected.to eq '' }
+    its('invoice_summary.home_currency.price_none') { is_expected.to eq '' }
+    its('invoice_summary.home_currency.price_low') { is_expected.to eq '' }
+    its('invoice_summary.home_currency.price_low_vat') { is_expected.to eq '' }
+    its('invoice_summary.home_currency.price_low_sum') { is_expected.to eq '' }
 
-    its('home_currency.round.price_round') { is_expected.to eq '' }
+    its('invoice_summary.home_currency.price_high') { is_expected.to eq '' }
+    its('invoice_summary.home_currency.price_high_vat') { is_expected.to eq '' }
+    its('invoice_summary.home_currency.price_high_sum') { is_expected.to eq '' }
 
-    its('foreign_currency.currency.id') { is_expected.to eq '' }
-    its('foreign_currency.currency.ids') { is_expected.to eq '' }
-    its('foreign_currency.currency.value_type') { is_expected.to eq '' }
+    its('invoice_summary.home_currency.price_3') { is_expected.to eq '' }
+    its('invoice_summary.home_currency.price_3_vat') { is_expected.to eq '' }
+    its('invoice_summary.home_currency.price_3_sum') { is_expected.to eq '' }
 
-    its('foreign_currency.rate') { is_expected.to eq '' }
-    its('foreign_currency.amount') { is_expected.to eq '' }
-    its('foreign_currency.price_sum') { is_expected.to eq '' }
+    its('invoice_summary.home_currency.round.price_round') { is_expected.to eq '' }
+
+    its('invoice_summary.foreign_currency.currency.id') { is_expected.to eq '' }
+    its('invoice_summary.foreign_currency.currency.ids') { is_expected.to eq '' }
+    its('invoice_summary.foreign_currency.currency.value_type') { is_expected.to eq '' }
+
+    its('invoice_summary.foreign_currency.rate') { is_expected.to eq '' }
+    its('invoice_summary.foreign_currency.amount') { is_expected.to eq '' }
+    its('invoice_summary.foreign_currency.price_sum') { is_expected.to eq '' }
 
     it '#to_h' do
       hsh =
-        { id: '',
+        { links: [],
+         invoice_header: {
+          id: '',
           ext_id: { ids: '', ex_system_name: '', ex_system_text: '' },
           invoice_type: '',
           storno: '',
@@ -271,9 +276,11 @@ RSpec.describe Pohoda::InvoiceType do
           carrier: { id: '', ids: '', value_type: '' },
           note: '',
           int_note: '',
+      }, invoice_detail: {
           items: [],
-          advance_payments: [],
-          links: [],
+          advance_payments: []
+          },
+          invoice_summary: {
           rounding_document: '',
           rounding_vat: '',
           calculate_vat: '',
@@ -290,6 +297,7 @@ RSpec.describe Pohoda::InvoiceType do
                            round: { price_round: '' } },
           foreign_currency: { currency: { id: '', ids: '', value_type: '' },
                               rate: '', amount: '', price_sum: '' }
+          }
       }
 
       expect(invoice.to_h).to match(hsh)

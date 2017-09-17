@@ -33,7 +33,7 @@ RSpec.describe Pohoda::DataPackType do
     it '#to_h' do
       hash = data_pack.to_h
 
-      expect(hash[:data_pack_items].first[:invoice]).to include({ invoice_type: 'issuedInvoice' })
+      expect(hash[:data_pack_items].first[:invoice][:invoice_header]).to include({ invoice_type: 'issuedInvoice'  })
     end
   end
 end
