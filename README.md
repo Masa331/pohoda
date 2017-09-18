@@ -5,11 +5,12 @@ Simple parser and builder for Pohoda XML invoices
 Content:
 1. [About](#about)
     1. [Naming](#naming)
-    2. [What's missing](#whats_missing)
+    2. [What's missing](#whats-missing)
 2. [Api](#api)
     1. [Parsers](#parsers)
     2. [Builder](#builder)
-3. [License](#license)
+3. [External links](#external-links)
+4. [License](#license)
 
 ## About
 
@@ -103,6 +104,11 @@ invoice.to_h
 ### Builder
 
 Builder doc here
+
+## External links
+
+- Official XSD Schemas for invoices and other Pohoda docs - <https://www.stormware.cz/pohoda/xml/seznamschemat/>
+- Official example invoices - <https://www.stormware.cz/pohoda/xml/dokladyimport/#Faktury>
 
 ## License
 
