@@ -1,3 +1,9 @@
+# 0.6.0
+
+- invoice data previously directly accessible through invoice(`invoice.sym_var`) are now accessible through same elements as in original Pohoda XML(`#invoice_header`, `#invoice_detail`, `#invoice_summary`). So it's eg. `invoice.invoice_header.sym_var` now.
+- multiple tests enchancements
+- `#advance_payments` available in `invoice.invoice_detail` with advance payments info
+
 # 0.5.2
 
 - Fixed various issues with exporting whole dataset into xml
