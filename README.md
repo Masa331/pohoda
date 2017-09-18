@@ -76,7 +76,7 @@ invoice.invoice_detail.advance_payments
 
 ```
 
-For each special complex element in Pohoda XML there is a separate parser equivalent in this library. So when you use `data_pack.data_pack_items.first.invoice.sym_var` you actually go through few of them and end in `InvoiceType` parser. This means they can be used separately:
+For each special complex element in Pohoda XML there is a separate parser equivalent in this library. So when you use `data_pack.data_pack_items.first.invoice.invoice_header.sym_var` you actually go through few of them and end in `InvoiceType` parser. This means they can be used separately:
 ```ruby
 xml = Nokogiri::XML(File.open "./invoices.xml").at_xpath('//inv:invoice')
 invoice = Pohoda::InvoiceType.new(xml)
