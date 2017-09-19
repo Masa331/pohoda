@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe Pohoda::Builder::Address do
   describe '#to_xml' do
-    context 'blank address' do
+    context 'blank partner identity' do
       let(:builder) { Pohoda::Builder::Address.new }
 
       it 'retuns xml string' do
@@ -12,10 +12,12 @@ RSpec.describe Pohoda::Builder::Address do
       end
     end
 
-    context 'address' do
+    context 'partner identity' do
       let(:attributes) do
-        { company: 'Best Company inc.',
-          country: { ids: 'CZ' }
+        { id: 1,
+          ext_id: { ids: '1' },
+          address: { name: 'Premysl Donat' },
+          ship_to_address: { street: 'Sunny Boulevard' }
         }
       end
 

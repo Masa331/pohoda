@@ -27,4 +27,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec-its"
   spec.add_development_dependency "nokogiri"
   spec.add_development_dependency "pry"
+  spec.add_development_dependency "equivalent-xml"
 end

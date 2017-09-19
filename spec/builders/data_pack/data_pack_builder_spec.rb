@@ -28,7 +28,7 @@ RSpec.describe Pohoda::Builder::DataPack do
 
   context 'data pack with items' do
     it 'retuns xml string' do
-      attributes = { data_pack_items: [{ invoice: { invoice_type: 'issuedInvoice' } }] }
+      attributes = { data_pack_items: [{ invoice: { invoice_header: { invoice_type: 'issuedInvoice' } } }] }
       builder = Pohoda::Builder::DataPack.new attributes
       expected_output = File.read('spec/builders/data_pack/data_pack.xml')
 

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inv:invoice xmlns:inv="http://www.stormware.cz/schema/version_2/invoice.xsd" xmlns:typ="http://www.stormware.cz/schema/version_2/type.xsd" version="2.0">
+  <inv:links>
+    <typ:link>
+      <typ:sourceAgenda>receivedOrder</typ:sourceAgenda>
+      <typ:sourceDocument>
+        <typ:number>142100003</typ:number>
+      </typ:sourceDocument>
+    </typ:link>
+  </inv:links>
+
+  <inv:invoiceHeader>
+    <inv:invoiceType>issuedInvoice</inv:invoiceType>
+    <inv:number>
+      <typ:numberRequested>2016001938</typ:numberRequested>
+    </inv:number>
+    <inv:numberOrder>2016001748</inv:numberOrder>
+    <inv:dateOrder>2014-10-02</inv:dateOrder>
+    <inv:symVar>2016001938</inv:symVar>
+    <inv:date>2016-10-17</inv:date>
+    <inv:dateTax>2016-10-17</inv:dateTax>
+    <inv:dateDue>2016-10-31</inv:dateDue>
+    <inv:dateAccounting>2014-10-14</inv:dateAccounting>
+    <inv:classificationVAT>
+      <typ:classificationVATType>inland</typ:classificationVATType>
+    </inv:classificationVAT>
+    <inv:accounting>
+      <typ:ids>3FV</typ:ids>
+    </inv:accounting>
+    <inv:text>Faktura za zboží s adresou bez vazby na Adresář</inv:text>
+    <inv:partnerIdentity>
+      <typ:id>25</typ:id>
+      <typ:extId>
+        <typ:ids>EXT-001</typ:ids>
+        <typ:exSystemName>Externi system</typ:exSystemName>
+      </typ:extId>
+      <typ:address>
+        <typ:company>firma</typ:company>
+        <typ:division>Obchodní oddělení</typ:division>
+        <typ:name>John Doe</typ:name>
+        <typ:city>Písečná</typ:city>
+        <typ:street>Studený Zejf 7</typ:street>
+        <typ:zip>79082</typ:zip>
+        <typ:ico>789456</typ:ico>
+        <typ:dic>CZ789456</typ:dic>
+        <typ:country>
+          <typ:ids>CZE</typ:ids>
+        </typ:country>
+      </typ:address>
+      <typ:shipToAddress>
+        <typ:name>Soukop Bohumil</typ:name>
+        <typ:city>Praha</typ:city>
+        <typ:street>Nová 1475</typ:street>
+      </typ:shipToAddress>
+    </inv:partnerIdentity>
+    <inv:paymentType>
+      <typ:ids>Master Card</typ:ids>
+      <typ:paymentType>draft</typ:paymentType>
+    </inv:paymentType>
+    <inv:paymentAccount>
+      <typ:accountNo>1071743463</typ:accountNo>
+      <typ:bankCode>2700</typ:bankCode>
+    </inv:paymentAccount>
+    <inv:account>
+      <typ:accountNo>1117780287</typ:accountNo>
+      <typ:bankCode>0300</typ:bankCode>
+      <typ:ids>KB</typ:ids>
+    </inv:account>
+    <inv:note>Načteno z XML</inv:note>
+    <inv:intNote>Tento doklad byl vytvořen importem přes XML.</inv:intNote>
+    <inv:centre>
+      <typ:ids>BRNO</typ:ids>
+    </inv:centre>
+    <inv:activity>
+      <typ:ids>SLUŽBY</typ:ids>
+    </inv:activity>
+    <inv:contract>
+      <typ:ids>10Zak00002</typ:ids>
+    </inv:contract>
+  </inv:invoiceHeader>
+  <inv:invoiceDetail>
+    <inv:invoiceItem>
+      <inv:text>Perla přání</inv:text>
+      <inv:quantity>3</inv:quantity>
+      <inv:unit>ks</inv:unit>
+      <inv:payVAT>false</inv:payVAT>
+      <inv:rateVAT>high</inv:rateVAT>
+      <inv:guarantee>48</inv:guarantee>
+      <inv:guaranteeType>month</inv:guaranteeType>
+      <inv:homeCurrency>
+        <typ:unitPrice>164.46</typ:unitPrice>
+        <typ:price>493.39</typ:price>
+        <typ:priceVAT>103.61</typ:priceVAT>
+        <typ:priceSum>2381.28</typ:priceSum>
+      </inv:homeCurrency>
+      <inv:foreignCurrency>
+        <typ:unitPrice>1000</typ:unitPrice>
+      </inv:foreignCurrency>
+      <inv:stockItem>
+        <typ:store>
+          <typ:ids>Sklad</typ:ids>
+        </typ:store>
+        <typ:stockItem>
+          <typ:ids>83</typ:ids>
+        </typ:stockItem>
+      </inv:stockItem>
+      <inv:code>83</inv:code>
+    </inv:invoiceItem>
+
+    <inv:invoiceItem>
+      <inv:link>
+        <typ:sourceAgenda>receivedOrder</typ:sourceAgenda>
+        <typ:sourceItemId>8</typ:sourceItemId>
+      </inv:link>
+    </inv:invoiceItem>
+
+    <inv:invoiceAdvancePaymentItem>
+      <inv:sourceDocument>
+        <typ:number>150800001</typ:number>
+      </inv:sourceDocument>
+      <inv:quantity>1.0</inv:quantity>
+      <inv:payVAT>false</inv:payVAT>
+      <inv:rateVAT>none</inv:rateVAT>
+      <inv:homeCurrency>
+        <typ:unitPrice>-1000</typ:unitPrice>
+        <typ:price>-1000</typ:price>
+        <typ:priceVAT>0</typ:priceVAT>
+        <typ:priceSum>-1000</typ:priceSum>
+      </inv:homeCurrency>
+    </inv:invoiceAdvancePaymentItem>
+  </inv:invoiceDetail>
+  <inv:invoiceSummary>
+    <inv:roundingDocument>math2one</inv:roundingDocument>
+    <inv:roundingVAT>noneEveryRate</inv:roundingVAT>
+    <inv:homeCurrency>
+      <typ:priceHighSum>715</typ:priceHighSum>
+      <typ:priceNone>100</typ:priceNone>
+      <typ:priceLow>200</typ:priceLow>
+      <typ:round><typ:priceRound>0</typ:priceRound></typ:round>
+    </inv:homeCurrency>
+    <inv:foreignCurrency>
+      <typ:currency>
+        <typ:ids>EUR</typ:ids>
+      </typ:currency>
+      <typ:rate>21.232</typ:rate>
+      <typ:amount>1</typ:amount>
+      <typ:priceSum>580</typ:priceSum>
+    </inv:foreignCurrency>
+  </inv:invoiceSummary>
+</inv:invoice>

@@ -131,6 +131,9 @@
         </inv:invoiceItem>
 
         <inv:invoiceAdvancePaymentItem>
+          <inv:sourceDocument>
+            <typ:number>150800001</typ:number>
+          </inv:sourceDocument>
           <inv:quantity>1.0</inv:quantity>
           <inv:payVAT>false</inv:payVAT>
           <inv:rateVAT>none</inv:rateVAT>
@@ -139,22 +142,6 @@
             <typ:price>-1000</typ:price>
             <typ:priceVAT>0</typ:priceVAT>
             <typ:priceSum>-1000</typ:priceSum>
-          </inv:homeCurrency>
-        </inv:invoiceAdvancePaymentItem>
-
-        <inv:invoiceAdvancePaymentItem>
-          <!--Pokud není tento element uveden, nastaví se ruční odpočet zálohy.-->
-          <inv:sourceDocument>
-            <typ:number>150800001</typ:number>
-          </inv:sourceDocument>
-          <inv:quantity>1.0</inv:quantity>
-          <inv:payVAT>false</inv:payVAT>
-          <inv:rateVAT>none</inv:rateVAT>
-          <inv:homeCurrency>
-            <typ:unitPrice>-3000</typ:unitPrice>
-            <typ:price>-3000</typ:price>
-            <typ:priceVAT>0</typ:priceVAT>
-            <typ:priceSum>-3000</typ:priceSum>
           </inv:homeCurrency>
         </inv:invoiceAdvancePaymentItem>
       </inv:invoiceDetail>

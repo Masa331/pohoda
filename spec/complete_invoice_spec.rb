@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe Pohoda::InvoiceType do
   describe 'basic invoice' do
-    let(:xml) { xml_invoice('basic_invoice.xml') }
+    let(:xml) { xml_invoice('complete_invoice.xml') }
     subject(:invoice) { Pohoda::InvoiceType.new(xml) }
 
     describe 'links' do
@@ -94,29 +94,13 @@ RSpec.describe Pohoda::InvoiceType do
         its('link.source_agenda') { is_expected.to eq 'receivedOrder' }
         its('link.source_item_id') { is_expected.to eq '8' }
       end
-
-      describe 'last item' do
-        subject(:item) { invoice.invoice_detail.items.last }
-
-        its(:text) { is_expected.to eq 'Česká pošta - Balík do ruky' }
-        its(:quantity) { is_expected.to eq '1' }
-        its(:unit) { is_expected.to eq '' }
-        its(:pay_vat) { is_expected.to eq 'false' }
-        its(:rate_vat) { is_expected.to eq 'high' }
-
-        context 'home_currency' do
-          subject(:home_currency) { item.home_currency }
-
-          its(:unit_price) { is_expected.to eq '0' }
-          its(:price) { is_expected.to eq '0' }
-          its(:price_vat) { is_expected.to eq '0' }
-        end
-      end
     end
 
     describe 'advance_payment_items' do
       describe 'first item' do
         subject(:item) { invoice.invoice_detail.advance_payments.first }
+
+        its('source_document.number') { is_expected.to eq '150800001' }
 
         its(:quantity) { is_expected.to eq '1.0' }
         its(:pay_vat) { is_expected.to eq 'false' }
@@ -126,21 +110,6 @@ RSpec.describe Pohoda::InvoiceType do
         its('home_currency.price') { is_expected.to eq '-1000' }
         its('home_currency.price_vat') { is_expected.to eq '0' }
         its('home_currency.price_sum') { is_expected.to eq '-1000' }
-      end
-
-      describe 'second item' do
-        subject(:item) { invoice.invoice_detail.advance_payments.last }
-
-        its('source_document.number') { is_expected.to eq '150800001' }
-
-        its(:quantity) { is_expected.to eq '1.0' }
-        its(:pay_vat) { is_expected.to eq 'false' }
-        its(:rate_vat) { is_expected.to eq 'none' }
-
-        its('home_currency.unit_price') { is_expected.to eq '-3000' }
-        its('home_currency.price') { is_expected.to eq '-3000' }
-        its('home_currency.price_vat') { is_expected.to eq '0' }
-        its('home_currency.price_sum') { is_expected.to eq '-3000' }
       end
     end
 
@@ -244,15 +213,6 @@ RSpec.describe Pohoda::InvoiceType do
                                  source_item_id: '8' }
       expect(invoice.to_h[:invoice_detail][:items][1][:link]).to include(middle_item_link_attrs)
 
-      second_item_attrs = { text: 'Česká pošta - Balík do ruky',
-                            quantity: '1',
-                            pay_vat: 'false',
-                            rate_vat: 'high' }
-      expect(invoice.to_h[:invoice_detail][:items].last).to include(second_item_attrs)
-      home_currency_attrs = { unit_price: '0',
-                              price: '0',
-                              price_vat: '0' }
-
       link_attributes = { source_agenda: 'receivedOrder', source_document: { id: '', number: '142100003' } }
 
       expect(invoice.to_h[:links].first).to include(link_attributes)
@@ -266,17 +226,6 @@ RSpec.describe Pohoda::InvoiceType do
                               price_vat: '0',
                               price_sum: '-1000' }
       expect(invoice.to_h[:invoice_detail][:advance_payments].first[:home_currency]).to include(home_currency_attrs)
-
-      payment_attrs = { quantity: '1.0',
-                        pay_vat: 'false',
-                        rate_vat: 'none' }
-      expect(invoice.to_h[:invoice_detail][:advance_payments].last).to include(payment_attrs)
-      home_currency_attrs = { unit_price: '-3000',
-                              price: '-3000',
-                              price_vat: '0',
-                              price_sum: '-3000' }
-      expect(invoice.to_h[:invoice_detail][:advance_payments].last[:home_currency]).to include(home_currency_attrs)
-      expect(invoice.to_h[:invoice_detail][:advance_payments].last[:source_document]).to include({ number: '150800001' })
     end
   end
 end

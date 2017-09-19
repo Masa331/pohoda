@@ -1,20 +1,20 @@
 module Pohoda
   module Builder
-    class Address
+    class StockRefType
       include BaseBuilder
 
-      attr_accessor :id, :ext_id, :address, :ship_to_address
+      attr_accessor :id, :ids, :ean, :ext_id
 
       def builder
         namespaces = { 'xmlns:inv' => 'http://www.stormware.cz/schema/version_2/invoice.xsd',
                        'xmlns:typ' => 'http://www.stormware.cz/schema/version_2/type.xsd' }
 
         Nokogiri::XML::Builder.new do |xml|
-          xml['inv'].partnerIdentity(namespaces) {
+          xml['typ'].stockItem(namespaces) {
             xml['typ'].id id
+            xml['typ'].ids ids
+            xml['typ'].EAN ean
             xml << Pohoda::Builder::ExtIdType.new(ext_id).doc.root.to_xml
-            xml << Pohoda::Builder::AddressType.new(address).doc.root.to_xml
-            xml << Pohoda::Builder::ShipToAddressType.new(ship_to_address).doc.root.to_xml
           }
         end
       end

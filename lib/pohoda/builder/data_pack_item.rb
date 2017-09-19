@@ -11,7 +11,7 @@ module Pohoda
 
         Nokogiri::XML::Builder.new do |xml|
           xml['dat'].dataPackItem(attributes.merge(namespaces)) {
-            xml << Pohoda::Builder::Invoice.new(invoice).doc.root.to_xml
+            xml << Pohoda::Builder::InvoiceType.new(invoice).doc.root.to_xml
           }
         end
       end

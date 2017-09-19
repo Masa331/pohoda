@@ -10,14 +10,9 @@ module Pohoda
       SourceDocumentType.new(e 'typ:sourceDocument')
     end
 
-    def settings_source_document
-      t 'typ:accountingType'
-    end
-
     def to_h
       { source_agenda: source_agenda,
-        source_document: source_document.to_h,
-        ids: settings_source_document }
+        source_document: source_document.to_h }
     end
   end
 end
