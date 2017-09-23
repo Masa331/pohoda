@@ -1,3 +1,8 @@
+# 0.7.0
+
+- Add a lot of new builders
+- Rename builder classes to conform to Pohoda names
+
 # 0.6.0
 
 - invoice data previously directly accessible through invoice(`invoice.sym_var`) are now accessible through same elements as in original Pohoda XML(`#invoice_header`, `#invoice_detail`, `#invoice_summary`). So it's eg. `invoice.invoice_header.sym_var` now.
