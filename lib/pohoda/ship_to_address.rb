@@ -42,7 +42,7 @@ module Pohoda
       t 'typ:email'
     end
 
-    def default_ship_to_address
+    def default_ship_address
       t 'typ:defaultShipAddress'
     end
 
@@ -57,7 +57,7 @@ module Pohoda
         country: country.to_h,
         phone: phone,
         email: email,
-        default_ship_to_address: default_ship_to_address }
+        default_ship_address: default_ship_address }
     end
   end
 end

@@ -1,4 +1,4 @@
 <?xml version="1.0"?>
-<typ:extId xmlns:typ="http://www.stormware.cz/schema/version_2/type.xsd">
+<typ:extId xmlns:inv="http://www.stormware.cz/schema/version_2/invoice.xsd" xmlns:typ="http://www.stormware.cz/schema/version_2/type.xsd">
   <typ:ids>string identifier</typ:ids>
 </typ:extId>

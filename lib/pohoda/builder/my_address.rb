@@ -1,20 +1,18 @@
 module Pohoda
   module Builder
-    class TypeCurrencyForeign
+    class MyAddress
       include BaseBuilder
 
-      attr_accessor :rate, :amount, :price_sum, :currency
+      attr_accessor :address, :establishment
 
       def builder
         namespaces = { 'xmlns:inv' => 'http://www.stormware.cz/schema/version_2/invoice.xsd',
                        'xmlns:typ' => 'http://www.stormware.cz/schema/version_2/type.xsd' }
 
         Nokogiri::XML::Builder.new do |xml|
-          xml['inv'].foreignCurrency(namespaces) {
-            xml['typ'].rate rate
-            xml['typ'].amount amount
-            xml['typ'].priceSum price_sum
-            xml << Pohoda::Builder::RefType.new(currency, 'currency', 'typ').doc.root.to_xml
+          xml['inv'].myIdentity(namespaces) {
+            xml << Pohoda::Builder::AddressInternetType.new(address).doc.root.to_xml
+            xml << Pohoda::Builder::EstablishmentType.new(establishment).doc.root.to_xml
           }
         end
       end

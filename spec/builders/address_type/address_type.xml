@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <typ:address xmlns:typ="http://www.stormware.cz/schema/version_2/type.xsd">
   <typ:company>Best Company inc.</typ:company>
-  <typ:country>
+  <typ:country xmlns:inv="http://www.stormware.cz/schema/version_2/invoice.xsd">
     <typ:ids>CZ</typ:ids>
   </typ:country>
 </typ:address>

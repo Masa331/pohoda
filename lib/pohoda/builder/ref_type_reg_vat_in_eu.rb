@@ -1,19 +1,18 @@
 module Pohoda
   module Builder
-    class AccountingType
+    class RefTypeRegVatInEU
       include BaseBuilder
 
-      attr_accessor :id, :ids, :accounting_type
+      attr_accessor :id, :ids
 
       def builder
         namespaces = { 'xmlns:inv' => 'http://www.stormware.cz/schema/version_2/invoice.xsd',
                        'xmlns:typ' => 'http://www.stormware.cz/schema/version_2/type.xsd' }
 
-        Nokogiri::XML::Builder.new(encoding: 'UTF-8') do |xml|
-          xml['inv'].accounting(namespaces) {
+        Nokogiri::XML::Builder.new do |xml|
+          xml['inv'].regVATinEU(namespaces) {
             xml['typ'].id id
             xml['typ'].ids ids
-            xml['typ'].accountingType accounting_type
           }
         end
       end

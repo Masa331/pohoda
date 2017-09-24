@@ -13,6 +13,7 @@ module Pohoda
           xml['inv'].invoiceSummary(namespaces) {
             xml['inv'].roundingDocument rounding_document
             xml['inv'].roundingVAT rounding_vat
+            xml['inv'].calculateVAT calculate_vat
             xml << Pohoda::Builder::TypeCurrencyHome.new(home_currency).doc.root.to_xml
             xml << Pohoda::Builder::TypeCurrencyForeign.new(foreign_currency).doc.root.to_xml
           }

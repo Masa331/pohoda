@@ -1,5 +1,5 @@
 module Pohoda
-  class ClassificationVat
+  class ClassificationVatType
     include BaseElement
 
     def id

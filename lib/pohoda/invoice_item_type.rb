@@ -54,6 +54,10 @@ module Pohoda
       t 'inv:guaranteeType'
     end
 
+    def note
+      t 'inv:note'
+    end
+
     def home_currency
       TypeCurrencyHomeItem.new(e 'inv:homeCurrency')
     end
@@ -64,6 +68,34 @@ module Pohoda
 
     def stock_item
       StockItemType.new(e 'inv:stockItem')
+    end
+
+    def accounting
+      RefType.new(e 'inv:accounting')
+    end
+
+    def classification_vat
+      ClassificationVatType.new(e 'inv:classificationVAT')
+    end
+
+    def classification_kvdph
+      RefType.new(e 'inv:classificationKVDPH')
+    end
+
+    def centre
+      RefType.new(e 'inv:centre')
+    end
+
+    def activity
+      RefType.new(e 'inv:activity')
+    end
+
+    def contract
+      RefType.new(e 'inv:contract')
+    end
+
+    def expiration_date
+      t 'inv:expirationDate'
     end
 
     def to_h
@@ -78,11 +110,19 @@ module Pohoda
         percent_vat: percent_vat,
         discount_percentage: discount_percentage,
         stock_item: stock_item.to_h,
+        note: note,
         code: code,
         guarantee: guarantee,
         guarantee_type: guarantee_type,
         home_currency: home_currency.to_h,
-        foreign_currency: foreign_currency.to_h }
+        accounting: accounting.to_h,
+        classification_vat: classification_vat.to_h,
+        classification_kvdph: classification_kvdph.to_h,
+        centre: centre.to_h,
+        activity: activity.to_h,
+        contract: contract.to_h,
+        foreign_currency: foreign_currency.to_h,
+        expiration_date: expiration_date }
     end
   end
 end

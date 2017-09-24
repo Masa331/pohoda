@@ -10,29 +10,55 @@
   </inv:links>
 
   <inv:invoiceHeader>
+    <inv:id>1</inv:id>
+    <inv:extId>
+      <typ:ids>EXT-001</typ:ids>
+      <typ:exSystemName>Externi system</typ:exSystemName>
+      <typ:exSystemText>Externi system text</typ:exSystemText>
+    </inv:extId>
     <inv:invoiceType>issuedInvoice</inv:invoiceType>
+    <inv:storno>cancelDocument</inv:storno>
+    <inv:sphereType>business</inv:sphereType>
     <inv:number>
+      <typ:id>1</typ:id>
+      <typ:ids>something</typ:ids>
       <typ:numberRequested>2016001938</typ:numberRequested>
     </inv:number>
-    <inv:numberOrder>2016001748</inv:numberOrder>
-    <inv:dateOrder>2014-10-02</inv:dateOrder>
     <inv:symVar>2016001938</inv:symVar>
+    <inv:symPar>2016001938</inv:symPar>
+    <inv:originalDocument>123</inv:originalDocument>
+    <inv:originalDocumentNumber>456</inv:originalDocumentNumber>
     <inv:date>2016-10-17</inv:date>
     <inv:dateTax>2016-10-17</inv:dateTax>
-    <inv:dateDue>2016-10-31</inv:dateDue>
     <inv:dateAccounting>2014-10-14</inv:dateAccounting>
-    <inv:classificationVAT>
-      <typ:classificationVATType>inland</typ:classificationVATType>
-    </inv:classificationVAT>
+    <inv:dateKHDPH>2014-10-14</inv:dateKHDPH>
+    <inv:dateDue>2016-10-31</inv:dateDue>
+    <inv:dateApplicationVAT>2016-10-31</inv:dateApplicationVAT>
+    <inv:dateDelivery>2016-10-31</inv:dateDelivery>
     <inv:accounting>
       <typ:ids>3FV</typ:ids>
+      <typ:id>1</typ:id>
+      <typ:accountingType>withoutAccounting</typ:accountingType>
     </inv:accounting>
+    <inv:classificationVAT>
+      <typ:id>1</typ:id>
+      <typ:ids>something</typ:ids>
+      <typ:classificationVATType>inland</typ:classificationVATType>
+    </inv:classificationVAT>
+    <inv:classificationKVDPH>
+      <typ:id>2</typ:id>
+      <typ:ids>9iv</typ:ids>
+      <typ:valueType>nullValue</typ:valueType>
+    </inv:classificationKVDPH>
+    <inv:numberKHDPH>Faktura 111</inv:numberKHDPH>
+    <inv:numberKVDPH>Faktura 222</inv:numberKVDPH>
     <inv:text>Faktura za zboží s adresou bez vazby na Adresář</inv:text>
     <inv:partnerIdentity>
       <typ:id>25</typ:id>
       <typ:extId>
         <typ:ids>EXT-001</typ:ids>
         <typ:exSystemName>Externi system</typ:exSystemName>
+        <typ:exSystemText>Externi system text</typ:exSystemText>
       </typ:extId>
       <typ:address>
         <typ:company>firma</typ:company>
@@ -43,50 +69,137 @@
         <typ:zip>79082</typ:zip>
         <typ:ico>789456</typ:ico>
         <typ:dic>CZ789456</typ:dic>
+        <typ:icDph>cz123</typ:icDph>
         <typ:country>
+          <typ:id>1</typ:id>
           <typ:ids>CZE</typ:ids>
+          <typ:valueType>nullValue</typ:valueType>
         </typ:country>
+        <typ:phone>800123123</typ:phone>
+        <typ:mobilPhone>800987987</typ:mobilPhone>
+        <typ:fax>800123456</typ:fax>
+        <typ:email>neco@seznam.cz</typ:email>
       </typ:address>
       <typ:shipToAddress>
-        <typ:name>Soukop Bohumil</typ:name>
-        <typ:city>Praha</typ:city>
-        <typ:street>Nová 1475</typ:street>
+        <typ:id>33</typ:id>
+        <typ:company>First Company</typ:company>
+        <typ:division>Some division</typ:division>
+        <typ:name>Mike Ye Pan</typ:name>
+        <typ:city>Paris</typ:city>
+        <typ:street>ACME street</typ:street>
+        <typ:zip>10800</typ:zip>
+        <typ:country>
+          <typ:id>2</typ:id>
+          <typ:ids>US</typ:ids>
+          <typ:valueType>nullValue</typ:valueType>
+        </typ:country>
+        <typ:phone>123456789</typ:street>
+        <typ:email>some@mail.com</typ:street>
+        <typ:defaultShipAddress>false</typ:defaultShipAddress>
       </typ:shipToAddress>
     </inv:partnerIdentity>
+    <inv:myIdentity>
+      <typ:address>
+        <typ:company>My Company</typ:company>
+        <typ:title>Mr</typ:title>
+        <typ:surname>Novak</typ:surname>
+        <typ:name>Alex</typ:name>
+        <typ:city>Praha</typ:city>
+        <typ:street>Zvoníčkova</typ:street>
+        <typ:number>1928/7</typ:number>
+        <typ:zip>16200</typ:zip>
+        <typ:ico>123456</typ:ico>
+        <typ:dic>CZ123456</typ:dic>
+        <typ:icDph>CZ321321</typ:icDph>
+        <typ:phone>999000999</typ:phone>
+        <typ:mobilPhone>000999000</typ:mobilPhone>
+        <typ:fax>123456789</typ:fax>
+        <typ:email>some@email.cz</typ:email>
+        <typ:www>www.company.cz</typ:www>
+      </typ:address>
+      <typ:establishment>
+        <typ:company>My Company2</typ:company>
+        <typ:city>Brno</typ:city>
+        <typ:street>Nova</typ:street>
+        <typ:zip>10000</typ:zip>
+      </typ:establishment>
+    </inv:myIdentity>
+    <inv:order>
+      <typ:id>2</typ:id>
+      <typ:ids>9iv</typ:ids>
+      <typ:valueType>nullValue</typ:valueType>
+    </inv:order>
+    <inv:numberOrder>2016001748</inv:numberOrder>
+    <inv:dateOrder>2014-10-02</inv:dateOrder>
+    <inv:priceLevel>
+      <typ:id>2</typ:id>
+      <typ:ids>9iv</typ:ids>
+      <typ:valueType>nullValue</typ:valueType>
+    </inv:priceLevel>
     <inv:paymentType>
+      <typ:id>1</typ:id>
       <typ:ids>Master Card</typ:ids>
       <typ:paymentType>draft</typ:paymentType>
     </inv:paymentType>
-    <inv:paymentAccount>
-      <typ:accountNo>1071743463</typ:accountNo>
-      <typ:bankCode>2700</typ:bankCode>
-    </inv:paymentAccount>
     <inv:account>
       <typ:accountNo>1117780287</typ:accountNo>
       <typ:bankCode>0300</typ:bankCode>
       <typ:ids>KB</typ:ids>
+      <typ:id>1</typ:id>
     </inv:account>
-    <inv:note>Načteno z XML</inv:note>
-    <inv:intNote>Tento doklad byl vytvořen importem přes XML.</inv:intNote>
+    <inv:symConst>0308</inv:symConst>
+    <inv:symSpec>123</inv:symSpec>
+    <inv:paymentAccount>
+      <typ:accountNo>1071743463</typ:accountNo>
+      <typ:bankCode>2700</typ:bankCode>
+    </inv:paymentAccount>
+    <inv:paymentTerminal>false</inv:paymentTerminal>
     <inv:centre>
+      <typ:id>2</typ:id>
       <typ:ids>BRNO</typ:ids>
+      <typ:valueType>nullValue</typ:valueType>
     </inv:centre>
     <inv:activity>
+      <typ:id>2</typ:id>
       <typ:ids>SLUŽBY</typ:ids>
+      <typ:valueType>nullValue</typ:valueType>
     </inv:activity>
     <inv:contract>
+      <typ:id>2</typ:id>
       <typ:ids>10Zak00002</typ:ids>
+      <typ:valueType>nullValue</typ:valueType>
     </inv:contract>
+    <inv:regVATinEU>
+      <typ:id>2</typ:id>
+      <typ:ids>DE</typ:ids>
+    </inv:regVATinEU>
+    <inv:MOSS>
+      <typ:ids>DE</typ:ids>
+    </inv:MOSS>
+    <inv:evidentiaryResourcesMOSS>
+      <typ:ids>smth else</typ:ids>
+    </inv:evidentiaryResourcesMOSS>
+    <inv:accountingPeriodMOSS>123</inv:accountingPeriodMOSS>
+    <inv:carrier>
+      <typ:id>2</typ:id>
+      <typ:ids>10Zak00002</typ:ids>
+      <typ:valueType>nullValue</typ:valueType>
+    </inv:carrier>
+    <inv:note>Načteno z XML</inv:note>
+    <inv:intNote>Tento doklad byl vytvořen importem přes XML.</inv:intNote>
   </inv:invoiceHeader>
+
   <inv:invoiceDetail>
     <inv:invoiceItem>
+      <inv:id>1</inv:id>
       <inv:text>Perla přání</inv:text>
       <inv:quantity>3</inv:quantity>
       <inv:unit>ks</inv:unit>
+      <inv:coefficient>2</inv:coefficient>
       <inv:payVAT>false</inv:payVAT>
       <inv:rateVAT>high</inv:rateVAT>
-      <inv:guarantee>48</inv:guarantee>
-      <inv:guaranteeType>month</inv:guaranteeType>
+      <inv:percentVAT>21</inv:percentVAT>
+      <inv:discountPercentage>10</inv:discountPercentage>
       <inv:homeCurrency>
         <typ:unitPrice>164.46</typ:unitPrice>
         <typ:price>493.39</typ:price>
@@ -95,16 +208,63 @@
       </inv:homeCurrency>
       <inv:foreignCurrency>
         <typ:unitPrice>1000</typ:unitPrice>
+        <typ:price>111.39</typ:price>
+        <typ:priceVAT>222.61</typ:priceVAT>
+        <typ:priceSum>333.28</typ:priceSum>
       </inv:foreignCurrency>
+      <inv:note>note</inv:note>
+      <inv:code>83</inv:code>
+      <inv:guarantee>48</inv:guarantee>
+      <inv:guaranteeType>month</inv:guaranteeType>
       <inv:stockItem>
         <typ:store>
+          <typ:id>1</typ:id>
           <typ:ids>Sklad</typ:ids>
+          <typ:valueType>nullValue</typ:valueType>
         </typ:store>
         <typ:stockItem>
+          <typ:id>1</typ:id>
           <typ:ids>83</typ:ids>
+          <typ:EAN>123456</typ:EAN>
+          <typ:extId>
+            <typ:ids>EXT-002</typ:ids>
+            <typ:exSystemName>Externi system</typ:exSystemName>
+            <typ:exSystemText>Externi system text</typ:exSystemText>
+          </typ:extId>
         </typ:stockItem>
+        <typ:serialNumber>123</typ:serialNumber>
       </inv:stockItem>
-      <inv:code>83</inv:code>
+      <inv:accounting>
+        <typ:ids>3FV</typ:ids>
+        <typ:id>1</typ:id>
+        <typ:valueType>nullValue</typ:nullValue>
+      </inv:accounting>
+      <inv:classificationVAT>
+        <typ:id>1</typ:id>
+        <typ:ids>something</typ:ids>
+        <typ:classificationVATType>inland</typ:classificationVATType>
+      </inv:classificationVAT>
+      <inv:classificationKVDPH>
+        <typ:id>2</typ:id>
+        <typ:ids>9iv</typ:ids>
+        <typ:valueType>nullValue</typ:valueType>
+      </inv:classificationKVDPH>
+      <inv:centre>
+        <typ:id>2</typ:id>
+        <typ:ids>BRNO</typ:ids>
+        <typ:valueType>nullValue</typ:valueType>
+      </inv:centre>
+      <inv:activity>
+        <typ:id>2</typ:id>
+        <typ:ids>SLUŽBY</typ:ids>
+        <typ:valueType>nullValue</typ:valueType>
+      </inv:activity>
+      <inv:contract>
+        <typ:id>2</typ:id>
+        <typ:ids>10Zak00002</typ:ids>
+        <typ:valueType>nullValue</typ:valueType>
+      </inv:contract>
+      <inv:expirationDate>2014-10-02</inv:expirationDate>
     </inv:invoiceItem>
 
     <inv:invoiceItem>
@@ -115,32 +275,89 @@
     </inv:invoiceItem>
 
     <inv:invoiceAdvancePaymentItem>
+      <inv:id>1</inv:id>
       <inv:sourceDocument>
+        <typ:id>2</typ:id>
         <typ:number>150800001</typ:number>
       </inv:sourceDocument>
       <inv:quantity>1.0</inv:quantity>
       <inv:payVAT>false</inv:payVAT>
       <inv:rateVAT>none</inv:rateVAT>
+      <inv:percentVAT>1</inv:percentVAT>
+      <inv:discountPercentage>3</inv:discountPercentage>
       <inv:homeCurrency>
-        <typ:unitPrice>-1000</typ:unitPrice>
-        <typ:price>-1000</typ:price>
-        <typ:priceVAT>0</typ:priceVAT>
-        <typ:priceSum>-1000</typ:priceSum>
+        <typ:unitPrice>-100</typ:unitPrice>
+        <typ:price>-999</typ:price>
+        <typ:priceVAT>67</typ:priceVAT>
+        <typ:priceSum>-89</typ:priceSum>
       </inv:homeCurrency>
+      <inv:foreignCurrency>
+        <typ:unitPrice>-500</typ:unitPrice>
+        <typ:price>-200</typ:price>
+        <typ:priceVAT>5</typ:priceVAT>
+        <typ:priceSum>-333</typ:priceSum>
+      </inv:foreignCurrency>
+      <inv:note>Some note</inv:note>
+      <inv:accounting>
+        <typ:id>1</typ:id>
+        <typ:ids>4vf</typ:ids>
+        <typ:valueType>nullValue</typ:valueType>
+      </inv:accounting>
+      <inv:classificationVAT>
+        <typ:id>1</typ:id>
+        <typ:ids>something</typ:ids>
+        <typ:classificationVATType>inland</typ:classificationVATType>
+      </inv:classificationVAT>
+      <inv:classificationKVDPH>
+        <typ:id>2</typ:id>
+        <typ:ids>9iv</typ:ids>
+        <typ:valueType>nullValue</typ:valueType>
+      </inv:classificationKVDPH>
+      <inv:centre>
+        <typ:id>2</typ:id>
+        <typ:ids>BRNO</typ:ids>
+        <typ:valueType>nullValue</typ:valueType>
+      </inv:centre>
+      <inv:activity>
+        <typ:id>2</typ:id>
+        <typ:ids>SLUŽBY</typ:ids>
+        <typ:valueType>nullValue</typ:valueType>
+      </inv:activity>
+      <inv:contract>
+        <typ:id>2</typ:id>
+        <typ:ids>10Zak00002</typ:ids>
+        <typ:valueType>nullValue</typ:valueType>
+      </inv:contract>
+      <inv:voucherEET>false</inv:voucherEET>
     </inv:invoiceAdvancePaymentItem>
   </inv:invoiceDetail>
   <inv:invoiceSummary>
     <inv:roundingDocument>math2one</inv:roundingDocument>
     <inv:roundingVAT>noneEveryRate</inv:roundingVAT>
+    <inv:calculateVAT>false</inv:calculateVAT>
     <inv:homeCurrency>
-      <typ:priceHighSum>715</typ:priceHighSum>
-      <typ:priceNone>100</typ:priceNone>
-      <typ:priceLow>200</typ:priceLow>
-      <typ:round><typ:priceRound>0</typ:priceRound></typ:round>
+      <typ:priceLow>1</typ:priceLow>
+      <typ:priceLowVAT>2</typ:priceLowVAT>
+      <typ:priceLowSum>3</typ:priceLowSum>
+      <typ:priceHigh>4</typ:priceHigh>
+      <typ:priceHighVAT>5</typ:priceHighVAT>
+      <typ:priceHighSum>6</typ:priceHighSum>
+      <typ:priceNone>7</typ:priceNone>
+      <typ:price3>8</typ:price3>
+      <typ:price3VAT>9</typ:price3VAT>
+      <typ:price3Sum>10</typ:price3Sum>
+      <typ:round>
+        <typ:priceRound>0</typ:priceRound>
+        <!-- <typ:rateVATround>11</typ:rateVATround> -->
+        <!-- <typ:priceRoundSum>12</typ:priceRoundSum> -->
+        <!-- <typ:priceRoundSumVAT>13</typ:priceRoundSumVAT> -->
+      </typ:round>
     </inv:homeCurrency>
     <inv:foreignCurrency>
       <typ:currency>
+        <typ:id>1</typ:id>
         <typ:ids>EUR</typ:ids>
+        <typ:valueType>nullValue</typ:valueType>
       </typ:currency>
       <typ:rate>21.232</typ:rate>
       <typ:amount>1</typ:amount>

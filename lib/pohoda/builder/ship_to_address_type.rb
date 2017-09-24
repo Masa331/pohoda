@@ -3,7 +3,7 @@ module Pohoda
     class ShipToAddressType
       include BaseBuilder
 
-      attr_accessor :id, :company, :division, :name, :city, :street, :zip, :phone, :email, :default_ship_to_address, :country
+      attr_accessor :id, :company, :division, :name, :city, :street, :zip, :phone, :email, :default_ship_address, :country
 
       def builder
         namespaces = { 'xmlns:typ' => 'http://www.stormware.cz/schema/version_2/type.xsd' }
@@ -19,8 +19,8 @@ module Pohoda
             xml['typ'].zip zip
             xml['typ'].phone phone
             xml['typ'].email email
-            xml['typ'].defaultShipAddress default_ship_to_address
-            xml << Pohoda::Builder::Country.new(country).doc.root.to_xml
+            xml['typ'].defaultShipAddress default_ship_address
+            xml << Pohoda::Builder::RefType.new(country, 'country', 'typ').doc.root.to_xml
           }
         end
       end

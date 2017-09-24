@@ -47,11 +47,11 @@ module Pohoda
     end
 
     def classification_vat
-      t 'inv:classificationVAT'
+      ClassificationVatType.new(e 'inv:classificationVAT')
     end
 
     def classification_kvdph
-      t 'inv:classificationKVDPH'
+      RefType.new(e 'inv:classificationKVDPH')
     end
 
     def centre
@@ -67,7 +67,7 @@ module Pohoda
     end
 
     def voucher_eet
-      StockItemType.new(e 'inv:voucherEET')
+      t 'inv:voucherEET'
     end
 
     def to_h
@@ -82,8 +82,8 @@ module Pohoda
         foreign_currency: foreign_currency.to_h,
         note: note,
         accounting: accounting.to_h,
-        classification_vat: classification_vat,
-        classification_kvdph: classification_kvdph,
+        classification_vat: classification_vat.to_h,
+        classification_kvdph: classification_kvdph.to_h,
         centre: centre.to_h,
         activity: activity.to_h,
         contract: contract.to_h,

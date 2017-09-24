@@ -8,14 +8,14 @@ require "pohoda/number"
 require "pohoda/payment_type"
 require "pohoda/payment_account"
 require "pohoda/accounting"
-require "pohoda/classification_vat"
+require "pohoda/classification_vat_type"
 require "pohoda/type_currency_home_item"
 require "pohoda/type_currency_foreign_item"
 require "pohoda/invoice_item_type"
-require "pohoda/my_identity"
 require "pohoda/partner_identity"
 require "pohoda/blank_xml"
 require "pohoda/my_address"
+require "pohoda/address_internet_type"
 require "pohoda/ref_type"
 require "pohoda/establishment"
 require "pohoda/ext_id_type"
@@ -35,6 +35,9 @@ require "pohoda/type_currency_home_item2"
 require "pohoda/invoice_header_type"
 require "pohoda/invoice_detail_type"
 require "pohoda/invoice_summary_type"
+require "pohoda/moss_type"
+require "pohoda/resources_moss_type"
+require 'pohoda/ref_type_reg_vat_in_eu'
 
 require 'pohoda/builder/base_builder'
 require 'pohoda/builder/data_pack'
@@ -45,7 +48,6 @@ require 'pohoda/builder/address'
 require 'pohoda/builder/ext_id_type'
 require 'pohoda/builder/address'
 require 'pohoda/builder/address_type'
-require 'pohoda/builder/country'
 require 'pohoda/builder/ship_to_address_type'
 require 'pohoda/builder/invoice_item_type'
 require 'pohoda/builder/type_currency_home_item'
@@ -56,7 +58,6 @@ require 'pohoda/builder/store'
 require 'pohoda/builder/type_currency_home'
 require 'pohoda/builder/round'
 require 'pohoda/builder/type_currency_foreign'
-require 'pohoda/builder/currency'
 require 'pohoda/builder/invoice_header_type'
 require 'pohoda/builder/invoice_summary_type'
 require 'pohoda/builder/invoice_detail_type'
@@ -71,6 +72,12 @@ require 'pohoda/builder/ref_type'
 require 'pohoda/builder/link_item_type'
 require 'pohoda/builder/invoice_advance_payment_item_type'
 require 'pohoda/builder/type_currency_home_item2'
+require 'pohoda/builder/my_address'
+require 'pohoda/builder/address_internet_type'
+require 'pohoda/builder/establishment_type'
+require 'pohoda/builder/ref_type_reg_vat_in_eu'
+require 'pohoda/builder/moss_type'
+require 'pohoda/builder/resources_moss_type'
 
 module Pohoda
 end

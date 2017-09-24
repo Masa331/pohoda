@@ -34,6 +34,14 @@ module Pohoda
       t 'inv:symPar'
     end
 
+    def original_document
+      t 'inv:originalDocument'
+    end
+
+    def original_document_number
+      t 'inv:originalDocumentNumber'
+    end
+
     def date
       t 'inv:date'
     end
@@ -58,19 +66,28 @@ module Pohoda
       t 'inv:dateApplicationVAT'
     end
 
-    # def date_delivery
-    # end
+    def date_delivery
+      t 'inv:dateDelivery'
+    end
 
     def accounting
       Accounting.new(e 'inv:accounting')
     end
 
     def classification_vat
-      ClassificationVat.new(e 'inv:classificationVAT')
+      ClassificationVatType.new(e 'inv:classificationVAT')
+    end
+
+    def classification_kvdph
+      RefType.new(e 'inv:classificationKVDPH')
     end
 
     def number_khdph
       t 'inv:numberKHDPH'
+    end
+
+    def number_kvdph
+      t 'inv:numberKVDPH'
     end
 
     def text
@@ -82,7 +99,7 @@ module Pohoda
     end
 
     def my_identity
-      MyIdentity.new(e 'inv:myIdentity')
+      MyAddress.new(e 'inv:myIdentity')
     end
 
     def order
@@ -138,15 +155,15 @@ module Pohoda
     end
 
     def reg_vat_in_eu
-      RefType.new(e 'inv:regVATinEU')
+      RefTypeRegVatInEU.new(e 'inv:regVATinEU')
     end
 
     def moss
-      t 'inv:MOSS/typ:ids'
+      MOSSType.new(e 'inv:MOSS')
     end
 
-    def evidentiary_resource_moss
-      t 'inv:evidentiaryResourcesMOSS/typ:ids'
+    def evidentiary_resources_moss
+      ResourcesMOSSType.new(e 'inv:evidentiaryResourcesMOSS')
     end
 
     def accounting_period_moss
@@ -174,15 +191,20 @@ module Pohoda
         number: number.to_h,
         sym_var: sym_var,
         sym_par: sym_par,
+        original_document: original_document,
+        original_document_number: original_document_number,
         date: date,
         date_tax: date_tax,
         date_accounting: date_accounting,
         date_khdph: date_khdph,
         date_due: date_due,
         date_application_vat: date_application_vat,
+        date_delivery: date_delivery,
         accounting: accounting.to_h,
         classification_vat: classification_vat.to_h,
+        classification_kvdph: classification_kvdph.to_h,
         number_khdph: number_khdph,
+        number_kvdph: number_kvdph,
         text: text,
         partner_identity: partner_identity.to_h,
         my_identity: my_identity.to_h,
@@ -200,8 +222,8 @@ module Pohoda
         activity: activity.to_h,
         contract: contract.to_h,
         reg_vat_in_eu: reg_vat_in_eu.to_h,
-        moss: moss,
-        evidentiary_resource_moss: evidentiary_resource_moss,
+        moss: moss.to_h,
+        evidentiary_resources_moss: evidentiary_resources_moss.to_h,
         accounting_period_moss: accounting_period_moss,
         carrier: carrier.to_h,
         note: note,

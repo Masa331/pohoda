@@ -1,19 +1,17 @@
 module Pohoda
   module Builder
-    class AccountingType
+    class MOSSType
       include BaseBuilder
 
-      attr_accessor :id, :ids, :accounting_type
+      attr_accessor :ids
 
       def builder
         namespaces = { 'xmlns:inv' => 'http://www.stormware.cz/schema/version_2/invoice.xsd',
                        'xmlns:typ' => 'http://www.stormware.cz/schema/version_2/type.xsd' }
 
-        Nokogiri::XML::Builder.new(encoding: 'UTF-8') do |xml|
-          xml['inv'].accounting(namespaces) {
-            xml['typ'].id id
+        Nokogiri::XML::Builder.new do |xml|
+          xml['inv'].MOSS(namespaces) {
             xml['typ'].ids ids
-            xml['typ'].accountingType accounting_type
           }
         end
       end

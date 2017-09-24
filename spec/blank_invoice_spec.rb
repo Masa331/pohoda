@@ -55,7 +55,7 @@ RSpec.describe Pohoda::InvoiceType do
     its('invoice_header.partner_identity.address.dic') { is_expected.to eq '' }
     its('invoice_header.partner_identity.address.ic_dph') { is_expected.to eq '' }
     its('invoice_header.partner_identity.address.phone') { is_expected.to eq '' }
-    its('invoice_header.partner_identity.address.mobile_phone') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.address.mobil_phone') { is_expected.to eq '' }
     its('invoice_header.partner_identity.address.fax') { is_expected.to eq '' }
     its('invoice_header.partner_identity.address.email') { is_expected.to eq '' }
     its('invoice_header.partner_identity.address.country.id') { is_expected.to eq '' }
@@ -71,7 +71,7 @@ RSpec.describe Pohoda::InvoiceType do
     its('invoice_header.partner_identity.ship_to_address.zip') { is_expected.to eq '' }
     its('invoice_header.partner_identity.ship_to_address.phone') { is_expected.to eq '' }
     its('invoice_header.partner_identity.ship_to_address.email') { is_expected.to eq '' }
-    its('invoice_header.partner_identity.ship_to_address.default_ship_to_address') { is_expected.to eq '' }
+    its('invoice_header.partner_identity.ship_to_address.default_ship_address') { is_expected.to eq '' }
     its('invoice_header.partner_identity.ship_to_address.country.id') { is_expected.to eq '' }
     its('invoice_header.partner_identity.ship_to_address.country.ids') { is_expected.to eq '' }
     its('invoice_header.partner_identity.ship_to_address.country.value_type') { is_expected.to eq '' }
@@ -88,7 +88,7 @@ RSpec.describe Pohoda::InvoiceType do
     its('invoice_header.my_identity.address.dic') { is_expected.to eq '' }
     its('invoice_header.my_identity.address.ic_dph') { is_expected.to eq '' }
     its('invoice_header.my_identity.address.phone') { is_expected.to eq '' }
-    its('invoice_header.my_identity.address.mobile_phone') { is_expected.to eq '' }
+    its('invoice_header.my_identity.address.mobil_phone') { is_expected.to eq '' }
     its('invoice_header.my_identity.address.fax') { is_expected.to eq '' }
     its('invoice_header.my_identity.address.email') { is_expected.to eq '' }
     its('invoice_header.my_identity.address.www') { is_expected.to eq '' }
@@ -140,8 +140,8 @@ RSpec.describe Pohoda::InvoiceType do
     its('invoice_header.reg_vat_in_eu.id') { is_expected.to eq '' }
     its('invoice_header.reg_vat_in_eu.ids') { is_expected.to eq '' }
 
-    its('invoice_header.moss') { is_expected.to eq '' }
-    its('invoice_header.evidentiary_resource_moss') { is_expected.to eq '' }
+    its('invoice_header.moss.ids') { is_expected.to eq '' }
+    its('invoice_header.evidentiary_resources_moss.ids') { is_expected.to eq '' }
     its('invoice_header.accounting_period_moss') { is_expected.to eq '' }
 
     its('invoice_header.carrier.id') { is_expected.to eq '' }
@@ -184,14 +184,16 @@ RSpec.describe Pohoda::InvoiceType do
     it '#to_h' do
       hsh =
         { links: [],
-         invoice_header: {
+          invoice_header: {
           id: '',
           ext_id: { ids: '', ex_system_name: '', ex_system_text: '' },
           invoice_type: '',
-          storno: '',
           sphere_type: '',
+          storno: '',
           number: { id: '', ids: '', number_requested: '' },
           sym_var: '',
+          original_document: '',
+          original_document_number: '',
           sym_par: '',
           date: '',
           date_tax: '',
@@ -199,9 +201,12 @@ RSpec.describe Pohoda::InvoiceType do
           date_khdph: '',
           date_due: '',
           date_application_vat: '',
+          date_delivery: '',
           accounting: { id: '', ids: '', accounting_type: '' },
           classification_vat: { id: '', ids: '', classification_vat_type: '' },
+          classification_kvdph: { id: '', ids: '', value_type: '' },
           number_khdph: '',
+          number_kvdph: '',
           text: '',
           partner_identity: {
             id: '',
@@ -218,7 +223,7 @@ RSpec.describe Pohoda::InvoiceType do
               ic_dph: '',
               country: { id: '', ids: '', value_type: '' },
               phone: '',
-              mobile_phone: '',
+              mobil_phone: '',
               fax: '',
               email: ''
             },
@@ -232,7 +237,7 @@ RSpec.describe Pohoda::InvoiceType do
                                country: { id: '', ids: '', value_type: '' },
                                phone: '',
                                email: '',
-                               default_ship_to_address: '' }
+                               default_ship_address: '' }
           },
           my_identity: { address: { company: '',
                                     title: '',
@@ -246,7 +251,7 @@ RSpec.describe Pohoda::InvoiceType do
                                     dic: '',
                                     ic_dph: '',
                                     phone: '',
-                                    mobile_phone: '',
+                                    mobil_phone: '',
                                     fax: '',
                                     email: '',
                                     www: ''
@@ -269,37 +274,38 @@ RSpec.describe Pohoda::InvoiceType do
           centre: { id: '', ids: '', value_type: '' },
           activity: { id: '', ids: '', value_type: '' },
           contract: { id: '', ids: '', value_type: '' },
-          reg_vat_in_eu: { id: '', ids: '', value_type: '' },
-          moss: '',
-          evidentiary_resource_moss: '',
+          reg_vat_in_eu: { id: '', ids: '' },
+          moss: { ids: '' },
+          evidentiary_resources_moss: { ids: '' },
           accounting_period_moss: '',
           carrier: { id: '', ids: '', value_type: '' },
           note: '',
           int_note: '',
-      }, invoice_detail: {
-          items: [],
-          advance_payments: []
+        }, invoice_detail: {
+            items: [],
+            advance_payments: []
           },
           invoice_summary: {
-          rounding_document: '',
-          rounding_vat: '',
-          calculate_vat: '',
-          home_currency: { price_none: '',
-                           price_low: '',
-                           price_low_vat: '',
-                           price_low_sum: '',
-                           price_high: '',
-                           price_high_vat: '',
-                           price_high_sum: '',
-                           price_3: '',
-                           price_3_vat: '',
-                           price_3_sum: '',
-                           round: { price_round: '' } },
+            rounding_document: '',
+            rounding_vat: '',
+            calculate_vat: '',
+            home_currency: { price_none: '',
+                             price_low: '',
+                             price_low_vat: '',
+                             price_low_sum: '',
+                             price_high: '',
+                             price_high_vat: '',
+                             price_high_sum: '',
+                             price_3: '',
+                             price_3_vat: '',
+                             price_3_sum: '',
+                             round: { price_round: '', rate_vat_round: '', price_round_sum: '', price_round_sum_vat: '' } },
           foreign_currency: { currency: { id: '', ids: '', value_type: '' },
                               rate: '', amount: '', price_sum: '' }
           }
       }
 
+      expect(invoice.to_h[:invoice_header]).to match(hsh[:invoice_header])
       expect(invoice.to_h).to match(hsh)
     end
   end

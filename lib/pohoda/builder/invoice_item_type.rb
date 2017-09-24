@@ -3,7 +3,7 @@ module Pohoda
     class InvoiceItemType
       include BaseBuilder
 
-      attr_accessor :id, :ids, :number_requested, :id, :text, :quantity, :unit, :coefficient, :pay_vat, :rate_vat, :percent_vat, :discount_percentage, :code, :home_currency, :foreign_currency, :stock_item, :guarantee, :guarantee_type, :link
+      attr_accessor :id, :ids, :number_requested, :id, :text, :quantity, :unit, :coefficient, :pay_vat, :rate_vat, :percent_vat, :discount_percentage, :code, :home_currency, :foreign_currency, :stock_item, :guarantee, :guarantee_type, :link, :note, :accounting, :classification_vat, :classification_kvdph, :centre, :activity, :contract, :expiration_date
 
       def builder
         namespaces = { 'xmlns:inv' => 'http://www.stormware.cz/schema/version_2/invoice.xsd',
@@ -11,6 +11,7 @@ module Pohoda
 
         Nokogiri::XML::Builder.new do |xml|
           xml['inv'].invoiceItem(namespaces) {
+            xml << Pohoda::Builder::LinkItemType.new(link).doc.root.to_xml
             xml['inv'].id id
             xml['inv'].text_ text
             xml['inv'].quantity quantity
@@ -20,13 +21,20 @@ module Pohoda
             xml['inv'].rateVAT rate_vat
             xml['inv'].percentVAT percent_vat
             xml['inv'].discountPercentage discount_percentage
-            xml['inv'].guarantee guarantee
-            xml['inv'].guaranteeType guarantee_type
-            xml['inv'].code code
             xml << Pohoda::Builder::TypeCurrencyHomeItem.new(home_currency).doc.root.to_xml
             xml << Pohoda::Builder::TypeCurrencyForeignItem.new(foreign_currency).doc.root.to_xml
+            xml['inv'].note note
+            xml['inv'].code code
+            xml['inv'].guarantee guarantee
+            xml['inv'].guaranteeType guarantee_type
             xml << Pohoda::Builder::StockItemType.new(stock_item).doc.root.to_xml
-            xml << Pohoda::Builder::LinkItemType.new(link).doc.root.to_xml
+            xml << Pohoda::Builder::RefType.new(accounting, 'accounting', 'inv').doc.root.to_xml
+            xml << Pohoda::Builder::ClassificationVatType.new(classification_vat).doc.root.to_xml
+            xml << Pohoda::Builder::RefType.new(classification_kvdph, 'classificationKVDPH', 'inv').doc.root.to_xml
+            xml << Pohoda::Builder::RefType.new(centre, 'centre', 'inv').doc.root.to_xml
+            xml << Pohoda::Builder::RefType.new(activity, 'activity', 'inv').doc.root.to_xml
+            xml << Pohoda::Builder::RefType.new(contract, 'contract', 'inv').doc.root.to_xml
+            xml['inv'].expirationDate expiration_date
           }
         end
       end

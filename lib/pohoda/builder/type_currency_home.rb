@@ -14,6 +14,7 @@ module Pohoda
             xml['typ'].priceNone price_none
             xml['typ'].priceLow price_low
             xml['typ'].priceLowVAT price_low_vat
+            xml['typ'].priceLowSum price_low_sum
             xml['typ'].priceHigh price_high
             xml['typ'].priceHighVAT price_high_vat
             xml['typ'].priceHighSum price_high_sum
