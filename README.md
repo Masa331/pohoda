@@ -18,7 +18,7 @@ The goal of this library is to wrap the Pohoda XMLs with very thin layer on whic
 
 ### Naming
 
-Pohoda XML uses for nameing a mix of abbreviations, czech words, and english words. I'v decided to keep it the same so user isn't confused with another layer's naming. The only difference in naming is that all names in this gem are snake cased and downcased.
+Pohoda XML uses a mix of abbreviations, czech words, and english words for naming. I'v decided to keep method and class names the same so user isn't confused with another layer's naming. The only difference is everything is snake cased and downcased.
 
 For example:
 
@@ -27,10 +27,10 @@ For example:
 | symVar | sym_var |
 | payVAT | pay_vat |
 
-### What's missing
+### Missing parts
 
-I would like the parser and builder to be complete but since my time is limited, i'v decided to omit some less used elements now. All the major ones(invoice, items, advance payments, etc..) should work.
-If you need to parse or build somethign which isn't yet implemented, please open an issue with XML example attached. I will be happy to help.
+Since my time is limited, i'v decided to omit some less used elements now. All the major ones(invoice, items, advance payments, etc..) work.
+If you need to parse or build something which isn't yet implemented, please open an issue with XML example attached. I will be happy to help.
 
 Some of missing elements:
 * intrastat info
