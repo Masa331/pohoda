@@ -2,7 +2,6 @@ module Pohoda
   class BlankXml
     def xpath(*_)
       self.class.new
-      # []
     end
 
     def at_xpath(*_)

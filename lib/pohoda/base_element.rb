@@ -7,12 +7,14 @@ module Pohoda
       @xml ||= BlankXml.new
     end
 
-    def t(xpath)
+    def text(xpath)
       xml.xpath(xpath).text
     end
+    alias_method :t, :text
 
-    def e(xpath)
+    def element(xpath)
       xml.at_xpath(xpath)
     end
+    alias_method :e, :element
   end
 end
