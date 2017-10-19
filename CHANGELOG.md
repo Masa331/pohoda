@@ -1,5 +1,10 @@
 # 0.9.0
 
+- Removed Utils module - all methods moved directly to BaseElement module
+- #t and #e methods in BaseElement are now only aliased methods to full name methods
+
+# 0.9.0
+
 - Add new builders
 - Add tests
 - Rename builder classes to conform to Pohoda names
