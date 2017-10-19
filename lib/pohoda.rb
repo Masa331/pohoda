@@ -1,5 +1,4 @@
 require "pohoda/version"
-require "pohoda/utils"
 require "pohoda/base_element"
 require "pohoda/invoice_type"
 require "pohoda/type_currency_home"
