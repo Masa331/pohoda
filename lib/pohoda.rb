@@ -1,3 +1,5 @@
+require 'nokogiri'
+
 require "pohoda/version"
 require "pohoda/base_element"
 require "pohoda/invoice_type"
