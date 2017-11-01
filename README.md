@@ -14,11 +14,11 @@ Content:
 
 ## About
 
-The goal of this library is to wrap the Pohoda XMLs with very thin layer on which you can build anything you need. The library itself is very simple and tries to make no asusmptions of it's usage.
+The goal of this library is to wrap Pohoda XMLs with very thin layer on which you can build anything you need. The library itself is very simple and tries to make no asusmptions of it's usage.
 
 ### Naming
 
-Pohoda XML uses a mix of abbreviations, czech words, and english words for naming. I'v decided to keep method and class names the same so user isn't confused with another layer's naming. The only difference is everything is snake cased and downcased.
+Pohoda XML uses a mix of abbreviations, czech words, and english words for naming. I'v decided to keep method and class names the same. The only difference is everything is snake cased and downcased.
 
 For example:
 
@@ -103,7 +103,37 @@ invoice.to_h
 
 ### Builder
 
-Builder doc here
+```ruby
+# All builders are under Pohoda::Builder namespace and all have to be initialized with hash of attributes
+builder = Pohoda::Builder::InvoiceType.new({ invoice_header: { invoice_type: 'issuedInvoice' } })
+
+# and then it has #to_xml method, which outputs xml string
+builder.to_xml
+=> "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<inv:invoice....."
+
+# if you need to change any attribute later, it's possible. First level attributes are accessible through accessor
+builder.invoice_header = { invoice_type: 'issuedProformaInvoice' }
+
+# or, under the first level, it's just hashes
+builder.invoice_header[:invoice_type] = 'issuedProformaInvoice'
+```
+
+### Together
+
+```ruby
+# Load some invoice
+xml = Nokogiri::XML(File.open "./invoices.xml").at_xpath('//dat:dataPack')
+data_pack = Pohoda::DataPackType.new(xml)
+
+# output to hash and initialize new builder with it
+builder = Pohoda::Builder::DataPack.new data_pack.to_h
+
+# change something in it
+builder.data_pack_items.first[:invoice][:invoice_header][:invoice_type] = 'proformaIssuedInvoice'
+
+# and then output to xml
+builder.to_xml
+```
 
 ## External links
 
