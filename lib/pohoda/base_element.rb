@@ -7,6 +7,8 @@ module Pohoda
       @xml ||= BlankXml.new
     end
 
+    private
+
     def text(xpath)
       xml.xpath(xpath).text
     end
