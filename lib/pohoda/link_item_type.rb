@@ -3,11 +3,11 @@ module Pohoda
     include BaseElement
 
     def source_agenda
-      t 'typ:sourceAgenda'
+      text_at 'typ:sourceAgenda'
     end
 
     def source_item_id
-      t 'typ:sourceItemId'
+      text_at 'typ:sourceItemId'
     end
 
     def to_h

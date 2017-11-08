@@ -4,19 +4,20 @@ module Pohoda
 
     def initialize(xml)
       @xml = xml
-      @xml ||= BlankXml.new
     end
 
     private
 
-    def text(xpath)
-      xml.xpath(xpath).text
+    def text_at(xpath)
+      xml.xpath(xpath)&.text
     end
-    alias_method :t, :text
 
-    def element(xpath)
+    def at_xpath(xpath)
       xml.at_xpath(xpath)
     end
-    alias_method :e, :element
+
+    def xpath(xpath)
+      xml.xpath(xpath)
+    end
   end
 end

@@ -3,71 +3,89 @@ module Pohoda
     include BaseElement
 
     def id
-      t 'inv:id'
+      text_at 'inv:id'
     end
 
     def source_document
-      SourceDocumentType.new(e 'inv:sourceDocument')
+      element_xml = at_xpath 'inv:sourceDocument'
+
+      SourceDocumentType.new(element_xml) if element_xml
     end
 
     def quantity
-      t 'inv:quantity'
+      text_at 'inv:quantity'
     end
 
     def pay_vat
-      t 'inv:payVAT'
+      text_at 'inv:payVAT'
     end
 
     def rate_vat
-      t 'inv:rateVAT'
+      text_at 'inv:rateVAT'
     end
 
     def percent_vat
-      t 'inv:percentVAT'
+      text_at 'inv:percentVAT'
     end
 
     def discount_percentage
-      t 'inv:discountPercentage'
+      text_at 'inv:discountPercentage'
     end
 
     def home_currency
-      TypeCurrencyHomeItem2.new(e 'inv:homeCurrency')
+      element_xml = at_xpath 'inv:homeCurrency'
+
+      TypeCurrencyHomeItem2.new(element_xml) if element_xml
     end
 
     def foreign_currency
-      TypeCurrencyHomeItem2.new(e 'inv:foreignCurrency')
+      element_xml = at_xpath 'inv:foreignCurrency'
+
+      TypeCurrencyHomeItem2.new(element_xml) if element_xml
     end
 
     def note
-      t 'inv:note'
+      text_at 'inv:note'
     end
 
     def accounting
-      RefType.new(e 'inv:accounting')
+      element_xml = at_xpath 'inv:accounting'
+
+      RefType.new(element_xml) if element_xml
     end
 
     def classification_vat
-      ClassificationVatType.new(e 'inv:classificationVAT')
+      element_xml = at_xpath 'inv:classificationVAT'
+
+      ClassificationVatType.new(element_xml) if element_xml
     end
 
     def classification_kvdph
-      RefType.new(e 'inv:classificationKVDPH')
+      element_xml = at_xpath 'inv:classificationKVDPH'
+
+      RefType.new(element_xml) if element_xml
     end
 
     def centre
-      RefType.new(e 'inv:centre')
+      element_xml = at_xpath 'inv:centre'
+
+      RefType.new(element_xml) if element_xml
     end
 
     def activity
-      RefType.new(e 'inv:activity')
+      element_xml = at_xpath 'inv:activity'
+
+      RefType.new(element_xml) if element_xml
     end
 
     def contract
-      RefType.new(e 'inv:contract')
+      element_xml = at_xpath 'inv:contract'
+
+      RefType.new(element_xml) if element_xml
     end
 
     def voucher_eet
-      t 'inv:voucherEET'
+      text_at 'inv:voucherEET'
     end
 
     def to_h

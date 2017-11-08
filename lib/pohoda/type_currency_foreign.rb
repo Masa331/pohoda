@@ -3,19 +3,21 @@ module Pohoda
     include BaseElement
 
     def currency
-      RefType.new(e 'typ:currency')
+      element_xml = at_xpath 'typ:currency'
+
+      RefType.new(element_xml) if element_xml
     end
 
     def rate
-      t 'typ:rate'
+      text_at 'typ:rate'
     end
 
     def amount
-      t 'typ:amount'
+      text_at 'typ:amount'
     end
 
     def price_sum
-      t 'typ:priceSum'
+      text_at 'typ:priceSum'
     end
 
     def to_h

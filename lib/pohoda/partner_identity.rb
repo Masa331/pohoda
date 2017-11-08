@@ -3,19 +3,25 @@ module Pohoda
     include BaseElement
 
     def id
-      t 'typ:id'
+      text_at 'typ:id'
     end
 
     def ext_id
-      ExtIdType.new(e 'typ:extId')
+      element_xml = at_xpath 'typ:extId'
+
+      ExtIdType.new(element_xml) if element_xml
     end
 
     def address
-      Address.new(e 'typ:address')
+      element_xml = at_xpath 'typ:address'
+
+      Address.new(element_xml) if element_xml
     end
 
     def ship_to_address
-      ShipToAddress.new(e 'typ:shipToAddress')
+      element_xml = at_xpath 'typ:shipToAddress'
+
+      ShipToAddress.new(element_xml) if element_xml
     end
 
     def to_h

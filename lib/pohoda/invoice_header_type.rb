@@ -3,183 +3,221 @@ module Pohoda
     include BaseElement
 
     def id
-      t 'inv:id'
+      text_at 'inv:id'
     end
 
     def ext_id
-      ExtIdType.new(e 'inv:extId')
+      element_xml = at_xpath 'inv:extId'
+
+      ExtIdType.new(element_xml) if element_xml
     end
 
     def invoice_type
-      t 'inv:invoiceType'
+      text_at 'inv:invoiceType'
     end
 
     def storno
-      t 'inv:storno'
+      text_at 'inv:storno'
     end
 
     def sphere_type
-      t 'inv:sphereType'
+      text_at 'inv:sphereType'
     end
 
     def number
-      Number.new(e 'inv:number')
+      element_xml = at_xpath 'inv:number'
+
+      Number.new(element_xml) if element_xml
     end
 
     def sym_var
-      t 'inv:symVar'
+      text_at 'inv:symVar'
     end
 
     def sym_par
-      t 'inv:symPar'
+      text_at 'inv:symPar'
     end
 
     def original_document
-      t 'inv:originalDocument'
+      text_at 'inv:originalDocument'
     end
 
     def original_document_number
-      t 'inv:originalDocumentNumber'
+      text_at 'inv:originalDocumentNumber'
     end
 
     def date
-      t 'inv:date'
+      text_at 'inv:date'
     end
 
     def date_tax
-      t 'inv:dateTax'
+      text_at 'inv:dateTax'
     end
 
     def date_accounting
-      t 'inv:dateAccounting'
+      text_at 'inv:dateAccounting'
     end
 
     def date_khdph
-      t 'inv:dateKHDPH'
+      text_at 'inv:dateKHDPH'
     end
 
     def date_due
-      t 'inv:dateDue'
+      text_at 'inv:dateDue'
     end
 
     def date_application_vat
-      t 'inv:dateApplicationVAT'
+      text_at 'inv:dateApplicationVAT'
     end
 
     def date_delivery
-      t 'inv:dateDelivery'
+      text_at 'inv:dateDelivery'
     end
 
     def accounting
-      Accounting.new(e 'inv:accounting')
+      element_xml = at_xpath 'inv:accounting'
+
+      Accounting.new(element_xml) if element_xml
     end
 
     def classification_vat
-      ClassificationVatType.new(e 'inv:classificationVAT')
+      element_xml = at_xpath 'inv:classificationVAT'
+
+      ClassificationVatType.new(element_xml) if element_xml
     end
 
     def classification_kvdph
-      RefType.new(e 'inv:classificationKVDPH')
+      element_xml = at_xpath 'inv:classificationKVDPH'
+
+      RefType.new(element_xml) if element_xml
     end
 
     def number_khdph
-      t 'inv:numberKHDPH'
+      text_at 'inv:numberKHDPH'
     end
 
     def number_kvdph
-      t 'inv:numberKVDPH'
+      text_at 'inv:numberKVDPH'
     end
 
     def text
-      t 'inv:text'
+      text_at 'inv:text'
     end
 
     def partner_identity
-      PartnerIdentity.new(e 'inv:partnerIdentity')
+      element_xml = at_xpath 'inv:partnerIdentity'
+
+      PartnerIdentity.new(element_xml) if element_xml
     end
 
     def my_identity
-      MyAddress.new(e 'inv:myIdentity')
+      element_xml = at_xpath 'inv:myIdentity'
+
+      MyAddress.new(element_xml) if element_xml
     end
 
     def order
-      RefType.new(e 'inv:order')
+      element_xml = at_xpath 'inv:order'
+
+      RefType.new(element_xml) if element_xml
     end
 
     def number_order
-      t 'inv:numberOrder'
+      text_at 'inv:numberOrder'
     end
 
     def date_order
-      t 'inv:dateOrder'
+      text_at 'inv:dateOrder'
     end
 
     def price_level
-      RefType.new(e 'inv:priceLevel')
+      element_xml = at_xpath 'inv:priceLevel'
+
+      RefType.new(element_xml) if element_xml
     end
 
     def payment_type
-      PaymentType.new(e 'inv:paymentType')
+      element_xml = at_xpath 'inv:paymentType'
+
+      PaymentType.new(element_xml) if element_xml
     end
 
     def account
-      AccountType.new(e 'inv:account')
+      element_xml = at_xpath 'inv:account'
+
+      AccountType.new(element_xml) if element_xml
     end
 
     def sym_const
-      t 'inv:symConst'
+      text_at 'inv:symConst'
     end
 
     def sym_spec
-      t 'inv:symSpec'
+      text_at 'inv:symSpec'
     end
 
     def payment_account
-      PaymentAccount.new(e 'inv:paymentAccount')
+      element_xml = at_xpath 'inv:paymentAccount'
+
+      PaymentAccount.new(element_xml) if element_xml
     end
 
     def payment_terminal
-      t 'inv:paymentTerminal'
+      text_at 'inv:paymentTerminal'
     end
 
     def centre
-      RefType.new(e 'inv:centre')
+      element_xml = at_xpath 'inv:centre'
+
+      RefType.new(element_xml) if element_xml
     end
 
     def activity
-      RefType.new(e 'inv:activity')
+      element_xml = at_xpath 'inv:activity'
+
+      RefType.new(element_xml) if element_xml
     end
 
     def contract
-      RefType.new(e 'inv:contract')
+      element_xml = at_xpath 'inv:contract'
+
+      RefType.new(element_xml) if element_xml
     end
 
     def reg_vat_in_eu
-      RefTypeRegVatInEU.new(e 'inv:regVATinEU')
+      element_xml = at_xpath 'inv:regVATinEU'
+
+      RefTypeRegVatInEU.new(element_xml) if element_xml
     end
 
     def moss
-      MOSSType.new(e 'inv:MOSS')
+      element_xml = at_xpath 'inv:MOSS'
+
+      MOSSType.new(element_xml) if element_xml
     end
 
     def evidentiary_resources_moss
-      ResourcesMOSSType.new(e 'inv:evidentiaryResourcesMOSS')
+      element_xml = at_xpath 'inv:evidentiaryResourcesMOSS'
+
+      ResourcesMOSSType.new(element_xml) if element_xml
     end
 
     def accounting_period_moss
-      t 'inv:accountingPeriodMOSS'
+      text_at 'inv:accountingPeriodMOSS'
     end
 
     def carrier
-      RefType.new(e 'inv:carrier')
+      element_xml = at_xpath 'inv:carrier'
+
+      RefType.new(element_xml) if element_xml
     end
 
     def note
-      t 'inv:note'
+      text_at 'inv:note'
     end
 
     def int_note
-      t 'inv:intNote'
+      text_at 'inv:intNote'
     end
 
     def to_h

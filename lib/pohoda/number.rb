@@ -3,15 +3,15 @@ module Pohoda
     include BaseElement
 
     def id
-      t 'typ:id'
+      text_at 'typ:id'
     end
 
     def ids
-      t 'typ:ids'
+      text_at 'typ:ids'
     end
 
     def number_requested
-      t 'typ:numberRequested'
+      text_at 'typ:numberRequested'
     end
 
     def to_h
