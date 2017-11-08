@@ -1,3 +1,8 @@
+# 0.10.0
+
+- Empty elements are now returned as 'nil' instead of empty string or blank element class. So it's not possible to go through parsed invoice elements if the origin doesn't have any
+- `#to_h` method now also returns nil where no elements follow instead of nested empty hash with all possible values
+
 # 0.9.0
 
 - Removed Utils module - all methods moved directly to BaseElement module
