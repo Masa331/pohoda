@@ -1,5 +1,7 @@
 # Pohoda XML Invoice
 
+[![Build Status](https://travis-ci.org/Masa331/pohoda.svg?branch=master)](https://travis-ci.org/Masa331/pohoda)
+
 Simple parser and builder for Pohoda XML invoices
 
 Content:
