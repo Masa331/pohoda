@@ -11,8 +11,9 @@ Content:
 2. [Api](#api)
     1. [Parsers](#parsers)
     2. [Builder](#builder)
-3. [External links](#external-links)
-4. [License](#license)
+3. [Performance](#performance)
+4. [External links](#external-links)
+5. [License](#license)
 
 ## About
 
@@ -136,6 +137,15 @@ builder.data_pack_items.first[:invoice][:invoice_header][:invoice_type] = 'profo
 # and then output to xml
 builder.to_xml
 ```
+
+## Performance
+
+Is generated with `measure_performance.rb` script. Is of course subject to machine on which is running.
+
+| Commit and test description | time | total memory allocated | total memory retained |
+|-----------------------------|------|------------------------|-----------------------|
+| 6d7f8d4 - 17.11.2017 21:20 - map 100 invoices to_h | 0.0226 s | 114.2392 Mb | 0.0 Mb |
+| 6d7f8d4 - 17.11.2017 21:20 - map one attribute on 100 invoices | 0.0024 s | 2.2679 Mb | 0.0 Mb |
 
 ## External links
 
