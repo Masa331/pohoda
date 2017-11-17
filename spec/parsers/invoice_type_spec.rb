@@ -1,10 +1,13 @@
 require 'spec_helper'
+require 'pohoda/invoice_type'
 
-RSpec.describe Pohoda::InvoiceType do
+RSpec.describe Pohoda::DataPackType do
+  let(:raw) { File.open "./spec/fixtures/blank_invoice.xml" }
+  let(:xml) { Nokogiri::XML(raw).xpath('//inv:invoice') }
+
+  subject { Pohoda::InvoiceType.new(xml) }
+
   context 'invoice with no data' do
-    let(:xml) { xml_invoice('blank_invoice.xml') }
-    subject(:invoice) { Pohoda::InvoiceType.new(xml) }
-
     its(:links) { is_expected.to eq [] }
     its('invoice_header') { is_expected.to eq nil }
 
@@ -19,7 +22,7 @@ RSpec.describe Pohoda::InvoiceType do
           invoice_detail: {},
           invoice_summary: {} }
 
-      expect(invoice.to_h).to match(hsh)
+      expect(subject.to_h).to match(hsh)
     end
   end
 end

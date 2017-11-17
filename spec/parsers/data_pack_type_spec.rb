@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pohoda/data_pack_type'
 
 RSpec.describe Pohoda::DataPackType do
   let(:xml) { Nokogiri::XML(File.open "./spec/fixtures/basic_invoice.xml").at_xpath('//dat:dataPack') }

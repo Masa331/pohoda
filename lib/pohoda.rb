@@ -80,4 +80,9 @@ require 'pohoda/builder/moss_type'
 require 'pohoda/builder/resources_moss_type'
 
 module Pohoda
+  def self.parse(raw)
+    xml = Nokogiri::XML(raw).at_xpath('//dat:dataPack')
+
+    DataPackType.new(xml)
+  end
 end
