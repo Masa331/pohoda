@@ -29,5 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec-its"
   spec.add_development_dependency "pry"
   spec.add_development_dependency "equivalent-xml"
+  spec.add_development_dependency "derailed_benchmarks"
+  spec.add_development_dependency "stackprof"
   spec.add_development_dependency "memory_profiler"
 end
