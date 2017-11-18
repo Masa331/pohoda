@@ -3,19 +3,19 @@ module Pohoda
     include BaseElement
 
     def company
-      text_at 'typ:company'
+      text_at 'company'
     end
 
     def city
-      text_at 'typ:city'
+      text_at 'city'
     end
 
     def street
-      text_at 'typ:street'
+      text_at 'street'
     end
 
     def zip
-      text_at 'typ:zip'
+      text_at 'zip'
     end
 
     def to_h

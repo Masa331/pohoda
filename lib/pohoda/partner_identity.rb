@@ -3,23 +3,23 @@ module Pohoda
     include BaseElement
 
     def id
-      text_at 'typ:id'
+      text_at 'id'
     end
 
     def ext_id
-      element_xml = at_xpath 'typ:extId'
+      element_xml = at_xpath 'extId'
 
       ExtIdType.new(element_xml) if element_xml
     end
 
     def address
-      element_xml = at_xpath 'typ:address'
+      element_xml = at_xpath 'address'
 
       Address.new(element_xml) if element_xml
     end
 
     def ship_to_address
-      element_xml = at_xpath 'typ:shipToAddress'
+      element_xml = at_xpath 'shipToAddress'
 
       ShipToAddress.new(element_xml) if element_xml
     end

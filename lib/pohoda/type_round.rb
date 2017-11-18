@@ -3,19 +3,19 @@ module Pohoda
     include BaseElement
 
     def price_round
-      text_at 'typ:priceRound'
+      text_at 'priceRound'
     end
 
     def rate_vat_round
-      text_at 'typ:rateVATround'
+      text_at 'rateVATround'
     end
 
     def price_round_sum
-      text_at 'typ:priceRoundSum'
+      text_at 'priceRoundSum'
     end
 
     def price_round_sum_vat
-      text_at 'typ:priceRoundSumVAT'
+      text_at 'priceRoundSumVAT'
     end
 
     def to_h

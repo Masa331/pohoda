@@ -3,7 +3,7 @@ module Pohoda
     include BaseElement
 
     def ids
-      text_at 'typ:ids'
+      text_at 'ids'
     end
 
     def to_h

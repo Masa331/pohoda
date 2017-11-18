@@ -9,7 +9,7 @@ module Pohoda
     end
 
     def data_pack_items
-      xml.xpath('//dat:dataPackItem').map do |raw|
+      xml.xpath('//dataPackItem').map do |raw|
         Pohoda::DataPackItemType.new(xml)
       end
     end
