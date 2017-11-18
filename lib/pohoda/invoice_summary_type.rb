@@ -3,25 +3,25 @@ module Pohoda
     include BaseElement
 
     def rounding_document
-      text_at 'inv:roundingDocument'
+      text_at 'roundingDocument'
     end
 
     def rounding_vat
-      text_at 'inv:roundingVAT'
+      text_at 'roundingVAT'
     end
 
     def calculate_vat
-      text_at 'inv:calculateVAT'
+      text_at 'calculateVAT'
     end
 
     def home_currency
-      element_xml = at_xpath 'inv:homeCurrency'
+      element_xml = at_xpath 'homeCurrency'
 
       TypeCurrencyHome.new(element_xml) if element_xml
     end
 
     def foreign_currency
-      element_xml = at_xpath 'inv:foreignCurrency'
+      element_xml = at_xpath 'foreignCurrency'
 
       TypeCurrencyForeign.new(element_xml) if element_xml
     end

@@ -3,11 +3,11 @@ module Pohoda
     include BaseElement
 
     def source_agenda
-      text_at 'typ:sourceAgenda'
+      text_at 'sourceAgenda'
     end
 
     def source_document
-      element_xml = at_xpath 'typ:sourceDocument'
+      element_xml = at_xpath 'sourceDocument'
 
       SourceDocumentType.new(element_xml) if element_xml
     end

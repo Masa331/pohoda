@@ -2,7 +2,9 @@ require 'spec_helper'
 require 'pohoda/data_pack_type'
 
 RSpec.describe Pohoda::DataPackType do
-  let(:xml) { Nokogiri::XML(File.open "./spec/fixtures/basic_invoice.xml").at_xpath('//dat:dataPack') }
+  let(:xml) do
+    Nokogiri::XML(File.open "./spec/fixtures/basic_invoice.xml").at_xpath('//dat:dataPack').document.remove_namespaces!.children.first
+  end
   let(:data_pack) { Pohoda::DataPackType.new(xml) }
 
   it '#data_pack_items' do

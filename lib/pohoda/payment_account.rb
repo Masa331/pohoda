@@ -3,11 +3,11 @@ module Pohoda
     include BaseElement
 
     def account_no
-      text_at 'typ:accountNo'
+      text_at 'accountNo'
     end
 
     def bank_code
-      text_at 'typ:bankCode'
+      text_at 'bankCode'
     end
 
     def to_h

@@ -3,7 +3,7 @@ module Pohoda
     include BaseElement
 
     def invoice
-      element_xml = at_xpath '//inv:invoice'
+      element_xml = at_xpath '//invoice'
 
       Pohoda::InvoiceType.new(element_xml) if element_xml
     end

@@ -305,12 +305,13 @@ RSpec.describe Pohoda::Builder::InvoiceType do
       end
 
       it 'parsed and builded invoice are the same' do
-        nokogiri = Nokogiri::XML(File.read('spec/fixtures/complete_invoice.xml')).at_xpath('//inv:invoice')
-        inv = Pohoda::InvoiceType.new nokogiri
+        original_xml = Nokogiri::XML(File.read('spec/fixtures/complete_invoice.xml')).at_xpath('//inv:invoice')
+        xml = xml_invoice('complete_invoice.xml')
+        inv = Pohoda::InvoiceType.new xml
 
         builder = Pohoda::Builder::InvoiceType.new(inv.to_h)
 
-        expect(builder.to_xml).to be_equivalent_to nokogiri.to_xml
+        expect(builder.to_xml).to be_equivalent_to original_xml.to_xml
       end
 
       it 'returned string is valid against invoice XSD' do

@@ -3,119 +3,119 @@ module Pohoda
     include BaseElement
 
     def link
-      element_xml = at_xpath 'inv:link'
+      element_xml = at_xpath 'link'
 
       LinkItemType.new(element_xml) if element_xml
     end
 
     def id
-      text_at 'inv:id'
+      text_at 'id'
     end
 
     def text
-      text_at 'inv:text'
+      text_at 'text'
     end
 
     def quantity
-      text_at 'inv:quantity'
+      text_at 'quantity'
     end
 
     def unit
-      text_at 'inv:unit'
+      text_at 'unit'
     end
 
     def coefficient
-      text_at 'inv:coefficient'
+      text_at 'coefficient'
     end
 
     def pay_vat
-      text_at 'inv:payVAT'
+      text_at 'payVAT'
     end
 
     def rate_vat
-      text_at 'inv:rateVAT'
+      text_at 'rateVAT'
     end
 
     def percent_vat
-      text_at 'inv:percentVAT'
+      text_at 'percentVAT'
     end
 
     def discount_percentage
-      text_at 'inv:discountPercentage'
+      text_at 'discountPercentage'
     end
 
     def code
-      text_at 'inv:code'
+      text_at 'code'
     end
 
     def guarantee
-      text_at 'inv:guarantee'
+      text_at 'guarantee'
     end
 
     def guarantee_type
-      text_at 'inv:guaranteeType'
+      text_at 'guaranteeType'
     end
 
     def note
-      text_at 'inv:note'
+      text_at 'note'
     end
 
     def home_currency
-      element_xml = at_xpath 'inv:homeCurrency'
+      element_xml = at_xpath 'homeCurrency'
 
       TypeCurrencyHomeItem.new(element_xml) if element_xml
     end
 
     def foreign_currency
-      element_xml = at_xpath 'inv:foreignCurrency'
+      element_xml = at_xpath 'foreignCurrency'
 
       TypeCurrencyForeignItem.new(element_xml) if element_xml
     end
 
     def stock_item
-      element_xml = at_xpath 'inv:stockItem'
+      element_xml = at_xpath 'stockItem'
 
       StockItemType.new(element_xml) if element_xml
     end
 
     def accounting
-      element_xml = at_xpath 'inv:accounting'
+      element_xml = at_xpath 'accounting'
 
       RefType.new(element_xml) if element_xml
     end
 
     def classification_vat
-      element_xml = at_xpath 'inv:classificationVAT'
+      element_xml = at_xpath 'classificationVAT'
 
       ClassificationVatType.new(element_xml) if element_xml
     end
 
     def classification_kvdph
-      element_xml = at_xpath 'inv:classificationKVDPH'
+      element_xml = at_xpath 'classificationKVDPH'
 
       RefType.new(element_xml) if element_xml
     end
 
     def centre
-      element_xml = at_xpath 'inv:centre'
+      element_xml = at_xpath 'centre'
 
       RefType.new(element_xml) if element_xml
     end
 
     def activity
-      element_xml = at_xpath 'inv:activity'
+      element_xml = at_xpath 'activity'
 
       RefType.new(element_xml) if element_xml
     end
 
     def contract
-      element_xml = at_xpath 'inv:contract'
+      element_xml = at_xpath 'contract'
 
       RefType.new(element_xml) if element_xml
     end
 
     def expiration_date
-      text_at 'inv:expirationDate'
+      text_at 'expirationDate'
     end
 
     def to_h
