@@ -142,10 +142,10 @@ builder.to_xml
 
 Is generated with `measure_performance.rb` script. Is of course subject to machine on which is running.
 
-| Commit and test description | time | total memory allocated | total memory retained |
-|-----------------------------|------|------------------------|-----------------------|
-| 6d7f8d4 - 17.11.2017 21:20 - map 100 invoices to_h | 0.0226 s | 114.2392 Mb | 0.0 Mb |
-| 6d7f8d4 - 17.11.2017 21:20 - map one attribute on 100 invoices | 0.0024 s | 2.2679 Mb | 0.0 Mb |
+| version | description | time | total memory allocated | total memory retained |
+|---------|-------------|------|------------------------|-----------------------|
+| v0.11.0 | map 100 invoices to_h | 0.0234 s | 114.2392 Mb | 0.0 Mb |
+| v0.11.0 | map one attribute on 100 invoices | 0.002 s | 2.2679 Mb | 0.0 Mb |
 
 ## External links
 
