@@ -1,3 +1,7 @@
+# 0.11.0
+
+- Added `Pohoda.parse(string)` method which should become central public api method for parsing Pohoda XML files
+
 # 0.10.0
 
 - Empty elements are now returned as 'nil' instead of empty string or blank element class. So it's not possible to go through parsed invoice elements if the origin doesn't have any
