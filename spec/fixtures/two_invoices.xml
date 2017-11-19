@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dat:dataPack id="fa001" ico="00000001" application="StwTest" version="2.0" note="Import" xmlns:dat="http://www.stormware.cz/schema/version_2/data.xsd" xmlns:inv="http://www.stormware.cz/schema/version_2/invoice.xsd" xmlns:typ="http://www.stormware.cz/schema/version_2/type.xsd">
+
+  <dat:dataPackItem id="2016001938" version="2.0">
+    <inv:invoice version="2.0">
+      <inv:invoiceHeader>
+        <inv:invoiceType>issuedInvoice</inv:invoiceType>
+        <inv:number>
+          <typ:numberRequested>2016001938</typ:numberRequested>
+        </inv:number>
+      </inv:invoiceHeader>
+    </inv:invoice>
+  </dat:dataPackItem>
+
+  <dat:dataPackItem id="2016001939" version="2.0">
+    <inv:invoice version="2.0">
+      <inv:invoiceHeader>
+        <inv:invoiceType>issuedInvoice</inv:invoiceType>
+        <inv:number>
+          <typ:numberRequested>2016001939</typ:numberRequested>
+        </inv:number>
+      </inv:invoiceHeader>
+    </inv:invoice>
+  </dat:dataPackItem>
+</dat:dataPack>

@@ -7,9 +7,19 @@ RSpec.describe Pohoda::DataPackType do
   end
   let(:data_pack) { Pohoda::DataPackType.new(xml) }
 
-  it '#data_pack_items' do
-    expect(data_pack.data_pack_items.size).to eq 1
-    expect(data_pack.data_pack_items.first).to be_a Pohoda::DataPackItemType
+  describe '#data_pack_items' do
+    it 'returns DataPackItemType' do
+      expect(data_pack.data_pack_items.size).to eq 1
+      expect(data_pack.data_pack_items.first).to be_a Pohoda::DataPackItemType
+    end
+
+    it 'properly parses more items' do
+      xml = File.open('./spec/fixtures/two_invoices.xml')
+      data_pack = Pohoda.parse(xml)
+
+      numbers = data_pack.data_pack_items.map(&:invoice).map(&:invoice_header).map(&:number).map(&:number_requested)
+      expect(numbers).to eq ["2016001938", "2016001939"]
+    end
   end
 
   it "#['version']" do
