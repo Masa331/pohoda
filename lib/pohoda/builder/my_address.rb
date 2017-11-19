@@ -1,3 +1,7 @@
+require 'pohoda/builder/base_builder'
+require 'pohoda/builder/establishment_type'
+require 'pohoda/builder/address_internet_type'
+
 module Pohoda
   module Builder
     class MyAddress

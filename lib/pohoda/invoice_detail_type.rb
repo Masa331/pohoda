@@ -1,5 +1,9 @@
+require "pohoda/base_element"
+require "pohoda/invoice_item_type"
+require "pohoda/invoice_advance_payment_item_type"
+
 module Pohoda
-  class InvoiceDetail
+  class InvoiceDetailType
     include BaseElement
 
     def items

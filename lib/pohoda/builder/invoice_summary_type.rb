@@ -1,3 +1,7 @@
+require 'pohoda/builder/base_builder'
+require 'pohoda/builder/type_currency_home'
+require 'pohoda/builder/type_currency_foreign'
+
 module Pohoda
   module Builder
     class InvoiceSummaryType

@@ -1,3 +1,18 @@
+require 'pohoda/builder/base_builder'
+require 'pohoda/builder/ext_id_type'
+require 'pohoda/builder/number'
+require 'pohoda/builder/accounting_type'
+require 'pohoda/builder/classification_vat_type'
+require 'pohoda/builder/ref_type'
+require 'pohoda/builder/address'
+require 'pohoda/builder/my_address'
+require 'pohoda/builder/payment_type'
+require 'pohoda/builder/account_type'
+require 'pohoda/builder/my_group_of_account'
+require 'pohoda/builder/ref_type_reg_vat_in_eu'
+require 'pohoda/builder/moss_type'
+require 'pohoda/builder/resources_moss_type'
+
 module Pohoda
   module Builder
     class InvoiceHeaderType

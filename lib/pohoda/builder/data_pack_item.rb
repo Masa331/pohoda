@@ -1,3 +1,6 @@
+require 'pohoda/builder/base_builder'
+require 'pohoda/builder/invoice_type'
+
 module Pohoda
   module Builder
     class DataPackItem

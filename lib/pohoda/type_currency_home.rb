@@ -1,3 +1,6 @@
+require "pohoda/base_element"
+require "pohoda/type_round"
+
 module Pohoda
   class TypeCurrencyHome
     include BaseElement

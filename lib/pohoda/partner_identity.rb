@@ -1,3 +1,8 @@
+require "pohoda/base_element"
+require "pohoda/ext_id_type"
+require "pohoda/address"
+require "pohoda/ship_to_address"
+
 module Pohoda
   class PartnerIdentity
     include BaseElement

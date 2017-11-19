@@ -1,3 +1,7 @@
+require 'pohoda/builder/base_builder'
+require 'pohoda/builder/stock_ref_type'
+require 'pohoda/builder/ref_type'
+
 module Pohoda
   module Builder
     class StockItemType

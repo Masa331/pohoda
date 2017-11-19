@@ -1,3 +1,6 @@
+require 'pohoda/base_element'
+require 'pohoda/invoice_type'
+
 module Pohoda
   class DataPackItemType
     include BaseElement

@@ -1,3 +1,6 @@
+require "pohoda/base_element"
+require "pohoda/data_pack_item_type"
+
 module Pohoda
   class DataPackType
     include BaseElement

@@ -1,3 +1,5 @@
+require 'pohoda/builder/base_builder'
+
 module Pohoda
   module Builder
     class ExtIdType

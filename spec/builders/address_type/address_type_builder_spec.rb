@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pohoda/builder/address_type'
 
 RSpec.describe Pohoda::Builder::AddressType do
   describe '#to_xml' do
