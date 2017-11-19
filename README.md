@@ -144,6 +144,8 @@ Is generated with `measure_performance.rb` script. Is of course subject to machi
 
 | version | description | time | total memory allocated | total memory retained |
 |---------|-------------|------|------------------------|-----------------------|
+| v0.12.0 | map 100 invoices to_h | 0.0097 s | 7.6926 Mb | 0.0 Mb |
+| v0.12.0 | map one attribute on 100 invoices | 0.0016 s | 0.6887 Mb | 0.0 Mb |
 | 6d90a6b | map 100 invoices to_h | 0.0132 s | 24.6272 Mb | 0.0 Mb |
 | 6d90a6b | map one attribute on 100 invoices | 0.0017 s | 0.9032 Mb | 0.0 Mb |
 | v0.11.0 | map 100 invoices to_h | 0.0234 s | 114.2392 Mb | 0.0 Mb |
