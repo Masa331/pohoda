@@ -1,5 +1,9 @@
+require "pohoda/base_element"
+require "pohoda/type_currency_home"
+require "pohoda/type_currency_foreign"
+
 module Pohoda
-  class InvoiceSummary
+  class InvoiceSummaryType
     include BaseElement
 
     def rounding_document

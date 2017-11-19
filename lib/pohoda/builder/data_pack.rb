@@ -1,3 +1,6 @@
+require 'pohoda/builder/base_builder'
+require 'pohoda/builder/data_pack_item'
+
 module Pohoda
   module Builder
     class DataPack

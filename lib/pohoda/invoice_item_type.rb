@@ -1,3 +1,11 @@
+require "pohoda/base_element"
+require "pohoda/link_item_type"
+require "pohoda/type_currency_home_item"
+require "pohoda/type_currency_foreign_item"
+require "pohoda/stock_item_type"
+require "pohoda/ref_type"
+require "pohoda/classification_vat_type"
+
 module Pohoda
   class InvoiceItemType
     include BaseElement

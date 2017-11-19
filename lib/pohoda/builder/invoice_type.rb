@@ -1,3 +1,9 @@
+require 'pohoda/builder/base_builder'
+require 'pohoda/builder/link_elemet_type'
+require 'pohoda/builder/invoice_header_type'
+require 'pohoda/builder/invoice_summary_type'
+require 'pohoda/builder/invoice_detail_type'
+
 module Pohoda
   module Builder
     class InvoiceType

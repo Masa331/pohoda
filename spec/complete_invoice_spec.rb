@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pohoda/invoice_type'
 
 RSpec.describe Pohoda::InvoiceType do
   describe 'basic invoice' do

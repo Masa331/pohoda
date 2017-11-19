@@ -1,3 +1,9 @@
+require 'pohoda/builder/base_builder'
+require 'pohoda/builder/source_document_type'
+require 'pohoda/builder/type_currency_home_item2'
+require 'pohoda/builder/ref_type'
+require 'pohoda/builder/classification_vat_type'
+
 module Pohoda
   module Builder
     class InvoiceAdvancePaymentItemType

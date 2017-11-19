@@ -1,3 +1,9 @@
+require "pohoda/base_element"
+require "pohoda/source_document_type"
+require "pohoda/type_currency_home_item2"
+require "pohoda/ref_type"
+require "pohoda/classification_vat_type"
+
 module Pohoda
   class InvoiceAdvancePaymentItemType
     include BaseElement

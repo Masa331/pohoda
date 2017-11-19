@@ -1,3 +1,9 @@
+require "pohoda/base_element"
+require "pohoda/invoice_header_type"
+require "pohoda/invoice_detail_type"
+require "pohoda/invoice_summary_type"
+require "pohoda/link_elemet_type"
+
 module Pohoda
   class InvoiceType
     include BaseElement
@@ -9,19 +15,19 @@ module Pohoda
     def invoice_header
       element_xml = at_xpath 'invoiceHeader'
 
-      InvoiceHeader.new(element_xml) if element_xml
+      InvoiceHeaderType.new(element_xml) if element_xml
     end
 
     def invoice_detail
       element_xml = at_xpath 'invoiceDetail'
 
-      InvoiceDetail.new(element_xml) if element_xml
+      InvoiceDetailType.new(element_xml) if element_xml
     end
 
     def invoice_summary
       element_xml = at_xpath 'invoiceSummary'
 
-      InvoiceSummary.new(element_xml) if element_xml
+      InvoiceSummaryType.new(element_xml) if element_xml
     end
 
     def to_h

@@ -1,3 +1,8 @@
+require 'pohoda/builder/base_builder'
+require 'pohoda/builder/ext_id_type'
+require 'pohoda/builder/address_type'
+require 'pohoda/builder/ship_to_address_type'
+
 module Pohoda
   module Builder
     class Address

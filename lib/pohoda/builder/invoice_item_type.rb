@@ -1,3 +1,11 @@
+require 'pohoda/builder/base_builder'
+require 'pohoda/builder/link_item_type'
+require 'pohoda/builder/type_currency_home_item'
+require 'pohoda/builder/type_currency_foreign_item'
+require 'pohoda/builder/stock_item_type'
+require 'pohoda/builder/ref_type'
+require 'pohoda/builder/classification_vat_type'
+
 module Pohoda
   module Builder
     class InvoiceItemType

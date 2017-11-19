@@ -1,3 +1,6 @@
+require 'pohoda/builder/base_builder'
+require 'pohoda/builder/source_document_type'
+
 module Pohoda
   module Builder
     class LinkElemetType

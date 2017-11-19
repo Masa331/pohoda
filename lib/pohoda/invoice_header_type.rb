@@ -1,5 +1,20 @@
+require "pohoda/base_element"
+require "pohoda/ext_id_type"
+require "pohoda/number"
+require "pohoda/accounting"
+require "pohoda/classification_vat_type"
+require "pohoda/ref_type"
+require "pohoda/partner_identity"
+require "pohoda/my_address"
+require "pohoda/payment_type"
+require "pohoda/account_type"
+require "pohoda/payment_account"
+require 'pohoda/ref_type_reg_vat_in_eu'
+require "pohoda/moss_type"
+require "pohoda/resources_moss_type"
+
 module Pohoda
-  class InvoiceHeader
+  class InvoiceHeaderType
     include BaseElement
 
     def id

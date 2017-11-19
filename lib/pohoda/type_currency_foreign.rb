@@ -1,3 +1,6 @@
+require "pohoda/base_element"
+require "pohoda/ref_type"
+
 module Pohoda
   class TypeCurrencyForeign
     include BaseElement

@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pohoda/builder/store'
 
 RSpec.describe Pohoda::Builder::Store do
   describe '#to_xml' do

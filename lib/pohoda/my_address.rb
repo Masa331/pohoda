@@ -1,3 +1,7 @@
+require "pohoda/base_element"
+require "pohoda/address_internet_type"
+require "pohoda/establishment"
+
 module Pohoda
   class MyAddress
     include BaseElement

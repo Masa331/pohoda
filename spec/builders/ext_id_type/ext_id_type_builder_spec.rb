@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pohoda/builder/ext_id_type'
 
 RSpec.describe Pohoda::Builder::ExtIdType do
   describe '#to_xml' do

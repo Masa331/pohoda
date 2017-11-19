@@ -1,3 +1,7 @@
+require 'pohoda/builder/base_builder'
+require 'pohoda/builder/invoice_item_type'
+require 'pohoda/builder/invoice_advance_payment_item_type'
+
 module Pohoda
   module Builder
     class InvoiceDetailType

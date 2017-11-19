@@ -1,3 +1,7 @@
+require "pohoda/base_element"
+require "pohoda/ref_type"
+require "pohoda/stock_ref_type"
+
 module Pohoda
   class StockItemType
     include BaseElement
