@@ -13,13 +13,13 @@ module Pohoda
     end
 
     def invoice_detail
-      element_xml = xml.at_xpath 'invoiceDetail'
+      element_xml = at_xpath 'invoiceDetail'
 
       InvoiceDetail.new(element_xml) if element_xml
     end
 
     def invoice_summary
-      element_xml = xml.at_xpath 'invoiceSummary'
+      element_xml = at_xpath 'invoiceSummary'
 
       InvoiceSummary.new(element_xml) if element_xml
     end
