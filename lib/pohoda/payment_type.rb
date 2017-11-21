@@ -17,7 +17,7 @@ module Pohoda
     def to_h
       { id: id,
         ids: ids,
-        payment_type: payment_type }
+        payment_type: payment_type }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end

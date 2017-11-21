@@ -17,7 +17,7 @@ module Pohoda
     def to_h
       { id: id,
         ids: ids,
-        classification_vat_type: classification_vat_type }
+        classification_vat_type: classification_vat_type }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end

@@ -27,7 +27,7 @@ module Pohoda
       { currency: currency.to_h,
         rate: rate,
         amount: amount,
-        price_sum: price_sum }
+        price_sum: price_sum }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end

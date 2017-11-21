@@ -18,7 +18,7 @@ module Pohoda
     end
 
     def to_h
-      { response_pack_item: response_pack_item.to_h }
+      { response_pack_item: response_pack_item.to_h }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end

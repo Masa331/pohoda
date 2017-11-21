@@ -74,7 +74,7 @@ module Pohoda
         phone: phone,
         mobil_phone: mobil_phone,
         fax: fax,
-        email: email }
+        email: email }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end

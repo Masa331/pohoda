@@ -18,7 +18,7 @@ module Pohoda
     end
 
     def to_h
-      { data_pack_items: data_pack_items.map(&:to_h) }
+      { data_pack_items: data_pack_items.map(&:to_h) }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end

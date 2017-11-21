@@ -22,7 +22,7 @@ module Pohoda
       { id: id,
         ids: ids,
         account_no: account_no,
-        bank_code: bank_code }
+        bank_code: bank_code }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end

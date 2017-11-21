@@ -280,7 +280,7 @@ module Pohoda
         accounting_period_moss: accounting_period_moss,
         carrier: carrier.to_h,
         note: note,
-        int_note: int_note }
+        int_note: int_note }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end

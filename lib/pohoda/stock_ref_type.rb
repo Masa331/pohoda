@@ -24,7 +24,7 @@ module Pohoda
       { id: id,
         ids: ids,
         ext_id: ext_id.to_h,
-        ean: ean }
+        ean: ean }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end

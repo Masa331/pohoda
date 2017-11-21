@@ -22,8 +22,7 @@ module Pohoda
       { price_round: price_round,
         rate_vat_round: rate_vat_round,
         price_round_sum: price_round_sum,
-        price_round_sum_vat: price_round_sum_vat
-      }
+        price_round_sum_vat: price_round_sum_vat }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end

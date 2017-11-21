@@ -14,7 +14,7 @@ module Pohoda
 
     def to_h
       { source_agenda: source_agenda,
-        source_document: source_document.to_h }
+        source_document: source_document.to_h }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end

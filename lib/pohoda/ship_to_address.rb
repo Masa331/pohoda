@@ -59,7 +59,7 @@ module Pohoda
         country: country.to_h,
         phone: phone,
         email: email,
-        default_ship_address: default_ship_address }
+        default_ship_address: default_ship_address }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end
