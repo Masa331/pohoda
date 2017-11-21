@@ -34,7 +34,7 @@ module Pohoda
       { links: links.map(&:to_h),
         invoice_header: invoice_header.to_h,
         invoice_detail: invoice_detail.to_h,
-        invoice_summary: invoice_summary.to_h }
+        invoice_summary: invoice_summary.to_h }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end

@@ -111,7 +111,7 @@ module Pohoda
         centre: centre.to_h,
         activity: activity.to_h,
         contract: contract.to_h,
-        voucher_eet: voucher_eet }
+        voucher_eet: voucher_eet }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end

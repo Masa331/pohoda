@@ -22,7 +22,7 @@ module Pohoda
       { company: company,
         city: city,
         street: street,
-        zip: zip }
+        zip: zip }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end

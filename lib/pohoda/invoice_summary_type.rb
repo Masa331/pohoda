@@ -35,7 +35,7 @@ module Pohoda
         rounding_vat: rounding_vat,
         calculate_vat: calculate_vat,
         home_currency: home_currency.to_h,
-        foreign_currency: foreign_currency.to_h }
+        foreign_currency: foreign_currency.to_h }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end

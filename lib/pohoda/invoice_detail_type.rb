@@ -28,7 +28,7 @@ module Pohoda
 
     def to_h
       { items: items.map(&:to_h),
-        advance_payments: advance_payments.map(&:to_h) }
+        advance_payments: advance_payments.map(&:to_h) }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end

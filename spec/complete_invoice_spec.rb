@@ -321,10 +321,7 @@ RSpec.describe Pohoda::InvoiceType do
         price_3_vat: '9',
         price_3_sum: '10',
         round: {
-          price_round: '0',
-          rate_vat_round: nil,
-          price_round_sum: nil,
-          price_round_sum_vat: nil
+          price_round: '0'
         }
       }
       expect(invoice.to_h[:invoice_summary][:home_currency]).to include(home_currency_attrs)
@@ -416,7 +413,7 @@ RSpec.describe Pohoda::InvoiceType do
                                  source_item_id: '8' }
       expect(invoice.to_h[:invoice_detail][:items][1][:link]).to include(middle_item_link_attrs)
 
-      link_attributes = { source_agenda: 'receivedOrder', source_document: { id: nil, number: '142100003' } }
+      link_attributes = { source_agenda: 'receivedOrder', source_document: { number: '142100003' } }
 
       expect(invoice.to_h[:links].first).to include(link_attributes)
 

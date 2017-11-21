@@ -12,7 +12,7 @@ module Pohoda
 
     def to_h
       { source_agenda: source_agenda,
-        source_item_id: source_item_id }
+        source_item_id: source_item_id }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end

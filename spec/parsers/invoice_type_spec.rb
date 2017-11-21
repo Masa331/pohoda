@@ -16,13 +16,7 @@ RSpec.describe Pohoda::DataPackType do
     its('invoice_summary') { is_expected.to eq nil }
 
     it '#to_h' do
-      hsh =
-        { links: [],
-          invoice_header: {},
-          invoice_detail: {},
-          invoice_summary: {} }
-
-      expect(subject.to_h).to match(hsh)
+      expect(subject.to_h).to eq({})
     end
   end
 end

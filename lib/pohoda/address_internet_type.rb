@@ -82,7 +82,7 @@ module Pohoda
         mobil_phone: mobil_phone,
         fax: fax,
         email: email,
-        www: www }
+        www: www }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end

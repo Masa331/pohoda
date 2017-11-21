@@ -17,7 +17,7 @@ module Pohoda
     def to_h
       { id: id,
         ids: ids,
-        accounting_type: accounting_type }
+        accounting_type: accounting_type }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end

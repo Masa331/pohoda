@@ -93,8 +93,8 @@
           <typ:ids>US</typ:ids>
           <typ:valueType>nullValue</typ:valueType>
         </typ:country>
-        <typ:phone>123456789</typ:street>
-        <typ:email>some@mail.com</typ:street>
+        <typ:phone>123456789</typ:phone>
+        <typ:email>some@mail.com</typ:email>
         <typ:defaultShipAddress>false</typ:defaultShipAddress>
       </typ:shipToAddress>
     </inv:partnerIdentity>
@@ -237,7 +237,7 @@
       <inv:accounting>
         <typ:ids>3FV</typ:ids>
         <typ:id>1</typ:id>
-        <typ:valueType>nullValue</typ:nullValue>
+        <typ:valueType>nullValue</typ:valueType>
       </inv:accounting>
       <inv:classificationVAT>
         <typ:id>1</typ:id>

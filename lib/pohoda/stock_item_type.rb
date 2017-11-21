@@ -25,7 +25,7 @@ module Pohoda
     def to_h
       { store: store.to_h,
         stock_item: stock_item.to_h,
-        serial_number: serial_number }
+        serial_number: serial_number }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end

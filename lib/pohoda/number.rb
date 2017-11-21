@@ -17,7 +17,7 @@ module Pohoda
     def to_h
       { id: id,
         ids: ids,
-        number_requested: number_requested }
+        number_requested: number_requested }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end

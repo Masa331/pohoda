@@ -150,7 +150,7 @@ module Pohoda
         activity: activity.to_h,
         contract: contract.to_h,
         foreign_currency: foreign_currency.to_h,
-        expiration_date: expiration_date }
+        expiration_date: expiration_date }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end

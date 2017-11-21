@@ -12,7 +12,7 @@ module Pohoda
 
     def to_h
       { id: id,
-        number: number }
+        number: number }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end

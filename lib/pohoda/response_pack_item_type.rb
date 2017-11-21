@@ -12,7 +12,7 @@ module Pohoda
     end
 
     def to_h
-      { list_invoice: list_invoice.to_h }
+      { list_invoice: list_invoice.to_h }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end

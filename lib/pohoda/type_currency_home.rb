@@ -62,7 +62,7 @@ module Pohoda
         price_3: price_3,
         price_3_vat: price_3_vat,
         price_3_sum: price_3_sum,
-        round: round.to_h }
+        round: round.to_h }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end

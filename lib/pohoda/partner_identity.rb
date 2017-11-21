@@ -33,7 +33,7 @@ module Pohoda
       { id: id,
         ext_id: ext_id.to_h,
         address: address.to_h,
-        ship_to_address: ship_to_address.to_h }
+        ship_to_address: ship_to_address.to_h }.delete_if { |k, v| v.nil? || v.empty? }
     end
   end
 end
