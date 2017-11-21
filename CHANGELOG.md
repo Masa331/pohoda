@@ -1,3 +1,8 @@
+# 0.13.0
+
+- It's now possible to parse Pohoda's ResponsePackType through `Pohoda::parse`
+- `#to_h` methods on every parser now don't return nil values for attributes which weren't present in original document. It doesn't contain such key at all instead.
+
 # 0.11.0
 
 - Added `Pohoda.parse(string)` method which should become central public api method for parsing Pohoda XML files
