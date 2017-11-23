@@ -2,13 +2,25 @@ require 'spec_helper'
 require 'pohoda/invoice_type'
 
 RSpec.describe Pohoda::InvoiceType do
+  describe 'complete invoice' do
+    let(:raw) { File.read('./spec/fixtures/basic_invoice.xml') }
+    let(:parsed) { Pohoda.parse(raw) }
+  end
+
   describe 'basic invoice' do
-    let(:xml) { xml_invoice('complete_invoice.xml') }
-    subject(:invoice) { Pohoda::InvoiceType.new(xml) }
+    let(:raw) { File.read('./spec/fixtures/complete_invoice.xml') }
+    let(:parsed) { Pohoda.parse(raw) }
+    subject(:invoice) { parsed.data_pack_items.first.invoice }
 
     describe 'links' do
-      subject(:link) { invoice.links.first }
+      it 'neco' do
+        raw = File.read('./spec/fixtures/complete_invoice.xml')
+        parsed = Pohoda.parse(raw)
 
+        parsed.data_pack_items.first.invoice
+      end
+
+      subject(:link) { invoice.links.first }
       its('source_agenda') { is_expected.to eq 'receivedOrder' }
       its('source_document.number') { is_expected.to eq '142100003' }
     end

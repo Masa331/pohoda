@@ -6,47 +6,47 @@ module Pohoda
     include BaseElement
 
     def price_none
-      text_at 'priceNone'
+      at :'typ:priceNone'
     end
 
     def price_low
-      text_at 'priceLow'
+      at :'typ:priceLow'
     end
 
     def price_low_vat
-      text_at 'priceLowVAT'
+      at :'typ:priceLowVAT'
     end
 
     def price_low_sum
-      text_at 'priceLowSum'
+      at :'typ:priceLowSum'
     end
 
     def price_high
-      text_at 'priceHigh'
+      at :'typ:priceHigh'
     end
 
     def price_high_vat
-      text_at 'priceHighVAT'
+      at :'typ:priceHighVAT'
     end
 
     def price_high_sum
-      text_at 'priceHighSum'
+      at :'typ:priceHighSum'
     end
 
     def price_3
-      text_at 'price3'
+      at :'typ:price3'
     end
 
     def price_3_vat
-      text_at 'price3VAT'
+      at :'typ:price3VAT'
     end
 
     def price_3_sum
-      text_at 'price3Sum'
+      at :'typ:price3Sum'
     end
 
     def round
-      element_xml = at_xpath 'round'
+      element_xml = at :'typ:round'
 
       TypeRound.new(element_xml) if element_xml
     end

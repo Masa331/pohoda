@@ -3,61 +3,61 @@ module Pohoda
     include BaseElement
 
     def company
-      text_at 'company'
+      at :'typ:company'
     end
 
     def name
-      text_at 'name'
+      at :'typ:name'
     end
 
     def division
-      text_at 'division'
+      at :'typ:division'
     end
 
     def street
-      text_at 'street'
+      at :'typ:street'
     end
 
     def city
-      text_at 'city'
+      at :'typ:city'
     end
 
     def zip
-      text_at 'zip'
+      at :'typ:zip'
     end
 
     def ico
-      text_at 'ico'
+      at :'typ:ico'
     end
 
     def dic
-      text_at 'dic'
+      at :'typ:dic'
     end
 
     def ic_dph
-      text_at 'icDph'
+      at :'typ:icDph'
     end
 
     def country
-      element_xml = at_xpath 'country'
+      element_xml = at :'typ:country'
 
       RefType.new(element_xml) if element_xml
     end
 
     def phone
-      text_at 'phone'
+      at :'typ:phone'
     end
 
     def mobil_phone
-      text_at 'mobilPhone'
+      at :'typ:mobilPhone'
     end
 
     def fax
-      text_at 'fax'
+      at :'typ:fax'
     end
 
     def email
-      text_at 'email'
+      at :'typ:email'
     end
 
     def to_h

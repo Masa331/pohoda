@@ -4,7 +4,7 @@ RSpec.describe Pohoda do
   describe '::parse' do
     context 'file contains data pack' do
       it 'returns parsed DataPackType' do
-        raw = File.open "./spec/fixtures/blank_invoice.xml"
+        raw = File.read "./spec/fixtures/blank_invoice.xml"
         parsed = Pohoda.parse raw
 
         expect(parsed).to be_a Pohoda::DataPackType
@@ -13,7 +13,7 @@ RSpec.describe Pohoda do
 
     context 'file contains response pack' do
       it 'returns parsed ResponsePackType' do
-        raw = File.open "./spec/fixtures/response_pack.xml"
+        raw = File.read "./spec/fixtures/response_pack.xml"
         parsed = Pohoda.parse raw
 
         expect(parsed).to be_a Pohoda::ResponsePackType

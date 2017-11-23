@@ -6,7 +6,7 @@ module Pohoda
     include BaseElement
 
     def list_invoice
-      element_xml = at_xpath 'listInvoice'
+      element_xml = at :'lst:listInvoice'
 
       Pohoda::ListInvoiceType.new(element_xml) if element_xml
     end

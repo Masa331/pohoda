@@ -18,221 +18,221 @@ module Pohoda
     include BaseElement
 
     def id
-      text_at 'id'
+      at :'inv:id'
     end
 
     def ext_id
-      element_xml = at_xpath 'extId'
+      element_xml = at :'inv:extId'
 
       ExtIdType.new(element_xml) if element_xml
     end
 
     def invoice_type
-      text_at 'invoiceType'
+      at :'inv:invoiceType'
     end
 
     def storno
-      text_at 'storno'
+      at :'inv:storno'
     end
 
     def sphere_type
-      text_at 'sphereType'
+      at :'inv:sphereType'
     end
 
     def number
-      element_xml = at_xpath 'number'
+      element_xml = at :'inv:number'
 
       Number.new(element_xml) if element_xml
     end
 
     def sym_var
-      text_at 'symVar'
+      at :'inv:symVar'
     end
 
     def sym_par
-      text_at 'symPar'
+      at :'inv:symPar'
     end
 
     def original_document
-      text_at 'originalDocument'
+      at :'inv:originalDocument'
     end
 
     def original_document_number
-      text_at 'originalDocumentNumber'
+      at :'inv:originalDocumentNumber'
     end
 
     def date
-      text_at 'date'
+      at :'inv:date'
     end
 
     def date_tax
-      text_at 'dateTax'
+      at :'inv:dateTax'
     end
 
     def date_accounting
-      text_at 'dateAccounting'
+      at :'inv:dateAccounting'
     end
 
     def date_khdph
-      text_at 'dateKHDPH'
+      at :'inv:dateKHDPH'
     end
 
     def date_due
-      text_at 'dateDue'
+      at :'inv:dateDue'
     end
 
     def date_application_vat
-      text_at 'dateApplicationVAT'
+      at :'inv:dateApplicationVAT'
     end
 
     def date_delivery
-      text_at 'dateDelivery'
+      at :'inv:dateDelivery'
     end
 
     def accounting
-      element_xml = at_xpath 'accounting'
+      element_xml = at :'inv:accounting'
 
       Accounting.new(element_xml) if element_xml
     end
 
     def classification_vat
-      element_xml = at_xpath 'classificationVAT'
+      element_xml = at :'inv:classificationVAT'
 
       ClassificationVatType.new(element_xml) if element_xml
     end
 
     def classification_kvdph
-      element_xml = at_xpath 'classificationKVDPH'
+      element_xml = at :'inv:classificationKVDPH'
 
       RefType.new(element_xml) if element_xml
     end
 
     def number_khdph
-      text_at 'numberKHDPH'
+      at :'inv:numberKHDPH'
     end
 
     def number_kvdph
-      text_at 'numberKVDPH'
+      at :'inv:numberKVDPH'
     end
 
     def text
-      text_at 'text'
+      at :'inv:text'
     end
 
     def partner_identity
-      element_xml = at_xpath 'partnerIdentity'
+      element_xml = at :'inv:partnerIdentity'
 
       PartnerIdentity.new(element_xml) if element_xml
     end
 
     def my_identity
-      element_xml = at_xpath 'myIdentity'
+      element_xml = at :'inv:myIdentity'
 
       MyAddress.new(element_xml) if element_xml
     end
 
     def order
-      element_xml = at_xpath 'order'
+      element_xml = at :'inv:order'
 
       RefType.new(element_xml) if element_xml
     end
 
     def number_order
-      text_at 'numberOrder'
+      at :'inv:numberOrder'
     end
 
     def date_order
-      text_at 'dateOrder'
+      at :'inv:dateOrder'
     end
 
     def price_level
-      element_xml = at_xpath 'priceLevel'
+      element_xml = at :'inv:priceLevel'
 
       RefType.new(element_xml) if element_xml
     end
 
     def payment_type
-      element_xml = at_xpath 'paymentType'
+      element_xml = at :'inv:paymentType'
 
       PaymentType.new(element_xml) if element_xml
     end
 
     def account
-      element_xml = at_xpath 'account'
+      element_xml = at :'inv:account'
 
       AccountType.new(element_xml) if element_xml
     end
 
     def sym_const
-      text_at 'symConst'
+      at :'inv:symConst'
     end
 
     def sym_spec
-      text_at 'symSpec'
+      at :'inv:symSpec'
     end
 
     def payment_account
-      element_xml = at_xpath 'paymentAccount'
+      element_xml = at :'inv:paymentAccount'
 
       PaymentAccount.new(element_xml) if element_xml
     end
 
     def payment_terminal
-      text_at 'paymentTerminal'
+      at :'inv:paymentTerminal'
     end
 
     def centre
-      element_xml = at_xpath 'centre'
+      element_xml = at :'inv:centre'
 
       RefType.new(element_xml) if element_xml
     end
 
     def activity
-      element_xml = at_xpath 'activity'
+      element_xml = at :'inv:activity'
 
       RefType.new(element_xml) if element_xml
     end
 
     def contract
-      element_xml = at_xpath 'contract'
+      element_xml = at :'inv:contract'
 
       RefType.new(element_xml) if element_xml
     end
 
     def reg_vat_in_eu
-      element_xml = at_xpath 'regVATinEU'
+      element_xml = at :'inv:regVATinEU'
 
       RefTypeRegVatInEU.new(element_xml) if element_xml
     end
 
     def moss
-      element_xml = at_xpath 'MOSS'
+      element_xml = at :'inv:MOSS'
 
       MOSSType.new(element_xml) if element_xml
     end
 
     def evidentiary_resources_moss
-      element_xml = at_xpath 'evidentiaryResourcesMOSS'
+      element_xml = at :'inv:evidentiaryResourcesMOSS'
 
       ResourcesMOSSType.new(element_xml) if element_xml
     end
 
     def accounting_period_moss
-      text_at 'accountingPeriodMOSS'
+      at :'inv:accountingPeriodMOSS'
     end
 
     def carrier
-      element_xml = at_xpath 'carrier'
+      element_xml = at :'inv:carrier'
 
       RefType.new(element_xml) if element_xml
     end
 
     def note
-      text_at 'note'
+      at :'inv:note'
     end
 
     def int_note
-      text_at 'intNote'
+      at :'inv:intNote'
     end
 
     def to_h

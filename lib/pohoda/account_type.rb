@@ -3,19 +3,19 @@ module Pohoda
     include BaseElement
 
     def id
-      text_at 'id'
+      at :'typ:id'
     end
 
     def ids
-      text_at 'ids'
+      at :'typ:ids'
     end
 
     def account_no
-      text_at 'accountNo'
+      at :'typ:accountNo'
     end
 
     def bank_code
-      text_at 'bankCode'
+      at :'typ:bankCode'
     end
 
     def to_h

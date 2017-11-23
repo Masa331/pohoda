@@ -46,24 +46,29 @@ class Profiler
 end
 
 report = Profiler.call('map 100 invoices to_h') do
-  raw = File.open "./spec/fixtures/100_invoices.xml"
+  raw = File.read "./spec/fixtures/100_invoices.xml"
   data_pack = Pohoda.parse(raw)
   data_pack.to_h
 end
 puts "#{report[:hash]} | #{report[:description]} | #{report[:duration]} s | #{report[:total_allocated_memsize]} Mb | #{report[:total_retained_memsize]} Mb"
 
 report = Profiler.call('map one attribute on 100 invoices') do
-  raw = File.open "./spec/fixtures/100_invoices.xml"
+  raw = File.read "./spec/fixtures/100_invoices.xml"
   data_pack = Pohoda.parse(raw)
 
   data_pack.data_pack_items.map(&:invoice).map { |i| i.invoice_header.number.number_requested }
 end
 puts "#{report[:hash]} | #{report[:description]} | #{report[:duration]} s | #{report[:total_allocated_memsize]} Mb | #{report[:total_retained_memsize]} Mb"
 
-report = Profiler.call('map 2000 invoices to_h') do
-  raw = File.open "./2000invoices.xml"
-  data_pack = Pohoda.parse(raw)
+report = Profiler.call('ox parse 2000 invoices') do
+  raw = File.read "/home/masa331/2000invoices.xml"
+  Ox.load(raw, mode: :hash_no_attrs)
+end
+puts "#{report[:hash]} | #{report[:description]} | #{report[:duration]} s | #{report[:total_allocated_memsize]} Mb | #{report[:total_retained_memsize]} Mb"
 
+report = Profiler.call('map 2000 invoices to_h') do
+  raw = File.read "/home/masa331/2000invoices.xml"
+  data_pack = Pohoda.parse(raw)
   data_pack.to_h
 end
 puts "#{report[:hash]} | #{report[:description]} | #{report[:duration]} s | #{report[:total_allocated_memsize]} Mb | #{report[:total_retained_memsize]} Mb"

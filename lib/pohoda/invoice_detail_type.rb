@@ -7,7 +7,7 @@ module Pohoda
     include BaseElement
 
     def items
-      raw_items = xml.xpath('invoiceItem')
+      raw_items = all(:'inv:invoiceItem')
 
       if raw_items.empty?
         []
@@ -17,7 +17,7 @@ module Pohoda
     end
 
     def advance_payments
-      raw_items = xml.xpath('invoiceAdvancePaymentItem')
+      raw_items = all(:'inv:invoiceAdvancePaymentItem')
 
       if raw_items.empty?
         []

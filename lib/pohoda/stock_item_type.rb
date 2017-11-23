@@ -7,19 +7,19 @@ module Pohoda
     include BaseElement
 
     def store
-      element_xml = at_xpath 'store'
+      element_xml = at :'typ:store'
 
       RefType.new element_xml if element_xml
     end
 
     def stock_item
-      element_xml = at_xpath 'stockItem'
+      element_xml = at :'typ:stockItem'
 
       StockRefType.new element_xml if element_xml
     end
 
     def serial_number
-      text_at 'serialNumber'
+      at :'typ:serialNumber'
     end
 
     def to_h

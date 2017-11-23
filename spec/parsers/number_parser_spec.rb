@@ -4,11 +4,10 @@ require 'pohoda/number'
 RSpec.describe Pohoda::Number do
   let(:xml) do
     raw = File.read "./spec/fixtures/complete_invoice.xml"
-    xml = Nokogiri::XML(raw).remove_namespaces!
-    xml.at_xpath('//invoiceHeader/number')
+    xml = Pohoda.parse(raw)
   end
 
-  let(:number) { Pohoda::Number.new(xml) }
+  let(:number) { xml.data_pack_items.first.invoice.invoice_header.number }
 
   describe '#to_h' do
     it 'returns proper hash' do

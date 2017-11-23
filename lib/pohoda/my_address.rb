@@ -7,13 +7,13 @@ module Pohoda
     include BaseElement
 
     def address
-      element_xml = at_xpath 'address'
+      element_xml = at :'typ:address'
 
       AddressInternetType.new(element_xml) if element_xml
     end
 
     def establishment
-      element_xml = at_xpath 'establishment'
+      element_xml = at :'typ:establishment'
 
       Establishment.new(element_xml) if element_xml
     end

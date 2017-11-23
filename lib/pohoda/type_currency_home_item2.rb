@@ -3,19 +3,19 @@ module Pohoda
     include BaseElement
 
     def unit_price
-      text_at 'unitPrice'
+      at :'typ:unitPrice'
     end
 
     def price
-      text_at 'price'
+      at :'typ:price'
     end
 
     def price_vat
-      text_at 'priceVAT'
+      at :'typ:priceVAT'
     end
 
     def price_sum
-      text_at 'priceSum'
+      at :'typ:priceSum'
     end
 
     def to_h

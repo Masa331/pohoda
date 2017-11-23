@@ -6,7 +6,7 @@ module Pohoda
     include BaseElement
 
     def invoices
-      xpath('invoice').map do |raw|
+      all(:'lst:invoice').map do |raw|
         Pohoda::InvoiceType.new(raw)
       end
     end
