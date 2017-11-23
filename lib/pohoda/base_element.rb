@@ -1,5 +1,7 @@
 module Pohoda
   module BaseElement
+    EMPTY_ARRAY = []
+
     attr_accessor :xml
 
     def initialize(xml)
@@ -8,26 +10,19 @@ module Pohoda
 
     private
 
-    def text_at(xpath)
-      ctx = Nokogiri::XML::XPathContext.new(xml)
-      ctx.evaluate(xpath, nil)&.first&.text
+    def at(locator)
+      xml[locator]
     end
 
-    def at_xpath(locator)
-      xpath(locator)&.first
-    end
+    def all(locator)
+      result = xml[locator]
 
-    def xpath(locator)
-      if xml.is_a? Nokogiri::XML::NodeSet
-        xml.inject(Nokogiri::XML::NodeSet.new(xml.document)) do |set, node|
-          ctx = Nokogiri::XML::XPathContext.new(node)
-          res = ctx.evaluate(locator, nil)
-
-          set + res
-        end
+      if result.is_a? Hash
+        [result]
+      elsif result.is_a? Array
+        result
       else
-        ctx = Nokogiri::XML::XPathContext.new(xml)
-        ctx.evaluate(locator, nil)
+        EMPTY_ARRAY
       end
     end
   end

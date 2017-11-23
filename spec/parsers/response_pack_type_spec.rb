@@ -4,11 +4,10 @@ require 'pohoda/response_pack_type'
 RSpec.describe Pohoda::ResponsePackType do
   let(:xml) do
     raw = File.read "./spec/fixtures/response_pack.xml"
-    xml = Nokogiri::XML(raw).remove_namespaces!
-    xml.at_xpath('//responsePack')
+    Pohoda.parse(raw)
   end
 
-  let(:response_pack) { Pohoda::ResponsePackType.new(xml) }
+  let(:response_pack) { xml }
 
   describe '#response_pack_items' do
     it 'properly parses more items' do

@@ -5,14 +5,10 @@ module Pohoda
   class DataPackType
     include BaseElement
 
-    def [](key)
-      xml.attributes.each_with_object({}) do |(k, v), h|
-        h[k] = v.value
-      end[key]
-    end
-
     def data_pack_items
-      xml.xpath('dataPackItem').map do |raw|
+      elements = all(:'dat:dataPackItem')
+
+      elements.map do |raw|
         Pohoda::DataPackItemType.new(raw)
       end
     end

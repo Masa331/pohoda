@@ -3,21 +3,21 @@ module Pohoda
     include BaseElement
 
     def id
-      text_at 'id'
+      at :'typ:id'
     end
 
     def ids
-      text_at 'ids'
+      at :'typ:ids'
     end
 
     def ext_id
-      element_xml = at_xpath 'extId'
+      element_xml = at :'typ:extId'
 
       ExtIdType.new element_xml if element_xml
     end
 
     def ean
-      text_at 'EAN'
+      at :'typ:EAN'
     end
 
     def to_h

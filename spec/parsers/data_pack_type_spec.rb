@@ -2,12 +2,8 @@ require 'spec_helper'
 require 'pohoda/data_pack_type'
 
 RSpec.describe Pohoda::DataPackType do
-  let(:xml) do
-    raw = File.open "./spec/fixtures/two_invoices.xml"
-    xml = Nokogiri::XML(raw).remove_namespaces!
-    xml.at_xpath('dataPack')
-  end
-  let(:data_pack) { Pohoda::DataPackType.new(xml) }
+  let(:xml) { File.read "./spec/fixtures/two_invoices.xml" }
+  let(:data_pack) { Pohoda.parse(xml) }
 
   describe '#data_pack_items' do
     it 'parsed data pack items' do
@@ -23,12 +19,6 @@ RSpec.describe Pohoda::DataPackType do
         .map(&:number_requested)
 
       expect(numbers).to eq ["2016001938", "2016001939"]
-    end
-  end
-
-  describe '#[]' do
-    it "returns data pack's attribute under given name" do
-      expect(data_pack['version']).to eq '2.0'
     end
   end
 

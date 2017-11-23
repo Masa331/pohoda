@@ -9,23 +9,23 @@ module Pohoda
     include BaseElement
 
     def links
-      xpath('links/link').map { |i| LinkElemetType.new(i) }
+      all(:'inv:links').map { |l| l[:"typ:link"] }.map { |i| LinkElemetType.new(i) }
     end
 
     def invoice_header
-      element_xml = at_xpath 'invoiceHeader'
+      element_xml = at :'inv:invoiceHeader'
 
       InvoiceHeaderType.new(element_xml) if element_xml
     end
 
     def invoice_detail
-      element_xml = at_xpath 'invoiceDetail'
+      element_xml = at :'inv:invoiceDetail'
 
       InvoiceDetailType.new(element_xml) if element_xml
     end
 
     def invoice_summary
-      element_xml = at_xpath 'invoiceSummary'
+      element_xml = at :'inv:invoiceSummary'
 
       InvoiceSummaryType.new(element_xml) if element_xml
     end

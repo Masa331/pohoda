@@ -307,8 +307,9 @@ RSpec.describe Pohoda::Builder::InvoiceType do
 
       it 'parsed and builded invoice are the same' do
         original_xml = Nokogiri::XML(File.read('spec/fixtures/complete_invoice.xml')).at_xpath('//inv:invoice')
-        xml = xml_invoice('complete_invoice.xml')
-        inv = Pohoda::InvoiceType.new xml
+
+        xml = File.read('./spec/fixtures/complete_invoice.xml')
+        inv = Pohoda.parse(xml).data_pack_items.first.invoice
 
         builder = Pohoda::Builder::InvoiceType.new(inv.to_h)
 

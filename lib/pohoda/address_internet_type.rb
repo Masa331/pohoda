@@ -3,67 +3,67 @@ module Pohoda
     include BaseElement
 
     def company
-      text_at 'company'
+      at :'typ:company'
     end
 
     def title
-      text_at 'title'
+      at :'typ:title'
     end
 
     def surname
-      text_at 'surname'
+      at :'typ:surname'
     end
 
     def name
-      text_at 'name'
+      at :'typ:name'
     end
 
     def city
-      text_at 'city'
+      at :'typ:city'
     end
 
     def street
-      text_at 'street'
+      at :'typ:street'
     end
 
     def number
-      text_at 'number'
+      at :'typ:number'
     end
 
     def zip
-      text_at 'zip'
+      at :'typ:zip'
     end
 
     def ico
-      text_at 'ico'
+      at :'typ:ico'
     end
 
     def dic
-      text_at 'dic'
+      at :'typ:dic'
     end
 
     def ic_dph
-      text_at 'icDph'
+      at :'typ:icDph'
     end
 
     def phone
-      text_at 'phone'
+      at :'typ:phone'
     end
 
     def mobil_phone
-      text_at 'mobilPhone'
+      at :'typ:mobilPhone'
     end
 
     def fax
-      text_at 'fax'
+      at :'typ:fax'
     end
 
     def email
-      text_at 'email'
+      at :'typ:email'
     end
 
     def www
-      text_at 'www'
+      at :'typ:www'
     end
 
     def to_h

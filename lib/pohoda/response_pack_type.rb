@@ -5,14 +5,8 @@ module Pohoda
   class ResponsePackType
     include BaseElement
 
-    def [](key)
-      xml.attributes.each_with_object({}) do |(k, v), h|
-        h[k] = v.value
-      end[key]
-    end
-
     def response_pack_item
-      element_xml = at_xpath 'responsePackItem'
+      element_xml = at :'rsp:responsePackItem'
 
       Pohoda::ResponsePackItemType.new(element_xml) if element_xml
     end
