@@ -14,20 +14,7 @@ module Pohoda
     end
 
     def at_xpath(locator)
-      result =
-        if xml.is_a? Nokogiri::XML::NodeSet
-          xml.inject(Nokogiri::XML::NodeSet.new(xml.document)) do |set, node|
-            ctx = Nokogiri::XML::XPathContext.new(node)
-            res = ctx.evaluate(locator, nil)
-
-            set + res
-          end
-        else
-          ctx = Nokogiri::XML::XPathContext.new(xml)
-          ctx.evaluate(locator, nil)
-        end
-
-      result&.first
+      xpath(locator)&.first
     end
 
     def xpath(locator)
