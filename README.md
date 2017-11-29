@@ -17,7 +17,7 @@ Content:
 
 ## About
 
-The goal of this library is to wrap Pohoda XMLs with very thin layer on which you can build anything you need. The library itself is very simple and tries to make no asusmptions of it's usage.
+The goal of this library is to wrap Pohoda XMLs with very thin layer on which you can build anything you need.
 
 ### Naming
 
@@ -44,67 +44,11 @@ Some of missing elements:
 
 ## Api
 
-Parsers and builders are separate classes but since parsers can output hash with which builders can be initialized it should be easy to use them together. Generally, there should be separate parser and builder class for each complex element Pohoda XML has.
+### Parsing a document
 
-### Parsers
+TODO
 
-Most common entry point will be `DataPackType` parser. It parses the whole file with invoices:
-```ruby
-xml = Nokogiri::XML(File.open "./invoices.xml").at_xpath('//dat:dataPack')
-data_pack = Pohoda::DataPackType.new(xml)
-
-# DataPack includes many DataPackItem items, which are just wrappers around specific documents.
-item = data_pack.data_pack_items.first
-=> DataPackItemType
-
-# To get to the invoice inside just call #invoice on it
-invoice = item.invoice
-=> InvoiceType
-
-# Now you are on the invoice level and can start to read it's data
-invoice.invoice_header.sym_var
-=> '2017000123'
-
-invoice.invoice_header.date_accounting
-=> '2017-10-14'
-
-...
-
-# Invoice items are under #items method
-invoice.invoice_detail.items
-=> [#<Pohoda::InvoiceItemType:0x00000001ec9cc0, #<Pohoda::InvoiceItemType:0x00000001ec9cc0, ...]
-
-# Invoice advance payment items are under #advance_payments method
-invoice.invoice_detail.advance_payments
-=> [#<Pohoda::InvoiceAdvancePaymentItemType:0x00000001d3f418, ...]
-
-```
-
-For each special complex element in Pohoda XML there is a separate parser equivalent in this library. So when you use `data_pack.data_pack_items.first.invoice.invoice_header.sym_var` you actually go through few of them and end in `InvoiceType` parser. This means they can be used separately:
-```ruby
-xml = Nokogiri::XML(File.open "./invoices.xml").at_xpath('//inv:invoice')
-invoice = Pohoda::InvoiceType.new(xml)
-
-invoice.invoice_header.sym_var
-=> '2017000123'
-
-...
-```
-
-Each parser also has a `#to_h` method, which converts all it's attributes into hash:
-```ruby
-invoice.to_h
-=> { invoice_header: {
-       invoice_type: 'issuedInvoice',
-       sym_var: '2017000123',
-       items: [{ id: '1', text: 'Some cool item' }],
-       ...
-     }
-   }
-```
-
-
-### Builder
+### Creating a document
 
 ```ruby
 # All builders are under Pohoda::Builder namespace and all have to be initialized with hash of attributes
@@ -119,23 +63,6 @@ builder.invoice_header = { invoice_type: 'issuedProformaInvoice' }
 
 # or, under the first level, it's just hashes
 builder.invoice_header[:invoice_type] = 'issuedProformaInvoice'
-```
-
-### Together
-
-```ruby
-# Load some invoice
-xml = Nokogiri::XML(File.open "./invoices.xml").at_xpath('//dat:dataPack')
-data_pack = Pohoda::DataPackType.new(xml)
-
-# output to hash and initialize new builder with it
-builder = Pohoda::Builder::DataPack.new data_pack.to_h
-
-# change something in it
-builder.data_pack_items.first[:invoice][:invoice_header][:invoice_type] = 'proformaIssuedInvoice'
-
-# and then output to xml
-builder.to_xml
 ```
 
 ## Performance
