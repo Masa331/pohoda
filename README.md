@@ -74,7 +74,7 @@ invoices = data_pack.data_pack_items.map(&:invoice)
 invoices.first.invoice_header.number.number_requested
 ```
 
-ResponsePackType has a slightly different structure at the root:
+`ResponsePackType` has a slightly different structure at the top:
 ```ruby
 response_pack = Pohoda.parse(File.read('./response_pack.xml'))
 invoices = parsed.response_pack_item.list_invoice.invoices
@@ -83,7 +83,7 @@ invoices = parsed.response_pack_item.list_invoice.invoices
 invoices.first.invoice_header.number.number_requested
 ```
 
-Every Pohoda XML element has it's counterpart as a class in this gem and when you query some attribute one any invoice you go through it:
+Every Pohoda XML element has it's counterpart as a class in this gem and when you query some attribute on any invoice you go through them:
 ```ruby
 data_pack = Pohoda.parse(File.read('./data_pack.xml')) # => Pohoda::DataPackType
 data_pack.data_pack_items # => Ok, that's a normal Array :)
@@ -104,7 +104,7 @@ invoice.invoice_header.number.to_h
 # => { id: '71', ids: '47217', number_requested: '4721703283' }
 ```
 
-**Note that when some value is missing, when it's null, or when it's a empty string, it won't be present in the hash:**
+**Note that when some value is missing, when it's null, or when it's an empty string, it won't be present in the hash:**
 ```ruby
 # Let's say we have following data:
 # <inv:number>
@@ -128,7 +128,7 @@ invoice = data_pack.data_pack_items.first
 invoice.invoice_header.number.raw
 # => { :"typ:id" => "71", :"typ:ids" => "47217", :"typ:numberRequested" => "4721703283" }
 ```
-The actual XML parsing is done with [Ox](https://github.com/ohler55/ox)(which is great work btw) and this is basically it's output.
+The actual XML parsing is done with [Ox](https://github.com/ohler55/ox)(which is great gem btw) and this is basically it's output.
 
 ### Creating a document
 
