@@ -2,20 +2,20 @@ module Pohoda
   module BaseElement
     EMPTY_ARRAY = []
 
-    attr_accessor :xml
+    attr_accessor :raw
 
-    def initialize(xml)
-      @xml = xml
+    def initialize(raw)
+      @raw = raw
     end
 
     private
 
     def at(locator)
-      xml[locator]
+      raw[locator]
     end
 
     def all(locator)
-      result = xml[locator]
+      result = raw[locator]
 
       if result.is_a? Hash
         [result]

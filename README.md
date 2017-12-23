@@ -21,14 +21,25 @@ The goal of this library is to wrap Pohoda XMLs with very thin layer on which yo
 
 ### Naming
 
-Pohoda XML uses a mix of abbreviations, czech words, and english words for naming. I'v decided to keep method and class names the same. The only difference is everything is snake cased and downcased.
+Pohoda XML uses a mix of abbreviations, czech words, and english words for naming. I'v decided to keep method and class names as same as possible.
 
-For example:
+#### Method names
 
-| XML name | method name |
+The only difference is everything is snake cased and downcased
+
+| XML name | Method name |
 |----------|-------------|
 | symVar | sym_var |
 | payVAT | pay_vat |
+
+#### Class names
+
+The only difference is everything is camel cased and stripped from namespace
+
+| XML name | Class name |
+|----------|-------------|
+| inv:invoiceType | InvoiceType |
+| typ:address | Address |
 
 ### Missing parts
 
@@ -46,7 +57,78 @@ Some of missing elements:
 
 ### Parsing a document
 
-TODO
+To parse a document:
+```ruby
+Pohoda.parse(File.read('./data_pack.xml'))
+```
+
+`Pohoda.parse` will return either `Pohoda::DataPackType` or `Pohoda::ResponsePackType` instance based on what was in original XML.
+
+Now when you have `DataPackType`, you can get to the actual invoices and theirs attributes through normal Ruby methods as follows:
+
+```ruby
+data_pack = Pohoda.parse(File.read('./data_pack.xml'))
+invoices = data_pack.data_pack_items.map(&:invoice)
+
+# And to get first invoice number for example:
+invoices.first.invoice_header.number.number_requested
+```
+
+ResponsePackType has a slightly different structure at the root:
+```ruby
+response_pack = Pohoda.parse(File.read('./response_pack.xml'))
+invoices = parsed.response_pack_item.list_invoice.invoices
+
+# Now it's same as with DataPackType:
+invoices.first.invoice_header.number.number_requested
+```
+
+Every Pohoda XML element has it's counterpart as a class in this gem and when you query some attribute one any invoice you go through it:
+```ruby
+data_pack = Pohoda.parse(File.read('./data_pack.xml')) # => Pohoda::DataPackType
+data_pack.data_pack_items # => Ok, that's a normal Array :)
+
+invoice = data_pack.data_pack_items.first # => Pohoda::InvoiceType
+invoice.invoice_header # => Pohoda::InvoiceHeaderType
+invoice.invoice_header.number # => Pohoda::Number
+invoice.invoice_header.number.number_requested # => String - some actual value here
+```
+
+Every instance of `Pohoda` class also has a `#to_h` method for getting all attributes as `Hash`:
+```ruby
+data_pack = Pohoda.parse(File.read('./data_pack.xml'))
+data_pack.data_pack_items
+
+invoice = data_pack.data_pack_items.first
+invoice.invoice_header.number.to_h
+# => { id: '71', ids: '47217', number_requested: '4721703283' }
+```
+
+**Note that when some value is missing, when it's null, or when it's a empty string, it won't be present in the hash:**
+```ruby
+# Let's say we have following data:
+# <inv:number>
+#   <typ:id></typ:id>
+#   <typ:numberRequested>4721703283</typ:numberRequested>
+# </inv:number>
+
+...
+
+invoice.invoice_header.number.to_h
+
+# => { number_requested: '4721703283' }
+```
+
+With `#raw` method you can also get the raw data with which `Pohoda` class was instantiated and from which it instantiates all lower level elements:
+```ruby
+data_pack = Pohoda.parse(File.read('./data_pack.xml'))
+data_pack.data_pack_items
+
+invoice = data_pack.data_pack_items.first
+invoice.invoice_header.number.raw
+# => { :"typ:id" => "71", :"typ:ids" => "47217", :"typ:numberRequested" => "4721703283" }
+```
+The actual XML parsing is done with [Ox](https://github.com/ohler55/ox)(which is great work btw) and this is basically it's output.
 
 ### Creating a document
 

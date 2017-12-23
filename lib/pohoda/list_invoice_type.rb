@@ -12,7 +12,7 @@ module Pohoda
     end
 
     def to_h
-      { invoices: invoices.map(&:to_h) }.delete_if { |k, v| v.nil? || v.empty? }
+      { invoices: invoices.map(&:to_h) }
     end
   end
 end
