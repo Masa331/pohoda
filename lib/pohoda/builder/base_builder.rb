@@ -1,7 +1,6 @@
 module Pohoda
   module Builder
     module BaseBuilder
-
       def initialize(attributes = {})
         attributes ||= {}
         attributes.each do |key, value|
@@ -17,6 +16,7 @@ module Pohoda
         b = builder
         doc = b.doc
         doc.root.children.each { |c| traverse_and_clean(c) }
+        doc.encoding = 'UTF-8'
         doc
       end
 
