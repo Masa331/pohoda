@@ -17,6 +17,14 @@ RSpec.describe Pohoda::ResponsePackType do
 
       expect(numbers).to eq ["4721703283", "4721703284"]
     end
+
+    context 'response pack is empty' do
+      it 'returns empty array' do
+        response_pack = Pohoda.parse(File.read("./spec/fixtures/empty_response_pack.xml"))
+
+        expect(response_pack.response_pack_item).to eq nil
+      end
+    end
   end
 
   describe '#to_h' do

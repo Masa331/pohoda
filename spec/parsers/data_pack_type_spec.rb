@@ -20,6 +20,13 @@ RSpec.describe Pohoda::DataPackType do
 
       expect(numbers).to eq ["2016001938", "2016001939"]
     end
+
+    context 'data pack is empty' do
+      it 'returns empty array' do
+        data_pack = Pohoda.parse(File.read("./spec/fixtures/empty_data_pack.xml"))
+        expect(data_pack.data_pack_items).to eq []
+      end
+    end
   end
 
   describe '#to_h' do

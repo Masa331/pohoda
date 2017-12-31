@@ -11,10 +11,14 @@ module Pohoda
     private
 
     def at(locator)
+      return nil if raw.nil?
+
       raw[locator]
     end
 
     def all(locator)
+      return [] if raw.nil?
+
       result = raw[locator]
 
       if result.is_a? Hash
