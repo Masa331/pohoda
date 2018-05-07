@@ -1,13 +1,14 @@
 require 'spec_helper'
-require 'pohoda/number'
+# require 'pohoda/number'
 
-RSpec.describe Pohoda::Number do
+RSpec.describe Pohoda do
   let(:xml) do
     raw = File.read "./spec/fixtures/complete_invoice.xml"
     xml = Pohoda.parse(raw)
   end
 
-  let(:number) { xml.data_pack_items.first.invoice.invoice_header.number }
+  # let(:number) { xml.data_pack_items.first.invoice.invoice_header.number }
+  let(:number) { xml.data_pack_item.first.invoice.invoice_header.number }
 
   describe '#to_h' do
     it 'returns proper hash' do
@@ -17,7 +18,7 @@ RSpec.describe Pohoda::Number do
         number_requested: '2016001938'
       }
 
-      expect(number.to_h).to eq expected_hash
+      expect(number.to_h_with_attrs).to eq expected_hash
     end
   end
 end

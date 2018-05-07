@@ -6,7 +6,7 @@ RSpec.describe Pohoda do
       it 'returns parsed DataPackType' do
         parsed = Pohoda.parse File.read("./spec/fixtures/blank_invoice.xml")
 
-        expect(parsed).to be_a Pohoda::DataPackType
+        expect(parsed).to be_a Pohoda::Parsers::Dat::DataPackType
       end
     end
 
@@ -14,7 +14,7 @@ RSpec.describe Pohoda do
       it 'returns parsed ResponsePackType' do
         parsed = Pohoda.parse File.read("./spec/fixtures/response_pack.xml")
 
-        expect(parsed).to be_a Pohoda::ResponsePackType
+        expect(parsed).to be_a Pohoda::Parsers::Rsp::ResponsePackType
       end
     end
   end
