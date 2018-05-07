@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<inv:homeCurrency xmlns:inv="http://www.stormware.cz/schema/version_2/invoice.xsd" xmlns:typ="http://www.stormware.cz/schema/version_2/type.xsd">
-  <typ:price>33</typ:price>
-</inv:homeCurrency>

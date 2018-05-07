@@ -1,7 +1,6 @@
 require 'spec_helper'
-require 'pohoda/invoice_type'
 
-RSpec.describe Pohoda::InvoiceType do
+RSpec.describe Pohoda::Parsers::Inv::InvoiceType do
   describe 'complete invoice' do
     let(:raw) { File.read('./spec/fixtures/basic_invoice.xml') }
     let(:parsed) { Pohoda.parse(raw) }
@@ -10,16 +9,9 @@ RSpec.describe Pohoda::InvoiceType do
   describe 'basic invoice' do
     let(:raw) { File.read('./spec/fixtures/complete_invoice.xml') }
     let(:parsed) { Pohoda.parse(raw) }
-    subject(:invoice) { parsed.data_pack_items.first.invoice }
+    subject(:invoice) { parsed.data_pack_item.first.invoice }
 
     describe 'links' do
-      it 'neco' do
-        raw = File.read('./spec/fixtures/complete_invoice.xml')
-        parsed = Pohoda.parse(raw)
-
-        parsed.data_pack_items.first.invoice
-      end
-
       subject(:link) { invoice.links.first }
       its('source_agenda') { is_expected.to eq 'receivedOrder' }
       its('source_document.number') { is_expected.to eq '142100003' }
@@ -62,23 +54,23 @@ RSpec.describe Pohoda::InvoiceType do
     its('invoice_header.partner_identity.address.fax') { is_expected.to eq '800123456' }
     its('invoice_header.partner_identity.address.email') { is_expected.to eq 'neco@seznam.cz' }
 
-    its('invoice_header.partner_identity.ship_to_address.id') { is_expected.to eq '33' }
-    its('invoice_header.partner_identity.ship_to_address.company') { is_expected.to eq 'First Company' }
-    its('invoice_header.partner_identity.ship_to_address.division') { is_expected.to eq 'Some division' }
-    its('invoice_header.partner_identity.ship_to_address.name') { is_expected.to eq 'Mike Ye Pan' }
-    its('invoice_header.partner_identity.ship_to_address.city') { is_expected.to eq 'Paris' }
-    its('invoice_header.partner_identity.ship_to_address.street') { is_expected.to eq 'ACME street' }
-    its('invoice_header.partner_identity.ship_to_address.zip') { is_expected.to eq '10800' }
-    its('invoice_header.partner_identity.ship_to_address.country.id') { is_expected.to eq '2' }
-    its('invoice_header.partner_identity.ship_to_address.country.ids') { is_expected.to eq 'US' }
-    its('invoice_header.partner_identity.ship_to_address.country.value_type') { is_expected.to eq 'nullValue' }
-    its('invoice_header.partner_identity.ship_to_address.phone') { is_expected.to eq '123456789' }
-    its('invoice_header.partner_identity.ship_to_address.email') { is_expected.to eq 'some@mail.com' }
-    its('invoice_header.partner_identity.ship_to_address.default_ship_address') { is_expected.to eq 'false' }
+    its('invoice_header.partner_identity.ship_to_address.first.id') { is_expected.to eq '33' }
+    its('invoice_header.partner_identity.ship_to_address.first.company') { is_expected.to eq 'First Company' }
+    its('invoice_header.partner_identity.ship_to_address.first.division') { is_expected.to eq 'Some division' }
+    its('invoice_header.partner_identity.ship_to_address.first.name') { is_expected.to eq 'Mike Ye Pan' }
+    its('invoice_header.partner_identity.ship_to_address.first.city') { is_expected.to eq 'Paris' }
+    its('invoice_header.partner_identity.ship_to_address.first.street') { is_expected.to eq 'ACME street' }
+    its('invoice_header.partner_identity.ship_to_address.first.zip') { is_expected.to eq '10800' }
+    its('invoice_header.partner_identity.ship_to_address.first.country.id') { is_expected.to eq '2' }
+    its('invoice_header.partner_identity.ship_to_address.first.country.ids') { is_expected.to eq 'US' }
+    its('invoice_header.partner_identity.ship_to_address.first.country.value_type') { is_expected.to eq 'nullValue' }
+    its('invoice_header.partner_identity.ship_to_address.first.phone') { is_expected.to eq '123456789' }
+    its('invoice_header.partner_identity.ship_to_address.first.email') { is_expected.to eq 'some@mail.com' }
+    its('invoice_header.partner_identity.ship_to_address.first.default_ship_address') { is_expected.to eq 'false' }
 
-    its('invoice_header.partner_identity.ext_id.ids') { is_expected.to eq 'EXT-001' }
-    its('invoice_header.partner_identity.ext_id.ex_system_name') { is_expected.to eq 'Externi system' }
-    its('invoice_header.partner_identity.ext_id.ex_system_text') { is_expected.to eq 'Externi system text' }
+    its('invoice_header.partner_identity.ext_id.first.ids') { is_expected.to eq 'EXT-001' }
+    its('invoice_header.partner_identity.ext_id.first.ex_system_name') { is_expected.to eq 'Externi system' }
+    its('invoice_header.partner_identity.ext_id.first.ex_system_text') { is_expected.to eq 'Externi system text' }
 
     its('invoice_header.my_identity.address.company') { is_expected.to eq 'My Company' }
     its('invoice_header.my_identity.address.title') { is_expected.to eq 'Mr' }
@@ -121,7 +113,7 @@ RSpec.describe Pohoda::InvoiceType do
 
     describe 'items' do
       describe 'first_item' do
-        subject(:item) { invoice.invoice_detail.items.first }
+        subject(:item) { invoice.invoice_detail.invoice_item.first }
 
         its(:text) { is_expected.to eq 'Perla přání' }
         its(:quantity) { is_expected.to eq '3' }
@@ -149,7 +141,7 @@ RSpec.describe Pohoda::InvoiceType do
       end
 
       describe 'middle item' do
-        subject(:item) { invoice.invoice_detail.items[1] }
+        subject(:item) { invoice.invoice_detail.invoice_item[1] }
 
         its('link.source_agenda') { is_expected.to eq 'receivedOrder' }
         its('link.source_item_id') { is_expected.to eq '8' }
@@ -158,7 +150,7 @@ RSpec.describe Pohoda::InvoiceType do
 
     describe 'advance_payment_items' do
       describe 'first item' do
-        subject(:item) { invoice.invoice_detail.advance_payments.first }
+        subject(:item) { invoice.invoice_detail.invoice_advance_payment_item.first }
 
         its('id') { is_expected.to eq '1' }
         its('source_document.id') { is_expected.to eq '2' }
@@ -222,267 +214,5 @@ RSpec.describe Pohoda::InvoiceType do
     its('invoice_summary.foreign_currency.rate') { is_expected.to eq '21.232' }
     its('invoice_summary.foreign_currency.amount') { is_expected.to eq '1' }
     its('invoice_summary.foreign_currency.price_sum') { is_expected.to eq '580' }
-
-    it '#to_h', :aggregate_failures do
-      invoice_attributes = { invoice_type: 'issuedInvoice',
-                             sym_var: '2016001938',
-                             date: '2016-10-17',
-                             date_tax: '2016-10-17',
-                             date_accounting: '2014-10-14',
-                             date_due: '2016-10-31',
-                             text: 'Faktura za zboží s adresou bez vazby na Adresář',
-                             number_order: '2016001748',
-                             date_order: '2014-10-02',
-                             note: 'Načteno z XML',
-                             int_note: 'Tento doklad byl vytvořen importem přes XML.' }
-
-      expect(invoice.to_h[:invoice_header]).to include(invoice_attributes)
-
-      expect(invoice.to_h[:invoice_header][:classification_vat]).to include({ classification_vat_type: 'inland' })
-      expect(invoice.to_h[:invoice_header][:number]).to include({ number_requested: '2016001938' })
-      expect(invoice.to_h[:invoice_header][:accounting]).to include({ ids: '3FV' })
-
-      expect(invoice.to_h[:invoice_header][:partner_identity]).to include({ id: '25' })
-      partner_address_attrs = { company: 'firma',
-                                division: 'Obchodní oddělení',
-                                name: 'John Doe',
-                                street: 'Studený Zejf 7',
-                                city: 'Písečná',
-                                zip: '79082',
-                                country: { id: '1', ids: 'CZE', value_type: 'nullValue' },
-                                ico: '789456',
-                                dic: 'CZ789456',
-                                ic_dph: 'cz123',
-                                phone: '800123123',
-                                mobil_phone: '800987987',
-                                fax: '800123456',
-                                email: 'neco@seznam.cz'
-      }
-      expect(invoice.to_h[:invoice_header][:partner_identity][:address]).to include(partner_address_attrs)
-
-      partner_ship_to_attrs = { id: '33',
-                                company: 'First Company',
-                                division: 'Some division',
-                                name: 'Mike Ye Pan',
-                                city: 'Paris',
-                                street: 'ACME street',
-                                zip: '10800',
-                                country: { id: '2', ids: 'US', value_type: 'nullValue' },
-                                phone: '123456789',
-                                email: 'some@mail.com',
-                                default_ship_address: 'false'
-      }
-      expect(invoice.to_h[:invoice_header][:partner_identity][:ship_to_address]).to include(partner_ship_to_attrs)
-
-      ext_ref_attrs = { ids: 'EXT-001',
-                        ex_system_name: 'Externi system' }
-      expect(invoice.to_h[:invoice_header][:partner_identity][:ext_id]).to include(ext_ref_attrs)
-
-
-      my_identity_attrs = {
-        address: {
-          company: 'My Company',
-          title: 'Mr',
-          surname: 'Novak',
-          name: 'Alex',
-          city: 'Praha',
-          street: 'Zvoníčkova',
-          number: '1928/7',
-          zip: '16200',
-          ico: '123456',
-          dic: 'CZ123456',
-          ic_dph: 'CZ321321',
-          phone: '999000999',
-          mobil_phone: '000999000',
-          fax: '123456789',
-          email: 'some@email.cz',
-          www: 'www.company.cz'
-        },
-        establishment: {
-          company: 'My Company2',
-          city: 'Brno',
-          street: 'Nova',
-          zip: '10000'
-        }
-      }
-      expect(invoice.to_h[:invoice_header][:my_identity]).to include(my_identity_attrs)
-
-      expect(invoice.to_h[:invoice_header][:payment_type]).to include({ ids: 'Master Card', payment_type: 'draft' })
-
-      payment_account_attrs = { account_no: '1071743463',
-                                bank_code: '2700' }
-      expect(invoice.to_h[:invoice_header][:payment_account]).to include(payment_account_attrs)
-      expect(invoice.to_h[:invoice_header][:account]).to include({ account_no: '1117780287', bank_code: '0300', ids: 'KB', id: '1' })
-      expect(invoice.to_h[:invoice_header][:centre]).to include({ ids: 'BRNO' })
-      expect(invoice.to_h[:invoice_header][:activity]).to include({ ids: 'SLUŽBY' })
-      expect(invoice.to_h[:invoice_header][:contract]).to include({ ids: '10Zak00002' })
-
-      invoice_summary_attrs = { rounding_document: 'math2one',
-                                rounding_vat: 'noneEveryRate' }
-      expect(invoice.to_h[:invoice_summary]).to include(invoice_summary_attrs)
-
-      home_currency_attrs = {
-        price_low: '1',
-        price_low_vat: '2',
-        price_low_sum: '3',
-        price_high: '4',
-        price_high_vat: '5',
-        price_high_sum: '6',
-        price_none: '7',
-        price_3: '8',
-        price_3_vat: '9',
-        price_3_sum: '10',
-        round: {
-          price_round: '0'
-        }
-      }
-      expect(invoice.to_h[:invoice_summary][:home_currency]).to include(home_currency_attrs)
-
-      foreign_currency_attrs = { rate: '21.232',
-                                 amount: '1',
-                                 currency: { id: '1', ids: 'EUR', value_type: 'nullValue' },
-                                 price_sum: '580' }
-      expect(invoice.to_h[:invoice_summary][:foreign_currency]).to include(foreign_currency_attrs)
-
-      first_item_attrs = { id: '1',
-                           text: 'Perla přání',
-                           quantity: '3',
-                           unit: 'ks',
-                           coefficient: '2',
-                           pay_vat: 'false',
-                           rate_vat: 'high',
-                           percent_vat: '21',
-                           discount_percentage: '10',
-                           home_currency: {
-                             unit_price: '164.46',
-                             price: '493.39',
-                             price_vat: '103.61',
-                             price_sum: '2381.28'
-                           },
-                           foreign_currency: {
-                             unit_price: '1000',
-                             price: '111.39',
-                             price_vat: '222.61',
-                             price_sum: '333.28'
-                           },
-                           note: 'note',
-                           code: '83',
-                           guarantee: '48',
-                           guarantee_type: 'month',
-                           stock_item: {
-                             store: {
-                               id: '1',
-                               ids: 'Sklad',
-                               value_type: 'nullValue'
-                             },
-                             stock_item: {
-                               id: '1',
-                               ids: '83',
-                               ext_id: {
-                                 ids: 'EXT-002',
-                                 ex_system_name: 'Externi system',
-                                 ex_system_text: 'Externi system text'
-                               },
-                               ean: '123456'
-                             },
-                             serial_number: '123'
-                           },
-                           accounting: {
-                             id: '1',
-                             ids: '3FV',
-                             value_type: 'nullValue'
-                           },
-                           classification_vat: {
-                             id: '1',
-                             ids: 'something',
-                             classification_vat_type: 'inland'
-                           },
-                           classification_kvdph: {
-                             id: '2',
-                             ids: '9iv',
-                             value_type: 'nullValue'
-                           },
-                           centre: {
-                             id: '2',
-                             ids: 'BRNO',
-                             value_type: 'nullValue'
-                           },
-                           activity: {
-                             id: '2',
-                             ids: 'SLUŽBY',
-                             value_type: 'nullValue'
-                           },
-                           contract: {
-                             id: '2',
-                             ids: '10Zak00002',
-                             value_type: 'nullValue'
-                           },
-                           expiration_date: '2014-10-02'
-      }
-      expect(invoice.to_h[:invoice_detail][:items].first).to include(first_item_attrs)
-
-      middle_item_link_attrs = { source_agenda: 'receivedOrder',
-                                 source_item_id: '8' }
-      expect(invoice.to_h[:invoice_detail][:items][1][:link]).to include(middle_item_link_attrs)
-
-      link_attributes = { source_agenda: 'receivedOrder', source_document: { number: '142100003' } }
-
-      expect(invoice.to_h[:links].first).to include(link_attributes)
-
-      payment_attrs = {
-        id: '1',
-        source_document: { id: '2', number: '150800001' },
-        quantity: '1.0',
-        pay_vat: 'false',
-        rate_vat: 'none',
-        percent_vat: '1',
-        discount_percentage: '3',
-        home_currency: {
-          unit_price: '-100',
-          price: '-999',
-          price_vat: '67',
-          price_sum: '-89'
-        },
-        foreign_currency: {
-          unit_price: '-500',
-          price: '-200',
-          price_vat: '5',
-          price_sum: '-333'
-        },
-        note: 'Some note',
-        accounting: {
-          id: '1',
-          ids: '4vf',
-          value_type: 'nullValue'
-        },
-        classification_vat: {
-          id: '1',
-          ids: 'something',
-          classification_vat_type: 'inland'
-        },
-        classification_kvdph: {
-          id: '2',
-          ids: '9iv',
-          value_type: 'nullValue'
-        },
-        centre: {
-          id: '2',
-          ids: 'BRNO',
-          value_type: 'nullValue'
-        },
-        activity: {
-          id: '2',
-          ids: 'SLUŽBY',
-          value_type: 'nullValue'
-        },
-        contract: {
-          id: '2',
-          ids: '10Zak00002',
-          value_type: 'nullValue'
-        },
-        voucher_eet: 'false'
-      }
-      expect(invoice.to_h[:invoice_detail][:advance_payments].first).to include(payment_attrs)
-    end
   end
 end

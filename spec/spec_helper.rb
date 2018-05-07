@@ -1,10 +1,8 @@
 require "bundler/setup"
 require "pohoda"
-require "spec_helpers"
 require 'rspec/its'
 
 RSpec.configure do |config|
-  config.include SpecHelpers
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = ".rspec_status"
 
