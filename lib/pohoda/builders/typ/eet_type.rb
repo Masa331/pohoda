@@ -15,7 +15,7 @@ module Pohoda
             data[:detail_eet].each { |i| root << Typ::DetailEETType.new('typ:detailEET', i).builder }
           end
           if data.key? :profile
-            root << Typ::RefType.new('profile', data[:profile]).builder
+            root << Typ::RefType.new('typ:profile', data[:profile]).builder
           end
 
           root

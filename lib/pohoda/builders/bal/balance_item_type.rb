@@ -13,7 +13,7 @@ module Pohoda
           root << build_element('bal:id', data[:id]) if data.key? :id
           root << build_element('bal:number', data[:number]) if data.key? :number
           if data.key? :partner_identity
-            root << Typ::AddressType.new('partnerIdentity', data[:partner_identity]).builder
+            root << Typ::AddressType.new('bal:partnerIdentity', data[:partner_identity]).builder
           end
           root << build_element('bal:sourceAgenda', data[:source_agenda]) if data.key? :source_agenda
           root << build_element('bal:accountNo', data[:account_no]) if data.key? :account_no

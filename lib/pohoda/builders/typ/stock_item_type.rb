@@ -11,10 +11,10 @@ module Pohoda
           end
 
           if data.key? :store
-            root << Typ::RefType.new('store', data[:store]).builder
+            root << Typ::RefType.new('typ:store', data[:store]).builder
           end
           if data.key? :stock_item
-            root << Typ::StockRefType.new('stockItem', data[:stock_item]).builder
+            root << Typ::StockRefType.new('typ:stockItem', data[:stock_item]).builder
           end
           root << build_element('typ:serialNumber', data[:serial_number]) if data.key? :serial_number
 

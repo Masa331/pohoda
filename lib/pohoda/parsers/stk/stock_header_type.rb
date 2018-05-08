@@ -253,11 +253,11 @@ module Pohoda
         end
 
         def related_files
-          submodel_at(Stk::RelatedFilesType, 'stk:relatedFiles')
+          array_of_at(Stk::RelatedFileType, ['stk:relatedFiles', 'stk:relatedFile'])
         end
 
         def related_links
-          submodel_at(Stk::RelatedLinksType, 'stk:relatedLinks')
+          array_of_at(Stk::RelatedLinkType, ['stk:relatedLinks', 'stk:relatedLink'])
         end
 
         def foreign_name1
@@ -285,23 +285,23 @@ module Pohoda
         end
 
         def pictures
-          submodel_at(Stk::PicturesType, 'stk:pictures')
+          array_of_at(Stk::PictureType, ['stk:pictures', 'stk:picture'])
         end
 
         def categories
-          submodel_at(Stk::CategoriesType, 'stk:categories')
+          array_of_at(String, ['stk:categories', 'stk:idCategory'])
         end
 
         def related_stocks
-          submodel_at(Stk::RelatedStocksType, 'stk:relatedStocks')
+          array_of_at(Typ::OrderStockItemType, ['stk:relatedStocks', 'stk:idStocks'])
         end
 
         def alternative_stocks
-          submodel_at(Stk::AlternativeStocksType, 'stk:alternativeStocks')
+          array_of_at(Typ::OrderStockItemType, ['stk:alternativeStocks', 'stk:idStocks'])
         end
 
         def int_parameters
-          submodel_at(Stk::IntParametersType, 'stk:intParameters')
+          array_of_at(Stk::IntParameterType, ['stk:intParameters', 'stk:intParameter'])
         end
 
         def note
@@ -313,11 +313,11 @@ module Pohoda
         end
 
         def labels
-          submodel_at(Typ::LabelsType, 'stk:labels')
+          array_of_at(Typ::LabelType, ['stk:labels', 'typ:label'])
         end
 
         def parameters
-          submodel_at(Typ::ParametersType, 'stk:parameters')
+          array_of_at(Typ::ParameterDocType, ['stk:parameters', 'typ:parameter'])
         end
 
         def to_h_with_attrs
@@ -385,23 +385,23 @@ module Pohoda
           hash[:prepare] = prepare if has? 'stk:prepare'
           hash[:availability] = availability if has? 'stk:availability'
           hash[:handling_information] = handling_information if has? 'stk:handlingInformation'
-          hash[:related_files] = related_files.to_h_with_attrs if has? 'stk:relatedFiles'
-          hash[:related_links] = related_links.to_h_with_attrs if has? 'stk:relatedLinks'
+          hash[:related_files] = related_files.map(&:to_h_with_attrs) if has? 'stk:relatedFiles'
+          hash[:related_links] = related_links.map(&:to_h_with_attrs) if has? 'stk:relatedLinks'
           hash[:foreign_name1] = foreign_name1 if has? 'stk:foreignName1'
           hash[:foreign_name_complement1] = foreign_name_complement1 if has? 'stk:foreignNameComplement1'
           hash[:foreign_name2] = foreign_name2 if has? 'stk:foreignName2'
           hash[:foreign_name_complement2] = foreign_name_complement2 if has? 'stk:foreignNameComplement2'
           hash[:description] = description if has? 'stk:description'
           hash[:description2] = description2 if has? 'stk:description2'
-          hash[:pictures] = pictures.to_h_with_attrs if has? 'stk:pictures'
-          hash[:categories] = categories.to_h_with_attrs if has? 'stk:categories'
-          hash[:related_stocks] = related_stocks.to_h_with_attrs if has? 'stk:relatedStocks'
-          hash[:alternative_stocks] = alternative_stocks.to_h_with_attrs if has? 'stk:alternativeStocks'
-          hash[:int_parameters] = int_parameters.to_h_with_attrs if has? 'stk:intParameters'
+          hash[:pictures] = pictures.map(&:to_h_with_attrs) if has? 'stk:pictures'
+          hash[:categories] = categories if has? 'stk:categories'
+          hash[:related_stocks] = related_stocks.map(&:to_h_with_attrs) if has? 'stk:relatedStocks'
+          hash[:alternative_stocks] = alternative_stocks.map(&:to_h_with_attrs) if has? 'stk:alternativeStocks'
+          hash[:int_parameters] = int_parameters.map(&:to_h_with_attrs) if has? 'stk:intParameters'
           hash[:note] = note if has? 'stk:note'
           hash[:mark_record] = mark_record if has? 'stk:markRecord'
-          hash[:labels] = labels.to_h_with_attrs if has? 'stk:labels'
-          hash[:parameters] = parameters.to_h_with_attrs if has? 'stk:parameters'
+          hash[:labels] = labels.map(&:to_h_with_attrs) if has? 'stk:labels'
+          hash[:parameters] = parameters.map(&:to_h_with_attrs) if has? 'stk:parameters'
 
           hash
         end

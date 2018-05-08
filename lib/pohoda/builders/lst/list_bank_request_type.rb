@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :request_bank
-            root << Ftr::RequestBankType.new('requestBank', data[:request_bank]).builder
+            root << Ftr::RequestBankType.new('lst:requestBank', data[:request_bank]).builder
           end
 
           root

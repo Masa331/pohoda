@@ -11,25 +11,29 @@ module Pohoda
           end
 
           if data.key? :links
-            root << Typ::LinksType.new('links', data[:links]).builder
+            element = Ox::Element.new('inv:links')
+            data[:links].each { |i| element << Typ::LinkElemetType.new('typ:link', i).builder }
+            root << element
           end
           if data.key? :cancel_document
-            root << Typ::CancelDocumentType.new('cancelDocument', data[:cancel_document]).builder
+            root << Typ::CancelDocumentType.new('inv:cancelDocument', data[:cancel_document]).builder
           end
           if data.key? :invoice_header
-            root << Inv::InvoiceHeaderType.new('invoiceHeader', data[:invoice_header]).builder
+            root << Inv::InvoiceHeaderType.new('inv:invoiceHeader', data[:invoice_header]).builder
           end
           if data.key? :invoice_detail
-            root << Inv::InvoiceDetailType.new('invoiceDetail', data[:invoice_detail]).builder
+            root << Inv::InvoiceDetailType.new('inv:invoiceDetail', data[:invoice_detail]).builder
           end
           if data.key? :invoice_summary
-            root << Inv::InvoiceSummaryType.new('invoiceSummary', data[:invoice_summary]).builder
+            root << Inv::InvoiceSummaryType.new('inv:invoiceSummary', data[:invoice_summary]).builder
           end
           if data.key? :eet
-            root << Typ::EETType.new('EET', data[:eet]).builder
+            root << Typ::EETType.new('inv:EET', data[:eet]).builder
           end
           if data.key? :print
-            root << Prn::AgendaPrintType.new('print', data[:print]).builder
+            element = Ox::Element.new('inv:print')
+            data[:print].each { |i| element << Prn::PrinterSettingsType.new('prn:printerSettings', i).builder }
+            root << element
           end
 
           root

@@ -15,10 +15,10 @@ module Pohoda
           end
 
           if data.key? :configuration
-            root << MKasa::ConfigurationType.new('configuration', data[:configuration]).builder
+            root << MKasa::ConfigurationType.new('mKasa:configuration', data[:configuration]).builder
           end
           if data.key? :import_response
-            root << MKasa::ImportResponseType.new('importResponse', data[:import_response]).builder
+            root << MKasa::ImportResponseType.new('mKasa:importResponse', data[:import_response]).builder
           end
 
           root

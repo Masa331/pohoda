@@ -13,34 +13,36 @@ module Pohoda
           root << build_element('act:id', data[:id]) if data.key? :id
           root << build_element('act:source', data[:source]) if data.key? :source
           if data.key? :number
-            root << Typ::NumberType.new('number', data[:number]).builder
+            root << Typ::NumberType.new('act:number', data[:number]).builder
           end
           root << build_element('act:symPar', data[:sym_par]) if data.key? :sym_par
           root << build_element('act:text', data[:text]) if data.key? :text
           if data.key? :home_currency
-            root << Typ::TypeCurrencyHomeItem.new('homeCurrency', data[:home_currency]).builder
+            root << Typ::TypeCurrencyHomeItem.new('act:homeCurrency', data[:home_currency]).builder
           end
           if data.key? :foreign_currency
-            root << Typ::TypeCurrencyForeign.new('foreignCurrency', data[:foreign_currency]).builder
+            root << Typ::TypeCurrencyForeign.new('act:foreignCurrency', data[:foreign_currency]).builder
           end
           root << build_element('act:accounting', data[:accounting]) if data.key? :accounting
           if data.key? :address
-            root << Typ::Address.new('address', data[:address]).builder
+            root << Typ::Address.new('act:address', data[:address]).builder
           end
           root << build_element('act:date', data[:date]) if data.key? :date
           root << build_element('act:dateTax', data[:date_tax]) if data.key? :date_tax
           if data.key? :centre
-            root << Typ::RefType.new('centre', data[:centre]).builder
+            root << Typ::RefType.new('act:centre', data[:centre]).builder
           end
           if data.key? :activity
-            root << Typ::RefType.new('activity', data[:activity]).builder
+            root << Typ::RefType.new('act:activity', data[:activity]).builder
           end
           if data.key? :contract
-            root << Typ::RefType.new('contract', data[:contract]).builder
+            root << Typ::RefType.new('act:contract', data[:contract]).builder
           end
           root << build_element('act:note', data[:note]) if data.key? :note
           if data.key? :parameters
-            root << Typ::ParametersType.new('parameters', data[:parameters]).builder
+            element = Ox::Element.new('act:parameters')
+            data[:parameters].each { |i| element << Typ::ParameterDocType.new('typ:parameter', i).builder }
+            root << element
           end
 
           root

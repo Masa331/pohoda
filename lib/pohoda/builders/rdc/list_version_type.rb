@@ -11,10 +11,14 @@ module Pohoda
           end
 
           if data.key? :import_details
-            root << Rdc::ImportDetailsType.new('importDetails', data[:import_details]).builder
+            element = Ox::Element.new('rdc:importDetails')
+            data[:import_details].each { |i| element << Rdc::DetailType.new('rdc:detail', i).builder }
+            root << element
           end
           if data.key? :parts
-            root << Rdc::PartsType.new('parts', data[:parts]).builder
+            element = Ox::Element.new('rdc:parts')
+            data[:parts].map { |i| Ox::Element.new('rdc:part') << i }.each { |i| element << i }
+            root << element
           end
 
           root

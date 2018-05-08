@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :request_accountancy
-            root << Ftr::RequestAccountancyType.new('requestAccountancy', data[:request_accountancy]).builder
+            root << Ftr::RequestAccountancyType.new('lst:requestAccountancy', data[:request_accountancy]).builder
           end
 
           root

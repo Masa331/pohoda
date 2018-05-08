@@ -25,7 +25,7 @@ module Pohoda
         end
 
         def int_parameter_values
-          submodel_at(Stk::IntParameterValuesType, 'stk:intParameterValues')
+          array_of_at(Stk::IntParameterValueType, ['stk:intParameterValues', 'stk:intParameterValue'])
         end
 
         def to_h_with_attrs
@@ -36,7 +36,7 @@ module Pohoda
           hash[:int_parameter_name] = int_parameter_name if has? 'stk:intParameterName'
           hash[:int_parameter_order] = int_parameter_order if has? 'stk:intParameterOrder'
           hash[:int_parameter_type] = int_parameter_type if has? 'stk:intParameterType'
-          hash[:int_parameter_values] = int_parameter_values.to_h_with_attrs if has? 'stk:intParameterValues'
+          hash[:int_parameter_values] = int_parameter_values.map(&:to_h_with_attrs) if has? 'stk:intParameterValues'
 
           hash
         end

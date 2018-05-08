@@ -11,16 +11,20 @@ module Pohoda
           end
 
           if data.key? :vydejka_header
-            root << Vyd::VydejkaHeaderType.new('vydejkaHeader', data[:vydejka_header]).builder
+            root << Vyd::VydejkaHeaderType.new('vyd:vydejkaHeader', data[:vydejka_header]).builder
           end
           if data.key? :vydejka_detail
-            root << Vyd::VydejkaDetailType.new('vydejkaDetail', data[:vydejka_detail]).builder
+            element = Ox::Element.new('vyd:vydejkaDetail')
+            data[:vydejka_detail].each { |i| element << Vyd::VydejkaItemType.new('vyd:vydejkaItem', i).builder }
+            root << element
           end
           if data.key? :vydejka_summary
-            root << Vyd::VydejkaSummaryType.new('vydejkaSummary', data[:vydejka_summary]).builder
+            root << Vyd::VydejkaSummaryType.new('vyd:vydejkaSummary', data[:vydejka_summary]).builder
           end
           if data.key? :print
-            root << Prn::AgendaPrintType.new('print', data[:print]).builder
+            element = Ox::Element.new('vyd:print')
+            data[:print].each { |i| element << Prn::PrinterSettingsType.new('prn:printerSettings', i).builder }
+            root << element
           end
 
           root

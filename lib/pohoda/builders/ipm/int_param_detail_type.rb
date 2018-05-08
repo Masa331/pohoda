@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :int_param
-            root << Ipm::IntParamType.new('intParam', data[:int_param]).builder
+            root << Ipm::IntParamType.new('ipm:intParam', data[:int_param]).builder
           end
 
           root

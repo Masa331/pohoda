@@ -97,11 +97,11 @@ module Pohoda
         end
 
         def labels
-          submodel_at(Typ::LabelsType, 'bnk:labels')
+          array_of_at(Typ::LabelType, ['bnk:labels', 'typ:label'])
         end
 
         def parameters
-          submodel_at(Typ::ParametersType, 'bnk:parameters')
+          array_of_at(Typ::ParameterDocType, ['bnk:parameters', 'typ:parameter'])
         end
 
         def to_h_with_attrs
@@ -130,8 +130,8 @@ module Pohoda
           hash[:contract] = contract.to_h_with_attrs if has? 'bnk:contract'
           hash[:note] = note if has? 'bnk:note'
           hash[:int_note] = int_note if has? 'bnk:intNote'
-          hash[:labels] = labels.to_h_with_attrs if has? 'bnk:labels'
-          hash[:parameters] = parameters.to_h_with_attrs if has? 'bnk:parameters'
+          hash[:labels] = labels.map(&:to_h_with_attrs) if has? 'bnk:labels'
+          hash[:parameters] = parameters.map(&:to_h_with_attrs) if has? 'bnk:parameters'
 
           hash
         end

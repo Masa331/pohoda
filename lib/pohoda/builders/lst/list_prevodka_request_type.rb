@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :request_prevodka
-            root << Ftr::RequestPrevodkaType.new('requestPrevodka', data[:request_prevodka]).builder
+            root << Ftr::RequestPrevodkaType.new('lst:requestPrevodka', data[:request_prevodka]).builder
           end
 
           root

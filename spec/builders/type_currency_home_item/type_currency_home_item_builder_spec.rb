@@ -1,30 +1,40 @@
 require 'spec_helper'
 
-RSpec.describe Pohoda::Builder::TypeCurrencyHomeItem do
+RSpec.describe Pohoda::Builders::Typ::TypeCurrencyHomeItem do
   describe '#to_xml' do
     context 'blank type_currency_home_item' do
-      let(:builder) { Pohoda::Builder::TypeCurrencyHomeItem.new }
-
       it 'retuns xml string' do
-        expected_output = File.read('spec/builders/type_currency_home_item/blank_type_currency_home_item.xml')
+        attrs = { 'xmlns:inv' => "http://www.stormware.cz/schema/version_2/invoice.xsd", 'xmlns:typ' => "http://www.stormware.cz/schema/version_2/type.xsd" }
 
-        expect(builder.to_xml).to eq expected_output
+        data = ParserCore::HashWithAttributes.new({}, attrs)
+        builder = Pohoda::Builders::Typ::TypeCurrencyHomeItem.new('inv:homeCurrency', data, { encoding: 'UTF-8' })
+
+        expect(builder.to_xml).to eq(
+          <<~XML
+            <?xml version="1.0" encoding="UTF-8"?>
+            <inv:homeCurrency xmlns:inv="http://www.stormware.cz/schema/version_2/invoice.xsd" xmlns:typ="http://www.stormware.cz/schema/version_2/type.xsd"/>
+          XML
+        )
       end
     end
 
     context 'type_currency_home_item' do
-      let(:attributes) do
-        { price: 33 }
-      end
-
-      let(:builder) do
-        Pohoda::Builder::TypeCurrencyHomeItem.new(attributes)
+      let(:data) do
+        { price: '33' }
       end
 
       it 'retuns xml string' do
+        builder = Pohoda::Builders::Typ::TypeCurrencyHomeItem.new('inv:homeCurrency', data)
         expected_output = File.read('spec/builders/type_currency_home_item/type_currency_home_item.xml')
 
-        expect(builder.to_xml).to eq expected_output
+        expect(builder.to_xml).to eq(
+          <<~XML
+            <?xml version="1.0"?>
+            <inv:homeCurrency>
+              <typ:price>33</typ:price>
+            </inv:homeCurrency>
+          XML
+        )
       end
     end
   end

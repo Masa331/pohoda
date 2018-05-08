@@ -13,7 +13,7 @@ module Pohoda
         end
 
         def group_stocks_detail
-          submodel_at(Grs::GroupStocksDetailType, 'grs:groupStocksDetail')
+          array_of_at(Gr::VariantsItemType, ['grs:groupStocksDetail', 'grs:variant'])
         end
 
         def to_h_with_attrs
@@ -21,7 +21,7 @@ module Pohoda
 
           hash[:action_type] = action_type if has? 'grs:actionType'
           hash[:group_stocks_header] = group_stocks_header.to_h_with_attrs if has? 'grs:groupStocksHeader'
-          hash[:group_stocks_detail] = group_stocks_detail.to_h_with_attrs if has? 'grs:groupStocksDetail'
+          hash[:group_stocks_detail] = group_stocks_detail.map(&:to_h_with_attrs) if has? 'grs:groupStocksDetail'
 
           hash
         end

@@ -11,10 +11,14 @@ module Pohoda
           end
 
           if data.key? :stocks
-            root << Idp::StocksType.new('stocks', data[:stocks]).builder
+            element = Ox::Element.new('idp:stocks')
+            data[:stocks].each { |i| element << Idp::StockItemType.new('idp:stockItem', i).builder }
+            root << element
           end
           if data.key? :price_groups
-            root << Idp::PriceGroupsType.new('priceGroups', data[:price_groups]).builder
+            element = Ox::Element.new('idp:priceGroups')
+            data[:price_groups].each { |i| element << Idp::PriceGroupItemType.new('idp:priceGroupItem', i).builder }
+            root << element
           end
 
           root

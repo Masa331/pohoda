@@ -11,13 +11,13 @@ module Pohoda
           end
 
           if data.key? :add
-            root << Ftr::RequestExtIdActionType.new('add', data[:add]).builder
+            root << Ftr::RequestExtIdActionType.new('bka:add', data[:add]).builder
           end
           if data.key? :update
-            root << Ftr::RequestExtIdActionType.new('update', data[:update]).builder
+            root << Ftr::RequestExtIdActionType.new('bka:update', data[:update]).builder
           end
           if data.key? :delete
-            root << Ftr::RequestExtIdType.new('delete', data[:delete]).builder
+            root << Ftr::RequestExtIdType.new('bka:delete', data[:delete]).builder
           end
 
           root

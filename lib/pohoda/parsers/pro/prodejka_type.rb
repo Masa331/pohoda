@@ -9,7 +9,7 @@ module Pohoda
         end
 
         def prodejka_detail
-          submodel_at(Pro::ProdejkaDetailType, 'pro:prodejkaDetail')
+          array_of_at(Pro::ProdejkaItemType, ['pro:prodejkaDetail', 'pro:prodejkaItem'])
         end
 
         def prodejka_summary
@@ -21,17 +21,17 @@ module Pohoda
         end
 
         def print
-          submodel_at(Prn::AgendaPrintType, 'pro:print')
+          array_of_at(Prn::PrinterSettingsType, ['pro:print', 'prn:printerSettings'])
         end
 
         def to_h_with_attrs
           hash = ParserCore::HashWithAttributes.new({}, attributes)
 
           hash[:prodejka_header] = prodejka_header.to_h_with_attrs if has? 'pro:prodejkaHeader'
-          hash[:prodejka_detail] = prodejka_detail.to_h_with_attrs if has? 'pro:prodejkaDetail'
+          hash[:prodejka_detail] = prodejka_detail.map(&:to_h_with_attrs) if has? 'pro:prodejkaDetail'
           hash[:prodejka_summary] = prodejka_summary.to_h_with_attrs if has? 'pro:prodejkaSummary'
           hash[:eet] = eet.to_h_with_attrs if has? 'pro:EET'
-          hash[:print] = print.to_h_with_attrs if has? 'pro:print'
+          hash[:print] = print.map(&:to_h_with_attrs) if has? 'pro:print'
 
           hash
         end

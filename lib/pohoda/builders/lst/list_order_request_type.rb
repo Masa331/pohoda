@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :request_order
-            root << Ftr::RequestOrderType.new('requestOrder', data[:request_order]).builder
+            root << Ftr::RequestOrderType.new('lst:requestOrder', data[:request_order]).builder
           end
 
           root

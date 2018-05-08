@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :item_user_code
-            root << Lst::ItemUserCodeType.new('itemUserCode', data[:item_user_code]).builder
+            root << Lst::ItemUserCodeType.new('lst:itemUserCode', data[:item_user_code]).builder
           end
 
           root

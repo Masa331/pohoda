@@ -11,25 +11,35 @@ module Pohoda
           end
 
           if data.key? :action_type
-            root << Stk::ActionTypeType.new('actionType', data[:action_type]).builder
+            root << Stk::ActionTypeType.new('stk:actionType', data[:action_type]).builder
           end
           if data.key? :stock_header
-            root << Stk::StockHeaderType.new('stockHeader', data[:stock_header]).builder
+            root << Stk::StockHeaderType.new('stk:stockHeader', data[:stock_header]).builder
           end
           if data.key? :stock_detail
-            root << Stk::StockDetailType.new('stockDetail', data[:stock_detail]).builder
+            element = Ox::Element.new('stk:stockDetail')
+            data[:stock_detail].each { |i| element << Stk::StockItemType.new('stk:stockItem', i).builder }
+            root << element
           end
           if data.key? :stock_attach
-            root << Stk::StockAttachType.new('stockAttach', data[:stock_attach]).builder
+            element = Ox::Element.new('stk:stockAttach')
+            data[:stock_attach].each { |i| element << Stk::AttachItemType.new('stk:attachItem', i).builder }
+            root << element
           end
           if data.key? :stock_serial_number
-            root << Stk::StockSerialNumberType.new('stockSerialNumber', data[:stock_serial_number]).builder
+            element = Ox::Element.new('stk:stockSerialNumber')
+            data[:stock_serial_number].each { |i| element << Stk::SerialNumberItemType.new('stk:serialNumberItem', i).builder }
+            root << element
           end
           if data.key? :stock_price_item
-            root << Stk::StockPriceItemType.new('stockPriceItem', data[:stock_price_item]).builder
+            element = Ox::Element.new('stk:stockPriceItem')
+            data[:stock_price_item].each { |i| element << Typ::StockPriceType.new('stk:stockPrice', i).builder }
+            root << element
           end
           if data.key? :print
-            root << Prn::AgendaPrintType.new('print', data[:print]).builder
+            element = Ox::Element.new('stk:print')
+            data[:print].each { |i| element << Prn::PrinterSettingsType.new('prn:printerSettings', i).builder }
+            root << element
           end
 
           root

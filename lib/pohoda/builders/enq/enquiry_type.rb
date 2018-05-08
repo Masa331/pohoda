@@ -11,16 +11,20 @@ module Pohoda
           end
 
           if data.key? :enquiry_header
-            root << Enq::EnquiryHeaderType.new('enquiryHeader', data[:enquiry_header]).builder
+            root << Enq::EnquiryHeaderType.new('enq:enquiryHeader', data[:enquiry_header]).builder
           end
           if data.key? :enquiry_detail
-            root << Enq::EnquiryDetailType.new('enquiryDetail', data[:enquiry_detail]).builder
+            element = Ox::Element.new('enq:enquiryDetail')
+            data[:enquiry_detail].each { |i| element << Enq::EnquiryItemType.new('enq:enquiryItem', i).builder }
+            root << element
           end
           if data.key? :enquiry_summary
-            root << Enq::EnquirySummaryType.new('enquirySummary', data[:enquiry_summary]).builder
+            root << Enq::EnquirySummaryType.new('enq:enquirySummary', data[:enquiry_summary]).builder
           end
           if data.key? :print
-            root << Prn::AgendaPrintType.new('print', data[:print]).builder
+            element = Ox::Element.new('enq:print')
+            data[:print].each { |i| element << Prn::PrinterSettingsType.new('prn:printerSettings', i).builder }
+            root << element
           end
 
           root

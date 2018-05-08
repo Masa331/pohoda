@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :record
-            root << Ftr::RecordPrintType.new('record', data[:record]).builder
+            root << Ftr::RecordPrintType.new('prn:record', data[:record]).builder
           end
           if data.key? :printer_settings
             data[:printer_settings].each { |i| root << Prn::PrinterSettingsType.new('prn:printerSettings', i).builder }

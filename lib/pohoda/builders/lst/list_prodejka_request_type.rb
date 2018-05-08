@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :request_prodejka
-            root << Ftr::RequestProdejkaType.new('requestProdejka', data[:request_prodejka]).builder
+            root << Ftr::RequestProdejkaType.new('lst:requestProdejka', data[:request_prodejka]).builder
           end
 
           root

@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :source_document
-            root << Typ::SourceDocumentType.new('sourceDocument', data[:source_document]).builder
+            root << Typ::SourceDocumentType.new('typ:sourceDocument', data[:source_document]).builder
           end
 
           root

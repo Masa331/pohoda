@@ -12,7 +12,7 @@ module Pohoda
 
           root << build_element('vch:sourceAgenda', data[:source_agenda]) if data.key? :source_agenda
           if data.key? :source_document
-            root << Typ::SourceDocumentType.new('sourceDocument', data[:source_document]).builder
+            root << Typ::SourceDocumentType.new('vch:sourceDocument', data[:source_document]).builder
           end
           root << build_element('vch:liquidationPrice', data[:liquidation_price]) if data.key? :liquidation_price
 

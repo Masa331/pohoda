@@ -11,10 +11,12 @@ module Pohoda
           end
 
           if data.key? :contract_desc
-            root << Con::ContractDescType.new('contractDesc', data[:contract_desc]).builder
+            root << Con::ContractDescType.new('con:contractDesc', data[:contract_desc]).builder
           end
           if data.key? :print
-            root << Prn::AgendaPrintType.new('print', data[:print]).builder
+            element = Ox::Element.new('con:print')
+            data[:print].each { |i| element << Prn::PrinterSettingsType.new('prn:printerSettings', i).builder }
+            root << element
           end
 
           root

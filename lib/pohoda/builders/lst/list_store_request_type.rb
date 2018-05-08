@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :request_store
-            root << Ftr::RequestStoreType.new('requestStore', data[:request_store]).builder
+            root << Ftr::RequestStoreType.new('lst:requestStore', data[:request_store]).builder
           end
 
           root

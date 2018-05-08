@@ -12,7 +12,7 @@ module Pohoda
 
           root << build_element('vyr:quantity', data[:quantity]) if data.key? :quantity
           if data.key? :stock_item
-            root << Typ::StockItemType.new('stockItem', data[:stock_item]).builder
+            root << Typ::StockItemType.new('vyr:stockItem', data[:stock_item]).builder
           end
           root << build_element('vyr:expirationDate', data[:expiration_date]) if data.key? :expiration_date
           root << build_element('vyr:note', data[:note]) if data.key? :note

@@ -77,11 +77,11 @@ module Pohoda
         end
 
         def labels
-          submodel_at(Typ::LabelsType, 'pro:labels')
+          array_of_at(Typ::LabelType, ['pro:labels', 'typ:label'])
         end
 
         def parameters
-          submodel_at(Typ::ParametersType, 'pro:parameters')
+          array_of_at(Typ::ParameterDocType, ['pro:parameters', 'typ:parameter'])
         end
 
         def validate
@@ -109,8 +109,8 @@ module Pohoda
           hash[:note] = note if has? 'pro:note'
           hash[:int_note] = int_note if has? 'pro:intNote'
           hash[:mark_record] = mark_record if has? 'pro:markRecord'
-          hash[:labels] = labels.to_h_with_attrs if has? 'pro:labels'
-          hash[:parameters] = parameters.to_h_with_attrs if has? 'pro:parameters'
+          hash[:labels] = labels.map(&:to_h_with_attrs) if has? 'pro:labels'
+          hash[:parameters] = parameters.map(&:to_h_with_attrs) if has? 'pro:parameters'
           hash[:validate] = validate.to_h_with_attrs if has? 'pro:validate'
 
           hash

@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :request_payment
-            root << Ftr::RequestPaymentType.new('requestPayment', data[:request_payment]).builder
+            root << Ftr::RequestPaymentType.new('lst:requestPayment', data[:request_payment]).builder
           end
 
           root

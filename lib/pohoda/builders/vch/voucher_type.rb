@@ -11,19 +11,21 @@ module Pohoda
           end
 
           if data.key? :voucher_header
-            root << Vch::VoucherHeaderType.new('voucherHeader', data[:voucher_header]).builder
+            root << Vch::VoucherHeaderType.new('vch:voucherHeader', data[:voucher_header]).builder
           end
           if data.key? :voucher_detail
-            root << Vch::VoucherDetailType.new('voucherDetail', data[:voucher_detail]).builder
+            root << Vch::VoucherDetailType.new('vch:voucherDetail', data[:voucher_detail]).builder
           end
           if data.key? :voucher_summary
-            root << Vch::VoucherSummaryType.new('voucherSummary', data[:voucher_summary]).builder
+            root << Vch::VoucherSummaryType.new('vch:voucherSummary', data[:voucher_summary]).builder
           end
           if data.key? :eet
-            root << Typ::EETType.new('EET', data[:eet]).builder
+            root << Typ::EETType.new('vch:EET', data[:eet]).builder
           end
           if data.key? :print
-            root << Prn::AgendaPrintType.new('print', data[:print]).builder
+            element = Ox::Element.new('vch:print')
+            data[:print].each { |i| element << Prn::PrinterSettingsType.new('prn:printerSettings', i).builder }
+            root << element
           end
 
           root

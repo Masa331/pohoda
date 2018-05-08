@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :request_balance
-            root << Lst::RequestBalanceType.new('requestBalance', data[:request_balance]).builder
+            root << Lst::RequestBalanceType.new('lst:requestBalance', data[:request_balance]).builder
           end
 
           root

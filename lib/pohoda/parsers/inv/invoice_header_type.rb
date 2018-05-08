@@ -165,7 +165,7 @@ module Pohoda
         end
 
         def evidentiary_resources_moss
-          submodel_at(Typ::ResourcesMOSStype, 'inv:evidentiaryResourcesMOSS')
+          array_of_at(String, ['inv:evidentiaryResourcesMOSS', 'typ:ids'])
         end
 
         def accounting_period_moss
@@ -193,7 +193,7 @@ module Pohoda
         end
 
         def labels
-          submodel_at(Typ::LabelsType, 'inv:labels')
+          array_of_at(Typ::LabelType, ['inv:labels', 'typ:label'])
         end
 
         def intrastat
@@ -201,7 +201,7 @@ module Pohoda
         end
 
         def parameters
-          submodel_at(Typ::ParametersType, 'inv:parameters')
+          array_of_at(Typ::ParameterDocType, ['inv:parameters', 'typ:parameter'])
         end
 
         def validate
@@ -251,16 +251,16 @@ module Pohoda
           hash[:contract] = contract.to_h_with_attrs if has? 'inv:contract'
           hash[:reg_va_tin_eu] = reg_va_tin_eu.to_h_with_attrs if has? 'inv:regVATinEU'
           hash[:moss] = moss.to_h_with_attrs if has? 'inv:MOSS'
-          hash[:evidentiary_resources_moss] = evidentiary_resources_moss.to_h_with_attrs if has? 'inv:evidentiaryResourcesMOSS'
+          hash[:evidentiary_resources_moss] = evidentiary_resources_moss if has? 'inv:evidentiaryResourcesMOSS'
           hash[:accounting_period_moss] = accounting_period_moss if has? 'inv:accountingPeriodMOSS'
           hash[:carrier] = carrier.to_h_with_attrs if has? 'inv:carrier'
           hash[:note] = note if has? 'inv:note'
           hash[:int_note] = int_note if has? 'inv:intNote'
           hash[:liquidation] = liquidation.to_h_with_attrs if has? 'inv:liquidation'
           hash[:mark_record] = mark_record if has? 'inv:markRecord'
-          hash[:labels] = labels.to_h_with_attrs if has? 'inv:labels'
+          hash[:labels] = labels.map(&:to_h_with_attrs) if has? 'inv:labels'
           hash[:intrastat] = intrastat.to_h_with_attrs if has? 'inv:intrastat'
-          hash[:parameters] = parameters.to_h_with_attrs if has? 'inv:parameters'
+          hash[:parameters] = parameters.map(&:to_h_with_attrs) if has? 'inv:parameters'
           hash[:validate] = validate.to_h_with_attrs if has? 'inv:validate'
 
           hash

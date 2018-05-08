@@ -17,7 +17,7 @@ module Pohoda
           root << build_element('prm:length', data[:length]) if data.key? :length
           root << build_element('prm:definition', data[:definition]) if data.key? :definition
           if data.key? :list
-            root << Typ::RefType.new('list', data[:list]).builder
+            root << Typ::RefType.new('prm:list', data[:list]).builder
           end
           root << build_element('prm:use0', data[:use0]) if data.key? :use0
           root << build_element('prm:use1', data[:use1]) if data.key? :use1

@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :request_address_book
-            root << Ftr::RequestAddressBookType.new('requestAddressBook', data[:request_address_book]).builder
+            root << Ftr::RequestAddressBookType.new('lAdb:requestAddressBook', data[:request_address_book]).builder
           end
 
           root

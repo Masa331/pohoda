@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'equivalent-xml'
-require 'pohoda/builder/invoice_type'
 
 RSpec.describe Pohoda::Builder::InvoiceType do
   describe '#to_xml' do

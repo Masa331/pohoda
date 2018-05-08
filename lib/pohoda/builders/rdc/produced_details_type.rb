@@ -15,7 +15,7 @@ module Pohoda
           root << build_element('rdc:code', data[:code]) if data.key? :code
           root << build_element('rdc:actionType', data[:action_type]) if data.key? :action_type
           if data.key? :ext_id
-            root << Typ::ExtIdType.new('extId', data[:ext_id]).builder
+            root << Typ::ExtIdType.new('rdc:extId', data[:ext_id]).builder
           end
 
           root

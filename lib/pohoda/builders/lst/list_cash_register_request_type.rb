@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :request_cash_register
-            root << Ftr::RequestCashRegisterType.new('requestCashRegister', data[:request_cash_register]).builder
+            root << Ftr::RequestCashRegisterType.new('lst:requestCashRegister', data[:request_cash_register]).builder
           end
 
           root

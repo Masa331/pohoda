@@ -101,7 +101,7 @@ module Pohoda
         end
 
         def evidentiary_resources_moss
-          submodel_at(Typ::ResourcesMOSStype, 'vch:evidentiaryResourcesMOSS')
+          array_of_at(String, ['vch:evidentiaryResourcesMOSS', 'typ:ids'])
         end
 
         def accounting_period_moss
@@ -121,11 +121,11 @@ module Pohoda
         end
 
         def labels
-          submodel_at(Typ::LabelsType, 'vch:labels')
+          array_of_at(Typ::LabelType, ['vch:labels', 'typ:label'])
         end
 
         def parameters
-          submodel_at(Typ::ParametersType, 'vch:parameters')
+          array_of_at(Typ::ParameterDocType, ['vch:parameters', 'typ:parameter'])
         end
 
         def validate
@@ -159,13 +159,13 @@ module Pohoda
           hash[:contract] = contract.to_h_with_attrs if has? 'vch:contract'
           hash[:reg_va_tin_eu] = reg_va_tin_eu.to_h_with_attrs if has? 'vch:regVATinEU'
           hash[:moss] = moss.to_h_with_attrs if has? 'vch:MOSS'
-          hash[:evidentiary_resources_moss] = evidentiary_resources_moss.to_h_with_attrs if has? 'vch:evidentiaryResourcesMOSS'
+          hash[:evidentiary_resources_moss] = evidentiary_resources_moss if has? 'vch:evidentiaryResourcesMOSS'
           hash[:accounting_period_moss] = accounting_period_moss if has? 'vch:accountingPeriodMOSS'
           hash[:note] = note if has? 'vch:note'
           hash[:int_note] = int_note if has? 'vch:intNote'
           hash[:mark_record] = mark_record if has? 'vch:markRecord'
-          hash[:labels] = labels.to_h_with_attrs if has? 'vch:labels'
-          hash[:parameters] = parameters.to_h_with_attrs if has? 'vch:parameters'
+          hash[:labels] = labels.map(&:to_h_with_attrs) if has? 'vch:labels'
+          hash[:parameters] = parameters.map(&:to_h_with_attrs) if has? 'vch:parameters'
           hash[:validate] = validate.to_h_with_attrs if has? 'vch:validate'
 
           hash

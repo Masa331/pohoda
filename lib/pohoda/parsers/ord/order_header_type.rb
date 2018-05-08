@@ -105,7 +105,7 @@ module Pohoda
         end
 
         def evidentiary_resources_moss
-          submodel_at(Typ::ResourcesMOSStype, 'ord:evidentiaryResourcesMOSS')
+          array_of_at(String, ['ord:evidentiaryResourcesMOSS', 'typ:ids'])
         end
 
         def accounting_period_moss
@@ -133,11 +133,11 @@ module Pohoda
         end
 
         def labels
-          submodel_at(Typ::LabelsType, 'ord:labels')
+          array_of_at(Typ::LabelType, ['ord:labels', 'typ:label'])
         end
 
         def parameters
-          submodel_at(Typ::ParametersType, 'ord:parameters')
+          array_of_at(Typ::ParameterDocType, ['ord:parameters', 'typ:parameter'])
         end
 
         def to_h_with_attrs
@@ -168,15 +168,15 @@ module Pohoda
           hash[:contract] = contract.to_h_with_attrs if has? 'ord:contract'
           hash[:reg_va_tin_eu] = reg_va_tin_eu.to_h_with_attrs if has? 'ord:regVATinEU'
           hash[:moss] = moss.to_h_with_attrs if has? 'ord:MOSS'
-          hash[:evidentiary_resources_moss] = evidentiary_resources_moss.to_h_with_attrs if has? 'ord:evidentiaryResourcesMOSS'
+          hash[:evidentiary_resources_moss] = evidentiary_resources_moss if has? 'ord:evidentiaryResourcesMOSS'
           hash[:accounting_period_moss] = accounting_period_moss if has? 'ord:accountingPeriodMOSS'
           hash[:permament_document] = permament_document if has? 'ord:permamentDocument'
           hash[:note] = note if has? 'ord:note'
           hash[:carrier] = carrier.to_h_with_attrs if has? 'ord:carrier'
           hash[:int_note] = int_note if has? 'ord:intNote'
           hash[:mark_record] = mark_record if has? 'ord:markRecord'
-          hash[:labels] = labels.to_h_with_attrs if has? 'ord:labels'
-          hash[:parameters] = parameters.to_h_with_attrs if has? 'ord:parameters'
+          hash[:labels] = labels.map(&:to_h_with_attrs) if has? 'ord:labels'
+          hash[:parameters] = parameters.map(&:to_h_with_attrs) if has? 'ord:parameters'
 
           hash
         end

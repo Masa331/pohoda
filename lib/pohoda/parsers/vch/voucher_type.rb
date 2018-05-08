@@ -21,7 +21,7 @@ module Pohoda
         end
 
         def print
-          submodel_at(Prn::AgendaPrintType, 'vch:print')
+          array_of_at(Prn::PrinterSettingsType, ['vch:print', 'prn:printerSettings'])
         end
 
         def to_h_with_attrs
@@ -31,7 +31,7 @@ module Pohoda
           hash[:voucher_detail] = voucher_detail.to_h_with_attrs if has? 'vch:voucherDetail'
           hash[:voucher_summary] = voucher_summary.to_h_with_attrs if has? 'vch:voucherSummary'
           hash[:eet] = eet.to_h_with_attrs if has? 'vch:EET'
-          hash[:print] = print.to_h_with_attrs if has? 'vch:print'
+          hash[:print] = print.map(&:to_h_with_attrs) if has? 'vch:print'
 
           hash
         end

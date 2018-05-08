@@ -11,13 +11,17 @@ module Pohoda
           end
 
           if data.key? :vyroba_header
-            root << Vyr::VyrobaHeaderType.new('vyrobaHeader', data[:vyroba_header]).builder
+            root << Vyr::VyrobaHeaderType.new('vyr:vyrobaHeader', data[:vyroba_header]).builder
           end
           if data.key? :vyroba_detail
-            root << Vyr::VyrobaDetailType.new('vyrobaDetail', data[:vyroba_detail]).builder
+            element = Ox::Element.new('vyr:vyrobaDetail')
+            data[:vyroba_detail].each { |i| element << Vyr::VyrobaItemType.new('vyr:vyrobaItem', i).builder }
+            root << element
           end
           if data.key? :print
-            root << Prn::AgendaPrintType.new('print', data[:print]).builder
+            element = Ox::Element.new('vyr:print')
+            data[:print].each { |i| element << Prn::PrinterSettingsType.new('prn:printerSettings', i).builder }
+            root << element
           end
 
           root

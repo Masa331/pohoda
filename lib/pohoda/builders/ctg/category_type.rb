@@ -20,10 +20,12 @@ module Pohoda
           root << build_element('ctg:note', data[:note]) if data.key? :note
           root << build_element('ctg:markRecord', data[:mark_record]) if data.key? :mark_record
           if data.key? :sub_categories
-            root << Ctg::SubCategoriesType.new('subCategories', data[:sub_categories]).builder
+            element = Ox::Element.new('ctg:subCategories')
+            data[:sub_categories].each { |i| element << Ctg::CategoryType.new('ctg:category', i).builder }
+            root << element
           end
           if data.key? :internet_params
-            root << Ctg::InternetParamsType.new('internetParams', data[:internet_params]).builder
+            root << Ctg::InternetParamsType.new('ctg:internetParams', data[:internet_params]).builder
           end
 
           root

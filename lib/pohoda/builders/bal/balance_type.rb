@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :balance_header
-            root << Bal::BalanceHeaderType.new('balanceHeader', data[:balance_header]).builder
+            root << Bal::BalanceHeaderType.new('bal:balanceHeader', data[:balance_header]).builder
           end
           if data.key? :balance_item
             data[:balance_item].each { |i| root << Bal::BalanceItemType.new('bal:balanceItem', i).builder }

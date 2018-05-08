@@ -18,7 +18,7 @@ module Pohoda
         end
 
         def stock_price_item
-          submodel_at(Stk::StockPriceItemType, 'stk:stockPriceItem')
+          array_of_at(Typ::StockPriceType, ['stk:stockPriceItem', 'stk:stockPrice'])
         end
 
         def to_h_with_attrs
@@ -27,7 +27,7 @@ module Pohoda
           hash[:warehouse] = warehouse if has? 'stk:warehouse'
           hash[:not_expedite] = not_expedite if has? 'stk:notExpedite'
           hash[:edit] = edit if has? 'stk:edit'
-          hash[:stock_price_item] = stock_price_item.to_h_with_attrs if has? 'stk:stockPriceItem'
+          hash[:stock_price_item] = stock_price_item.map(&:to_h_with_attrs) if has? 'stk:stockPriceItem'
 
           mega.inject(hash) { |memo, r| memo.merge r }
         end

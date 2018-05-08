@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :request_inventory_lists
-            root << Ftr::RequestInventoryListsType.new('requestInventoryLists', data[:request_inventory_lists]).builder
+            root << Ftr::RequestInventoryListsType.new('lst:requestInventoryLists', data[:request_inventory_lists]).builder
           end
 
           root

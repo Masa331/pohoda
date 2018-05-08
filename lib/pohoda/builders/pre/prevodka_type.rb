@@ -11,13 +11,17 @@ module Pohoda
           end
 
           if data.key? :prevodka_header
-            root << Pre::PrevodkaHeaderType.new('prevodkaHeader', data[:prevodka_header]).builder
+            root << Pre::PrevodkaHeaderType.new('pre:prevodkaHeader', data[:prevodka_header]).builder
           end
           if data.key? :prevodka_detail
-            root << Pre::PrevodkaDetailType.new('prevodkaDetail', data[:prevodka_detail]).builder
+            element = Ox::Element.new('pre:prevodkaDetail')
+            data[:prevodka_detail].each { |i| element << Pre::PrevodkaItemType.new('pre:prevodkaItem', i).builder }
+            root << element
           end
           if data.key? :print
-            root << Prn::AgendaPrintType.new('print', data[:print]).builder
+            element = Ox::Element.new('pre:print')
+            data[:print].each { |i| element << Prn::PrinterSettingsType.new('prn:printerSettings', i).builder }
+            root << element
           end
 
           root

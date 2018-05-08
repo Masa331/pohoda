@@ -12,7 +12,7 @@ module Pohoda
 
           root << build_element('adb:id', data[:id]) if data.key? :id
           if data.key? :identity
-            root << Typ::Address.new('identity', data[:identity]).builder
+            root << Typ::Address.new('adb:identity', data[:identity]).builder
           end
           root << build_element('adb:region', data[:region]) if data.key? :region
           root << build_element('adb:phone', data[:phone]) if data.key? :phone
@@ -29,11 +29,11 @@ module Pohoda
           root << build_element('adb:priceIDS', data[:price_ids]) if data.key? :price_ids
           root << build_element('adb:maturity', data[:maturity]) if data.key? :maturity
           if data.key? :payment_type
-            root << Typ::PaymentType.new('paymentType', data[:payment_type]).builder
+            root << Typ::PaymentType.new('adb:paymentType', data[:payment_type]).builder
           end
           root << build_element('adb:agreement', data[:agreement]) if data.key? :agreement
           if data.key? :number
-            root << Typ::NumberADType.new('number', data[:number]).builder
+            root << Typ::NumberADType.new('adb:number', data[:number]).builder
           end
           root << build_element('adb:ost1', data[:ost1]) if data.key? :ost1
           root << build_element('adb:ost2', data[:ost2]) if data.key? :ost2
@@ -52,50 +52,54 @@ module Pohoda
           root << build_element('adb:note', data[:note]) if data.key? :note
           root << build_element('adb:intNote', data[:int_note]) if data.key? :int_note
           if data.key? :accounting_received_invoice
-            root << Typ::AccountingType.new('accountingReceivedInvoice', data[:accounting_received_invoice]).builder
+            root << Typ::AccountingType.new('adb:accountingReceivedInvoice', data[:accounting_received_invoice]).builder
           end
           if data.key? :accounting_issued_invoice
-            root << Typ::AccountingType.new('accountingIssuedInvoice', data[:accounting_issued_invoice]).builder
+            root << Typ::AccountingType.new('adb:accountingIssuedInvoice', data[:accounting_issued_invoice]).builder
           end
           if data.key? :classification_vat_received_invoice
-            root << Typ::ClassificationVATType.new('classificationVATReceivedInvoice', data[:classification_vat_received_invoice]).builder
+            root << Typ::ClassificationVATType.new('adb:classificationVATReceivedInvoice', data[:classification_vat_received_invoice]).builder
           end
           if data.key? :classification_vat_issued_invoice
-            root << Typ::ClassificationVATType.new('classificationVATIssuedInvoice', data[:classification_vat_issued_invoice]).builder
+            root << Typ::ClassificationVATType.new('adb:classificationVATIssuedInvoice', data[:classification_vat_issued_invoice]).builder
           end
           if data.key? :classification_kvdph_received_invoice
-            root << Typ::RefType.new('classificationKVDPHReceivedInvoice', data[:classification_kvdph_received_invoice]).builder
+            root << Typ::RefType.new('adb:classificationKVDPHReceivedInvoice', data[:classification_kvdph_received_invoice]).builder
           end
           if data.key? :classification_kvdph_issued_invoice
-            root << Typ::RefType.new('classificationKVDPHIssuedInvoice', data[:classification_kvdph_issued_invoice]).builder
+            root << Typ::RefType.new('adb:classificationKVDPHIssuedInvoice', data[:classification_kvdph_issued_invoice]).builder
           end
           if data.key? :account_for_invoicing
-            root << Typ::AccountType.new('accountForInvoicing', data[:account_for_invoicing]).builder
+            root << Typ::AccountType.new('adb:accountForInvoicing', data[:account_for_invoicing]).builder
           end
           if data.key? :responsible_person
-            root << Typ::ResponsiblePersonType.new('responsiblePerson', data[:responsible_person]).builder
+            root << Typ::ResponsiblePersonType.new('adb:responsiblePerson', data[:responsible_person]).builder
           end
           root << build_element('adb:toleranceMaturity', data[:tolerance_maturity]) if data.key? :tolerance_maturity
           if data.key? :centre
-            root << Typ::RefType.new('centre', data[:centre]).builder
+            root << Typ::RefType.new('adb:centre', data[:centre]).builder
           end
           if data.key? :activity
-            root << Typ::RefType.new('activity', data[:activity]).builder
+            root << Typ::RefType.new('adb:activity', data[:activity]).builder
           end
           if data.key? :contract
-            root << Typ::RefType.new('contract', data[:contract]).builder
+            root << Typ::RefType.new('adb:contract', data[:contract]).builder
           end
           root << build_element('adb:turnover', data[:turnover]) if data.key? :turnover
           root << build_element('adb:turnover2', data[:turnover2]) if data.key? :turnover2
           if data.key? :parameters
-            root << Typ::ParametersType.new('parameters', data[:parameters]).builder
+            element = Ox::Element.new('adb:parameters')
+            data[:parameters].each { |i| element << Typ::ParameterDocType.new('typ:parameter', i).builder }
+            root << element
           end
           if data.key? :ref_address
-            root << Typ::RefAddressType.new('refAddress', data[:ref_address]).builder
+            root << Typ::RefAddressType.new('adb:refAddress', data[:ref_address]).builder
           end
           root << build_element('adb:markRecord', data[:mark_record]) if data.key? :mark_record
           if data.key? :labels
-            root << Typ::LabelsType.new('labels', data[:labels]).builder
+            element = Ox::Element.new('adb:labels')
+            data[:labels].each { |i| element << Typ::LabelType.new('typ:label', i).builder }
+            root << element
           end
 
           root

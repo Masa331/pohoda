@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :record
-            root << SEET::RecordSendEETType.new('record', data[:record]).builder
+            root << SEET::RecordSendEETType.new('sEET:record', data[:record]).builder
           end
 
           root

@@ -14,10 +14,10 @@ module Pohoda
           root << build_element('vch:roundingVAT', data[:rounding_vat]) if data.key? :rounding_vat
           root << build_element('vch:calculateVAT', data[:calculate_vat]) if data.key? :calculate_vat
           if data.key? :home_currency
-            root << Typ::TypeCurrencyHome.new('homeCurrency', data[:home_currency]).builder
+            root << Typ::TypeCurrencyHome.new('vch:homeCurrency', data[:home_currency]).builder
           end
           if data.key? :foreign_currency
-            root << Typ::TypeCurrencyForeign.new('foreignCurrency', data[:foreign_currency]).builder
+            root << Typ::TypeCurrencyForeign.new('vch:foreignCurrency', data[:foreign_currency]).builder
           end
 
           root

@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :request_int_doc
-            root << Ftr::RequestIntDocType.new('requestIntDoc', data[:request_int_doc]).builder
+            root << Ftr::RequestIntDocType.new('lst:requestIntDoc', data[:request_int_doc]).builder
           end
 
           root

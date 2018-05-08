@@ -13,7 +13,7 @@ module Pohoda
           root << build_element('acp:price', data[:price]) if data.key? :price
           root << build_element('acp:payVAT', data[:pay_vat]) if data.key? :pay_vat
           if data.key? :foreign_currency
-            root << Acp::TypeAcpCurrencyForeign.new('foreignCurrency', data[:foreign_currency]).builder
+            root << Acp::TypeAcpCurrencyForeign.new('acp:foreignCurrency', data[:foreign_currency]).builder
           end
 
           root

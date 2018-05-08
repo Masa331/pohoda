@@ -20,34 +20,36 @@ module Pohoda
           root << build_element('vyd:percentVAT', data[:percent_vat]) if data.key? :percent_vat
           root << build_element('vyd:discountPercentage', data[:discount_percentage]) if data.key? :discount_percentage
           if data.key? :home_currency
-            root << Typ::TypeCurrencyHomeItem.new('homeCurrency', data[:home_currency]).builder
+            root << Typ::TypeCurrencyHomeItem.new('vyd:homeCurrency', data[:home_currency]).builder
           end
           if data.key? :foreign_currency
-            root << Typ::TypeCurrencyForeignItem.new('foreignCurrency', data[:foreign_currency]).builder
+            root << Typ::TypeCurrencyForeignItem.new('vyd:foreignCurrency', data[:foreign_currency]).builder
           end
           if data.key? :type_service_moss
-            root << Typ::MOSStype.new('typeServiceMOSS', data[:type_service_moss]).builder
+            root << Typ::MOSStype.new('vyd:typeServiceMOSS', data[:type_service_moss]).builder
           end
           root << build_element('vyd:note', data[:note]) if data.key? :note
           root << build_element('vyd:code', data[:code]) if data.key? :code
           root << build_element('vyd:guarantee', data[:guarantee]) if data.key? :guarantee
           root << build_element('vyd:guaranteeType', data[:guarantee_type]) if data.key? :guarantee_type
           if data.key? :stock_item
-            root << Typ::StockItemType.new('stockItem', data[:stock_item]).builder
+            root << Typ::StockItemType.new('vyd:stockItem', data[:stock_item]).builder
           end
           root << build_element('vyd:acc', data[:acc]) if data.key? :acc
           if data.key? :centre
-            root << Typ::RefType.new('centre', data[:centre]).builder
+            root << Typ::RefType.new('vyd:centre', data[:centre]).builder
           end
           if data.key? :activity
-            root << Typ::RefType.new('activity', data[:activity]).builder
+            root << Typ::RefType.new('vyd:activity', data[:activity]).builder
           end
           if data.key? :contract
-            root << Typ::RefType.new('contract', data[:contract]).builder
+            root << Typ::RefType.new('vyd:contract', data[:contract]).builder
           end
           root << build_element('vyd:expirationDate', data[:expiration_date]) if data.key? :expiration_date
           if data.key? :parameters
-            root << Typ::ParametersType.new('parameters', data[:parameters]).builder
+            element = Ox::Element.new('vyd:parameters')
+            data[:parameters].each { |i| element << Typ::ParameterDocType.new('typ:parameter', i).builder }
+            root << element
           end
 
           root

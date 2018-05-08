@@ -15,7 +15,7 @@ module Pohoda
             data[:ext_id].each { |i| root << Typ::ExtIdType.new('typ:extId', i).builder }
           end
           if data.key? :address
-            root << Typ::AddressType.new('address', data[:address]).builder
+            root << Typ::AddressType.new('typ:address', data[:address]).builder
           end
           if data.key? :ship_to_address
             data[:ship_to_address].each { |i| root << Typ::ShipToAddressType.new('typ:shipToAddress', i).builder }

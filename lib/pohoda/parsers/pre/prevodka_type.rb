@@ -9,19 +9,19 @@ module Pohoda
         end
 
         def prevodka_detail
-          submodel_at(Pre::PrevodkaDetailType, 'pre:prevodkaDetail')
+          array_of_at(Pre::PrevodkaItemType, ['pre:prevodkaDetail', 'pre:prevodkaItem'])
         end
 
         def print
-          submodel_at(Prn::AgendaPrintType, 'pre:print')
+          array_of_at(Prn::PrinterSettingsType, ['pre:print', 'prn:printerSettings'])
         end
 
         def to_h_with_attrs
           hash = ParserCore::HashWithAttributes.new({}, attributes)
 
           hash[:prevodka_header] = prevodka_header.to_h_with_attrs if has? 'pre:prevodkaHeader'
-          hash[:prevodka_detail] = prevodka_detail.to_h_with_attrs if has? 'pre:prevodkaDetail'
-          hash[:print] = print.to_h_with_attrs if has? 'pre:print'
+          hash[:prevodka_detail] = prevodka_detail.map(&:to_h_with_attrs) if has? 'pre:prevodkaDetail'
+          hash[:print] = print.map(&:to_h_with_attrs) if has? 'pre:print'
 
           hash
         end

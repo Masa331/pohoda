@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'pohoda/builder/data_pack'
 
 RSpec.describe Pohoda::Builder::DataPack do
   context 'data pack with no items' do

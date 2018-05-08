@@ -12,13 +12,17 @@ module Pohoda
 
           root << build_element('adb:actionType', data[:action_type]) if data.key? :action_type
           if data.key? :addressbook_header
-            root << Adb::AddressbookHeaderType.new('addressbookHeader', data[:addressbook_header]).builder
+            root << Adb::AddressbookHeaderType.new('adb:addressbookHeader', data[:addressbook_header]).builder
           end
           if data.key? :addressbook_account
-            root << Adb::AddressbookAccountType.new('addressbookAccount', data[:addressbook_account]).builder
+            element = Ox::Element.new('adb:addressbookAccount')
+            data[:addressbook_account].each { |i| element << Adb::AccountItemType.new('adb:accountItem', i).builder }
+            root << element
           end
           if data.key? :print
-            root << Prn::AgendaPrintType.new('print', data[:print]).builder
+            element = Ox::Element.new('adb:print')
+            data[:print].each { |i| element << Prn::PrinterSettingsType.new('prn:printerSettings', i).builder }
+            root << element
           end
 
           root

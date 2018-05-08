@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :numerical_series_header
-            root << Nms::NumericalSeriesHeaderType.new('numericalSeriesHeader', data[:numerical_series_header]).builder
+            root << Nms::NumericalSeriesHeaderType.new('nms:numericalSeriesHeader', data[:numerical_series_header]).builder
           end
 
           root

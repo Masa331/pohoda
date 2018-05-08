@@ -85,7 +85,7 @@ module Pohoda
         end
 
         def parameters
-          submodel_at(Typ::ParametersType, 'pro:parameters')
+          array_of_at(Typ::ParameterDocType, ['pro:parameters', 'typ:parameter'])
         end
 
         def to_h_with_attrs
@@ -111,7 +111,7 @@ module Pohoda
           hash[:contract] = contract.to_h_with_attrs if has? 'pro:contract'
           hash[:expiration_date] = expiration_date if has? 'pro:expirationDate'
           hash[:eet_item] = eet_item if has? 'pro:EETItem'
-          hash[:parameters] = parameters.to_h_with_attrs if has? 'pro:parameters'
+          hash[:parameters] = parameters.map(&:to_h_with_attrs) if has? 'pro:parameters'
 
           hash
         end

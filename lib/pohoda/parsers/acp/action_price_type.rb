@@ -9,14 +9,14 @@ module Pohoda
         end
 
         def action_price_item
-          submodel_at(Acp::ActionPriceItemType, 'acp:actionPriceItem')
+          array_of_at(Acp::ActionPriceStockItemType, ['acp:actionPriceItem', 'acp:actionPriceStockItem'])
         end
 
         def to_h_with_attrs
           hash = ParserCore::HashWithAttributes.new({}, attributes)
 
           hash[:action_price_header] = action_price_header.to_h_with_attrs if has? 'acp:actionPriceHeader'
-          hash[:action_price_item] = action_price_item.to_h_with_attrs if has? 'acp:actionPriceItem'
+          hash[:action_price_item] = action_price_item.map(&:to_h_with_attrs) if has? 'acp:actionPriceItem'
 
           hash
         end

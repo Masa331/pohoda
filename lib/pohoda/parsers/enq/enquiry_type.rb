@@ -9,7 +9,7 @@ module Pohoda
         end
 
         def enquiry_detail
-          submodel_at(Enq::EnquiryDetailType, 'enq:enquiryDetail')
+          array_of_at(Enq::EnquiryItemType, ['enq:enquiryDetail', 'enq:enquiryItem'])
         end
 
         def enquiry_summary
@@ -17,16 +17,16 @@ module Pohoda
         end
 
         def print
-          submodel_at(Prn::AgendaPrintType, 'enq:print')
+          array_of_at(Prn::PrinterSettingsType, ['enq:print', 'prn:printerSettings'])
         end
 
         def to_h_with_attrs
           hash = ParserCore::HashWithAttributes.new({}, attributes)
 
           hash[:enquiry_header] = enquiry_header.to_h_with_attrs if has? 'enq:enquiryHeader'
-          hash[:enquiry_detail] = enquiry_detail.to_h_with_attrs if has? 'enq:enquiryDetail'
+          hash[:enquiry_detail] = enquiry_detail.map(&:to_h_with_attrs) if has? 'enq:enquiryDetail'
           hash[:enquiry_summary] = enquiry_summary.to_h_with_attrs if has? 'enq:enquirySummary'
-          hash[:print] = print.to_h_with_attrs if has? 'enq:print'
+          hash[:print] = print.map(&:to_h_with_attrs) if has? 'enq:print'
 
           hash
         end

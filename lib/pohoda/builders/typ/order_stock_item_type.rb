@@ -11,11 +11,11 @@ module Pohoda
           end
 
           if data.key? :action_type
-            root << Typ::ActionTypeStockItem.new('actionType', data[:action_type]).builder
+            root << Typ::ActionTypeStockItem.new('typ:actionType', data[:action_type]).builder
           end
           root << build_element('typ:stockOrder', data[:stock_order]) if data.key? :stock_order
           if data.key? :stock_item
-            root << Typ::StockRefType.new('stockItem', data[:stock_item]).builder
+            root << Typ::StockRefType.new('typ:stockItem', data[:stock_item]).builder
           end
 
           root

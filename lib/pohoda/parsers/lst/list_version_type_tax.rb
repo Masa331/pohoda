@@ -5,7 +5,7 @@ module Pohoda
         include ParserCore::BaseParser
 
         def import_details
-          submodel_at(Rdc::ImportDetailsType, 'lst:importDetails')
+          array_of_at(Rdc::DetailType, ['lst:importDetails', 'rdc:detail'])
         end
 
         def import_data
@@ -15,7 +15,7 @@ module Pohoda
         def to_h_with_attrs
           hash = ParserCore::HashWithAttributes.new({}, attributes)
 
-          hash[:import_details] = import_details.to_h_with_attrs if has? 'lst:importDetails'
+          hash[:import_details] = import_details.map(&:to_h_with_attrs) if has? 'lst:importDetails'
           hash[:import_data] = import_data if has? 'lst:importData'
 
           hash

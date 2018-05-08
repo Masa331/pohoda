@@ -69,7 +69,7 @@ module Pohoda
         end
 
         def parameters
-          submodel_at(Typ::ParametersType, 'nms:parameters')
+          array_of_at(Typ::ParameterDocType, ['nms:parameters', 'typ:parameter'])
         end
 
         def to_h_with_attrs
@@ -91,7 +91,7 @@ module Pohoda
           hash[:year] = year if has? 'nms:year'
           hash[:note] = note if has? 'nms:note'
           hash[:mark_record] = mark_record if has? 'nms:markRecord'
-          hash[:parameters] = parameters.to_h_with_attrs if has? 'nms:parameters'
+          hash[:parameters] = parameters.map(&:to_h_with_attrs) if has? 'nms:parameters'
 
           hash
         end

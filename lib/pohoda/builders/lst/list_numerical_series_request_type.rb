@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :request_numerical_series
-            root << Ftr::RequestNumericalSeriesType.new('requestNumericalSeries', data[:request_numerical_series]).builder
+            root << Ftr::RequestNumericalSeriesType.new('lst:requestNumericalSeries', data[:request_numerical_series]).builder
           end
 
           root

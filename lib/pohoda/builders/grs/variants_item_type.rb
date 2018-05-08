@@ -11,10 +11,10 @@ module Pohoda
           end
 
           if data.key? :action_type
-            root << Typ::ActionTypeItemAddDelete.new('actionType', data[:action_type]).builder
+            root << Typ::ActionTypeItemAddDelete.new('grs:actionType', data[:action_type]).builder
           end
           if data.key? :stock_item
-            root << Typ::StockItemType.new('stockItem', data[:stock_item]).builder
+            root << Typ::StockItemType.new('grs:stockItem', data[:stock_item]).builder
           end
           root << build_element('grs:order', data[:order]) if data.key? :order
           root << build_element('grs:name', data[:name]) if data.key? :name

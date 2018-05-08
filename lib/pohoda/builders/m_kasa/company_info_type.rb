@@ -11,17 +11,17 @@ module Pohoda
           end
 
           if data.key? :address
-            root << Typ::AddressInternetType.new('address', data[:address]).builder
+            root << Typ::AddressInternetType.new('mKasa:address', data[:address]).builder
           end
           if data.key? :establishment
-            root << Typ::EstablishmentType.new('establishment', data[:establishment]).builder
+            root << Typ::EstablishmentType.new('mKasa:establishment', data[:establishment]).builder
           end
           root << build_element('mKasa:unitType', data[:unit_type]) if data.key? :unit_type
           root << build_element('mKasa:suffix', data[:suffix]) if data.key? :suffix
           root << build_element('mKasa:stateType', data[:state_type]) if data.key? :state_type
           root << build_element('mKasa:register', data[:register]) if data.key? :register
           if data.key? :vat_payer
-            root << MKasa::VatPayerType.new('vatPayer', data[:vat_payer]).builder
+            root << MKasa::VatPayerType.new('mKasa:vatPayer', data[:vat_payer]).builder
           end
           root << build_element('mKasa:changeForFoodVouchers', data[:change_for_food_vouchers]) if data.key? :change_for_food_vouchers
 

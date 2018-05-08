@@ -65,11 +65,11 @@ module Pohoda
         end
 
         def labels
-          submodel_at(Typ::LabelsType, 'con:labels')
+          array_of_at(Typ::LabelType, ['con:labels', 'typ:label'])
         end
 
         def parameters
-          submodel_at(Typ::ParametersType, 'con:parameters')
+          array_of_at(Typ::ParameterDocType, ['con:parameters', 'typ:parameter'])
         end
 
         def to_h_with_attrs
@@ -90,8 +90,8 @@ module Pohoda
           hash[:ost2] = ost2 if has? 'con:ost2'
           hash[:note] = note if has? 'con:note'
           hash[:mark_record] = mark_record if has? 'con:markRecord'
-          hash[:labels] = labels.to_h_with_attrs if has? 'con:labels'
-          hash[:parameters] = parameters.to_h_with_attrs if has? 'con:parameters'
+          hash[:labels] = labels.map(&:to_h_with_attrs) if has? 'con:labels'
+          hash[:parameters] = parameters.map(&:to_h_with_attrs) if has? 'con:parameters'
 
           hash
         end

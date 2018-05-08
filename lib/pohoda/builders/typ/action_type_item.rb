@@ -12,10 +12,10 @@ module Pohoda
 
           root << build_element('typ:add', data[:add]) if data.key? :add
           if data.key? :update
-            root << Ftr::RequestItemType.new('update', data[:update]).builder
+            root << Ftr::RequestItemType.new('typ:update', data[:update]).builder
           end
           if data.key? :delete
-            root << Ftr::RequestItemType.new('delete', data[:delete]).builder
+            root << Ftr::RequestItemType.new('typ:delete', data[:delete]).builder
           end
 
           root

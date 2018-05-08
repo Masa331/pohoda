@@ -201,7 +201,7 @@ module Pohoda
         end
 
         def parameters
-          submodel_at(Typ::ParametersType, 'adb:parameters')
+          array_of_at(Typ::ParameterDocType, ['adb:parameters', 'typ:parameter'])
         end
 
         def ref_address
@@ -213,7 +213,7 @@ module Pohoda
         end
 
         def labels
-          submodel_at(Typ::LabelsType, 'adb:labels')
+          array_of_at(Typ::LabelType, ['adb:labels', 'typ:label'])
         end
 
         def to_h_with_attrs
@@ -268,10 +268,10 @@ module Pohoda
           hash[:contract] = contract.to_h_with_attrs if has? 'adb:contract'
           hash[:turnover] = turnover if has? 'adb:turnover'
           hash[:turnover2] = turnover2 if has? 'adb:turnover2'
-          hash[:parameters] = parameters.to_h_with_attrs if has? 'adb:parameters'
+          hash[:parameters] = parameters.map(&:to_h_with_attrs) if has? 'adb:parameters'
           hash[:ref_address] = ref_address.to_h_with_attrs if has? 'adb:refAddress'
           hash[:mark_record] = mark_record if has? 'adb:markRecord'
-          hash[:labels] = labels.to_h_with_attrs if has? 'adb:labels'
+          hash[:labels] = labels.map(&:to_h_with_attrs) if has? 'adb:labels'
 
           hash
         end

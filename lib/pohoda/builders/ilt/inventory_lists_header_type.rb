@@ -12,21 +12,21 @@ module Pohoda
 
           root << build_element('ilt:id', data[:id]) if data.key? :id
           if data.key? :number
-            root << Typ::NumberType.new('number', data[:number]).builder
+            root << Typ::NumberType.new('ilt:number', data[:number]).builder
           end
           root << build_element('ilt:date', data[:date]) if data.key? :date
           root << build_element('ilt:text', data[:text]) if data.key? :text
           if data.key? :store
-            root << Typ::RefType.new('store', data[:store]).builder
+            root << Typ::RefType.new('ilt:store', data[:store]).builder
           end
           if data.key? :centre
-            root << Typ::RefType.new('centre', data[:centre]).builder
+            root << Typ::RefType.new('ilt:centre', data[:centre]).builder
           end
           if data.key? :activity
-            root << Typ::RefType.new('activity', data[:activity]).builder
+            root << Typ::RefType.new('ilt:activity', data[:activity]).builder
           end
           if data.key? :contract
-            root << Typ::RefType.new('contract', data[:contract]).builder
+            root << Typ::RefType.new('ilt:contract', data[:contract]).builder
           end
           root << build_element('ilt:note', data[:note]) if data.key? :note
           root << build_element('ilt:markRecord', data[:mark_record]) if data.key? :mark_record

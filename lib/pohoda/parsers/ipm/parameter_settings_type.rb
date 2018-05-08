@@ -13,7 +13,7 @@ module Pohoda
         end
 
         def parameter_list
-          submodel_at(Ipm::ParameterListType, 'ipm:parameterList')
+          array_of_at(Ipm::ParameterListItemType, ['ipm:parameterList', 'ipm:parameterListItem'])
         end
 
         def currency
@@ -25,7 +25,7 @@ module Pohoda
 
           hash[:unit] = unit if has? 'ipm:unit'
           hash[:length] = length if has? 'ipm:length'
-          hash[:parameter_list] = parameter_list.to_h_with_attrs if has? 'ipm:parameterList'
+          hash[:parameter_list] = parameter_list.map(&:to_h_with_attrs) if has? 'ipm:parameterList'
           hash[:currency] = currency.to_h_with_attrs if has? 'ipm:currency'
 
           hash

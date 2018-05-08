@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :request_offer
-            root << Ftr::RequestOfferType.new('requestOffer', data[:request_offer]).builder
+            root << Ftr::RequestOfferType.new('lst:requestOffer', data[:request_offer]).builder
           end
 
           root

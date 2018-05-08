@@ -11,17 +11,17 @@ module Pohoda
           end
 
           if data.key? :action_type
-            root << Typ::ActionTypeItem.new('actionType', data[:action_type]).builder
+            root << Typ::ActionTypeItem.new('sup:actionType', data[:action_type]).builder
           end
           root << build_element('sup:id', data[:id]) if data.key? :id
           if data.key? :ref_ad
-            root << Typ::RefTypeSupplierAddress.new('refAd', data[:ref_ad]).builder
+            root << Typ::RefTypeSupplierAddress.new('sup:refAd', data[:ref_ad]).builder
           end
           root << build_element('sup:orderCode', data[:order_code]) if data.key? :order_code
           root << build_element('sup:orderName', data[:order_name]) if data.key? :order_name
           root << build_element('sup:purchasingPrice', data[:purchasing_price]) if data.key? :purchasing_price
           if data.key? :currency
-            root << Typ::RefType.new('currency', data[:currency]).builder
+            root << Typ::RefType.new('sup:currency', data[:currency]).builder
           end
           root << build_element('sup:rate', data[:rate]) if data.key? :rate
           root << build_element('sup:payVAT', data[:pay_vat]) if data.key? :pay_vat
@@ -31,7 +31,7 @@ module Pohoda
           root << build_element('sup:unitCoefEAN', data[:unit_coef_ean]) if data.key? :unit_coef_ean
           root << build_element('sup:deliveryTime', data[:delivery_time]) if data.key? :delivery_time
           if data.key? :delivery_period
-            root << Typ::RefType.new('deliveryPeriod', data[:delivery_period]).builder
+            root << Typ::RefType.new('sup:deliveryPeriod', data[:delivery_period]).builder
           end
           root << build_element('sup:minQuantity', data[:min_quantity]) if data.key? :min_quantity
           root << build_element('sup:unit', data[:unit]) if data.key? :unit

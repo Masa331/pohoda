@@ -61,7 +61,7 @@ module Pohoda
         end
 
         def evidentiary_resources_moss
-          submodel_at(Typ::ResourcesMOSStype, 'ofr:evidentiaryResourcesMOSS')
+          array_of_at(String, ['ofr:evidentiaryResourcesMOSS', 'typ:ids'])
         end
 
         def accounting_period_moss
@@ -89,11 +89,11 @@ module Pohoda
         end
 
         def labels
-          submodel_at(Typ::LabelsType, 'ofr:labels')
+          array_of_at(Typ::LabelType, ['ofr:labels', 'typ:label'])
         end
 
         def parameters
-          submodel_at(Typ::ParametersType, 'ofr:parameters')
+          array_of_at(Typ::ParameterDocType, ['ofr:parameters', 'typ:parameter'])
         end
 
         def to_h_with_attrs
@@ -113,15 +113,15 @@ module Pohoda
           hash[:contract] = contract.to_h_with_attrs if has? 'ofr:contract'
           hash[:reg_va_tin_eu] = reg_va_tin_eu.to_h_with_attrs if has? 'ofr:regVATinEU'
           hash[:moss] = moss.to_h_with_attrs if has? 'ofr:MOSS'
-          hash[:evidentiary_resources_moss] = evidentiary_resources_moss.to_h_with_attrs if has? 'ofr:evidentiaryResourcesMOSS'
+          hash[:evidentiary_resources_moss] = evidentiary_resources_moss if has? 'ofr:evidentiaryResourcesMOSS'
           hash[:accounting_period_moss] = accounting_period_moss if has? 'ofr:accountingPeriodMOSS'
           hash[:is_executed] = is_executed if has? 'ofr:isExecuted'
           hash[:details] = details if has? 'ofr:details'
           hash[:note] = note if has? 'ofr:note'
           hash[:int_note] = int_note if has? 'ofr:intNote'
           hash[:mark_record] = mark_record if has? 'ofr:markRecord'
-          hash[:labels] = labels.to_h_with_attrs if has? 'ofr:labels'
-          hash[:parameters] = parameters.to_h_with_attrs if has? 'ofr:parameters'
+          hash[:labels] = labels.map(&:to_h_with_attrs) if has? 'ofr:labels'
+          hash[:parameters] = parameters.map(&:to_h_with_attrs) if has? 'ofr:parameters'
 
           hash
         end

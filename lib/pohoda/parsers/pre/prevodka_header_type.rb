@@ -73,7 +73,7 @@ module Pohoda
         end
 
         def parameters
-          submodel_at(Typ::ParametersType, 'pre:parameters')
+          array_of_at(Typ::ParameterDocType, ['pre:parameters', 'typ:parameter'])
         end
 
         def to_h_with_attrs
@@ -96,7 +96,7 @@ module Pohoda
           hash[:note] = note if has? 'pre:note'
           hash[:int_note] = int_note if has? 'pre:intNote'
           hash[:mark_record] = mark_record if has? 'pre:markRecord'
-          hash[:parameters] = parameters.to_h_with_attrs if has? 'pre:parameters'
+          hash[:parameters] = parameters.map(&:to_h_with_attrs) if has? 'pre:parameters'
 
           hash
         end

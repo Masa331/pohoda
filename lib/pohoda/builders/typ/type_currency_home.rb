@@ -21,7 +21,7 @@ module Pohoda
           root << build_element('typ:price3VAT', data[:price3_vat]) if data.key? :price3_vat
           root << build_element('typ:price3Sum', data[:price3_sum]) if data.key? :price3_sum
           if data.key? :round
-            root << Typ::TypeRound.new('round', data[:round]).builder
+            root << Typ::TypeRound.new('typ:round', data[:round]).builder
           end
 
           root

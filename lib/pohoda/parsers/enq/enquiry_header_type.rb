@@ -77,11 +77,11 @@ module Pohoda
         end
 
         def labels
-          submodel_at(Typ::LabelsType, 'enq:labels')
+          array_of_at(Typ::LabelType, ['enq:labels', 'typ:label'])
         end
 
         def parameters
-          submodel_at(Typ::ParametersType, 'enq:parameters')
+          array_of_at(Typ::ParameterDocType, ['enq:parameters', 'typ:parameter'])
         end
 
         def to_h_with_attrs
@@ -105,8 +105,8 @@ module Pohoda
           hash[:note] = note if has? 'enq:note'
           hash[:int_note] = int_note if has? 'enq:intNote'
           hash[:mark_record] = mark_record if has? 'enq:markRecord'
-          hash[:labels] = labels.to_h_with_attrs if has? 'enq:labels'
-          hash[:parameters] = parameters.to_h_with_attrs if has? 'enq:parameters'
+          hash[:labels] = labels.map(&:to_h_with_attrs) if has? 'enq:labels'
+          hash[:parameters] = parameters.map(&:to_h_with_attrs) if has? 'enq:parameters'
 
           hash
         end

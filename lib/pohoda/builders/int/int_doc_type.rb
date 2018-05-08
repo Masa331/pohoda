@@ -11,16 +11,20 @@ module Pohoda
           end
 
           if data.key? :int_doc_header
-            root << Int::IntDocHeaderType.new('intDocHeader', data[:int_doc_header]).builder
+            root << Int::IntDocHeaderType.new('int:intDocHeader', data[:int_doc_header]).builder
           end
           if data.key? :int_doc_detail
-            root << Int::IntDocDetailType.new('intDocDetail', data[:int_doc_detail]).builder
+            element = Ox::Element.new('int:intDocDetail')
+            data[:int_doc_detail].each { |i| element << Int::IntDocItemType.new('int:intDocItem', i).builder }
+            root << element
           end
           if data.key? :int_doc_summary
-            root << Int::IntDocSummaryType.new('intDocSummary', data[:int_doc_summary]).builder
+            root << Int::IntDocSummaryType.new('int:intDocSummary', data[:int_doc_summary]).builder
           end
           if data.key? :print
-            root << Prn::AgendaPrintType.new('print', data[:print]).builder
+            element = Ox::Element.new('int:print')
+            data[:print].each { |i| element << Prn::PrinterSettingsType.new('prn:printerSettings', i).builder }
+            root << element
           end
 
           root

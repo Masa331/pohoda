@@ -14,7 +14,9 @@ module Pohoda
           root << build_element('stk:notExpedite', data[:not_expedite]) if data.key? :not_expedite
           root << build_element('stk:edit', data[:edit]) if data.key? :edit
           if data.key? :stock_price_item
-            root << Stk::StockPriceItemType.new('stockPriceItem', data[:stock_price_item]).builder
+            element = Ox::Element.new('stk:stockPriceItem')
+            data[:stock_price_item].each { |i| element << Typ::StockPriceType.new('stk:stockPrice', i).builder }
+            root << element
           end
 
           root

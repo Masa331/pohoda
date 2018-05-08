@@ -11,10 +11,12 @@ module Pohoda
           end
 
           if data.key? :inventory_lists_header
-            root << Ilt::InventoryListsHeaderType.new('inventoryListsHeader', data[:inventory_lists_header]).builder
+            root << Ilt::InventoryListsHeaderType.new('ilt:inventoryListsHeader', data[:inventory_lists_header]).builder
           end
           if data.key? :inventory_lists_detail
-            root << Ilt::InventoryListsDetailType.new('inventoryListsDetail', data[:inventory_lists_detail]).builder
+            element = Ox::Element.new('ilt:inventoryListsDetail')
+            data[:inventory_lists_detail].each { |i| element << Ilt::InventoryListsItemType.new('ilt:inventoryListsItem', i).builder }
+            root << element
           end
 
           root

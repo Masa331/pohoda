@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :action_type
-            root << Typ::ActionTypeItem.new('actionType', data[:action_type]).builder
+            root << Typ::ActionTypeItem.new('typ:actionType', data[:action_type]).builder
           end
           root << build_element('typ:id', data[:id]) if data.key? :id
           root << build_element('typ:company', data[:company]) if data.key? :company
@@ -21,7 +21,7 @@ module Pohoda
           root << build_element('typ:street', data[:street]) if data.key? :street
           root << build_element('typ:zip', data[:zip]) if data.key? :zip
           if data.key? :country
-            root << Typ::RefType.new('country', data[:country]).builder
+            root << Typ::RefType.new('typ:country', data[:country]).builder
           end
           root << build_element('typ:phone', data[:phone]) if data.key? :phone
           root << build_element('typ:email', data[:email]) if data.key? :email

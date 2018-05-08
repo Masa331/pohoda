@@ -10,7 +10,7 @@ module Pohoda
             end
 
             if data.key? :filter
-              root << Ftr::FilterDocsDeleteType.new('filter', data[:filter]).builder
+              root << Ftr::FilterDocsDeleteType.new('ftr:filter', data[:filter]).builder
             end
 
             root

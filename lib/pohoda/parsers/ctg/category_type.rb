@@ -41,7 +41,7 @@ module Pohoda
         end
 
         def sub_categories
-          submodel_at(Ctg::SubCategoriesType, 'ctg:subCategories')
+          array_of_at(Ctg::CategoryType, ['ctg:subCategories', 'ctg:category'])
         end
 
         def internet_params
@@ -60,7 +60,7 @@ module Pohoda
           hash[:picture] = picture if has? 'ctg:picture'
           hash[:note] = note if has? 'ctg:note'
           hash[:mark_record] = mark_record if has? 'ctg:markRecord'
-          hash[:sub_categories] = sub_categories.to_h_with_attrs if has? 'ctg:subCategories'
+          hash[:sub_categories] = sub_categories.map(&:to_h_with_attrs) if has? 'ctg:subCategories'
           hash[:internet_params] = internet_params.to_h_with_attrs if has? 'ctg:internetParams'
 
           hash

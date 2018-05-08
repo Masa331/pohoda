@@ -12,7 +12,7 @@ module Pohoda
 
           root << build_element('csh:actionType', data[:action_type]) if data.key? :action_type
           if data.key? :cash_register_header
-            root << Csh::CashRegisterHeaderType.new('cashRegisterHeader', data[:cash_register_header]).builder
+            root << Csh::CashRegisterHeaderType.new('csh:cashRegisterHeader', data[:cash_register_header]).builder
           end
 
           root

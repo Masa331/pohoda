@@ -11,10 +11,12 @@ module Pohoda
           end
 
           if data.key? :action_price_header
-            root << Acp::ActionPriceHeaderType.new('actionPriceHeader', data[:action_price_header]).builder
+            root << Acp::ActionPriceHeaderType.new('acp:actionPriceHeader', data[:action_price_header]).builder
           end
           if data.key? :action_price_item
-            root << Acp::ActionPriceItemType.new('actionPriceItem', data[:action_price_item]).builder
+            element = Ox::Element.new('acp:actionPriceItem')
+            data[:action_price_item].each { |i| element << Acp::ActionPriceStockItemType.new('acp:actionPriceStockItem', i).builder }
+            root << element
           end
 
           root

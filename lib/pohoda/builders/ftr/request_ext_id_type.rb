@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :filter
-            root << Ftr::FilterExtIdType.new('filter', data[:filter]).builder
+            root << Ftr::FilterExtIdType.new('ftr:filter', data[:filter]).builder
           end
 
           root

@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :action_type
-            root << Typ::ActionTypeItem.new('actionType', data[:action_type]).builder
+            root << Typ::ActionTypeItem.new('adb:actionType', data[:action_type]).builder
           end
           root << build_element('adb:id', data[:id]) if data.key? :id
           root << build_element('adb:accountNumber', data[:account_number]) if data.key? :account_number

@@ -16,25 +16,27 @@ module Pohoda
           root << build_element('bnk:note', data[:note]) if data.key? :note
           root << build_element('bnk:symPar', data[:sym_par]) if data.key? :sym_par
           if data.key? :accounting
-            root << Typ::RefType.new('accounting', data[:accounting]).builder
+            root << Typ::RefType.new('bnk:accounting', data[:accounting]).builder
           end
           if data.key? :classification_vat
-            root << Typ::ClassificationVATType.new('classificationVAT', data[:classification_vat]).builder
+            root << Typ::ClassificationVATType.new('bnk:classificationVAT', data[:classification_vat]).builder
           end
           if data.key? :classification_kvdph
-            root << Typ::RefType.new('classificationKVDPH', data[:classification_kvdph]).builder
+            root << Typ::RefType.new('bnk:classificationKVDPH', data[:classification_kvdph]).builder
           end
           if data.key? :centre
-            root << Typ::RefType.new('centre', data[:centre]).builder
+            root << Typ::RefType.new('bnk:centre', data[:centre]).builder
           end
           if data.key? :activity
-            root << Typ::RefType.new('activity', data[:activity]).builder
+            root << Typ::RefType.new('bnk:activity', data[:activity]).builder
           end
           if data.key? :contract
-            root << Typ::RefType.new('contract', data[:contract]).builder
+            root << Typ::RefType.new('bnk:contract', data[:contract]).builder
           end
           if data.key? :parameters
-            root << Typ::ParametersType.new('parameters', data[:parameters]).builder
+            element = Ox::Element.new('bnk:parameters')
+            data[:parameters].each { |i| element << Typ::ParameterDocType.new('typ:parameter', i).builder }
+            root << element
           end
 
           root

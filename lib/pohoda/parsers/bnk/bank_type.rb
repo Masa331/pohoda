@@ -9,7 +9,7 @@ module Pohoda
         end
 
         def bank_detail
-          submodel_at(Bnk::BankDetailType, 'bnk:bankDetail')
+          array_of_at(Bnk::BankItemType, ['bnk:bankDetail', 'bnk:bankItem'])
         end
 
         def bank_summary
@@ -20,7 +20,7 @@ module Pohoda
           hash = ParserCore::HashWithAttributes.new({}, attributes)
 
           hash[:bank_header] = bank_header.to_h_with_attrs if has? 'bnk:bankHeader'
-          hash[:bank_detail] = bank_detail.to_h_with_attrs if has? 'bnk:bankDetail'
+          hash[:bank_detail] = bank_detail.map(&:to_h_with_attrs) if has? 'bnk:bankDetail'
           hash[:bank_summary] = bank_summary.to_h_with_attrs if has? 'bnk:bankSummary'
 
           hash

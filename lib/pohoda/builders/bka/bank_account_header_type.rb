@@ -12,7 +12,7 @@ module Pohoda
 
           root << build_element('bka:id', data[:id]) if data.key? :id
           if data.key? :ext_id
-            root << Typ::ExtIdType.new('extId', data[:ext_id]).builder
+            root << Typ::ExtIdType.new('bka:extId', data[:ext_id]).builder
           end
           root << build_element('bka:ids', data[:ids]) if data.key? :ids
           root << build_element('bka:numberAccount', data[:number_account]) if data.key? :number_account
@@ -22,10 +22,10 @@ module Pohoda
           root << build_element('bka:IBAN', data[:iban]) if data.key? :iban
           root << build_element('bka:SWIFT', data[:swift]) if data.key? :swift
           if data.key? :analytic_account
-            root << Typ::RefType.new('analyticAccount', data[:analytic_account]).builder
+            root << Typ::RefType.new('bka:analyticAccount', data[:analytic_account]).builder
           end
           if data.key? :currency_bank_account
-            root << Bka::CurrencyBankAccountType.new('currencyBankAccount', data[:currency_bank_account]).builder
+            root << Bka::CurrencyBankAccountType.new('bka:currencyBankAccount', data[:currency_bank_account]).builder
           end
           root << build_element('bka:cancelled', data[:cancelled]) if data.key? :cancelled
           root << build_element('bka:homebanking', data[:homebanking]) if data.key? :homebanking

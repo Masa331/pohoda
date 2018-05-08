@@ -9,7 +9,7 @@ module Pohoda
         end
 
         def offer_detail
-          submodel_at(Ofr::OfferDetailType, 'ofr:offerDetail')
+          array_of_at(Ofr::OfferItemType, ['ofr:offerDetail', 'ofr:offerItem'])
         end
 
         def offer_summary
@@ -17,16 +17,16 @@ module Pohoda
         end
 
         def print
-          submodel_at(Prn::AgendaPrintType, 'ofr:print')
+          array_of_at(Prn::PrinterSettingsType, ['ofr:print', 'prn:printerSettings'])
         end
 
         def to_h_with_attrs
           hash = ParserCore::HashWithAttributes.new({}, attributes)
 
           hash[:offer_header] = offer_header.to_h_with_attrs if has? 'ofr:offerHeader'
-          hash[:offer_detail] = offer_detail.to_h_with_attrs if has? 'ofr:offerDetail'
+          hash[:offer_detail] = offer_detail.map(&:to_h_with_attrs) if has? 'ofr:offerDetail'
           hash[:offer_summary] = offer_summary.to_h_with_attrs if has? 'ofr:offerSummary'
-          hash[:print] = print.to_h_with_attrs if has? 'ofr:print'
+          hash[:print] = print.map(&:to_h_with_attrs) if has? 'ofr:print'
 
           hash
         end

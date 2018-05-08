@@ -1,4 +1,3 @@
-
 require 'spec_helper'
 
 RSpec.describe Pohoda::Builder::TypeCurrencyForeignItem do

@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :category
-            root << Ctg::CategoryType.new('category', data[:category]).builder
+            root << Ctg::CategoryType.new('ctg:category', data[:category]).builder
           end
 
           root

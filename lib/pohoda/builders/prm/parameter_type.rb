@@ -11,13 +11,17 @@ module Pohoda
           end
 
           if data.key? :user_agenda_def
-            root << Prm::UserAgendaDefType.new('userAgendaDef', data[:user_agenda_def]).builder
+            root << Prm::UserAgendaDefType.new('prm:userAgendaDef', data[:user_agenda_def]).builder
           end
           if data.key? :form_parameter
-            root << Prm::ParameterItemListType.new('formParameter', data[:form_parameter]).builder
+            element = Ox::Element.new('prm:formParameter')
+            data[:form_parameter].each { |i| element << Prm::ParameterDefType.new('prm:parameterDef', i).builder }
+            root << element
           end
           if data.key? :item_parameter
-            root << Prm::ParameterItemListType.new('itemParameter', data[:item_parameter]).builder
+            element = Ox::Element.new('prm:itemParameter')
+            data[:item_parameter].each { |i| element << Prm::ParameterDefType.new('prm:parameterDef', i).builder }
+            root << element
           end
           if data.key? :user_form
             data[:user_form].each { |i| root << Prm::FormItemListType.new('prm:userForm', i).builder }

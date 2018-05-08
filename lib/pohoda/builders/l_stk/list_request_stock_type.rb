@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :request_stock
-            root << Ftr::RequestStockType.new('requestStock', data[:request_stock]).builder
+            root << Ftr::RequestStockType.new('lStk:requestStock', data[:request_stock]).builder
           end
 
           root

@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :request_voucher
-            root << Ftr::RequestVoucherType.new('requestVoucher', data[:request_voucher]).builder
+            root << Ftr::RequestVoucherType.new('lst:requestVoucher', data[:request_voucher]).builder
           end
 
           root

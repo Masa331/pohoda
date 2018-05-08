@@ -93,7 +93,7 @@ module Pohoda
         end
 
         def parameters
-          submodel_at(Typ::ParametersType, 'vch:parameters')
+          array_of_at(Typ::ParameterDocType, ['vch:parameters', 'typ:parameter'])
         end
 
         def to_h_with_attrs
@@ -121,7 +121,7 @@ module Pohoda
           hash[:activity] = activity.to_h_with_attrs if has? 'vch:activity'
           hash[:contract] = contract.to_h_with_attrs if has? 'vch:contract'
           hash[:eet_item] = eet_item if has? 'vch:EETItem'
-          hash[:parameters] = parameters.to_h_with_attrs if has? 'vch:parameters'
+          hash[:parameters] = parameters.map(&:to_h_with_attrs) if has? 'vch:parameters'
 
           hash
         end

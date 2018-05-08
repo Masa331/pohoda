@@ -113,7 +113,7 @@ module Pohoda
         end
 
         def parameters
-          submodel_at(Typ::ParametersType, 'inv:parameters')
+          array_of_at(Typ::ParameterDocType, ['inv:parameters', 'typ:parameter'])
         end
 
         def to_h_with_attrs
@@ -146,7 +146,7 @@ module Pohoda
           hash[:expiration_date] = expiration_date if has? 'inv:expirationDate'
           hash[:intrastat_item] = intrastat_item.to_h_with_attrs if has? 'inv:intrastatItem'
           hash[:eet_item] = eet_item if has? 'inv:EETItem'
-          hash[:parameters] = parameters.to_h_with_attrs if has? 'inv:parameters'
+          hash[:parameters] = parameters.map(&:to_h_with_attrs) if has? 'inv:parameters'
 
           hash
         end

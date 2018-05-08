@@ -93,7 +93,7 @@ module Pohoda
         end
 
         def parameters
-          submodel_at(Typ::ParametersType, 'vyd:parameters')
+          array_of_at(Typ::ParameterDocType, ['vyd:parameters', 'typ:parameter'])
         end
 
         def to_h_with_attrs
@@ -121,7 +121,7 @@ module Pohoda
           hash[:activity] = activity.to_h_with_attrs if has? 'vyd:activity'
           hash[:contract] = contract.to_h_with_attrs if has? 'vyd:contract'
           hash[:expiration_date] = expiration_date if has? 'vyd:expirationDate'
-          hash[:parameters] = parameters.to_h_with_attrs if has? 'vyd:parameters'
+          hash[:parameters] = parameters.map(&:to_h_with_attrs) if has? 'vyd:parameters'
 
           hash
         end

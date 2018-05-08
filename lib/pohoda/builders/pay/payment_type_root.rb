@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :payment_header
-            root << Pay::PaymentHeaderType.new('paymentHeader', data[:payment_header]).builder
+            root << Pay::PaymentHeaderType.new('pay:paymentHeader', data[:payment_header]).builder
           end
 
           root

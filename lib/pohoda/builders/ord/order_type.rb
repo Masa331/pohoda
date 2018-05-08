@@ -12,16 +12,20 @@ module Pohoda
 
           root << build_element('ord:actionType', data[:action_type]) if data.key? :action_type
           if data.key? :order_header
-            root << Ord::OrderHeaderType.new('orderHeader', data[:order_header]).builder
+            root << Ord::OrderHeaderType.new('ord:orderHeader', data[:order_header]).builder
           end
           if data.key? :order_detail
-            root << Ord::OrderDetailType.new('orderDetail', data[:order_detail]).builder
+            element = Ox::Element.new('ord:orderDetail')
+            data[:order_detail].each { |i| element << Ord::OrderItemType.new('ord:orderItem', i).builder }
+            root << element
           end
           if data.key? :order_summary
-            root << Ord::OrderSummaryType.new('orderSummary', data[:order_summary]).builder
+            root << Ord::OrderSummaryType.new('ord:orderSummary', data[:order_summary]).builder
           end
           if data.key? :print
-            root << Prn::AgendaPrintType.new('print', data[:print]).builder
+            element = Ox::Element.new('ord:print')
+            data[:print].each { |i| element << Prn::PrinterSettingsType.new('prn:printerSettings', i).builder }
+            root << element
           end
 
           root

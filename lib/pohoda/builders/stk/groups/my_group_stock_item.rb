@@ -11,7 +11,7 @@ module Pohoda
 
             root << build_element('stk:id', data[:id]) if data.key? :id
             if data.key? :storage
-              root << Typ::RefTypeStorage.new('storage', data[:storage]).builder
+              root << Typ::RefTypeStorage.new('stk:storage', data[:storage]).builder
             end
             root << build_element('stk:code', data[:code]) if data.key? :code
             root << build_element('stk:name', data[:name]) if data.key? :name

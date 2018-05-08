@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :request_contract
-            root << Ftr::RequestContractType.new('requestContract', data[:request_contract]).builder
+            root << Ftr::RequestContractType.new('lCon:requestContract', data[:request_contract]).builder
           end
 
           root

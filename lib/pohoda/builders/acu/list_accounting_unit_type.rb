@@ -15,7 +15,7 @@ module Pohoda
           end
 
           if data.key? :item_accounting_unit
-            root << Acu::ItemAccountingUnitType.new('itemAccountingUnit', data[:item_accounting_unit]).builder
+            root << Acu::ItemAccountingUnitType.new('acu:itemAccountingUnit', data[:item_accounting_unit]).builder
           end
 
           root

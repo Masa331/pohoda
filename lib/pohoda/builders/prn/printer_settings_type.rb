@@ -11,11 +11,11 @@ module Pohoda
           end
 
           if data.key? :report
-            root << Prn::ReportType.new('report', data[:report]).builder
+            root << Prn::ReportType.new('prn:report', data[:report]).builder
           end
           root << build_element('prn:printer', data[:printer]) if data.key? :printer
           if data.key? :pdf
-            root << Prn::PDFType.new('pdf', data[:pdf]).builder
+            root << Prn::PDFType.new('prn:pdf', data[:pdf]).builder
           end
           root << build_element('prn:parameters', data[:parameters]) if data.key? :parameters
 

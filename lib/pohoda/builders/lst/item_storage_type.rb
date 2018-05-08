@@ -11,7 +11,9 @@ module Pohoda
           end
 
           if data.key? :sub_storages
-            root << Lst::SubStoragesType.new('subStorages', data[:sub_storages]).builder
+            element = Ox::Element.new('lst:subStorages')
+            data[:sub_storages].each { |i| element << Lst::ItemStorageType.new('lst:itemStorage', i).builder }
+            root << element
           end
 
           root

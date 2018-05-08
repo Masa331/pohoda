@@ -14,7 +14,7 @@ module Pohoda
           root << build_element('acp:name', data[:name]) if data.key? :name
           root << build_element('acp:description', data[:description]) if data.key? :description
           if data.key? :validity_action
-            root << Acp::ValidityActionType.new('validityAction', data[:validity_action]).builder
+            root << Acp::ValidityActionType.new('acp:validityAction', data[:validity_action]).builder
           end
           root << build_element('acp:discountPercentage', data[:discount_percentage]) if data.key? :discount_percentage
           root << build_element('acp:deriveFromAccesoryPrice', data[:derive_from_accesory_price]) if data.key? :derive_from_accesory_price

@@ -9,7 +9,7 @@ module Pohoda
         end
 
         def vydejka_detail
-          submodel_at(Vyd::VydejkaDetailType, 'vyd:vydejkaDetail')
+          array_of_at(Vyd::VydejkaItemType, ['vyd:vydejkaDetail', 'vyd:vydejkaItem'])
         end
 
         def vydejka_summary
@@ -17,16 +17,16 @@ module Pohoda
         end
 
         def print
-          submodel_at(Prn::AgendaPrintType, 'vyd:print')
+          array_of_at(Prn::PrinterSettingsType, ['vyd:print', 'prn:printerSettings'])
         end
 
         def to_h_with_attrs
           hash = ParserCore::HashWithAttributes.new({}, attributes)
 
           hash[:vydejka_header] = vydejka_header.to_h_with_attrs if has? 'vyd:vydejkaHeader'
-          hash[:vydejka_detail] = vydejka_detail.to_h_with_attrs if has? 'vyd:vydejkaDetail'
+          hash[:vydejka_detail] = vydejka_detail.map(&:to_h_with_attrs) if has? 'vyd:vydejkaDetail'
           hash[:vydejka_summary] = vydejka_summary.to_h_with_attrs if has? 'vyd:vydejkaSummary'
-          hash[:print] = print.to_h_with_attrs if has? 'vyd:print'
+          hash[:print] = print.map(&:to_h_with_attrs) if has? 'vyd:print'
 
           hash
         end

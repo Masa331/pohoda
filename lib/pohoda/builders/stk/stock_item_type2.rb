@@ -11,7 +11,9 @@ module Pohoda
           end
 
           if data.key? :stock_price_item
-            root << Stk::StockPriceItemType.new('stockPriceItem', data[:stock_price_item]).builder
+            element = Ox::Element.new('stk:stockPriceItem')
+            data[:stock_price_item].each { |i| element << Typ::StockPriceType.new('stk:stockPrice', i).builder }
+            root << element
           end
 
           root

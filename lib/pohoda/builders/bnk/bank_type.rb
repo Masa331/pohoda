@@ -11,13 +11,15 @@ module Pohoda
           end
 
           if data.key? :bank_header
-            root << Bnk::BankHeaderType.new('bankHeader', data[:bank_header]).builder
+            root << Bnk::BankHeaderType.new('bnk:bankHeader', data[:bank_header]).builder
           end
           if data.key? :bank_detail
-            root << Bnk::BankDetailType.new('bankDetail', data[:bank_detail]).builder
+            element = Ox::Element.new('bnk:bankDetail')
+            data[:bank_detail].each { |i| element << Bnk::BankItemType.new('bnk:bankItem', i).builder }
+            root << element
           end
           if data.key? :bank_summary
-            root << Bnk::BankSummaryType.new('bankSummary', data[:bank_summary]).builder
+            root << Bnk::BankSummaryType.new('bnk:bankSummary', data[:bank_summary]).builder
           end
 
           root

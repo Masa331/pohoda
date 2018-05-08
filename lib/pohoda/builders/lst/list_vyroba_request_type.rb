@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :request_vyroba
-            root << Ftr::RequestVyrobaType.new('requestVyroba', data[:request_vyroba]).builder
+            root << Ftr::RequestVyrobaType.new('lst:requestVyroba', data[:request_vyroba]).builder
           end
 
           root

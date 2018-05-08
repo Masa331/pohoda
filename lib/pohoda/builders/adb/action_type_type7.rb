@@ -11,13 +11,13 @@ module Pohoda
           end
 
           if data.key? :add
-            root << Ftr::RequestAddressBookActionType.new('add', data[:add]).builder
+            root << Ftr::RequestAddressBookActionType.new('adb:add', data[:add]).builder
           end
           if data.key? :update
-            root << Ftr::RequestAddressBookActionType.new('update', data[:update]).builder
+            root << Ftr::RequestAddressBookActionType.new('adb:update', data[:update]).builder
           end
           if data.key? :delete
-            root << Ftr::RequestAddressBookType.new('delete', data[:delete]).builder
+            root << Ftr::RequestAddressBookType.new('adb:delete', data[:delete]).builder
           end
 
           root

@@ -65,7 +65,7 @@ module Pohoda
         end
 
         def parameters
-          submodel_at(Typ::ParametersType, 'act:parameters')
+          array_of_at(Typ::ParameterDocType, ['act:parameters', 'typ:parameter'])
         end
 
         def to_h_with_attrs
@@ -86,7 +86,7 @@ module Pohoda
           hash[:activity] = activity.to_h_with_attrs if has? 'act:activity'
           hash[:contract] = contract.to_h_with_attrs if has? 'act:contract'
           hash[:note] = note if has? 'act:note'
-          hash[:parameters] = parameters.to_h_with_attrs if has? 'act:parameters'
+          hash[:parameters] = parameters.map(&:to_h_with_attrs) if has? 'act:parameters'
 
           hash
         end

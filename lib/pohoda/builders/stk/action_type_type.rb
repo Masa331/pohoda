@@ -11,13 +11,13 @@ module Pohoda
           end
 
           if data.key? :add
-            root << Ftr::RequestStockActionType.new('add', data[:add]).builder
+            root << Ftr::RequestStockActionType.new('stk:add', data[:add]).builder
           end
           if data.key? :update
-            root << Ftr::RequestStockActionType.new('update', data[:update]).builder
+            root << Ftr::RequestStockActionType.new('stk:update', data[:update]).builder
           end
           if data.key? :delete
-            root << Ftr::RequestStockType.new('delete', data[:delete]).builder
+            root << Ftr::RequestStockType.new('stk:delete', data[:delete]).builder
           end
 
           root

@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :stock_item
-            root << Typ::StockItemType.new('stockItem', data[:stock_item]).builder
+            root << Typ::StockItemType.new('ilt:stockItem', data[:stock_item]).builder
           end
           root << build_element('ilt:code', data[:code]) if data.key? :code
           root << build_element('ilt:text', data[:text]) if data.key? :text

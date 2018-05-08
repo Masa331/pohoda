@@ -11,10 +11,10 @@ module Pohoda
           end
 
           if data.key? :export
-            root << MKasa::ExportRequestType.new('export', data[:export]).builder
+            root << MKasa::ExportRequestType.new('mKasa:export', data[:export]).builder
           end
           if data.key? :import
-            root << MKasa::ImportRequestType.new('import', data[:import]).builder
+            root << MKasa::ImportRequestType.new('mKasa:import', data[:import]).builder
           end
 
           root

@@ -17,15 +17,15 @@ module Pohoda
         end
 
         def selected_numbers
-          submodel_at(Ftr::SelectedNumbersType, 'ftr:selectedNumbers')
+          array_of_at(Typ::NumberType, ['ftr:selectedNumbers', 'ftr:number'])
         end
 
         def selected_companys
-          submodel_at(Ftr::SelectedCompanysType, 'ftr:selectedCompanys')
+          array_of_at(Typ::StringCompany, ['ftr:selectedCompanys', 'ftr:company'])
         end
 
         def selected_ico
-          submodel_at(Ftr::SelectedIcoType, 'ftr:selectedIco')
+          array_of_at(Typ::IcoType, ['ftr:selectedIco', 'ftr:ico'])
         end
 
         def last_changes
@@ -38,9 +38,9 @@ module Pohoda
           hash[:id] = id if has? 'ftr:id'
           hash[:date_from] = date_from if has? 'ftr:dateFrom'
           hash[:date_till] = date_till if has? 'ftr:dateTill'
-          hash[:selected_numbers] = selected_numbers.to_h_with_attrs if has? 'ftr:selectedNumbers'
-          hash[:selected_companys] = selected_companys.to_h_with_attrs if has? 'ftr:selectedCompanys'
-          hash[:selected_ico] = selected_ico.to_h_with_attrs if has? 'ftr:selectedIco'
+          hash[:selected_numbers] = selected_numbers.map(&:to_h_with_attrs) if has? 'ftr:selectedNumbers'
+          hash[:selected_companys] = selected_companys.map(&:to_h_with_attrs) if has? 'ftr:selectedCompanys'
+          hash[:selected_ico] = selected_ico.map(&:to_h_with_attrs) if has? 'ftr:selectedIco'
           hash[:last_changes] = last_changes if has? 'ftr:lastChanges'
 
           hash

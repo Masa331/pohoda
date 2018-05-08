@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :request_invoice
-            root << Ftr::RequestInvoiceType.new('requestInvoice', data[:request_invoice]).builder
+            root << Ftr::RequestInvoiceType.new('lst:requestInvoice', data[:request_invoice]).builder
           end
 
           root

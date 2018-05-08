@@ -12,7 +12,7 @@ module Pohoda
 
           root << build_element('stk:id', data[:id]) if data.key? :id
           if data.key? :ext_id
-            root << Typ::ExtIdType.new('extId', data[:ext_id]).builder
+            root << Typ::ExtIdType.new('stk:extId', data[:ext_id]).builder
           end
           root << build_element('stk:stockType', data[:stock_type]) if data.key? :stock_type
           root << build_element('stk:code', data[:code]) if data.key? :code
@@ -32,10 +32,10 @@ module Pohoda
           root << build_element('stk:coefficient2', data[:coefficient2]) if data.key? :coefficient2
           root << build_element('stk:coefficient3', data[:coefficient3]) if data.key? :coefficient3
           if data.key? :storage
-            root << Typ::RefTypeStorage.new('storage', data[:storage]).builder
+            root << Typ::RefTypeStorage.new('stk:storage', data[:storage]).builder
           end
           if data.key? :type_price
-            root << Typ::RefType.new('typePrice', data[:type_price]).builder
+            root << Typ::RefType.new('stk:typePrice', data[:type_price]).builder
           end
           root << build_element('stk:weightedPurchasePrice', data[:weighted_purchase_price]) if data.key? :weighted_purchase_price
           root << build_element('stk:purchasingPrice', data[:purchasing_price]) if data.key? :purchasing_price
@@ -48,7 +48,7 @@ module Pohoda
           root << build_element('stk:countReceivedOrders', data[:count_received_orders]) if data.key? :count_received_orders
           root << build_element('stk:reservation', data[:reservation]) if data.key? :reservation
           if data.key? :supplier
-            root << Typ::CompanyType.new('supplier', data[:supplier]).builder
+            root << Typ::CompanyType.new('stk:supplier', data[:supplier]).builder
           end
           root << build_element('stk:orderName', data[:order_name]) if data.key? :order_name
           root << build_element('stk:orderQuantity', data[:order_quantity]) if data.key? :order_quantity
@@ -56,7 +56,7 @@ module Pohoda
           root << build_element('stk:reclamation', data[:reclamation]) if data.key? :reclamation
           root << build_element('stk:shortName', data[:short_name]) if data.key? :short_name
           if data.key? :type_rp
-            root << Typ::RefType.new('typeRP', data[:type_rp]).builder
+            root << Typ::RefType.new('stk:typeRP', data[:type_rp]).builder
           end
           root << build_element('stk:guaranteeType', data[:guarantee_type]) if data.key? :guarantee_type
           root << build_element('stk:guarantee', data[:guarantee]) if data.key? :guarantee
@@ -66,25 +66,25 @@ module Pohoda
           root << build_element('stk:yield', data[:yield]) if data.key? :yield
           root << build_element('stk:cost', data[:cost]) if data.key? :cost
           if data.key? :classification_vat_receipt
-            root << Typ::ClassificationVATType.new('classificationVATReceipt', data[:classification_vat_receipt]).builder
+            root << Typ::ClassificationVATType.new('stk:classificationVATReceipt', data[:classification_vat_receipt]).builder
           end
           if data.key? :classification_kvdph_receipt
-            root << Typ::RefType.new('classificationKVDPHReceipt', data[:classification_kvdph_receipt]).builder
+            root << Typ::RefType.new('stk:classificationKVDPHReceipt', data[:classification_kvdph_receipt]).builder
           end
           if data.key? :classification_vat_issue
-            root << Typ::ClassificationVATType.new('classificationVATIssue', data[:classification_vat_issue]).builder
+            root << Typ::ClassificationVATType.new('stk:classificationVATIssue', data[:classification_vat_issue]).builder
           end
           if data.key? :classification_kvdph_issue
-            root << Typ::RefType.new('classificationKVDPHIssue', data[:classification_kvdph_issue]).builder
+            root << Typ::RefType.new('stk:classificationKVDPHIssue', data[:classification_kvdph_issue]).builder
           end
           root << build_element('stk:classOfStock', data[:class_of_stock]) if data.key? :class_of_stock
           root << build_element('stk:acc', data[:acc]) if data.key? :acc
           if data.key? :type_service_moss
-            root << Typ::MOSStype.new('typeServiceMOSS', data[:type_service_moss]).builder
+            root << Typ::MOSStype.new('stk:typeServiceMOSS', data[:type_service_moss]).builder
           end
           root << build_element('stk:controlLimitTaxLiability', data[:control_limit_tax_liability]) if data.key? :control_limit_tax_liability
           if data.key? :intrastat
-            root << Stk::InstrastatType.new('intrastat', data[:intrastat]).builder
+            root << Stk::InstrastatType.new('stk:intrastat', data[:intrastat]).builder
           end
           root << build_element('stk:news', data[:news]) if data.key? :news
           root << build_element('stk:clearanceSale', data[:clearance_sale]) if data.key? :clearance_sale
@@ -95,10 +95,14 @@ module Pohoda
           root << build_element('stk:availability', data[:availability]) if data.key? :availability
           root << build_element('stk:handlingInformation', data[:handling_information]) if data.key? :handling_information
           if data.key? :related_files
-            root << Stk::RelatedFilesType.new('relatedFiles', data[:related_files]).builder
+            element = Ox::Element.new('stk:relatedFiles')
+            data[:related_files].each { |i| element << Stk::RelatedFileType.new('stk:relatedFile', i).builder }
+            root << element
           end
           if data.key? :related_links
-            root << Stk::RelatedLinksType.new('relatedLinks', data[:related_links]).builder
+            element = Ox::Element.new('stk:relatedLinks')
+            data[:related_links].each { |i| element << Stk::RelatedLinkType.new('stk:relatedLink', i).builder }
+            root << element
           end
           root << build_element('stk:foreignName1', data[:foreign_name1]) if data.key? :foreign_name1
           root << build_element('stk:foreignNameComplement1', data[:foreign_name_complement1]) if data.key? :foreign_name_complement1
@@ -107,27 +111,41 @@ module Pohoda
           root << build_element('stk:description', data[:description]) if data.key? :description
           root << build_element('stk:description2', data[:description2]) if data.key? :description2
           if data.key? :pictures
-            root << Stk::PicturesType.new('pictures', data[:pictures]).builder
+            element = Ox::Element.new('stk:pictures')
+            data[:pictures].each { |i| element << Stk::PictureType.new('stk:picture', i).builder }
+            root << element
           end
           if data.key? :categories
-            root << Stk::CategoriesType.new('categories', data[:categories]).builder
+            element = Ox::Element.new('stk:categories')
+            data[:categories].map { |i| Ox::Element.new('stk:idCategory') << i }.each { |i| element << i }
+            root << element
           end
           if data.key? :related_stocks
-            root << Stk::RelatedStocksType.new('relatedStocks', data[:related_stocks]).builder
+            element = Ox::Element.new('stk:relatedStocks')
+            data[:related_stocks].each { |i| element << Typ::OrderStockItemType.new('stk:idStocks', i).builder }
+            root << element
           end
           if data.key? :alternative_stocks
-            root << Stk::AlternativeStocksType.new('alternativeStocks', data[:alternative_stocks]).builder
+            element = Ox::Element.new('stk:alternativeStocks')
+            data[:alternative_stocks].each { |i| element << Typ::OrderStockItemType.new('stk:idStocks', i).builder }
+            root << element
           end
           if data.key? :int_parameters
-            root << Stk::IntParametersType.new('intParameters', data[:int_parameters]).builder
+            element = Ox::Element.new('stk:intParameters')
+            data[:int_parameters].each { |i| element << Stk::IntParameterType.new('stk:intParameter', i).builder }
+            root << element
           end
           root << build_element('stk:note', data[:note]) if data.key? :note
           root << build_element('stk:markRecord', data[:mark_record]) if data.key? :mark_record
           if data.key? :labels
-            root << Typ::LabelsType.new('labels', data[:labels]).builder
+            element = Ox::Element.new('stk:labels')
+            data[:labels].each { |i| element << Typ::LabelType.new('typ:label', i).builder }
+            root << element
           end
           if data.key? :parameters
-            root << Typ::ParametersType.new('parameters', data[:parameters]).builder
+            element = Ox::Element.new('stk:parameters')
+            data[:parameters].each { |i| element << Typ::ParameterDocType.new('typ:parameter', i).builder }
+            root << element
           end
 
           root

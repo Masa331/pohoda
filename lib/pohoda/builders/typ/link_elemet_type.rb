@@ -12,10 +12,10 @@ module Pohoda
 
           root << build_element('typ:sourceAgenda', data[:source_agenda]) if data.key? :source_agenda
           if data.key? :source_document
-            root << Typ::SourceDocumentType.new('sourceDocument', data[:source_document]).builder
+            root << Typ::SourceDocumentType.new('typ:sourceDocument', data[:source_document]).builder
           end
           if data.key? :settings_source_document
-            root << Typ::SettingsSourceDocumentType.new('settingsSourceDocument', data[:settings_source_document]).builder
+            root << Typ::SettingsSourceDocumentType.new('typ:settingsSourceDocument', data[:settings_source_document]).builder
           end
 
           root

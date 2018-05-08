@@ -10,7 +10,7 @@ module Pohoda
             end
 
             if data.key? :filter
-              root << Ftr::FilterDocsType.new('filter', data[:filter]).builder
+              root << Ftr::FilterDocsType.new('ftr:filter', data[:filter]).builder
             end
             root << build_element('ftr:userFilterName', data[:user_filter_name]) if data.key? :user_filter_name
 

@@ -11,13 +11,13 @@ module Pohoda
           end
 
           if data.key? :vat_payer_whole_period
-            root << MKasa::VatPayerWholePeriodType.new('vatPayerWholePeriod', data[:vat_payer_whole_period]).builder
+            root << MKasa::VatPayerWholePeriodType.new('mKasa:vatPayerWholePeriod', data[:vat_payer_whole_period]).builder
           end
           if data.key? :non_vat_payer_whole_period
-            root << MKasa::NonVatPayerWholePeriodType.new('nonVatPayerWholePeriod', data[:non_vat_payer_whole_period]).builder
+            root << MKasa::NonVatPayerWholePeriodType.new('mKasa:nonVatPayerWholePeriod', data[:non_vat_payer_whole_period]).builder
           end
           if data.key? :change_of_mode_in_calendar_year
-            root << MKasa::ChangeOfModeInCalendarYearType.new('changeOfModeInCalendarYear', data[:change_of_mode_in_calendar_year]).builder
+            root << MKasa::ChangeOfModeInCalendarYearType.new('mKasa:changeOfModeInCalendarYear', data[:change_of_mode_in_calendar_year]).builder
           end
 
           root

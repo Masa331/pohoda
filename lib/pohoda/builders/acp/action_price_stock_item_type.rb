@@ -13,13 +13,13 @@ module Pohoda
           root << build_element('acp:stock', data[:stock]) if data.key? :stock
           root << build_element('acp:text', data[:text]) if data.key? :text
           if data.key? :storage
-            root << Typ::RefTypeStorage.new('storage', data[:storage]).builder
+            root << Typ::RefTypeStorage.new('acp:storage', data[:storage]).builder
           end
           if data.key? :default_price_stock
-            root << Acp::DefaultPriceStockType.new('defaultPriceStock', data[:default_price_stock]).builder
+            root << Acp::DefaultPriceStockType.new('acp:defaultPriceStock', data[:default_price_stock]).builder
           end
           if data.key? :action_price_stock
-            root << Acp::ActionPriceStockType.new('actionPriceStock', data[:action_price_stock]).builder
+            root << Acp::ActionPriceStockType.new('acp:actionPriceStock', data[:action_price_stock]).builder
           end
 
           root

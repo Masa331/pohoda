@@ -15,19 +15,19 @@ module Pohoda
           root << build_element('mKasa:description', data[:description]) if data.key? :description
           root << build_element('mKasa:deviceGuid', data[:device_guid]) if data.key? :device_guid
           if data.key? :establishment
-            root << MKasa::KasaEstablishmentType.new('establishment', data[:establishment]).builder
+            root << MKasa::KasaEstablishmentType.new('mKasa:establishment', data[:establishment]).builder
           end
           if data.key? :centre
-            root << Typ::RefType.new('centre', data[:centre]).builder
+            root << Typ::RefType.new('mKasa:centre', data[:centre]).builder
           end
           if data.key? :default_store
-            root << Typ::RefType.new('defaultStore', data[:default_store]).builder
+            root << Typ::RefType.new('mKasa:defaultStore', data[:default_store]).builder
           end
           if data.key? :default_selling_price
-            root << Typ::RefType.new('defaultSellingPrice', data[:default_selling_price]).builder
+            root << Typ::RefType.new('mKasa:defaultSellingPrice', data[:default_selling_price]).builder
           end
           if data.key? :default_payment_type
-            root << Typ::RefType.new('defaultPaymentType', data[:default_payment_type]).builder
+            root << Typ::RefType.new('mKasa:defaultPaymentType', data[:default_payment_type]).builder
           end
           root << build_element('mKasa:text', data[:text]) if data.key? :text
           root << build_element('mKasa:footer', data[:footer]) if data.key? :footer

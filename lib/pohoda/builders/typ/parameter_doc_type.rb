@@ -18,12 +18,12 @@ module Pohoda
           root << build_element('typ:numberValue', data[:number_value]) if data.key? :number_value
           root << build_element('typ:datetimeValue', data[:datetime_value]) if data.key? :datetime_value
           if data.key? :list_value_ref
-            root << Typ::RefType.new('listValueRef', data[:list_value_ref]).builder
+            root << Typ::RefType.new('typ:listValueRef', data[:list_value_ref]).builder
           end
           root << build_element('typ:listValue', data[:list_value]) if data.key? :list_value
           root << build_element('typ:integerValue', data[:integer_value]) if data.key? :integer_value
           if data.key? :list
-            root << Typ::RefType.new('list', data[:list]).builder
+            root << Typ::RefType.new('typ:list', data[:list]).builder
           end
 
           root

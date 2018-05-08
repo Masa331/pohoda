@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :request_individual_price
-            root << Ftr::RequestAddressBookType.new('requestIndividualPrice', data[:request_individual_price]).builder
+            root << Ftr::RequestAddressBookType.new('lst:requestIndividualPrice', data[:request_individual_price]).builder
           end
 
           root

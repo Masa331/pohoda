@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :request_enquiry
-            root << Ftr::RequestEnquiryType.new('requestEnquiry', data[:request_enquiry]).builder
+            root << Ftr::RequestEnquiryType.new('lst:requestEnquiry', data[:request_enquiry]).builder
           end
 
           root

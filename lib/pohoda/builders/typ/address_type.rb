@@ -21,7 +21,7 @@ module Pohoda
           root << build_element('typ:VATPayerType', data[:vat_payer_type]) if data.key? :vat_payer_type
           root << build_element('typ:icDph', data[:ic_dph]) if data.key? :ic_dph
           if data.key? :country
-            root << Typ::RefType.new('country', data[:country]).builder
+            root << Typ::RefType.new('typ:country', data[:country]).builder
           end
           root << build_element('typ:phone', data[:phone]) if data.key? :phone
           root << build_element('typ:mobilPhone', data[:mobil_phone]) if data.key? :mobil_phone

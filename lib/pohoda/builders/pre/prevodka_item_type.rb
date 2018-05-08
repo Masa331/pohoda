@@ -12,7 +12,7 @@ module Pohoda
 
           root << build_element('pre:quantity', data[:quantity]) if data.key? :quantity
           if data.key? :stock_item
-            root << Typ::StockItemType.new('stockItem', data[:stock_item]).builder
+            root << Typ::StockItemType.new('pre:stockItem', data[:stock_item]).builder
           end
           root << build_element('pre:note', data[:note]) if data.key? :note
 

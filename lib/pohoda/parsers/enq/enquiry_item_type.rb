@@ -77,7 +77,7 @@ module Pohoda
         end
 
         def parameters
-          submodel_at(Typ::ParametersType, 'enq:parameters')
+          array_of_at(Typ::ParameterDocType, ['enq:parameters', 'typ:parameter'])
         end
 
         def to_h_with_attrs
@@ -101,7 +101,7 @@ module Pohoda
           hash[:code] = code if has? 'enq:code'
           hash[:stock_item] = stock_item.to_h_with_attrs if has? 'enq:stockItem'
           hash[:eet_item] = eet_item if has? 'enq:EETItem'
-          hash[:parameters] = parameters.to_h_with_attrs if has? 'enq:parameters'
+          hash[:parameters] = parameters.map(&:to_h_with_attrs) if has? 'enq:parameters'
 
           hash
         end

@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :settings_liquidation
-            root << Vch::SettingsLiquidationType.new('settingsLiquidation', data[:settings_liquidation]).builder
+            root << Vch::SettingsLiquidationType.new('vch:settingsLiquidation', data[:settings_liquidation]).builder
           end
           if data.key? :liquidation_item
             data[:liquidation_item].each { |i| root << Vch::LiquidationItemType.new('vch:liquidationItem', i).builder }

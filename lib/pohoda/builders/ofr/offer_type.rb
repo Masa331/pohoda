@@ -11,16 +11,20 @@ module Pohoda
           end
 
           if data.key? :offer_header
-            root << Ofr::OfferHeaderType.new('offerHeader', data[:offer_header]).builder
+            root << Ofr::OfferHeaderType.new('ofr:offerHeader', data[:offer_header]).builder
           end
           if data.key? :offer_detail
-            root << Ofr::OfferDetailType.new('offerDetail', data[:offer_detail]).builder
+            element = Ox::Element.new('ofr:offerDetail')
+            data[:offer_detail].each { |i| element << Ofr::OfferItemType.new('ofr:offerItem', i).builder }
+            root << element
           end
           if data.key? :offer_summary
-            root << Ofr::OfferSummaryType.new('offerSummary', data[:offer_summary]).builder
+            root << Ofr::OfferSummaryType.new('ofr:offerSummary', data[:offer_summary]).builder
           end
           if data.key? :print
-            root << Prn::AgendaPrintType.new('print', data[:print]).builder
+            element = Ox::Element.new('ofr:print')
+            data[:print].each { |i| element << Prn::PrinterSettingsType.new('prn:printerSettings', i).builder }
+            root << element
           end
 
           root

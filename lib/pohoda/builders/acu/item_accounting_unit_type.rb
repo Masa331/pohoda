@@ -18,7 +18,7 @@ module Pohoda
           root << build_element('acu:unitType', data[:unit_type]) if data.key? :unit_type
           root << build_element('acu:stateType', data[:state_type]) if data.key? :state_type
           if data.key? :accounting_unit_identity
-            root << Typ::MyAddress.new('accountingUnitIdentity', data[:accounting_unit_identity]).builder
+            root << Typ::MyAddress.new('acu:accountingUnitIdentity', data[:accounting_unit_identity]).builder
           end
           root << build_element('acu:dataFile', data[:data_file]) if data.key? :data_file
 

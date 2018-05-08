@@ -20,29 +20,31 @@ module Pohoda
           root << build_element('pri:percentVAT', data[:percent_vat]) if data.key? :percent_vat
           root << build_element('pri:discountPercentage', data[:discount_percentage]) if data.key? :discount_percentage
           if data.key? :home_currency
-            root << Typ::TypeCurrencyHomeItem.new('homeCurrency', data[:home_currency]).builder
+            root << Typ::TypeCurrencyHomeItem.new('pri:homeCurrency', data[:home_currency]).builder
           end
           if data.key? :foreign_currency
-            root << Typ::TypeCurrencyForeignItem.new('foreignCurrency', data[:foreign_currency]).builder
+            root << Typ::TypeCurrencyForeignItem.new('pri:foreignCurrency', data[:foreign_currency]).builder
           end
           root << build_element('pri:note', data[:note]) if data.key? :note
           root << build_element('pri:code', data[:code]) if data.key? :code
           if data.key? :stock_item
-            root << Typ::StockItemType.new('stockItem', data[:stock_item]).builder
+            root << Typ::StockItemType.new('pri:stockItem', data[:stock_item]).builder
           end
           root << build_element('pri:acc', data[:acc]) if data.key? :acc
           if data.key? :centre
-            root << Typ::RefType.new('centre', data[:centre]).builder
+            root << Typ::RefType.new('pri:centre', data[:centre]).builder
           end
           if data.key? :activity
-            root << Typ::RefType.new('activity', data[:activity]).builder
+            root << Typ::RefType.new('pri:activity', data[:activity]).builder
           end
           if data.key? :contract
-            root << Typ::RefType.new('contract', data[:contract]).builder
+            root << Typ::RefType.new('pri:contract', data[:contract]).builder
           end
           root << build_element('pri:expirationDate', data[:expiration_date]) if data.key? :expiration_date
           if data.key? :parameters
-            root << Typ::ParametersType.new('parameters', data[:parameters]).builder
+            element = Ox::Element.new('pri:parameters')
+            data[:parameters].each { |i| element << Typ::ParameterDocType.new('typ:parameter', i).builder }
+            root << element
           end
 
           root

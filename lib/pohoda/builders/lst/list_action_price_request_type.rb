@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :request_action_price
-            root << Ftr::RequestActionPriceType.new('requestActionPrice', data[:request_action_price]).builder
+            root << Ftr::RequestActionPriceType.new('lst:requestActionPrice', data[:request_action_price]).builder
           end
 
           root

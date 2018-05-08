@@ -81,7 +81,7 @@ module Pohoda
         end
 
         def parameters
-          submodel_at(Typ::ParametersType, 'ofr:parameters')
+          array_of_at(Typ::ParameterDocType, ['ofr:parameters', 'typ:parameter'])
         end
 
         def to_h_with_attrs
@@ -106,7 +106,7 @@ module Pohoda
           hash[:code] = code if has? 'ofr:code'
           hash[:stock_item] = stock_item.to_h_with_attrs if has? 'ofr:stockItem'
           hash[:eet_item] = eet_item if has? 'ofr:EETItem'
-          hash[:parameters] = parameters.to_h_with_attrs if has? 'ofr:parameters'
+          hash[:parameters] = parameters.map(&:to_h_with_attrs) if has? 'ofr:parameters'
 
           hash
         end

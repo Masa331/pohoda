@@ -12,10 +12,10 @@ module Pohoda
 
           root << build_element('typ:refAD', data[:ref_ad]) if data.key? :ref_ad
           if data.key? :ext_id
-            root << Typ::ExtIdType.new('extId', data[:ext_id]).builder
+            root << Typ::ExtIdType.new('typ:extId', data[:ext_id]).builder
           end
           if data.key? :address
-            root << Typ::AddressType.new('address', data[:address]).builder
+            root << Typ::AddressType.new('typ:address', data[:address]).builder
           end
 
           root

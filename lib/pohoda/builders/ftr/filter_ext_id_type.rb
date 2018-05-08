@@ -12,7 +12,7 @@ module Pohoda
 
           root << build_element('ftr:id', data[:id]) if data.key? :id
           if data.key? :ext_id
-            root << Typ::ExtIdType.new('extId', data[:ext_id]).builder
+            root << Typ::ExtIdType.new('ftr:extId', data[:ext_id]).builder
           end
 
           root

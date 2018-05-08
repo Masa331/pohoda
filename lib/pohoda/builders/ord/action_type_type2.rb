@@ -12,7 +12,7 @@ module Pohoda
 
           root << build_element('ord:add', data[:add]) if data.key? :add
           if data.key? :delete
-            root << Ftr::DeleteOrderType.new('delete', data[:delete]).builder
+            root << Ftr::DeleteOrderType.new('ord:delete', data[:delete]).builder
           end
 
           root

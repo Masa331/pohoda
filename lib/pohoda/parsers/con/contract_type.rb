@@ -9,14 +9,14 @@ module Pohoda
         end
 
         def print
-          submodel_at(Prn::AgendaPrintType, 'con:print')
+          array_of_at(Prn::PrinterSettingsType, ['con:print', 'prn:printerSettings'])
         end
 
         def to_h_with_attrs
           hash = ParserCore::HashWithAttributes.new({}, attributes)
 
           hash[:contract_desc] = contract_desc.to_h_with_attrs if has? 'con:contractDesc'
-          hash[:print] = print.to_h_with_attrs if has? 'con:print'
+          hash[:print] = print.map(&:to_h_with_attrs) if has? 'con:print'
 
           hash
         end

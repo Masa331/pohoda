@@ -12,7 +12,7 @@ module Pohoda
 
           root << build_element('idp:partnerIdentity', data[:partner_identity]) if data.key? :partner_identity
           if data.key? :set_prices
-            root << Idp::SetPricesType.new('setPrices', data[:set_prices]).builder
+            root << Idp::SetPricesType.new('idp:setPrices', data[:set_prices]).builder
           end
 
           root

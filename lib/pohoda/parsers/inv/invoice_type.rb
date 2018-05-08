@@ -5,7 +5,7 @@ module Pohoda
         include ParserCore::BaseParser
 
         def links
-          submodel_at(Typ::LinksType, 'inv:links')
+          array_of_at(Typ::LinkElemetType, ['inv:links', 'typ:link'])
         end
 
         def cancel_document
@@ -29,19 +29,19 @@ module Pohoda
         end
 
         def print
-          submodel_at(Prn::AgendaPrintType, 'inv:print')
+          array_of_at(Prn::PrinterSettingsType, ['inv:print', 'prn:printerSettings'])
         end
 
         def to_h_with_attrs
           hash = ParserCore::HashWithAttributes.new({}, attributes)
 
-          hash[:links] = links.to_h_with_attrs if has? 'inv:links'
+          hash[:links] = links.map(&:to_h_with_attrs) if has? 'inv:links'
           hash[:cancel_document] = cancel_document.to_h_with_attrs if has? 'inv:cancelDocument'
           hash[:invoice_header] = invoice_header.to_h_with_attrs if has? 'inv:invoiceHeader'
           hash[:invoice_detail] = invoice_detail.to_h_with_attrs if has? 'inv:invoiceDetail'
           hash[:invoice_summary] = invoice_summary.to_h_with_attrs if has? 'inv:invoiceSummary'
           hash[:eet] = eet.to_h_with_attrs if has? 'inv:EET'
-          hash[:print] = print.to_h_with_attrs if has? 'inv:print'
+          hash[:print] = print.map(&:to_h_with_attrs) if has? 'inv:print'
 
           hash
         end

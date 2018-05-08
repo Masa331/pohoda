@@ -11,7 +11,7 @@ module Pohoda
           end
 
           if data.key? :currency
-            root << Typ::RefType.new('currency', data[:currency]).builder
+            root << Typ::RefType.new('pay:currency', data[:currency]).builder
           end
           root << build_element('pay:rate', data[:rate]) if data.key? :rate
           root << build_element('pay:amount', data[:amount]) if data.key? :amount

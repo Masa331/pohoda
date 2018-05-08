@@ -5,18 +5,18 @@ module Pohoda
         include ParserCore::BaseParser
 
         def stocks
-          submodel_at(Idp::StocksType, 'idp:stocks')
+          array_of_at(Idp::StockItemType, ['idp:stocks', 'idp:stockItem'])
         end
 
         def price_groups
-          submodel_at(Idp::PriceGroupsType, 'idp:priceGroups')
+          array_of_at(Idp::PriceGroupItemType, ['idp:priceGroups', 'idp:priceGroupItem'])
         end
 
         def to_h_with_attrs
           hash = ParserCore::HashWithAttributes.new({}, attributes)
 
-          hash[:stocks] = stocks.to_h_with_attrs if has? 'idp:stocks'
-          hash[:price_groups] = price_groups.to_h_with_attrs if has? 'idp:priceGroups'
+          hash[:stocks] = stocks.map(&:to_h_with_attrs) if has? 'idp:stocks'
+          hash[:price_groups] = price_groups.map(&:to_h_with_attrs) if has? 'idp:priceGroups'
 
           hash
         end

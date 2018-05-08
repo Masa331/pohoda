@@ -12,7 +12,7 @@ module Pohoda
 
           root << build_element('lst:id', data[:id]) if data.key? :id
           if data.key? :ext_id
-            root << Typ::ExtIdType.new('extId', data[:ext_id]).builder
+            root << Typ::ExtIdType.new('lst:extId', data[:ext_id]).builder
           end
           root << build_element('lst:code', data[:code]) if data.key? :code
           root << build_element('lst:name', data[:name]) if data.key? :name
@@ -26,7 +26,7 @@ module Pohoda
           root << build_element('lst:calculation', data[:calculation]) if data.key? :calculation
           root << build_element('lst:rounding', data[:rounding]) if data.key? :rounding
           if data.key? :currency
-            root << Typ::RefType.new('currency', data[:currency]).builder
+            root << Typ::RefType.new('lst:currency', data[:currency]).builder
           end
           root << build_element('lst:rate', data[:rate]) if data.key? :rate
 

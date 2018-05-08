@@ -12,7 +12,7 @@ module Pohoda
 
           root << build_element('pre:id', data[:id]) if data.key? :id
           if data.key? :number
-            root << Typ::NumberType.new('number', data[:number]).builder
+            root << Typ::NumberType.new('pre:number', data[:number]).builder
           end
           root << build_element('pre:date', data[:date]) if data.key? :date
           root << build_element('pre:time', data[:time]) if data.key? :time
@@ -20,29 +20,31 @@ module Pohoda
           root << build_element('pre:timeOfReceipt', data[:time_of_receipt]) if data.key? :time_of_receipt
           root << build_element('pre:symPar', data[:sym_par]) if data.key? :sym_par
           if data.key? :store
-            root << Typ::RefType.new('store', data[:store]).builder
+            root << Typ::RefType.new('pre:store', data[:store]).builder
           end
           root << build_element('pre:text', data[:text]) if data.key? :text
           if data.key? :partner_identity
-            root << Typ::Address.new('partnerIdentity', data[:partner_identity]).builder
+            root << Typ::Address.new('pre:partnerIdentity', data[:partner_identity]).builder
           end
           if data.key? :centre_source
-            root << Typ::RefType.new('centreSource', data[:centre_source]).builder
+            root << Typ::RefType.new('pre:centreSource', data[:centre_source]).builder
           end
           if data.key? :centre_destination
-            root << Typ::RefType.new('centreDestination', data[:centre_destination]).builder
+            root << Typ::RefType.new('pre:centreDestination', data[:centre_destination]).builder
           end
           if data.key? :activity
-            root << Typ::RefType.new('activity', data[:activity]).builder
+            root << Typ::RefType.new('pre:activity', data[:activity]).builder
           end
           if data.key? :contract
-            root << Typ::RefType.new('contract', data[:contract]).builder
+            root << Typ::RefType.new('pre:contract', data[:contract]).builder
           end
           root << build_element('pre:note', data[:note]) if data.key? :note
           root << build_element('pre:intNote', data[:int_note]) if data.key? :int_note
           root << build_element('pre:markRecord', data[:mark_record]) if data.key? :mark_record
           if data.key? :parameters
-            root << Typ::ParametersType.new('parameters', data[:parameters]).builder
+            element = Ox::Element.new('pre:parameters')
+            data[:parameters].each { |i| element << Typ::ParameterDocType.new('typ:parameter', i).builder }
+            root << element
           end
 
           root

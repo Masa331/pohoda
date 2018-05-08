@@ -13,23 +13,23 @@ module Pohoda
         end
 
         def stock_detail
-          submodel_at(Stk::StockDetailType, 'stk:stockDetail')
+          array_of_at(Stk::StockItemType, ['stk:stockDetail', 'stk:stockItem'])
         end
 
         def stock_attach
-          submodel_at(Stk::StockAttachType, 'stk:stockAttach')
+          array_of_at(Stk::AttachItemType, ['stk:stockAttach', 'stk:attachItem'])
         end
 
         def stock_serial_number
-          submodel_at(Stk::StockSerialNumberType, 'stk:stockSerialNumber')
+          array_of_at(Stk::SerialNumberItemType, ['stk:stockSerialNumber', 'stk:serialNumberItem'])
         end
 
         def stock_price_item
-          submodel_at(Stk::StockPriceItemType, 'stk:stockPriceItem')
+          array_of_at(Typ::StockPriceType, ['stk:stockPriceItem', 'stk:stockPrice'])
         end
 
         def print
-          submodel_at(Prn::AgendaPrintType, 'stk:print')
+          array_of_at(Prn::PrinterSettingsType, ['stk:print', 'prn:printerSettings'])
         end
 
         def to_h_with_attrs
@@ -37,11 +37,11 @@ module Pohoda
 
           hash[:action_type] = action_type.to_h_with_attrs if has? 'stk:actionType'
           hash[:stock_header] = stock_header.to_h_with_attrs if has? 'stk:stockHeader'
-          hash[:stock_detail] = stock_detail.to_h_with_attrs if has? 'stk:stockDetail'
-          hash[:stock_attach] = stock_attach.to_h_with_attrs if has? 'stk:stockAttach'
-          hash[:stock_serial_number] = stock_serial_number.to_h_with_attrs if has? 'stk:stockSerialNumber'
-          hash[:stock_price_item] = stock_price_item.to_h_with_attrs if has? 'stk:stockPriceItem'
-          hash[:print] = print.to_h_with_attrs if has? 'stk:print'
+          hash[:stock_detail] = stock_detail.map(&:to_h_with_attrs) if has? 'stk:stockDetail'
+          hash[:stock_attach] = stock_attach.map(&:to_h_with_attrs) if has? 'stk:stockAttach'
+          hash[:stock_serial_number] = stock_serial_number.map(&:to_h_with_attrs) if has? 'stk:stockSerialNumber'
+          hash[:stock_price_item] = stock_price_item.map(&:to_h_with_attrs) if has? 'stk:stockPriceItem'
+          hash[:print] = print.map(&:to_h_with_attrs) if has? 'stk:print'
 
           hash
         end
