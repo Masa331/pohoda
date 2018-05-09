@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<inv:invoiceItem xmlns:inv="http://www.stormware.cz/schema/version_2/invoice.xsd" xmlns:typ="http://www.stormware.cz/schema/version_2/type.xsd">
-  <inv:id>1</inv:id>
-</inv:invoiceItem>
