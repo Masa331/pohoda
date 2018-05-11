@@ -10,8 +10,6 @@ module Pohoda
             data.attributes.each { |k, v| root[k] = v }
           end
 
-
-
           root
         end
       end

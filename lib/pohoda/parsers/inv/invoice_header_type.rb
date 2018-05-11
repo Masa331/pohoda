@@ -165,7 +165,6 @@ module Pohoda
         end
 
         def evidentiary_resources_moss
-          # require 'pry'; binding.pry
           array_of_at(String, ['inv:evidentiaryResourcesMOSS', 'typ:ids'])
         end
 

@@ -14,8 +14,6 @@ module Pohoda
             root << n
           end
 
-
-
           root
         end
       end
