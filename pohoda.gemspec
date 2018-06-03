@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = 'pohoda'
-  spec.version       = '0.19.0'
+  spec.version       = '0.20.0'
   spec.authors       = ['Premysl Donat']
   spec.email         = ['pdonat@seznam.cz']
 
@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'nokogiri', "1.8.1"
   spec.add_dependency 'ox'
-  spec.add_dependency 'damedata_parser_core'
+  spec.add_dependency 'damedata_parser_core', '0.0.3'
 
   spec.add_development_dependency "bundler", "~> 1.15"
   spec.add_development_dependency "rake", "~> 10.0"

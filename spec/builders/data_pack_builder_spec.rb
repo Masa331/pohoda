@@ -26,4 +26,17 @@ RSpec.describe Pohoda::Builders::Dat::DataPackType do
         .gsub(/\s+/, ''))
     end
   end
+
+  context 'data pack with namespaces' do
+    it 'retuns xml string' do
+      builder = Pohoda::Builders::Dat::DataPackType.new 'dataPack', {}, namespaces: { dat: 'http://namespace.com' }
+
+      expect(builder.to_xml.gsub(/\s+/, '')).to eq(
+        <<~XML
+          <?xml version="1.0"?>
+          <dataPack xmlns:dat="http://namespace.com"/>
+        XML
+        .gsub(/\s+/, ''))
+    end
+  end
 end

@@ -17,6 +17,12 @@ module Pohoda
             data[:data_pack_item].each { |i| root << Dat::DataPackItemType.new('dat:dataPackItem', i).builder }
           end
 
+          if namespaces.any?
+            namespaces.each do |prefix, uri|
+              root["xmlns:#{prefix}"] = uri
+            end
+          end
+
           root
         end
       end
