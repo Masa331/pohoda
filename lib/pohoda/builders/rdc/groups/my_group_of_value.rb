@@ -5,9 +5,7 @@ module Pohoda
         module MyGroupOfValue
           def builder
             root = Ox::Element.new(name)
-            if data.respond_to? :attributes
-              data.attributes.each { |k, v| root[k] = v }
-            end
+            root = add_attributes_and_namespaces(root)
 
             root << build_element('rdc:XPath', data[:x_path], data[:x_path_attributes]) if data.key? :x_path
             root << build_element('rdc:valueRequested', data[:value_requested], data[:value_requested_attributes]) if data.key? :value_requested

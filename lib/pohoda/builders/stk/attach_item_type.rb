@@ -7,9 +7,7 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.key? :attributes
-            data[:attributes].each { |k, v| root[k] = v }
-          end
+          root = add_attributes_and_namespaces(root)
 
           root << build_element('stk:warehouse', data[:warehouse], data[:warehouse_attributes]) if data.key? :warehouse
           root << build_element('stk:notExpedite', data[:not_expedite], data[:not_expedite_attributes]) if data.key? :not_expedite

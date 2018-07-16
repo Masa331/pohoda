@@ -6,9 +6,7 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.key? :attributes
-            data[:attributes].each { |k, v| root[k] = v }
-          end
+          root = add_attributes_and_namespaces(root)
 
           root << build_element('typ:linkOrderToAdvanceInvoice', data[:link_order_to_advance_invoice], data[:link_order_to_advance_invoice_attributes]) if data.key? :link_order_to_advance_invoice
 

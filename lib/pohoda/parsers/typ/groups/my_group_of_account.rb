@@ -24,9 +24,9 @@ module Pohoda
             hash[:attributes] = attributes
 
             hash[:account_no] = account_no if has? 'typ:accountNo'
-        hash[:account_no_attributes] = account_no_attributes if has? 'typ:accountNo'
+            hash[:account_no_attributes] = account_no_attributes if has? 'typ:accountNo'
             hash[:bank_code] = bank_code if has? 'typ:bankCode'
-        hash[:bank_code_attributes] = bank_code_attributes if has? 'typ:bankCode'
+            hash[:bank_code_attributes] = bank_code_attributes if has? 'typ:bankCode'
 
             hash
           end

@@ -5,9 +5,7 @@ module Pohoda
         module MyGroupStockItem
           def builder
             root = Ox::Element.new(name)
-            if data.respond_to? :attributes
-              data.attributes.each { |k, v| root[k] = v }
-            end
+            root = add_attributes_and_namespaces(root)
 
             root << build_element('stk:id', data[:id], data[:id_attributes]) if data.key? :id
             if data.key? :storage

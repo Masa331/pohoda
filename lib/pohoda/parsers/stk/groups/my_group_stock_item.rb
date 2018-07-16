@@ -68,20 +68,20 @@ module Pohoda
             hash[:attributes] = attributes
 
             hash[:id] = id if has? 'stk:id'
-        hash[:id_attributes] = id_attributes if has? 'stk:id'
+            hash[:id_attributes] = id_attributes if has? 'stk:id'
             hash[:storage] = storage.to_h if has? 'stk:storage'
             hash[:code] = code if has? 'stk:code'
-        hash[:code_attributes] = code_attributes if has? 'stk:code'
+            hash[:code_attributes] = code_attributes if has? 'stk:code'
             hash[:name] = name if has? 'stk:name'
-        hash[:name_attributes] = name_attributes if has? 'stk:name'
+            hash[:name_attributes] = name_attributes if has? 'stk:name'
             hash[:count] = count if has? 'stk:count'
-        hash[:count_attributes] = count_attributes if has? 'stk:count'
+            hash[:count_attributes] = count_attributes if has? 'stk:count'
             hash[:quantity] = quantity if has? 'stk:quantity'
-        hash[:quantity_attributes] = quantity_attributes if has? 'stk:quantity'
+            hash[:quantity_attributes] = quantity_attributes if has? 'stk:quantity'
             hash[:unit] = unit if has? 'stk:unit'
-        hash[:unit_attributes] = unit_attributes if has? 'stk:unit'
+            hash[:unit_attributes] = unit_attributes if has? 'stk:unit'
             hash[:stock_order] = stock_order if has? 'stk:stockOrder'
-        hash[:stock_order_attributes] = stock_order_attributes if has? 'stk:stockOrder'
+            hash[:stock_order_attributes] = stock_order_attributes if has? 'stk:stockOrder'
 
             hash
           end

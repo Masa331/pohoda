@@ -6,9 +6,7 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.key? :attributes
-            data[:attributes].each { |k, v| root[k] = v }
-          end
+          root = add_attributes_and_namespaces(root)
 
           root << build_element('typ:numberOfDocument', data[:number_of_document], data[:number_of_document_attributes]) if data.key? :number_of_document
           root << build_element('typ:dateOfSale', data[:date_of_sale], data[:date_of_sale_attributes]) if data.key? :date_of_sale

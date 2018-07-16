@@ -6,9 +6,7 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.key? :attributes
-            data[:attributes].each { |k, v| root[k] = v }
-          end
+          root = add_attributes_and_namespaces(root)
 
           if data.key? :request_int_doc
             root << Ftr::RequestIntDocType.new('lst:requestIntDoc', data[:request_int_doc]).builder

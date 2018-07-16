@@ -32,11 +32,11 @@ module Pohoda
             hash[:attributes] = attributes
 
             hash[:rate_va_tround] = rate_va_tround if has? 'typ:rateVATround'
-        hash[:rate_va_tround_attributes] = rate_va_tround_attributes if has? 'typ:rateVATround'
+            hash[:rate_va_tround_attributes] = rate_va_tround_attributes if has? 'typ:rateVATround'
             hash[:price_round_sum] = price_round_sum if has? 'typ:priceRoundSum'
-        hash[:price_round_sum_attributes] = price_round_sum_attributes if has? 'typ:priceRoundSum'
+            hash[:price_round_sum_attributes] = price_round_sum_attributes if has? 'typ:priceRoundSum'
             hash[:price_round_sum_vat] = price_round_sum_vat if has? 'typ:priceRoundSumVAT'
-        hash[:price_round_sum_vat_attributes] = price_round_sum_vat_attributes if has? 'typ:priceRoundSumVAT'
+            hash[:price_round_sum_vat_attributes] = price_round_sum_vat_attributes if has? 'typ:priceRoundSumVAT'
 
             hash
           end

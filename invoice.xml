@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dat:dataPack>
+  <dat:dataPackItem>
+    <inv:invoice>
+      <inv:invoiceHeader>
+        <inv:invoiceType>issuedInvoice</inv:invoiceType>
+      </inv:invoiceHeader>
+      <inv:invoiceDetail>
+        <inv:invoiceItem>
+          <inv:text>some item</inv:text>
+        </inv:invoiceItem>
+        <inv:invoiceItem>
+          <inv:text>some other item</inv:text>
+        </inv:invoiceItem>
+      </inv:invoiceDetail>
+    </inv:invoice>
+  </dat:dataPackItem>
+</dat:dataPack>
