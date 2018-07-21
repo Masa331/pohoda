@@ -8,10 +8,16 @@ module Pohoda
           at 'ftr:id'
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def id_attributes
+          attributes_at 'ftr:id'
+        end
+
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
           hash[:id] = id if has? 'ftr:id'
+          hash[:id_attributes] = id_attributes if has? 'ftr:id'
 
           hash
         end

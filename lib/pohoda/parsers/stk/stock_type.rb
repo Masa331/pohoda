@@ -32,16 +32,17 @@ module Pohoda
           array_of_at(Prn::PrinterSettingsType, ['stk:print', 'prn:printerSettings'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:action_type] = action_type.to_h_with_attrs if has? 'stk:actionType'
-          hash[:stock_header] = stock_header.to_h_with_attrs if has? 'stk:stockHeader'
-          hash[:stock_detail] = stock_detail.map(&:to_h_with_attrs) if has? 'stk:stockDetail'
-          hash[:stock_attach] = stock_attach.map(&:to_h_with_attrs) if has? 'stk:stockAttach'
-          hash[:stock_serial_number] = stock_serial_number.map(&:to_h_with_attrs) if has? 'stk:stockSerialNumber'
-          hash[:stock_price_item] = stock_price_item.map(&:to_h_with_attrs) if has? 'stk:stockPriceItem'
-          hash[:print] = print.map(&:to_h_with_attrs) if has? 'stk:print'
+          hash[:action_type] = action_type.to_h if has? 'stk:actionType'
+          hash[:stock_header] = stock_header.to_h if has? 'stk:stockHeader'
+          hash[:stock_detail] = stock_detail.map(&:to_h) if has? 'stk:stockDetail'
+          hash[:stock_attach] = stock_attach.map(&:to_h) if has? 'stk:stockAttach'
+          hash[:stock_serial_number] = stock_serial_number.map(&:to_h) if has? 'stk:stockSerialNumber'
+          hash[:stock_price_item] = stock_price_item.map(&:to_h) if has? 'stk:stockPriceItem'
+          hash[:print] = print.map(&:to_h) if has? 'stk:print'
 
           hash
         end

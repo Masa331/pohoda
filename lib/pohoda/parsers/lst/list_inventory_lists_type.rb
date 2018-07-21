@@ -8,10 +8,11 @@ module Pohoda
           array_of_at(Ilt::InventoryListsType, ['lst:inventoryLists'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:inventory_lists] = inventory_lists.map(&:to_h_with_attrs) if has? 'lst:inventoryLists'
+          hash[:inventory_lists] = inventory_lists.map(&:to_h) if has? 'lst:inventoryLists'
 
           hash
           super.merge(hash)

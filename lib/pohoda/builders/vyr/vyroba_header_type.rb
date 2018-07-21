@@ -6,18 +6,18 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
-          root << build_element('vyr:id', data[:id]) if data.key? :id
+          root << build_element('vyr:id', data[:id], data[:id_attributes]) if data.key? :id
           if data.key? :number
             root << Typ::NumberType.new('vyr:number', data[:number]).builder
           end
-          root << build_element('vyr:date', data[:date]) if data.key? :date
-          root << build_element('vyr:time', data[:time]) if data.key? :time
-          root << build_element('vyr:symPar', data[:sym_par]) if data.key? :sym_par
-          root << build_element('vyr:text', data[:text]) if data.key? :text
+          root << build_element('vyr:date', data[:date], data[:date_attributes]) if data.key? :date
+          root << build_element('vyr:time', data[:time], data[:time_attributes]) if data.key? :time
+          root << build_element('vyr:symPar', data[:sym_par], data[:sym_par_attributes]) if data.key? :sym_par
+          root << build_element('vyr:text', data[:text], data[:text_attributes]) if data.key? :text
           if data.key? :partner_identity
             root << Typ::Address.new('vyr:partnerIdentity', data[:partner_identity]).builder
           end
@@ -33,9 +33,9 @@ module Pohoda
           if data.key? :contract
             root << Typ::RefType.new('vyr:contract', data[:contract]).builder
           end
-          root << build_element('vyr:note', data[:note]) if data.key? :note
-          root << build_element('vyr:intNote', data[:int_note]) if data.key? :int_note
-          root << build_element('vyr:markRecord', data[:mark_record]) if data.key? :mark_record
+          root << build_element('vyr:note', data[:note], data[:note_attributes]) if data.key? :note
+          root << build_element('vyr:intNote', data[:int_note], data[:int_note_attributes]) if data.key? :int_note
+          root << build_element('vyr:markRecord', data[:mark_record], data[:mark_record_attributes]) if data.key? :mark_record
           if data.key? :labels
             element = Ox::Element.new('vyr:labels')
             data[:labels].each { |i| element << Typ::LabelType.new('typ:label', i).builder }

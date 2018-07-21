@@ -8,10 +8,16 @@ module Pohoda
           at 'lst:requestUserCode'
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def request_user_code_attributes
+          attributes_at 'lst:requestUserCode'
+        end
+
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
           hash[:request_user_code] = request_user_code if has? 'lst:requestUserCode'
+          hash[:request_user_code_attributes] = request_user_code_attributes if has? 'lst:requestUserCode'
 
           hash
         end

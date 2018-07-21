@@ -6,23 +6,23 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
-          root << build_element('pre:id', data[:id]) if data.key? :id
+          root << build_element('pre:id', data[:id], data[:id_attributes]) if data.key? :id
           if data.key? :number
             root << Typ::NumberType.new('pre:number', data[:number]).builder
           end
-          root << build_element('pre:date', data[:date]) if data.key? :date
-          root << build_element('pre:time', data[:time]) if data.key? :time
-          root << build_element('pre:dateOfReceipt', data[:date_of_receipt]) if data.key? :date_of_receipt
-          root << build_element('pre:timeOfReceipt', data[:time_of_receipt]) if data.key? :time_of_receipt
-          root << build_element('pre:symPar', data[:sym_par]) if data.key? :sym_par
+          root << build_element('pre:date', data[:date], data[:date_attributes]) if data.key? :date
+          root << build_element('pre:time', data[:time], data[:time_attributes]) if data.key? :time
+          root << build_element('pre:dateOfReceipt', data[:date_of_receipt], data[:date_of_receipt_attributes]) if data.key? :date_of_receipt
+          root << build_element('pre:timeOfReceipt', data[:time_of_receipt], data[:time_of_receipt_attributes]) if data.key? :time_of_receipt
+          root << build_element('pre:symPar', data[:sym_par], data[:sym_par_attributes]) if data.key? :sym_par
           if data.key? :store
             root << Typ::RefType.new('pre:store', data[:store]).builder
           end
-          root << build_element('pre:text', data[:text]) if data.key? :text
+          root << build_element('pre:text', data[:text], data[:text_attributes]) if data.key? :text
           if data.key? :partner_identity
             root << Typ::Address.new('pre:partnerIdentity', data[:partner_identity]).builder
           end
@@ -38,9 +38,9 @@ module Pohoda
           if data.key? :contract
             root << Typ::RefType.new('pre:contract', data[:contract]).builder
           end
-          root << build_element('pre:note', data[:note]) if data.key? :note
-          root << build_element('pre:intNote', data[:int_note]) if data.key? :int_note
-          root << build_element('pre:markRecord', data[:mark_record]) if data.key? :mark_record
+          root << build_element('pre:note', data[:note], data[:note_attributes]) if data.key? :note
+          root << build_element('pre:intNote', data[:int_note], data[:int_note_attributes]) if data.key? :int_note
+          root << build_element('pre:markRecord', data[:mark_record], data[:mark_record_attributes]) if data.key? :mark_record
           if data.key? :parameters
             element = Ox::Element.new('pre:parameters')
             data[:parameters].each { |i| element << Typ::ParameterDocType.new('typ:parameter', i).builder }

@@ -8,10 +8,16 @@ module Pohoda
           at 'str:itemStorage'
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def item_storage_attributes
+          attributes_at 'str:itemStorage'
+        end
+
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
           hash[:item_storage] = item_storage if has? 'str:itemStorage'
+          hash[:item_storage_attributes] = item_storage_attributes if has? 'str:itemStorage'
 
           hash
         end

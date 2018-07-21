@@ -12,11 +12,12 @@ module Pohoda
           submodel_at(MKasa::ImportResponseType, 'mKasa:importResponse')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:configuration] = configuration.to_h_with_attrs if has? 'mKasa:configuration'
-          hash[:import_response] = import_response.to_h_with_attrs if has? 'mKasa:importResponse'
+          hash[:configuration] = configuration.to_h if has? 'mKasa:configuration'
+          hash[:import_response] = import_response.to_h if has? 'mKasa:importResponse'
 
           hash
           super.merge(hash)

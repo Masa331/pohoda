@@ -8,10 +8,16 @@ module Pohoda
           at 'pay:default'
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def default_attributes
+          attributes_at 'pay:default'
+        end
+
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
           hash[:default] = default if has? 'pay:default'
+          hash[:default_attributes] = default_attributes if has? 'pay:default'
 
           hash
         end

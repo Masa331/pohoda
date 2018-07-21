@@ -8,10 +8,11 @@ module Pohoda
           array_of_at(Lst::ItemAccountingTypeSingleEntry, ['lst:itemAccounting'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:item_accounting] = item_accounting.map(&:to_h_with_attrs) if has? 'lst:itemAccounting'
+          hash[:item_accounting] = item_accounting.map(&:to_h) if has? 'lst:itemAccounting'
 
           hash
           super.merge(hash)

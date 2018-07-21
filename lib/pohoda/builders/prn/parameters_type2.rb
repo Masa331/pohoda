@@ -6,12 +6,12 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
-          root << build_element('prn:copy', data[:copy]) if data.key? :copy
-          root << build_element('prn:datePrint', data[:date_print]) if data.key? :date_print
+          root << build_element('prn:copy', data[:copy], data[:copy_attributes]) if data.key? :copy
+          root << build_element('prn:datePrint', data[:date_print], data[:date_print_attributes]) if data.key? :date_print
 
           root
         end

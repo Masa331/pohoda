@@ -7,13 +7,13 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
-          root << build_element('rdc:state', data[:state]) if data.key? :state
-          root << build_element('rdc:errno', data[:errno]) if data.key? :errno
-          root << build_element('rdc:note', data[:note]) if data.key? :note
+          root << build_element('rdc:state', data[:state], data[:state_attributes]) if data.key? :state
+          root << build_element('rdc:errno', data[:errno], data[:errno_attributes]) if data.key? :errno
+          root << build_element('rdc:note', data[:note], data[:note_attributes]) if data.key? :note
 
           mega.each do |r|
             r.nodes.each { |n| root << n }

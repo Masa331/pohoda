@@ -8,10 +8,11 @@ module Pohoda
           array_of_at(Lst::ItemStorageType, ['lst:subStorages', 'lst:itemStorage'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:sub_storages] = sub_storages.map(&:to_h_with_attrs) if has? 'lst:subStorages'
+          hash[:sub_storages] = sub_storages.map(&:to_h) if has? 'lst:subStorages'
 
           hash
         end

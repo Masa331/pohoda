@@ -8,10 +8,11 @@ module Pohoda
           submodel_at(Ftr::FilterExtIdType, 'ftr:filter')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:filter] = filter.to_h_with_attrs if has? 'ftr:filter'
+          hash[:filter] = filter.to_h if has? 'ftr:filter'
 
           hash
         end

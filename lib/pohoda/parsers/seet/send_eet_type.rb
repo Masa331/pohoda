@@ -8,10 +8,11 @@ module Pohoda
           submodel_at(SEET::RecordSendEETType, 'sEET:record')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:record] = record.to_h_with_attrs if has? 'sEET:record'
+          hash[:record] = record.to_h if has? 'sEET:record'
 
           hash
         end

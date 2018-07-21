@@ -8,8 +8,9 @@ module Pohoda
           array_of_at(String, ['typ:ids'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
           hash[:ids] = ids if has? 'typ:ids'
 

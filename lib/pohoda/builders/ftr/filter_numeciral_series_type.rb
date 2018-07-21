@@ -6,13 +6,13 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
-          root << build_element('ftr:id', data[:id]) if data.key? :id
-          root << build_element('ftr:period', data[:period]) if data.key? :period
-          root << build_element('ftr:agenda', data[:agenda]) if data.key? :agenda
+          root << build_element('ftr:id', data[:id], data[:id_attributes]) if data.key? :id
+          root << build_element('ftr:period', data[:period], data[:period_attributes]) if data.key? :period
+          root << build_element('ftr:agenda', data[:agenda], data[:agenda_attributes]) if data.key? :agenda
 
           root
         end

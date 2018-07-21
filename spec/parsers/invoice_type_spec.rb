@@ -15,7 +15,7 @@ RSpec.describe Pohoda::Parsers::Inv::InvoiceType do
     its('invoice_summary') { is_expected.to eq nil }
 
     it '#to_h' do
-      expect(subject.to_h_with_attrs).to eq({})
+      expect(subject.to_h).to eq({ attributes: { version: '2.0' } })
     end
   end
 end

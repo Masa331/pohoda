@@ -8,25 +8,46 @@ module Pohoda
           at 'mKasa:mKasaPackNum'
         end
 
+        def m_kasa_pack_num_attributes
+          attributes_at 'mKasa:mKasaPackNum'
+        end
+
         def name
           at 'mKasa:name'
+        end
+
+        def name_attributes
+          attributes_at 'mKasa:name'
         end
 
         def device_guid
           at 'mKasa:deviceGuid'
         end
 
+        def device_guid_attributes
+          attributes_at 'mKasa:deviceGuid'
+        end
+
         def overwrite_device_guid
           at 'mKasa:overwriteDeviceGuid'
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def overwrite_device_guid_attributes
+          attributes_at 'mKasa:overwriteDeviceGuid'
+        end
+
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
           hash[:m_kasa_pack_num] = m_kasa_pack_num if has? 'mKasa:mKasaPackNum'
+          hash[:m_kasa_pack_num_attributes] = m_kasa_pack_num_attributes if has? 'mKasa:mKasaPackNum'
           hash[:name] = name if has? 'mKasa:name'
+          hash[:name_attributes] = name_attributes if has? 'mKasa:name'
           hash[:device_guid] = device_guid if has? 'mKasa:deviceGuid'
+          hash[:device_guid_attributes] = device_guid_attributes if has? 'mKasa:deviceGuid'
           hash[:overwrite_device_guid] = overwrite_device_guid if has? 'mKasa:overwriteDeviceGuid'
+          hash[:overwrite_device_guid_attributes] = overwrite_device_guid_attributes if has? 'mKasa:overwriteDeviceGuid'
 
           hash
         end

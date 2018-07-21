@@ -8,10 +8,11 @@ module Pohoda
           submodel_at(Pay::PaymentHeaderType, 'pay:paymentHeader')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:payment_header] = payment_header.to_h_with_attrs if has? 'pay:paymentHeader'
+          hash[:payment_header] = payment_header.to_h if has? 'pay:paymentHeader'
 
           hash
         end

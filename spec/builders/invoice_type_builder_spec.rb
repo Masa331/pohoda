@@ -11,7 +11,7 @@ RSpec.describe Pohoda::Builders::Inv::InvoiceType do
         parsed = Pohoda.parse(xml)
 
         lines1 = xml.lines.sort
-        lines2 = Pohoda.build(parsed.to_h_with_attrs, { encoding: 'UTF-8' }).lines.sort
+        lines2 = Pohoda.build(parsed.to_h, { encoding: 'UTF-8' }).lines.sort
 
         expect(lines1).to eq lines2
       end

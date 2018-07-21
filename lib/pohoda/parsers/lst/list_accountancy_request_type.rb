@@ -8,10 +8,11 @@ module Pohoda
           submodel_at(Ftr::RequestAccountancyType, 'lst:requestAccountancy')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:request_accountancy] = request_accountancy.to_h_with_attrs if has? 'lst:requestAccountancy'
+          hash[:request_accountancy] = request_accountancy.to_h if has? 'lst:requestAccountancy'
 
           hash
         end

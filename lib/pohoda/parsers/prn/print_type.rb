@@ -12,11 +12,12 @@ module Pohoda
           array_of_at(Prn::PrinterSettingsType, ['prn:printerSettings'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:record] = record.to_h_with_attrs if has? 'prn:record'
-          hash[:printer_settings] = printer_settings.map(&:to_h_with_attrs) if has? 'prn:printerSettings'
+          hash[:record] = record.to_h if has? 'prn:record'
+          hash[:printer_settings] = printer_settings.map(&:to_h) if has? 'prn:printerSettings'
 
           hash
         end

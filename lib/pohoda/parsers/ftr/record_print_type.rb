@@ -12,11 +12,17 @@ module Pohoda
           at 'ftr:userFilterName'
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def user_filter_name_attributes
+          attributes_at 'ftr:userFilterName'
+        end
 
-          hash[:filter] = filter.to_h_with_attrs if has? 'ftr:filter'
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
+
+          hash[:filter] = filter.to_h if has? 'ftr:filter'
           hash[:user_filter_name] = user_filter_name if has? 'ftr:userFilterName'
+          hash[:user_filter_name_attributes] = user_filter_name_attributes if has? 'ftr:userFilterName'
 
           hash
         end

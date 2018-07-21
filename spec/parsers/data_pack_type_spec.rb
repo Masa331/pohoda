@@ -28,14 +28,30 @@ RSpec.describe Pohoda::Parsers::Dat::DataPackType do
 
   describe '#to_h' do
     it 'returns data pack as a hash' do
-      item1 = { invoice: { invoice_header: { invoice_type: "issuedInvoice",
-                                             number: { number_requested: "2016001938"} } } }
-      item2 = { invoice: { invoice_header: { invoice_type: "issuedInvoice",
-                                             number: { number_requested: "2016001939" } } } }
+      item1 = { attributes: { id: '2016001938', version: '2.0' },
+                invoice: { attributes: { version: '2.0' },
+                           invoice_header: { attributes: {},
+                                             invoice_type: 'issuedInvoice',
+                                             invoice_type_attributes: {},
+                                             number: { attributes: {},
+                                                       number_requested: '2016001938',
+                                                       number_requested_attributes: {} } } } }
+      item2 = { attributes: { id: '2016001939', version: '2.0' },
+                invoice: { attributes: { version: '2.0' },
+                           invoice_header: { attributes: {},
+                                             invoice_type: 'issuedInvoice',
+                                             invoice_type_attributes: {},
+                                             number: { attributes: {},
+                                                       number_requested: '2016001939',
+                                                       number_requested_attributes: {} } } } }
 
-      expected_hash = { data_pack_item: [item1, item2] }
+      expected_hash = { attributes: { id: 'fa001', ico: '00000001', application: 'StwTest', version: '2.0', note: 'Import',
+                                      :"xmlns:dat" => 'http://www.stormware.cz/schema/version_2/data.xsd',
+                                      :"xmlns:inv" => 'http://www.stormware.cz/schema/version_2/invoice.xsd',
+                                      :"xmlns:typ" => 'http://www.stormware.cz/schema/version_2/type.xsd'},
+                                      data_pack_item: [item1, item2] }
 
-      expect(data_pack.to_h_with_attrs).to eq expected_hash
+      expect(data_pack.to_h).to match expected_hash
     end
   end
 end

@@ -8,10 +8,16 @@ module Pohoda
           at 'bnk:unitPrice'
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def unit_price_attributes
+          attributes_at 'bnk:unitPrice'
+        end
+
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
           hash[:unit_price] = unit_price if has? 'bnk:unitPrice'
+          hash[:unit_price_attributes] = unit_price_attributes if has? 'bnk:unitPrice'
 
           hash
         end

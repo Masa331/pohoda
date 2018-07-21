@@ -20,13 +20,14 @@ module Pohoda
           array_of_at(Prn::PrinterSettingsType, ['vyd:print', 'prn:printerSettings'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:vydejka_header] = vydejka_header.to_h_with_attrs if has? 'vyd:vydejkaHeader'
-          hash[:vydejka_detail] = vydejka_detail.map(&:to_h_with_attrs) if has? 'vyd:vydejkaDetail'
-          hash[:vydejka_summary] = vydejka_summary.to_h_with_attrs if has? 'vyd:vydejkaSummary'
-          hash[:print] = print.map(&:to_h_with_attrs) if has? 'vyd:print'
+          hash[:vydejka_header] = vydejka_header.to_h if has? 'vyd:vydejkaHeader'
+          hash[:vydejka_detail] = vydejka_detail.map(&:to_h) if has? 'vyd:vydejkaDetail'
+          hash[:vydejka_summary] = vydejka_summary.to_h if has? 'vyd:vydejkaSummary'
+          hash[:print] = print.map(&:to_h) if has? 'vyd:print'
 
           hash
         end

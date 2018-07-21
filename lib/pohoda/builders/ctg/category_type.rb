@@ -6,19 +6,19 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
-          root << build_element('ctg:parentId', data[:parent_id]) if data.key? :parent_id
-          root << build_element('ctg:id', data[:id]) if data.key? :id
-          root << build_element('ctg:name', data[:name]) if data.key? :name
-          root << build_element('ctg:description', data[:description]) if data.key? :description
-          root << build_element('ctg:sequence', data[:sequence]) if data.key? :sequence
-          root << build_element('ctg:displayed', data[:displayed]) if data.key? :displayed
-          root << build_element('ctg:picture', data[:picture]) if data.key? :picture
-          root << build_element('ctg:note', data[:note]) if data.key? :note
-          root << build_element('ctg:markRecord', data[:mark_record]) if data.key? :mark_record
+          root << build_element('ctg:parentId', data[:parent_id], data[:parent_id_attributes]) if data.key? :parent_id
+          root << build_element('ctg:id', data[:id], data[:id_attributes]) if data.key? :id
+          root << build_element('ctg:name', data[:name], data[:name_attributes]) if data.key? :name
+          root << build_element('ctg:description', data[:description], data[:description_attributes]) if data.key? :description
+          root << build_element('ctg:sequence', data[:sequence], data[:sequence_attributes]) if data.key? :sequence
+          root << build_element('ctg:displayed', data[:displayed], data[:displayed_attributes]) if data.key? :displayed
+          root << build_element('ctg:picture', data[:picture], data[:picture_attributes]) if data.key? :picture
+          root << build_element('ctg:note', data[:note], data[:note_attributes]) if data.key? :note
+          root << build_element('ctg:markRecord', data[:mark_record], data[:mark_record_attributes]) if data.key? :mark_record
           if data.key? :sub_categories
             element = Ox::Element.new('ctg:subCategories')
             data[:sub_categories].each { |i| element << Ctg::CategoryType.new('ctg:category', i).builder }

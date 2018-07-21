@@ -8,10 +8,11 @@ module Pohoda
           submodel_at(Ipm::IntParamType, 'ipm:intParam')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:int_param] = int_param.to_h_with_attrs if has? 'ipm:intParam'
+          hash[:int_param] = int_param.to_h if has? 'ipm:intParam'
 
           hash
         end

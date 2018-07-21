@@ -8,10 +8,11 @@ module Pohoda
           submodel_at(Nms::NumericalSeriesHeaderType, 'nms:numericalSeriesHeader')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:numerical_series_header] = numerical_series_header.to_h_with_attrs if has? 'nms:numericalSeriesHeader'
+          hash[:numerical_series_header] = numerical_series_header.to_h if has? 'nms:numericalSeriesHeader'
 
           hash
         end

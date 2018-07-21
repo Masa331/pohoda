@@ -6,11 +6,11 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
-          root << build_element('typ:stateEET', data[:state_eet]) if data.key? :state_eet
+          root << build_element('typ:stateEET', data[:state_eet], data[:state_eet_attributes]) if data.key? :state_eet
           if data.key? :detail_eet
             data[:detail_eet].each { |i| root << Typ::DetailEETType.new('typ:detailEET', i).builder }
           end

@@ -8,6 +8,10 @@ module Pohoda
           at 'adb:actionType'
         end
 
+        def action_type_attributes
+          attributes_at 'adb:actionType'
+        end
+
         def addressbook_header
           submodel_at(Adb::AddressbookHeaderType, 'adb:addressbookHeader')
         end
@@ -20,13 +24,15 @@ module Pohoda
           array_of_at(Prn::PrinterSettingsType, ['adb:print', 'prn:printerSettings'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
           hash[:action_type] = action_type if has? 'adb:actionType'
-          hash[:addressbook_header] = addressbook_header.to_h_with_attrs if has? 'adb:addressbookHeader'
-          hash[:addressbook_account] = addressbook_account.map(&:to_h_with_attrs) if has? 'adb:addressbookAccount'
-          hash[:print] = print.map(&:to_h_with_attrs) if has? 'adb:print'
+          hash[:action_type_attributes] = action_type_attributes if has? 'adb:actionType'
+          hash[:addressbook_header] = addressbook_header.to_h if has? 'adb:addressbookHeader'
+          hash[:addressbook_account] = addressbook_account.map(&:to_h) if has? 'adb:addressbookAccount'
+          hash[:print] = print.map(&:to_h) if has? 'adb:print'
 
           hash
         end

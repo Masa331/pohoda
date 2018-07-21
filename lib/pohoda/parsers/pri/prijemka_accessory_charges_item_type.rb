@@ -8,24 +8,48 @@ module Pohoda
           at 'pri:id'
         end
 
+        def id_attributes
+          attributes_at 'pri:id'
+        end
+
         def quantity
           at 'pri:quantity'
+        end
+
+        def quantity_attributes
+          attributes_at 'pri:quantity'
         end
 
         def pay_vat
           at 'pri:payVAT'
         end
 
+        def pay_vat_attributes
+          attributes_at 'pri:payVAT'
+        end
+
         def rate_vat
           at 'pri:rateVAT'
+        end
+
+        def rate_vat_attributes
+          attributes_at 'pri:rateVAT'
         end
 
         def percent_vat
           at 'pri:percentVAT'
         end
 
+        def percent_vat_attributes
+          attributes_at 'pri:percentVAT'
+        end
+
         def discount_percentage
           at 'pri:discountPercentage'
+        end
+
+        def discount_percentage_attributes
+          attributes_at 'pri:discountPercentage'
         end
 
         def home_currency
@@ -38,6 +62,10 @@ module Pohoda
 
         def note
           at 'pri:note'
+        end
+
+        def note_attributes
+          attributes_at 'pri:note'
         end
 
         def centre
@@ -56,22 +84,30 @@ module Pohoda
           array_of_at(Typ::ParameterDocType, ['pri:parameters', 'typ:parameter'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
           hash[:id] = id if has? 'pri:id'
+          hash[:id_attributes] = id_attributes if has? 'pri:id'
           hash[:quantity] = quantity if has? 'pri:quantity'
+          hash[:quantity_attributes] = quantity_attributes if has? 'pri:quantity'
           hash[:pay_vat] = pay_vat if has? 'pri:payVAT'
+          hash[:pay_vat_attributes] = pay_vat_attributes if has? 'pri:payVAT'
           hash[:rate_vat] = rate_vat if has? 'pri:rateVAT'
+          hash[:rate_vat_attributes] = rate_vat_attributes if has? 'pri:rateVAT'
           hash[:percent_vat] = percent_vat if has? 'pri:percentVAT'
+          hash[:percent_vat_attributes] = percent_vat_attributes if has? 'pri:percentVAT'
           hash[:discount_percentage] = discount_percentage if has? 'pri:discountPercentage'
-          hash[:home_currency] = home_currency.to_h_with_attrs if has? 'pri:homeCurrency'
-          hash[:foreign_currency] = foreign_currency.to_h_with_attrs if has? 'pri:foreignCurrency'
+          hash[:discount_percentage_attributes] = discount_percentage_attributes if has? 'pri:discountPercentage'
+          hash[:home_currency] = home_currency.to_h if has? 'pri:homeCurrency'
+          hash[:foreign_currency] = foreign_currency.to_h if has? 'pri:foreignCurrency'
           hash[:note] = note if has? 'pri:note'
-          hash[:centre] = centre.to_h_with_attrs if has? 'pri:centre'
-          hash[:activity] = activity.to_h_with_attrs if has? 'pri:activity'
-          hash[:contract] = contract.to_h_with_attrs if has? 'pri:contract'
-          hash[:parameters] = parameters.map(&:to_h_with_attrs) if has? 'pri:parameters'
+          hash[:note_attributes] = note_attributes if has? 'pri:note'
+          hash[:centre] = centre.to_h if has? 'pri:centre'
+          hash[:activity] = activity.to_h if has? 'pri:activity'
+          hash[:contract] = contract.to_h if has? 'pri:contract'
+          hash[:parameters] = parameters.map(&:to_h) if has? 'pri:parameters'
 
           hash
         end

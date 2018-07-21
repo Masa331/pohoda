@@ -6,8 +6,8 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
           if data.key? :address
@@ -16,14 +16,14 @@ module Pohoda
           if data.key? :establishment
             root << Typ::EstablishmentType.new('mKasa:establishment', data[:establishment]).builder
           end
-          root << build_element('mKasa:unitType', data[:unit_type]) if data.key? :unit_type
-          root << build_element('mKasa:suffix', data[:suffix]) if data.key? :suffix
-          root << build_element('mKasa:stateType', data[:state_type]) if data.key? :state_type
-          root << build_element('mKasa:register', data[:register]) if data.key? :register
+          root << build_element('mKasa:unitType', data[:unit_type], data[:unit_type_attributes]) if data.key? :unit_type
+          root << build_element('mKasa:suffix', data[:suffix], data[:suffix_attributes]) if data.key? :suffix
+          root << build_element('mKasa:stateType', data[:state_type], data[:state_type_attributes]) if data.key? :state_type
+          root << build_element('mKasa:register', data[:register], data[:register_attributes]) if data.key? :register
           if data.key? :vat_payer
             root << MKasa::VatPayerType.new('mKasa:vatPayer', data[:vat_payer]).builder
           end
-          root << build_element('mKasa:changeForFoodVouchers', data[:change_for_food_vouchers]) if data.key? :change_for_food_vouchers
+          root << build_element('mKasa:changeForFoodVouchers', data[:change_for_food_vouchers], data[:change_for_food_vouchers_attributes]) if data.key? :change_for_food_vouchers
 
           root
         end

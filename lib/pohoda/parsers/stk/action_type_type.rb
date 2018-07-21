@@ -16,12 +16,13 @@ module Pohoda
           submodel_at(Ftr::RequestStockType, 'stk:delete')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:add] = add.to_h_with_attrs if has? 'stk:add'
-          hash[:update] = update.to_h_with_attrs if has? 'stk:update'
-          hash[:delete] = delete.to_h_with_attrs if has? 'stk:delete'
+          hash[:add] = add.to_h if has? 'stk:add'
+          hash[:update] = update.to_h if has? 'stk:update'
+          hash[:delete] = delete.to_h if has? 'stk:delete'
 
           hash
         end

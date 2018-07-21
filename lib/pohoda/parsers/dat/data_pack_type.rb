@@ -12,11 +12,12 @@ module Pohoda
           array_of_at(Dat::DataPackItemType, ['dat:dataPackItem'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:transformation] = transformation.to_h_with_attrs if has? 'dat:transformation'
-          hash[:data_pack_item] = data_pack_item.map(&:to_h_with_attrs) if has? 'dat:dataPackItem'
+          hash[:transformation] = transformation.to_h if has? 'dat:transformation'
+          hash[:data_pack_item] = data_pack_item.map(&:to_h) if has? 'dat:dataPackItem'
 
           hash
         end

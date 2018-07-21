@@ -6,13 +6,13 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
-          root << build_element('sto:usePLU', data[:use_plu]) if data.key? :use_plu
-          root << build_element('sto:lowerLimit', data[:lower_limit]) if data.key? :lower_limit
-          root << build_element('sto:upperLimit', data[:upper_limit]) if data.key? :upper_limit
+          root << build_element('sto:usePLU', data[:use_plu], data[:use_plu_attributes]) if data.key? :use_plu
+          root << build_element('sto:lowerLimit', data[:lower_limit], data[:lower_limit_attributes]) if data.key? :lower_limit
+          root << build_element('sto:upperLimit', data[:upper_limit], data[:upper_limit_attributes]) if data.key? :upper_limit
 
           root
         end

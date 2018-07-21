@@ -9,10 +9,11 @@ module Pohoda
           array_of_at(Typ::StockPriceType, ['stk:stockPriceItem', 'stk:stockPrice'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:stock_price_item] = stock_price_item.map(&:to_h_with_attrs) if has? 'stk:stockPriceItem'
+          hash[:stock_price_item] = stock_price_item.map(&:to_h) if has? 'stk:stockPriceItem'
 
           mega.inject(hash) { |memo, r| memo.merge r }
         end

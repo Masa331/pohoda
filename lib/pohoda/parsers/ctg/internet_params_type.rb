@@ -8,15 +8,21 @@ module Pohoda
           at 'ctg:idInternetParams'
         end
 
+        def id_internet_params_attributes
+          attributes_at 'ctg:idInternetParams'
+        end
+
         def int_parameter
           array_of_at(Typ::RefTypeLong, ['ctg:intParameter'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
           hash[:id_internet_params] = id_internet_params if has? 'ctg:idInternetParams'
-          hash[:int_parameter] = int_parameter.map(&:to_h_with_attrs) if has? 'ctg:intParameter'
+          hash[:id_internet_params_attributes] = id_internet_params_attributes if has? 'ctg:idInternetParams'
+          hash[:int_parameter] = int_parameter.map(&:to_h) if has? 'ctg:intParameter'
 
           hash
         end

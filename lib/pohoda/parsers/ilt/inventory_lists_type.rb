@@ -12,11 +12,12 @@ module Pohoda
           array_of_at(Ilt::InventoryListsItemType, ['ilt:inventoryListsDetail', 'ilt:inventoryListsItem'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:inventory_lists_header] = inventory_lists_header.to_h_with_attrs if has? 'ilt:inventoryListsHeader'
-          hash[:inventory_lists_detail] = inventory_lists_detail.map(&:to_h_with_attrs) if has? 'ilt:inventoryListsDetail'
+          hash[:inventory_lists_header] = inventory_lists_header.to_h if has? 'ilt:inventoryListsHeader'
+          hash[:inventory_lists_detail] = inventory_lists_detail.map(&:to_h) if has? 'ilt:inventoryListsDetail'
 
           hash
         end

@@ -12,11 +12,17 @@ module Pohoda
           at 'lst:importData'
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def import_data_attributes
+          attributes_at 'lst:importData'
+        end
 
-          hash[:import_details] = import_details.map(&:to_h_with_attrs) if has? 'lst:importDetails'
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
+
+          hash[:import_details] = import_details.map(&:to_h) if has? 'lst:importDetails'
           hash[:import_data] = import_data if has? 'lst:importData'
+          hash[:import_data_attributes] = import_data_attributes if has? 'lst:importData'
 
           hash
         end

@@ -8,15 +8,21 @@ module Pohoda
           at 'ftr:id'
         end
 
+        def id_attributes
+          attributes_at 'ftr:id'
+        end
+
         def ext_id
           submodel_at(Typ::ExtIdType, 'ftr:extId')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
           hash[:id] = id if has? 'ftr:id'
-          hash[:ext_id] = ext_id.to_h_with_attrs if has? 'ftr:extId'
+          hash[:id_attributes] = id_attributes if has? 'ftr:id'
+          hash[:ext_id] = ext_id.to_h if has? 'ftr:extId'
 
           hash
         end

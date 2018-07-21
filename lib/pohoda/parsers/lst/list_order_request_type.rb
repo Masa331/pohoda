@@ -8,10 +8,11 @@ module Pohoda
           submodel_at(Ftr::RequestOrderType, 'lst:requestOrder')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:request_order] = request_order.to_h_with_attrs if has? 'lst:requestOrder'
+          hash[:request_order] = request_order.to_h if has? 'lst:requestOrder'
 
           hash
         end

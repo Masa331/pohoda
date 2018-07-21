@@ -8,10 +8,11 @@ module Pohoda
           submodel_at(Ftr::RequestStoreType, 'lst:requestStore')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:request_store] = request_store.to_h_with_attrs if has? 'lst:requestStore'
+          hash[:request_store] = request_store.to_h if has? 'lst:requestStore'
 
           hash
         end

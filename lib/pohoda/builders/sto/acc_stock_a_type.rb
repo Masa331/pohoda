@@ -6,17 +6,17 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
-          root << build_element('sto:material', data[:material]) if data.key? :material
-          root << build_element('sto:goods', data[:goods]) if data.key? :goods
-          root << build_element('sto:workInProgress', data[:work_in_progress]) if data.key? :work_in_progress
-          root << build_element('sto:semiproducts', data[:semiproducts]) if data.key? :semiproducts
-          root << build_element('sto:products', data[:products]) if data.key? :products
-          root << build_element('sto:animals', data[:animals]) if data.key? :animals
-          root << build_element('sto:materialOfOwnProduction', data[:material_of_own_production]) if data.key? :material_of_own_production
+          root << build_element('sto:material', data[:material], data[:material_attributes]) if data.key? :material
+          root << build_element('sto:goods', data[:goods], data[:goods_attributes]) if data.key? :goods
+          root << build_element('sto:workInProgress', data[:work_in_progress], data[:work_in_progress_attributes]) if data.key? :work_in_progress
+          root << build_element('sto:semiproducts', data[:semiproducts], data[:semiproducts_attributes]) if data.key? :semiproducts
+          root << build_element('sto:products', data[:products], data[:products_attributes]) if data.key? :products
+          root << build_element('sto:animals', data[:animals], data[:animals_attributes]) if data.key? :animals
+          root << build_element('sto:materialOfOwnProduction', data[:material_of_own_production], data[:material_of_own_production_attributes]) if data.key? :material_of_own_production
 
           root
         end

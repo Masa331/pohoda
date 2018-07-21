@@ -12,11 +12,12 @@ module Pohoda
           array_of_at(Lst::CreateAccountingResponseType, ['lst:createAccountingResponse'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:import_details] = import_details.map(&:to_h_with_attrs) if has? 'lst:importDetails'
-          hash[:create_accounting_response] = create_accounting_response.map(&:to_h_with_attrs) if has? 'lst:createAccountingResponse'
+          hash[:import_details] = import_details.map(&:to_h) if has? 'lst:importDetails'
+          hash[:create_accounting_response] = create_accounting_response.map(&:to_h) if has? 'lst:createAccountingResponse'
 
           hash
         end

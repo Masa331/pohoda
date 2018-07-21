@@ -8,10 +8,11 @@ module Pohoda
           array_of_at(Prm::CtrlDefType, ['prm:ctrlDef'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:ctrl_def] = ctrl_def.map(&:to_h_with_attrs) if has? 'prm:ctrlDef'
+          hash[:ctrl_def] = ctrl_def.map(&:to_h) if has? 'prm:ctrlDef'
 
           hash
         end

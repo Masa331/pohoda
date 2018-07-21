@@ -8,10 +8,11 @@ module Pohoda
           submodel_at(Ftr::RequestNumericalSeriesType, 'lst:requestNumericalSeries')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:request_numerical_series] = request_numerical_series.to_h_with_attrs if has? 'lst:requestNumericalSeries'
+          hash[:request_numerical_series] = request_numerical_series.to_h if has? 'lst:requestNumericalSeries'
 
           hash
         end

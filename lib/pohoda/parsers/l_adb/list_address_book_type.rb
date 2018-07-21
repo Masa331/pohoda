@@ -8,10 +8,11 @@ module Pohoda
           array_of_at(Adb::AddressbookType, ['lAdb:addressbook'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:addressbook] = addressbook.map(&:to_h_with_attrs) if has? 'lAdb:addressbook'
+          hash[:addressbook] = addressbook.map(&:to_h) if has? 'lAdb:addressbook'
 
           hash
           super.merge(hash)

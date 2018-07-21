@@ -8,10 +8,11 @@ module Pohoda
           array_of_at(Lst::AgendaType, ['lst:agendas', 'lst:agenda'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:agendas] = agendas.map(&:to_h_with_attrs) if has? 'lst:agendas'
+          hash[:agendas] = agendas.map(&:to_h) if has? 'lst:agendas'
 
           hash
         end

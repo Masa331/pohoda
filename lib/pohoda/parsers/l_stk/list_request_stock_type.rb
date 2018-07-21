@@ -8,10 +8,11 @@ module Pohoda
           submodel_at(Ftr::RequestStockType, 'lStk:requestStock')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:request_stock] = request_stock.to_h_with_attrs if has? 'lStk:requestStock'
+          hash[:request_stock] = request_stock.to_h if has? 'lStk:requestStock'
 
           hash
         end

@@ -8,10 +8,11 @@ module Pohoda
           array_of_at(Typ::ParameterDocType, ['typ:parameter'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:parameter] = parameter.map(&:to_h_with_attrs) if has? 'typ:parameter'
+          hash[:parameter] = parameter.map(&:to_h) if has? 'typ:parameter'
 
           hash
         end

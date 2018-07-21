@@ -5,8 +5,9 @@ module Pohoda
         include ParserCore::BaseParser
         include Ftr::Groups::GroupFilter3
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
           mega.inject(hash) { |memo, r| memo.merge r }
         end

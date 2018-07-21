@@ -6,26 +6,26 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
-          root << build_element('inv:id', data[:id]) if data.key? :id
+          root << build_element('inv:id', data[:id], data[:id_attributes]) if data.key? :id
           if data.key? :source_document
             root << Typ::SourceDocumentType.new('inv:sourceDocument', data[:source_document]).builder
           end
-          root << build_element('inv:quantity', data[:quantity]) if data.key? :quantity
-          root << build_element('inv:payVAT', data[:pay_vat]) if data.key? :pay_vat
-          root << build_element('inv:rateVAT', data[:rate_vat]) if data.key? :rate_vat
-          root << build_element('inv:percentVAT', data[:percent_vat]) if data.key? :percent_vat
-          root << build_element('inv:discountPercentage', data[:discount_percentage]) if data.key? :discount_percentage
+          root << build_element('inv:quantity', data[:quantity], data[:quantity_attributes]) if data.key? :quantity
+          root << build_element('inv:payVAT', data[:pay_vat], data[:pay_vat_attributes]) if data.key? :pay_vat
+          root << build_element('inv:rateVAT', data[:rate_vat], data[:rate_vat_attributes]) if data.key? :rate_vat
+          root << build_element('inv:percentVAT', data[:percent_vat], data[:percent_vat_attributes]) if data.key? :percent_vat
+          root << build_element('inv:discountPercentage', data[:discount_percentage], data[:discount_percentage_attributes]) if data.key? :discount_percentage
           if data.key? :home_currency
             root << Typ::TypeCurrencyHomeItem2.new('inv:homeCurrency', data[:home_currency]).builder
           end
           if data.key? :foreign_currency
             root << Typ::TypeCurrencyHomeItem2.new('inv:foreignCurrency', data[:foreign_currency]).builder
           end
-          root << build_element('inv:note', data[:note]) if data.key? :note
+          root << build_element('inv:note', data[:note], data[:note_attributes]) if data.key? :note
           if data.key? :accounting
             root << Typ::RefType.new('inv:accounting', data[:accounting]).builder
           end
@@ -44,7 +44,7 @@ module Pohoda
           if data.key? :contract
             root << Typ::RefType.new('inv:contract', data[:contract]).builder
           end
-          root << build_element('inv:voucherEET', data[:voucher_eet]) if data.key? :voucher_eet
+          root << build_element('inv:voucherEET', data[:voucher_eet], data[:voucher_eet_attributes]) if data.key? :voucher_eet
           if data.key? :parameters
             element = Ox::Element.new('inv:parameters')
             data[:parameters].each { |i| element << Typ::ParameterDocType.new('typ:parameter', i).builder }

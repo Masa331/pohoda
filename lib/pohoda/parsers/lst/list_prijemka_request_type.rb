@@ -8,10 +8,11 @@ module Pohoda
           submodel_at(Ftr::RequestPrijemkaType, 'lst:requestPrijemka')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:request_prijemka] = request_prijemka.to_h_with_attrs if has? 'lst:requestPrijemka'
+          hash[:request_prijemka] = request_prijemka.to_h if has? 'lst:requestPrijemka'
 
           hash
         end

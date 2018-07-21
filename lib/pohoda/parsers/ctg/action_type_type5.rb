@@ -12,11 +12,12 @@ module Pohoda
           submodel_at(Ftr::RequestCategoryActionType, 'ctg:update')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:add] = add.to_h_with_attrs if has? 'ctg:add'
-          hash[:update] = update.to_h_with_attrs if has? 'ctg:update'
+          hash[:add] = add.to_h if has? 'ctg:add'
+          hash[:update] = update.to_h if has? 'ctg:update'
 
           hash
         end

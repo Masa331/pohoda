@@ -8,10 +8,16 @@ module Pohoda
           at 'typ:inStock'
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def in_stock_attributes
+          attributes_at 'typ:inStock'
+        end
+
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
           hash[:in_stock] = in_stock if has? 'typ:inStock'
+          hash[:in_stock_attributes] = in_stock_attributes if has? 'typ:inStock'
 
           hash
         end

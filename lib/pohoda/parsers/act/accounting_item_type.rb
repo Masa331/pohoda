@@ -8,8 +8,16 @@ module Pohoda
           at 'act:id'
         end
 
+        def id_attributes
+          attributes_at 'act:id'
+        end
+
         def source
           at 'act:source'
+        end
+
+        def source_attributes
+          attributes_at 'act:source'
         end
 
         def number
@@ -20,8 +28,16 @@ module Pohoda
           at 'act:symPar'
         end
 
+        def sym_par_attributes
+          attributes_at 'act:symPar'
+        end
+
         def text
           at 'act:text'
+        end
+
+        def text_attributes
+          attributes_at 'act:text'
         end
 
         def home_currency
@@ -36,6 +52,10 @@ module Pohoda
           at 'act:accounting'
         end
 
+        def accounting_attributes
+          attributes_at 'act:accounting'
+        end
+
         def address
           submodel_at(Typ::Address, 'act:address')
         end
@@ -44,8 +64,16 @@ module Pohoda
           at 'act:date'
         end
 
+        def date_attributes
+          attributes_at 'act:date'
+        end
+
         def date_tax
           at 'act:dateTax'
+        end
+
+        def date_tax_attributes
+          attributes_at 'act:dateTax'
         end
 
         def centre
@@ -64,29 +92,42 @@ module Pohoda
           at 'act:note'
         end
 
+        def note_attributes
+          attributes_at 'act:note'
+        end
+
         def parameters
           array_of_at(Typ::ParameterDocType, ['act:parameters', 'typ:parameter'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
           hash[:id] = id if has? 'act:id'
+          hash[:id_attributes] = id_attributes if has? 'act:id'
           hash[:source] = source if has? 'act:source'
-          hash[:number] = number.to_h_with_attrs if has? 'act:number'
+          hash[:source_attributes] = source_attributes if has? 'act:source'
+          hash[:number] = number.to_h if has? 'act:number'
           hash[:sym_par] = sym_par if has? 'act:symPar'
+          hash[:sym_par_attributes] = sym_par_attributes if has? 'act:symPar'
           hash[:text] = text if has? 'act:text'
-          hash[:home_currency] = home_currency.to_h_with_attrs if has? 'act:homeCurrency'
-          hash[:foreign_currency] = foreign_currency.to_h_with_attrs if has? 'act:foreignCurrency'
+          hash[:text_attributes] = text_attributes if has? 'act:text'
+          hash[:home_currency] = home_currency.to_h if has? 'act:homeCurrency'
+          hash[:foreign_currency] = foreign_currency.to_h if has? 'act:foreignCurrency'
           hash[:accounting] = accounting if has? 'act:accounting'
-          hash[:address] = address.to_h_with_attrs if has? 'act:address'
+          hash[:accounting_attributes] = accounting_attributes if has? 'act:accounting'
+          hash[:address] = address.to_h if has? 'act:address'
           hash[:date] = date if has? 'act:date'
+          hash[:date_attributes] = date_attributes if has? 'act:date'
           hash[:date_tax] = date_tax if has? 'act:dateTax'
-          hash[:centre] = centre.to_h_with_attrs if has? 'act:centre'
-          hash[:activity] = activity.to_h_with_attrs if has? 'act:activity'
-          hash[:contract] = contract.to_h_with_attrs if has? 'act:contract'
+          hash[:date_tax_attributes] = date_tax_attributes if has? 'act:dateTax'
+          hash[:centre] = centre.to_h if has? 'act:centre'
+          hash[:activity] = activity.to_h if has? 'act:activity'
+          hash[:contract] = contract.to_h if has? 'act:contract'
           hash[:note] = note if has? 'act:note'
-          hash[:parameters] = parameters.map(&:to_h_with_attrs) if has? 'act:parameters'
+          hash[:note_attributes] = note_attributes if has? 'act:note'
+          hash[:parameters] = parameters.map(&:to_h) if has? 'act:parameters'
 
           hash
         end

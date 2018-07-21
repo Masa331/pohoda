@@ -8,10 +8,11 @@ module Pohoda
           array_of_at(Con::ContractType, ['lCon:contract'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:contract] = contract.map(&:to_h_with_attrs) if has? 'lCon:contract'
+          hash[:contract] = contract.map(&:to_h) if has? 'lCon:contract'
 
           hash
           super.merge(hash)

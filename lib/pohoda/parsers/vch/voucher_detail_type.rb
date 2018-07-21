@@ -12,11 +12,12 @@ module Pohoda
           array_of_at(Vch::VoucherliquidationItemType, ['vch:voucherLiquidationItem'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:voucher_item] = voucher_item.map(&:to_h_with_attrs) if has? 'vch:voucherItem'
-          hash[:voucher_liquidation_item] = voucher_liquidation_item.map(&:to_h_with_attrs) if has? 'vch:voucherLiquidationItem'
+          hash[:voucher_item] = voucher_item.map(&:to_h) if has? 'vch:voucherItem'
+          hash[:voucher_liquidation_item] = voucher_liquidation_item.map(&:to_h) if has? 'vch:voucherLiquidationItem'
 
           hash
         end

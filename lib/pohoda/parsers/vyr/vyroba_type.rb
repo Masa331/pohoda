@@ -16,12 +16,13 @@ module Pohoda
           array_of_at(Prn::PrinterSettingsType, ['vyr:print', 'prn:printerSettings'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:vyroba_header] = vyroba_header.to_h_with_attrs if has? 'vyr:vyrobaHeader'
-          hash[:vyroba_detail] = vyroba_detail.map(&:to_h_with_attrs) if has? 'vyr:vyrobaDetail'
-          hash[:print] = print.map(&:to_h_with_attrs) if has? 'vyr:print'
+          hash[:vyroba_header] = vyroba_header.to_h if has? 'vyr:vyrobaHeader'
+          hash[:vyroba_detail] = vyroba_detail.map(&:to_h) if has? 'vyr:vyrobaDetail'
+          hash[:print] = print.map(&:to_h) if has? 'vyr:print'
 
           hash
         end

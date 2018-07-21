@@ -6,11 +6,11 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
-          root << build_element('prn:fileName', data[:file_name]) if data.key? :file_name
+          root << build_element('prn:fileName', data[:file_name], data[:file_name_attributes]) if data.key? :file_name
 
           root
         end

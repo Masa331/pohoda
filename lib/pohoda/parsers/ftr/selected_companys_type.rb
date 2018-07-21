@@ -8,10 +8,11 @@ module Pohoda
           array_of_at(Typ::StringCompany, ['ftr:company'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:company] = company.map(&:to_h_with_attrs) if has? 'ftr:company'
+          hash[:company] = company.map(&:to_h) if has? 'ftr:company'
 
           hash
         end

@@ -8,10 +8,16 @@ module Pohoda
           at 'lst:createAccounting'
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def create_accounting_attributes
+          attributes_at 'lst:createAccounting'
+        end
+
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
           hash[:create_accounting] = create_accounting if has? 'lst:createAccounting'
+          hash[:create_accounting_attributes] = create_accounting_attributes if has? 'lst:createAccounting'
 
           hash
         end

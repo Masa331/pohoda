@@ -8,10 +8,11 @@ module Pohoda
           array_of_at(Int::IntDocItemType, ['int:intDocItem'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:int_doc_item] = int_doc_item.map(&:to_h_with_attrs) if has? 'int:intDocItem'
+          hash[:int_doc_item] = int_doc_item.map(&:to_h) if has? 'int:intDocItem'
 
           hash
         end

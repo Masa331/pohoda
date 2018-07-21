@@ -8,12 +8,24 @@ module Pohoda
           at 'inv:roundingDocument'
         end
 
+        def rounding_document_attributes
+          attributes_at 'inv:roundingDocument'
+        end
+
         def rounding_vat
           at 'inv:roundingVAT'
         end
 
+        def rounding_vat_attributes
+          attributes_at 'inv:roundingVAT'
+        end
+
         def calculate_vat
           at 'inv:calculateVAT'
+        end
+
+        def calculate_vat_attributes
+          attributes_at 'inv:calculateVAT'
         end
 
         def home_currency
@@ -24,14 +36,18 @@ module Pohoda
           submodel_at(Typ::TypeCurrencyForeign, 'inv:foreignCurrency')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
           hash[:rounding_document] = rounding_document if has? 'inv:roundingDocument'
+          hash[:rounding_document_attributes] = rounding_document_attributes if has? 'inv:roundingDocument'
           hash[:rounding_vat] = rounding_vat if has? 'inv:roundingVAT'
+          hash[:rounding_vat_attributes] = rounding_vat_attributes if has? 'inv:roundingVAT'
           hash[:calculate_vat] = calculate_vat if has? 'inv:calculateVAT'
-          hash[:home_currency] = home_currency.to_h_with_attrs if has? 'inv:homeCurrency'
-          hash[:foreign_currency] = foreign_currency.to_h_with_attrs if has? 'inv:foreignCurrency'
+          hash[:calculate_vat_attributes] = calculate_vat_attributes if has? 'inv:calculateVAT'
+          hash[:home_currency] = home_currency.to_h if has? 'inv:homeCurrency'
+          hash[:foreign_currency] = foreign_currency.to_h if has? 'inv:foreignCurrency'
 
           hash
         end

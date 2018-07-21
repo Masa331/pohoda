@@ -6,8 +6,8 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
           if data.key? :user_agenda_def
@@ -26,7 +26,7 @@ module Pohoda
           if data.key? :user_form
             data[:user_form].each { |i| root << Prm::FormItemListType.new('prm:userForm', i).builder }
           end
-          root << build_element('prm:userCode', data[:user_code]) if data.key? :user_code
+          root << build_element('prm:userCode', data[:user_code], data[:user_code_attributes]) if data.key? :user_code
 
           root
         end

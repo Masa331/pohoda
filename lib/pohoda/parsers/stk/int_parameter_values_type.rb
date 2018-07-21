@@ -8,10 +8,11 @@ module Pohoda
           array_of_at(Stk::IntParameterValueType, ['stk:intParameterValue'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:int_parameter_value] = int_parameter_value.map(&:to_h_with_attrs) if has? 'stk:intParameterValue'
+          hash[:int_parameter_value] = int_parameter_value.map(&:to_h) if has? 'stk:intParameterValue'
 
           hash
         end

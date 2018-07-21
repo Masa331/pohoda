@@ -8,10 +8,11 @@ module Pohoda
           submodel_at(Acu::ItemAccountingUnitType, 'acu:itemAccountingUnit')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:item_accounting_unit] = item_accounting_unit.to_h_with_attrs if has? 'acu:itemAccountingUnit'
+          hash[:item_accounting_unit] = item_accounting_unit.to_h if has? 'acu:itemAccountingUnit'
 
           hash
           super.merge(hash)

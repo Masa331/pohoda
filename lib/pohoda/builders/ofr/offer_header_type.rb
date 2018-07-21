@@ -6,18 +6,18 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
-          root << build_element('ofr:id', data[:id]) if data.key? :id
-          root << build_element('ofr:offerType', data[:offer_type]) if data.key? :offer_type
+          root << build_element('ofr:id', data[:id], data[:id_attributes]) if data.key? :id
+          root << build_element('ofr:offerType', data[:offer_type], data[:offer_type_attributes]) if data.key? :offer_type
           if data.key? :number
             root << Typ::NumberType.new('ofr:number', data[:number]).builder
           end
-          root << build_element('ofr:date', data[:date]) if data.key? :date
-          root << build_element('ofr:validTill', data[:valid_till]) if data.key? :valid_till
-          root << build_element('ofr:text', data[:text]) if data.key? :text
+          root << build_element('ofr:date', data[:date], data[:date_attributes]) if data.key? :date
+          root << build_element('ofr:validTill', data[:valid_till], data[:valid_till_attributes]) if data.key? :valid_till
+          root << build_element('ofr:text', data[:text], data[:text_attributes]) if data.key? :text
           if data.key? :partner_identity
             root << Typ::Address.new('ofr:partnerIdentity', data[:partner_identity]).builder
           end
@@ -47,12 +47,12 @@ module Pohoda
             data[:evidentiary_resources_moss].map { |i| Ox::Element.new('typ:ids') << i }.each { |i| element << i }
             root << element
           end
-          root << build_element('ofr:accountingPeriodMOSS', data[:accounting_period_moss]) if data.key? :accounting_period_moss
-          root << build_element('ofr:isExecuted', data[:is_executed]) if data.key? :is_executed
-          root << build_element('ofr:details', data[:details]) if data.key? :details
-          root << build_element('ofr:note', data[:note]) if data.key? :note
-          root << build_element('ofr:intNote', data[:int_note]) if data.key? :int_note
-          root << build_element('ofr:markRecord', data[:mark_record]) if data.key? :mark_record
+          root << build_element('ofr:accountingPeriodMOSS', data[:accounting_period_moss], data[:accounting_period_moss_attributes]) if data.key? :accounting_period_moss
+          root << build_element('ofr:isExecuted', data[:is_executed], data[:is_executed_attributes]) if data.key? :is_executed
+          root << build_element('ofr:details', data[:details], data[:details_attributes]) if data.key? :details
+          root << build_element('ofr:note', data[:note], data[:note_attributes]) if data.key? :note
+          root << build_element('ofr:intNote', data[:int_note], data[:int_note_attributes]) if data.key? :int_note
+          root << build_element('ofr:markRecord', data[:mark_record], data[:mark_record_attributes]) if data.key? :mark_record
           if data.key? :labels
             element = Ox::Element.new('ofr:labels')
             data[:labels].each { |i| element << Typ::LabelType.new('typ:label', i).builder }

@@ -6,12 +6,12 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
-          root << build_element('acp:price', data[:price]) if data.key? :price
-          root << build_element('acp:payVAT', data[:pay_vat]) if data.key? :pay_vat
+          root << build_element('acp:price', data[:price], data[:price_attributes]) if data.key? :price
+          root << build_element('acp:payVAT', data[:pay_vat], data[:pay_vat_attributes]) if data.key? :pay_vat
           if data.key? :foreign_currency
             root << Acp::TypeAcpCurrencyForeign.new('acp:foreignCurrency', data[:foreign_currency]).builder
           end

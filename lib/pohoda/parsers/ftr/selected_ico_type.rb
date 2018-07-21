@@ -8,10 +8,11 @@ module Pohoda
           array_of_at(Typ::IcoType, ['ftr:ico'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:ico] = ico.map(&:to_h_with_attrs) if has? 'ftr:ico'
+          hash[:ico] = ico.map(&:to_h) if has? 'ftr:ico'
 
           hash
         end

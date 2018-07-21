@@ -16,16 +16,32 @@ module Pohoda
           at 'mKasa:unitType'
         end
 
+        def unit_type_attributes
+          attributes_at 'mKasa:unitType'
+        end
+
         def suffix
           at 'mKasa:suffix'
+        end
+
+        def suffix_attributes
+          attributes_at 'mKasa:suffix'
         end
 
         def state_type
           at 'mKasa:stateType'
         end
 
+        def state_type_attributes
+          attributes_at 'mKasa:stateType'
+        end
+
         def register
           at 'mKasa:register'
+        end
+
+        def register_attributes
+          attributes_at 'mKasa:register'
         end
 
         def vat_payer
@@ -36,17 +52,27 @@ module Pohoda
           at 'mKasa:changeForFoodVouchers'
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def change_for_food_vouchers_attributes
+          attributes_at 'mKasa:changeForFoodVouchers'
+        end
 
-          hash[:address] = address.to_h_with_attrs if has? 'mKasa:address'
-          hash[:establishment] = establishment.to_h_with_attrs if has? 'mKasa:establishment'
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
+
+          hash[:address] = address.to_h if has? 'mKasa:address'
+          hash[:establishment] = establishment.to_h if has? 'mKasa:establishment'
           hash[:unit_type] = unit_type if has? 'mKasa:unitType'
+          hash[:unit_type_attributes] = unit_type_attributes if has? 'mKasa:unitType'
           hash[:suffix] = suffix if has? 'mKasa:suffix'
+          hash[:suffix_attributes] = suffix_attributes if has? 'mKasa:suffix'
           hash[:state_type] = state_type if has? 'mKasa:stateType'
+          hash[:state_type_attributes] = state_type_attributes if has? 'mKasa:stateType'
           hash[:register] = register if has? 'mKasa:register'
-          hash[:vat_payer] = vat_payer.to_h_with_attrs if has? 'mKasa:vatPayer'
+          hash[:register_attributes] = register_attributes if has? 'mKasa:register'
+          hash[:vat_payer] = vat_payer.to_h if has? 'mKasa:vatPayer'
           hash[:change_for_food_vouchers] = change_for_food_vouchers if has? 'mKasa:changeForFoodVouchers'
+          hash[:change_for_food_vouchers_attributes] = change_for_food_vouchers_attributes if has? 'mKasa:changeForFoodVouchers'
 
           hash
         end

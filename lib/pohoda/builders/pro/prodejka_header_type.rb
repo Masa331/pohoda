@@ -6,24 +6,24 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
-          root << build_element('pro:id', data[:id]) if data.key? :id
+          root << build_element('pro:id', data[:id], data[:id_attributes]) if data.key? :id
           if data.key? :ext_id
             root << Typ::ExtIdType.new('pro:extId', data[:ext_id]).builder
           end
-          root << build_element('pro:prodejkaType', data[:prodejka_type]) if data.key? :prodejka_type
-          root << build_element('pro:storno', data[:storno]) if data.key? :storno
+          root << build_element('pro:prodejkaType', data[:prodejka_type], data[:prodejka_type_attributes]) if data.key? :prodejka_type
+          root << build_element('pro:storno', data[:storno], data[:storno_attributes]) if data.key? :storno
           if data.key? :number
             root << Typ::NumberType.new('pro:number', data[:number]).builder
           end
-          root << build_element('pro:date', data[:date]) if data.key? :date
+          root << build_element('pro:date', data[:date], data[:date_attributes]) if data.key? :date
           if data.key? :accounting
             root << Typ::AccountingType.new('pro:accounting', data[:accounting]).builder
           end
-          root << build_element('pro:text', data[:text]) if data.key? :text
+          root << build_element('pro:text', data[:text], data[:text_attributes]) if data.key? :text
           if data.key? :partner_identity
             root << Typ::Address.new('pro:partnerIdentity', data[:partner_identity]).builder
           end
@@ -45,9 +45,9 @@ module Pohoda
           if data.key? :kasa
             root << Typ::RefType.new('pro:kasa', data[:kasa]).builder
           end
-          root << build_element('pro:note', data[:note]) if data.key? :note
-          root << build_element('pro:intNote', data[:int_note]) if data.key? :int_note
-          root << build_element('pro:markRecord', data[:mark_record]) if data.key? :mark_record
+          root << build_element('pro:note', data[:note], data[:note_attributes]) if data.key? :note
+          root << build_element('pro:intNote', data[:int_note], data[:int_note_attributes]) if data.key? :int_note
+          root << build_element('pro:markRecord', data[:mark_record], data[:mark_record_attributes]) if data.key? :mark_record
           if data.key? :labels
             element = Ox::Element.new('pro:labels')
             data[:labels].each { |i| element << Typ::LabelType.new('typ:label', i).builder }

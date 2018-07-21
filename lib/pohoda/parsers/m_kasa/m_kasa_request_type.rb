@@ -12,11 +12,12 @@ module Pohoda
           submodel_at(MKasa::ImportRequestType, 'mKasa:import')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:export] = export.to_h_with_attrs if has? 'mKasa:export'
-          hash[:import] = import.to_h_with_attrs if has? 'mKasa:import'
+          hash[:export] = export.to_h if has? 'mKasa:export'
+          hash[:import] = import.to_h if has? 'mKasa:import'
 
           hash
         end

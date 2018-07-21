@@ -6,8 +6,8 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
           if data.key? :import_details
@@ -15,7 +15,7 @@ module Pohoda
             data[:import_details].each { |i| element << Rdc::DetailType.new('rdc:detail', i).builder }
             root << element
           end
-          root << build_element('lst:importData', data[:import_data]) if data.key? :import_data
+          root << build_element('lst:importData', data[:import_data], data[:import_data_attributes]) if data.key? :import_data
 
           root
         end

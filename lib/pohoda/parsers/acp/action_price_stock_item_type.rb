@@ -8,8 +8,16 @@ module Pohoda
           at 'acp:stock'
         end
 
+        def stock_attributes
+          attributes_at 'acp:stock'
+        end
+
         def text
           at 'acp:text'
+        end
+
+        def text_attributes
+          attributes_at 'acp:text'
         end
 
         def storage
@@ -24,14 +32,17 @@ module Pohoda
           submodel_at(Acp::ActionPriceStockType, 'acp:actionPriceStock')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
           hash[:stock] = stock if has? 'acp:stock'
+          hash[:stock_attributes] = stock_attributes if has? 'acp:stock'
           hash[:text] = text if has? 'acp:text'
-          hash[:storage] = storage.to_h_with_attrs if has? 'acp:storage'
-          hash[:default_price_stock] = default_price_stock.to_h_with_attrs if has? 'acp:defaultPriceStock'
-          hash[:action_price_stock] = action_price_stock.to_h_with_attrs if has? 'acp:actionPriceStock'
+          hash[:text_attributes] = text_attributes if has? 'acp:text'
+          hash[:storage] = storage.to_h if has? 'acp:storage'
+          hash[:default_price_stock] = default_price_stock.to_h if has? 'acp:defaultPriceStock'
+          hash[:action_price_stock] = action_price_stock.to_h if has? 'acp:actionPriceStock'
 
           hash
         end

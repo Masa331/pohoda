@@ -12,11 +12,17 @@ module Pohoda
           at 'bka:rate'
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def rate_attributes
+          attributes_at 'bka:rate'
+        end
 
-          hash[:currency] = currency.to_h_with_attrs if has? 'bka:currency'
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
+
+          hash[:currency] = currency.to_h if has? 'bka:currency'
           hash[:rate] = rate if has? 'bka:rate'
+          hash[:rate_attributes] = rate_attributes if has? 'bka:rate'
 
           hash
         end

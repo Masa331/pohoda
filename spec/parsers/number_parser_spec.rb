@@ -11,12 +11,16 @@ RSpec.describe Pohoda do
   describe '#to_h' do
     it 'returns proper hash' do
       expected_hash = {
+        attributes: {},
         id: '1',
+        id_attributes: {},
         ids: 'something',
-        number_requested: '2016001938'
+        ids_attributes: {},
+        number_requested: '2016001938',
+        number_requested_attributes: {}
       }
 
-      expect(number.to_h_with_attrs).to eq expected_hash
+      expect(number.to_h).to eq expected_hash
     end
   end
 end

@@ -8,10 +8,11 @@ module Pohoda
           submodel_at(Ftr::RequestPaymentType, 'lst:requestPayment')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:request_payment] = request_payment.to_h_with_attrs if has? 'lst:requestPayment'
+          hash[:request_payment] = request_payment.to_h if has? 'lst:requestPayment'
 
           hash
         end

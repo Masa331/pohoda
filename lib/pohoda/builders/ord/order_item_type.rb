@@ -6,20 +6,20 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
-          root << build_element('ord:id', data[:id]) if data.key? :id
-          root << build_element('ord:text', data[:text]) if data.key? :text
-          root << build_element('ord:quantity', data[:quantity]) if data.key? :quantity
-          root << build_element('ord:delivered', data[:delivered]) if data.key? :delivered
-          root << build_element('ord:unit', data[:unit]) if data.key? :unit
-          root << build_element('ord:coefficient', data[:coefficient]) if data.key? :coefficient
-          root << build_element('ord:payVAT', data[:pay_vat]) if data.key? :pay_vat
-          root << build_element('ord:rateVAT', data[:rate_vat]) if data.key? :rate_vat
-          root << build_element('ord:percentVAT', data[:percent_vat]) if data.key? :percent_vat
-          root << build_element('ord:discountPercentage', data[:discount_percentage]) if data.key? :discount_percentage
+          root << build_element('ord:id', data[:id], data[:id_attributes]) if data.key? :id
+          root << build_element('ord:text', data[:text], data[:text_attributes]) if data.key? :text
+          root << build_element('ord:quantity', data[:quantity], data[:quantity_attributes]) if data.key? :quantity
+          root << build_element('ord:delivered', data[:delivered], data[:delivered_attributes]) if data.key? :delivered
+          root << build_element('ord:unit', data[:unit], data[:unit_attributes]) if data.key? :unit
+          root << build_element('ord:coefficient', data[:coefficient], data[:coefficient_attributes]) if data.key? :coefficient
+          root << build_element('ord:payVAT', data[:pay_vat], data[:pay_vat_attributes]) if data.key? :pay_vat
+          root << build_element('ord:rateVAT', data[:rate_vat], data[:rate_vat_attributes]) if data.key? :rate_vat
+          root << build_element('ord:percentVAT', data[:percent_vat], data[:percent_vat_attributes]) if data.key? :percent_vat
+          root << build_element('ord:discountPercentage', data[:discount_percentage], data[:discount_percentage_attributes]) if data.key? :discount_percentage
           if data.key? :home_currency
             root << Typ::TypeCurrencyHomeItem.new('ord:homeCurrency', data[:home_currency]).builder
           end
@@ -29,8 +29,8 @@ module Pohoda
           if data.key? :type_service_moss
             root << Typ::MOSStype.new('ord:typeServiceMOSS', data[:type_service_moss]).builder
           end
-          root << build_element('ord:note', data[:note]) if data.key? :note
-          root << build_element('ord:code', data[:code]) if data.key? :code
+          root << build_element('ord:note', data[:note], data[:note_attributes]) if data.key? :note
+          root << build_element('ord:code', data[:code], data[:code_attributes]) if data.key? :code
           if data.key? :stock_item
             root << Typ::StockItemType.new('ord:stockItem', data[:stock_item]).builder
           end
@@ -43,7 +43,7 @@ module Pohoda
           if data.key? :contract
             root << Typ::RefType.new('ord:contract', data[:contract]).builder
           end
-          root << build_element('ord:EETItem', data[:eet_item]) if data.key? :eet_item
+          root << build_element('ord:EETItem', data[:eet_item], data[:eet_item_attributes]) if data.key? :eet_item
           if data.key? :parameters
             element = Ox::Element.new('ord:parameters')
             data[:parameters].each { |i| element << Typ::ParameterDocType.new('typ:parameter', i).builder }

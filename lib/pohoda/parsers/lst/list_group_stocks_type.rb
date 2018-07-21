@@ -8,10 +8,11 @@ module Pohoda
           array_of_at(Gr::GroupStocksType, ['lst:groupStocks'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:group_stocks] = group_stocks.map(&:to_h_with_attrs) if has? 'lst:groupStocks'
+          hash[:group_stocks] = group_stocks.map(&:to_h) if has? 'lst:groupStocks'
 
           hash
           super.merge(hash)

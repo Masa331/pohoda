@@ -8,6 +8,10 @@ module Pohoda
           at 'ord:actionType'
         end
 
+        def action_type_attributes
+          attributes_at 'ord:actionType'
+        end
+
         def order_header
           submodel_at(Ord::OrderHeaderType, 'ord:orderHeader')
         end
@@ -24,14 +28,16 @@ module Pohoda
           array_of_at(Prn::PrinterSettingsType, ['ord:print', 'prn:printerSettings'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
           hash[:action_type] = action_type if has? 'ord:actionType'
-          hash[:order_header] = order_header.to_h_with_attrs if has? 'ord:orderHeader'
-          hash[:order_detail] = order_detail.map(&:to_h_with_attrs) if has? 'ord:orderDetail'
-          hash[:order_summary] = order_summary.to_h_with_attrs if has? 'ord:orderSummary'
-          hash[:print] = print.map(&:to_h_with_attrs) if has? 'ord:print'
+          hash[:action_type_attributes] = action_type_attributes if has? 'ord:actionType'
+          hash[:order_header] = order_header.to_h if has? 'ord:orderHeader'
+          hash[:order_detail] = order_detail.map(&:to_h) if has? 'ord:orderDetail'
+          hash[:order_summary] = order_summary.to_h if has? 'ord:orderSummary'
+          hash[:print] = print.map(&:to_h) if has? 'ord:print'
 
           hash
         end

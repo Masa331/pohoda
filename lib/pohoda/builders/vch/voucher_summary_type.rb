@@ -6,13 +6,13 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
-          root << build_element('vch:roundingDocument', data[:rounding_document]) if data.key? :rounding_document
-          root << build_element('vch:roundingVAT', data[:rounding_vat]) if data.key? :rounding_vat
-          root << build_element('vch:calculateVAT', data[:calculate_vat]) if data.key? :calculate_vat
+          root << build_element('vch:roundingDocument', data[:rounding_document], data[:rounding_document_attributes]) if data.key? :rounding_document
+          root << build_element('vch:roundingVAT', data[:rounding_vat], data[:rounding_vat_attributes]) if data.key? :rounding_vat
+          root << build_element('vch:calculateVAT', data[:calculate_vat], data[:calculate_vat_attributes]) if data.key? :calculate_vat
           if data.key? :home_currency
             root << Typ::TypeCurrencyHome.new('vch:homeCurrency', data[:home_currency]).builder
           end

@@ -8,6 +8,10 @@ module Pohoda
           at 'vyr:id'
         end
 
+        def id_attributes
+          attributes_at 'vyr:id'
+        end
+
         def number
           submodel_at(Typ::NumberType, 'vyr:number')
         end
@@ -16,16 +20,32 @@ module Pohoda
           at 'vyr:date'
         end
 
+        def date_attributes
+          attributes_at 'vyr:date'
+        end
+
         def time
           at 'vyr:time'
+        end
+
+        def time_attributes
+          attributes_at 'vyr:time'
         end
 
         def sym_par
           at 'vyr:symPar'
         end
 
+        def sym_par_attributes
+          attributes_at 'vyr:symPar'
+        end
+
         def text
           at 'vyr:text'
+        end
+
+        def text_attributes
+          attributes_at 'vyr:text'
         end
 
         def partner_identity
@@ -52,12 +72,24 @@ module Pohoda
           at 'vyr:note'
         end
 
+        def note_attributes
+          attributes_at 'vyr:note'
+        end
+
         def int_note
           at 'vyr:intNote'
         end
 
+        def int_note_attributes
+          attributes_at 'vyr:intNote'
+        end
+
         def mark_record
           at 'vyr:markRecord'
+        end
+
+        def mark_record_attributes
+          attributes_at 'vyr:markRecord'
         end
 
         def labels
@@ -68,25 +100,34 @@ module Pohoda
           array_of_at(Typ::ParameterDocType, ['vyr:parameters', 'typ:parameter'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
           hash[:id] = id if has? 'vyr:id'
-          hash[:number] = number.to_h_with_attrs if has? 'vyr:number'
+          hash[:id_attributes] = id_attributes if has? 'vyr:id'
+          hash[:number] = number.to_h if has? 'vyr:number'
           hash[:date] = date if has? 'vyr:date'
+          hash[:date_attributes] = date_attributes if has? 'vyr:date'
           hash[:time] = time if has? 'vyr:time'
+          hash[:time_attributes] = time_attributes if has? 'vyr:time'
           hash[:sym_par] = sym_par if has? 'vyr:symPar'
+          hash[:sym_par_attributes] = sym_par_attributes if has? 'vyr:symPar'
           hash[:text] = text if has? 'vyr:text'
-          hash[:partner_identity] = partner_identity.to_h_with_attrs if has? 'vyr:partnerIdentity'
-          hash[:centre_source] = centre_source.to_h_with_attrs if has? 'vyr:centreSource'
-          hash[:centre_destination] = centre_destination.to_h_with_attrs if has? 'vyr:centreDestination'
-          hash[:activity] = activity.to_h_with_attrs if has? 'vyr:activity'
-          hash[:contract] = contract.to_h_with_attrs if has? 'vyr:contract'
+          hash[:text_attributes] = text_attributes if has? 'vyr:text'
+          hash[:partner_identity] = partner_identity.to_h if has? 'vyr:partnerIdentity'
+          hash[:centre_source] = centre_source.to_h if has? 'vyr:centreSource'
+          hash[:centre_destination] = centre_destination.to_h if has? 'vyr:centreDestination'
+          hash[:activity] = activity.to_h if has? 'vyr:activity'
+          hash[:contract] = contract.to_h if has? 'vyr:contract'
           hash[:note] = note if has? 'vyr:note'
+          hash[:note_attributes] = note_attributes if has? 'vyr:note'
           hash[:int_note] = int_note if has? 'vyr:intNote'
+          hash[:int_note_attributes] = int_note_attributes if has? 'vyr:intNote'
           hash[:mark_record] = mark_record if has? 'vyr:markRecord'
-          hash[:labels] = labels.map(&:to_h_with_attrs) if has? 'vyr:labels'
-          hash[:parameters] = parameters.map(&:to_h_with_attrs) if has? 'vyr:parameters'
+          hash[:mark_record_attributes] = mark_record_attributes if has? 'vyr:markRecord'
+          hash[:labels] = labels.map(&:to_h) if has? 'vyr:labels'
+          hash[:parameters] = parameters.map(&:to_h) if has? 'vyr:parameters'
 
           hash
         end

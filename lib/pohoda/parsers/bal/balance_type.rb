@@ -12,11 +12,12 @@ module Pohoda
           array_of_at(Bal::BalanceItemType, ['bal:balanceItem'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:balance_header] = balance_header.to_h_with_attrs if has? 'bal:balanceHeader'
-          hash[:balance_item] = balance_item.map(&:to_h_with_attrs) if has? 'bal:balanceItem'
+          hash[:balance_header] = balance_header.to_h if has? 'bal:balanceHeader'
+          hash[:balance_item] = balance_item.map(&:to_h) if has? 'bal:balanceItem'
 
           hash
         end

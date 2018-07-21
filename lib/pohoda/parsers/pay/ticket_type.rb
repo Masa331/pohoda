@@ -8,10 +8,16 @@ module Pohoda
           at 'pay:value'
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def value_attributes
+          attributes_at 'pay:value'
+        end
+
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
           hash[:value] = value if has? 'pay:value'
+          hash[:value_attributes] = value_attributes if has? 'pay:value'
 
           hash
         end

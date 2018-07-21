@@ -8,10 +8,11 @@ module Pohoda
           submodel_at(Ftr::RequestContractType, 'lCon:requestContract')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:request_contract] = request_contract.to_h_with_attrs if has? 'lCon:requestContract'
+          hash[:request_contract] = request_contract.to_h if has? 'lCon:requestContract'
 
           hash
         end

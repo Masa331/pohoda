@@ -12,11 +12,12 @@ module Pohoda
           submodel_at(Rdc::ProducedDetailsType, 'rdc:producedDetails')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:import_details] = import_details.map(&:to_h_with_attrs) if has? 'rdc:importDetails'
-          hash[:produced_details] = produced_details.to_h_with_attrs if has? 'rdc:producedDetails'
+          hash[:import_details] = import_details.map(&:to_h) if has? 'rdc:importDetails'
+          hash[:produced_details] = produced_details.to_h if has? 'rdc:producedDetails'
 
           hash
         end

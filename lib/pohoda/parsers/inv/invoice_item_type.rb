@@ -12,36 +12,72 @@ module Pohoda
           at 'inv:id'
         end
 
+        def id_attributes
+          attributes_at 'inv:id'
+        end
+
         def text
           at 'inv:text'
+        end
+
+        def text_attributes
+          attributes_at 'inv:text'
         end
 
         def quantity
           at 'inv:quantity'
         end
 
+        def quantity_attributes
+          attributes_at 'inv:quantity'
+        end
+
         def unit
           at 'inv:unit'
+        end
+
+        def unit_attributes
+          attributes_at 'inv:unit'
         end
 
         def coefficient
           at 'inv:coefficient'
         end
 
+        def coefficient_attributes
+          attributes_at 'inv:coefficient'
+        end
+
         def pay_vat
           at 'inv:payVAT'
+        end
+
+        def pay_vat_attributes
+          attributes_at 'inv:payVAT'
         end
 
         def rate_vat
           at 'inv:rateVAT'
         end
 
+        def rate_vat_attributes
+          attributes_at 'inv:rateVAT'
+        end
+
         def percent_vat
           at 'inv:percentVAT'
         end
 
+        def percent_vat_attributes
+          attributes_at 'inv:percentVAT'
+        end
+
         def discount_percentage
           at 'inv:discountPercentage'
+        end
+
+        def discount_percentage_attributes
+          attributes_at 'inv:discountPercentage'
         end
 
         def home_currency
@@ -60,16 +96,32 @@ module Pohoda
           at 'inv:note'
         end
 
+        def note_attributes
+          attributes_at 'inv:note'
+        end
+
         def code
           at 'inv:code'
+        end
+
+        def code_attributes
+          attributes_at 'inv:code'
         end
 
         def guarantee
           at 'inv:guarantee'
         end
 
+        def guarantee_attributes
+          attributes_at 'inv:guarantee'
+        end
+
         def guarantee_type
           at 'inv:guaranteeType'
+        end
+
+        def guarantee_type_attributes
+          attributes_at 'inv:guaranteeType'
         end
 
         def stock_item
@@ -104,6 +156,10 @@ module Pohoda
           at 'inv:expirationDate'
         end
 
+        def expiration_date_attributes
+          attributes_at 'inv:expirationDate'
+        end
+
         def intrastat_item
           submodel_at(Inv::IntrastatItemType, 'inv:intrastatItem')
         end
@@ -112,41 +168,61 @@ module Pohoda
           at 'inv:EETItem'
         end
 
+        def eet_item_attributes
+          attributes_at 'inv:EETItem'
+        end
+
         def parameters
           array_of_at(Typ::ParameterDocType, ['inv:parameters', 'typ:parameter'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:link] = link.to_h_with_attrs if has? 'inv:link'
+          hash[:link] = link.to_h if has? 'inv:link'
           hash[:id] = id if has? 'inv:id'
+          hash[:id_attributes] = id_attributes if has? 'inv:id'
           hash[:text] = text if has? 'inv:text'
+          hash[:text_attributes] = text_attributes if has? 'inv:text'
           hash[:quantity] = quantity if has? 'inv:quantity'
+          hash[:quantity_attributes] = quantity_attributes if has? 'inv:quantity'
           hash[:unit] = unit if has? 'inv:unit'
+          hash[:unit_attributes] = unit_attributes if has? 'inv:unit'
           hash[:coefficient] = coefficient if has? 'inv:coefficient'
+          hash[:coefficient_attributes] = coefficient_attributes if has? 'inv:coefficient'
           hash[:pay_vat] = pay_vat if has? 'inv:payVAT'
+          hash[:pay_vat_attributes] = pay_vat_attributes if has? 'inv:payVAT'
           hash[:rate_vat] = rate_vat if has? 'inv:rateVAT'
+          hash[:rate_vat_attributes] = rate_vat_attributes if has? 'inv:rateVAT'
           hash[:percent_vat] = percent_vat if has? 'inv:percentVAT'
+          hash[:percent_vat_attributes] = percent_vat_attributes if has? 'inv:percentVAT'
           hash[:discount_percentage] = discount_percentage if has? 'inv:discountPercentage'
-          hash[:home_currency] = home_currency.to_h_with_attrs if has? 'inv:homeCurrency'
-          hash[:foreign_currency] = foreign_currency.to_h_with_attrs if has? 'inv:foreignCurrency'
-          hash[:type_service_moss] = type_service_moss.to_h_with_attrs if has? 'inv:typeServiceMOSS'
+          hash[:discount_percentage_attributes] = discount_percentage_attributes if has? 'inv:discountPercentage'
+          hash[:home_currency] = home_currency.to_h if has? 'inv:homeCurrency'
+          hash[:foreign_currency] = foreign_currency.to_h if has? 'inv:foreignCurrency'
+          hash[:type_service_moss] = type_service_moss.to_h if has? 'inv:typeServiceMOSS'
           hash[:note] = note if has? 'inv:note'
+          hash[:note_attributes] = note_attributes if has? 'inv:note'
           hash[:code] = code if has? 'inv:code'
+          hash[:code_attributes] = code_attributes if has? 'inv:code'
           hash[:guarantee] = guarantee if has? 'inv:guarantee'
+          hash[:guarantee_attributes] = guarantee_attributes if has? 'inv:guarantee'
           hash[:guarantee_type] = guarantee_type if has? 'inv:guaranteeType'
-          hash[:stock_item] = stock_item.to_h_with_attrs if has? 'inv:stockItem'
-          hash[:accounting] = accounting.to_h_with_attrs if has? 'inv:accounting'
-          hash[:classification_vat] = classification_vat.to_h_with_attrs if has? 'inv:classificationVAT'
-          hash[:classification_kvdph] = classification_kvdph.to_h_with_attrs if has? 'inv:classificationKVDPH'
-          hash[:centre] = centre.to_h_with_attrs if has? 'inv:centre'
-          hash[:activity] = activity.to_h_with_attrs if has? 'inv:activity'
-          hash[:contract] = contract.to_h_with_attrs if has? 'inv:contract'
+          hash[:guarantee_type_attributes] = guarantee_type_attributes if has? 'inv:guaranteeType'
+          hash[:stock_item] = stock_item.to_h if has? 'inv:stockItem'
+          hash[:accounting] = accounting.to_h if has? 'inv:accounting'
+          hash[:classification_vat] = classification_vat.to_h if has? 'inv:classificationVAT'
+          hash[:classification_kvdph] = classification_kvdph.to_h if has? 'inv:classificationKVDPH'
+          hash[:centre] = centre.to_h if has? 'inv:centre'
+          hash[:activity] = activity.to_h if has? 'inv:activity'
+          hash[:contract] = contract.to_h if has? 'inv:contract'
           hash[:expiration_date] = expiration_date if has? 'inv:expirationDate'
-          hash[:intrastat_item] = intrastat_item.to_h_with_attrs if has? 'inv:intrastatItem'
+          hash[:expiration_date_attributes] = expiration_date_attributes if has? 'inv:expirationDate'
+          hash[:intrastat_item] = intrastat_item.to_h if has? 'inv:intrastatItem'
           hash[:eet_item] = eet_item if has? 'inv:EETItem'
-          hash[:parameters] = parameters.map(&:to_h_with_attrs) if has? 'inv:parameters'
+          hash[:eet_item_attributes] = eet_item_attributes if has? 'inv:EETItem'
+          hash[:parameters] = parameters.map(&:to_h) if has? 'inv:parameters'
 
           hash
         end

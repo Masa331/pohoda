@@ -9,9 +9,9 @@ module Pohoda
               data.attributes.each { |k, v| root[k] = v }
             end
 
-            root << build_element('rdc:XPath', data[:x_path]) if data.key? :x_path
-            root << build_element('rdc:valueRequested', data[:value_requested]) if data.key? :value_requested
-            root << build_element('rdc:valueProduced', data[:value_produced]) if data.key? :value_produced
+            root << build_element('rdc:XPath', data[:x_path], data[:x_path_attributes]) if data.key? :x_path
+            root << build_element('rdc:valueRequested', data[:value_requested], data[:value_requested_attributes]) if data.key? :value_requested
+            root << build_element('rdc:valueProduced', data[:value_produced], data[:value_produced_attributes]) if data.key? :value_produced
 
             root
           end

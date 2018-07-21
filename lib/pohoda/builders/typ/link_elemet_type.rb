@@ -6,11 +6,11 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
-          root << build_element('typ:sourceAgenda', data[:source_agenda]) if data.key? :source_agenda
+          root << build_element('typ:sourceAgenda', data[:source_agenda], data[:source_agenda_attributes]) if data.key? :source_agenda
           if data.key? :source_document
             root << Typ::SourceDocumentType.new('typ:sourceDocument', data[:source_document]).builder
           end

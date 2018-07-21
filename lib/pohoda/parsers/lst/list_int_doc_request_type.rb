@@ -8,10 +8,11 @@ module Pohoda
           submodel_at(Ftr::RequestIntDocType, 'lst:requestIntDoc')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:request_int_doc] = request_int_doc.to_h_with_attrs if has? 'lst:requestIntDoc'
+          hash[:request_int_doc] = request_int_doc.to_h if has? 'lst:requestIntDoc'
 
           hash
         end

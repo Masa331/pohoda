@@ -8,10 +8,16 @@ module Pohoda
           at 'mKasa:taxPeriod'
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def tax_period_attributes
+          attributes_at 'mKasa:taxPeriod'
+        end
+
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
           hash[:tax_period] = tax_period if has? 'mKasa:taxPeriod'
+          hash[:tax_period_attributes] = tax_period_attributes if has? 'mKasa:taxPeriod'
 
           hash
         end

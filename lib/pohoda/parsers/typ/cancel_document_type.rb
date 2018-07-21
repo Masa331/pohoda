@@ -8,10 +8,11 @@ module Pohoda
           submodel_at(Typ::SourceDocumentType, 'typ:sourceDocument')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:source_document] = source_document.to_h_with_attrs if has? 'typ:sourceDocument'
+          hash[:source_document] = source_document.to_h if has? 'typ:sourceDocument'
 
           hash
         end

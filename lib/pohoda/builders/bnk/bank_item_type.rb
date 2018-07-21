@@ -6,15 +6,15 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
-          root << build_element('bnk:text', data[:text]) if data.key? :text
-          root << build_element('bnk:homeCurrency', data[:home_currency]) if data.key? :home_currency
-          root << build_element('bnk:foreignCurrency', data[:foreign_currency]) if data.key? :foreign_currency
-          root << build_element('bnk:note', data[:note]) if data.key? :note
-          root << build_element('bnk:symPar', data[:sym_par]) if data.key? :sym_par
+          root << build_element('bnk:text', data[:text], data[:text_attributes]) if data.key? :text
+          root << build_element('bnk:homeCurrency', data[:home_currency], data[:home_currency_attributes]) if data.key? :home_currency
+          root << build_element('bnk:foreignCurrency', data[:foreign_currency], data[:foreign_currency_attributes]) if data.key? :foreign_currency
+          root << build_element('bnk:note', data[:note], data[:note_attributes]) if data.key? :note
+          root << build_element('bnk:symPar', data[:sym_par], data[:sym_par_attributes]) if data.key? :sym_par
           if data.key? :accounting
             root << Typ::RefType.new('bnk:accounting', data[:accounting]).builder
           end

@@ -6,12 +6,12 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
-          root << build_element('ipm:unit', data[:unit]) if data.key? :unit
-          root << build_element('ipm:length', data[:length]) if data.key? :length
+          root << build_element('ipm:unit', data[:unit], data[:unit_attributes]) if data.key? :unit
+          root << build_element('ipm:length', data[:length], data[:length_attributes]) if data.key? :length
           if data.key? :parameter_list
             element = Ox::Element.new('ipm:parameterList')
             data[:parameter_list].each { |i| element << Ipm::ParameterListItemType.new('ipm:parameterListItem', i).builder }

@@ -8,10 +8,11 @@ module Pohoda
           array_of_at(Pay::PaymentTypeRoot, ['lst:payment'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:payment] = payment.map(&:to_h_with_attrs) if has? 'lst:payment'
+          hash[:payment] = payment.map(&:to_h) if has? 'lst:payment'
 
           hash
           super.merge(hash)

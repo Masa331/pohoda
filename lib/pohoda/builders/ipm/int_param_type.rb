@@ -6,19 +6,19 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
-          root << build_element('ipm:id', data[:id]) if data.key? :id
-          root << build_element('ipm:name', data[:name]) if data.key? :name
-          root << build_element('ipm:description', data[:description]) if data.key? :description
-          root << build_element('ipm:parameterType', data[:parameter_type]) if data.key? :parameter_type
+          root << build_element('ipm:id', data[:id], data[:id_attributes]) if data.key? :id
+          root << build_element('ipm:name', data[:name], data[:name_attributes]) if data.key? :name
+          root << build_element('ipm:description', data[:description], data[:description_attributes]) if data.key? :description
+          root << build_element('ipm:parameterType', data[:parameter_type], data[:parameter_type_attributes]) if data.key? :parameter_type
           if data.key? :parameter_settings
             root << Ipm::ParameterSettingsType.new('ipm:parameterSettings', data[:parameter_settings]).builder
           end
-          root << build_element('ipm:markRecord', data[:mark_record]) if data.key? :mark_record
-          root << build_element('ipm:note', data[:note]) if data.key? :note
+          root << build_element('ipm:markRecord', data[:mark_record], data[:mark_record_attributes]) if data.key? :mark_record
+          root << build_element('ipm:note', data[:note], data[:note_attributes]) if data.key? :note
 
           root
         end

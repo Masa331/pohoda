@@ -6,12 +6,12 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
-          root << build_element('act:credit', data[:credit]) if data.key? :credit
-          root << build_element('act:debit', data[:debit]) if data.key? :debit
+          root << build_element('act:credit', data[:credit], data[:credit_attributes]) if data.key? :credit
+          root << build_element('act:debit', data[:debit], data[:debit_attributes]) if data.key? :debit
 
           root
         end

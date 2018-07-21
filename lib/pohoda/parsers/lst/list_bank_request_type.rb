@@ -8,10 +8,11 @@ module Pohoda
           submodel_at(Ftr::RequestBankType, 'lst:requestBank')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:request_bank] = request_bank.to_h_with_attrs if has? 'lst:requestBank'
+          hash[:request_bank] = request_bank.to_h if has? 'lst:requestBank'
 
           hash
         end

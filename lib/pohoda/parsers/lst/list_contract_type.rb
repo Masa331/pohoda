@@ -8,10 +8,16 @@ module Pohoda
           at 'lst:itemContract'
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def item_contract_attributes
+          attributes_at 'lst:itemContract'
+        end
+
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
           hash[:item_contract] = item_contract if has? 'lst:itemContract'
+          hash[:item_contract_attributes] = item_contract_attributes if has? 'lst:itemContract'
 
           hash
           super.merge(hash)

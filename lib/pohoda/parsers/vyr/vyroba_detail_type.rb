@@ -8,10 +8,11 @@ module Pohoda
           array_of_at(Vyr::VyrobaItemType, ['vyr:vyrobaItem'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:vyroba_item] = vyroba_item.map(&:to_h_with_attrs) if has? 'vyr:vyrobaItem'
+          hash[:vyroba_item] = vyroba_item.map(&:to_h) if has? 'vyr:vyrobaItem'
 
           hash
         end

@@ -8,10 +8,11 @@ module Pohoda
           array_of_at(Pro::ProdejkaItemType, ['pro:prodejkaItem'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:prodejka_item] = prodejka_item.map(&:to_h_with_attrs) if has? 'pro:prodejkaItem'
+          hash[:prodejka_item] = prodejka_item.map(&:to_h) if has? 'pro:prodejkaItem'
 
           hash
         end

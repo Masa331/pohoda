@@ -8,10 +8,11 @@ module Pohoda
           submodel_at(Ftr::RequestAddressBookType, 'lAdb:requestAddressBook')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:request_address_book] = request_address_book.to_h_with_attrs if has? 'lAdb:requestAddressBook'
+          hash[:request_address_book] = request_address_book.to_h if has? 'lAdb:requestAddressBook'
 
           hash
         end

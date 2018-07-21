@@ -8,10 +8,11 @@ module Pohoda
           array_of_at(Acp::ActionPriceStockItemType, ['acp:actionPriceStockItem'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:action_price_stock_item] = action_price_stock_item.map(&:to_h_with_attrs) if has? 'acp:actionPriceStockItem'
+          hash[:action_price_stock_item] = action_price_stock_item.map(&:to_h) if has? 'acp:actionPriceStockItem'
 
           hash
         end

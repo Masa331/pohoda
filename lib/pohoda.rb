@@ -19,8 +19,5 @@ module Pohoda
   end
 end
 
-# rm lib/pohoda/parsers/* -rf; cp ~/pracovni/imagine/dame_data/pohoda_xsd/tmp/parsers/ lib/pohoda/parsers/ -r; rm lib/pohoda/builders/* -rf; cp ~/pracovni/imagine/dame_data/pohoda_xsd/tmp/builders/* lib/pohoda/builders/ -r; cp ~/pracovni/imagine/dame_data/pohoda_xsd/tmp/requires.rb lib/pohoda/
-#
-#
-#
+# rm lib/pohoda/parsers/* -rf; cp ~/code/xml/pohoda_xsd/tmp/parsers/* lib/pohoda/parsers/ -r; rm lib/pohoda/builders/* -rf; cp ~/code/xml/pohoda_xsd/tmp/builders/* lib/pohoda/builders/ -r; cp ~/code/xml/pohoda_xsd/tmp/requires.rb lib/pohoda/
 # rm lib/pohoda/parsers -rf; rm lib/pohoda/builders -rf; cp ~/code/xml/pohoda_xsd/tmp/* lib/pohoda/ -r

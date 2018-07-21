@@ -12,6 +12,10 @@ module Pohoda
           at 'prn:printer'
         end
 
+        def printer_attributes
+          attributes_at 'prn:printer'
+        end
+
         def pdf
           submodel_at(Prn::PDFType, 'prn:pdf')
         end
@@ -20,13 +24,20 @@ module Pohoda
           at 'prn:parameters'
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def parameters_attributes
+          attributes_at 'prn:parameters'
+        end
 
-          hash[:report] = report.to_h_with_attrs if has? 'prn:report'
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
+
+          hash[:report] = report.to_h if has? 'prn:report'
           hash[:printer] = printer if has? 'prn:printer'
-          hash[:pdf] = pdf.to_h_with_attrs if has? 'prn:pdf'
+          hash[:printer_attributes] = printer_attributes if has? 'prn:printer'
+          hash[:pdf] = pdf.to_h if has? 'prn:pdf'
           hash[:parameters] = parameters if has? 'prn:parameters'
+          hash[:parameters_attributes] = parameters_attributes if has? 'prn:parameters'
 
           hash
         end

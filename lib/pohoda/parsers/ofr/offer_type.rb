@@ -20,13 +20,14 @@ module Pohoda
           array_of_at(Prn::PrinterSettingsType, ['ofr:print', 'prn:printerSettings'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:offer_header] = offer_header.to_h_with_attrs if has? 'ofr:offerHeader'
-          hash[:offer_detail] = offer_detail.map(&:to_h_with_attrs) if has? 'ofr:offerDetail'
-          hash[:offer_summary] = offer_summary.to_h_with_attrs if has? 'ofr:offerSummary'
-          hash[:print] = print.map(&:to_h_with_attrs) if has? 'ofr:print'
+          hash[:offer_header] = offer_header.to_h if has? 'ofr:offerHeader'
+          hash[:offer_detail] = offer_detail.map(&:to_h) if has? 'ofr:offerDetail'
+          hash[:offer_summary] = offer_summary.to_h if has? 'ofr:offerSummary'
+          hash[:print] = print.map(&:to_h) if has? 'ofr:print'
 
           hash
         end

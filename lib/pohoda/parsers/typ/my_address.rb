@@ -12,11 +12,12 @@ module Pohoda
           submodel_at(Typ::EstablishmentType, 'typ:establishment')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:address] = address.to_h_with_attrs if has? 'typ:address'
-          hash[:establishment] = establishment.to_h_with_attrs if has? 'typ:establishment'
+          hash[:address] = address.to_h if has? 'typ:address'
+          hash[:establishment] = establishment.to_h if has? 'typ:establishment'
 
           hash
         end

@@ -8,10 +8,11 @@ module Pohoda
           array_of_at(Acp::ActionPriceType, ['lst:actionPrice'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:action_price] = action_price.map(&:to_h_with_attrs) if has? 'lst:actionPrice'
+          hash[:action_price] = action_price.map(&:to_h) if has? 'lst:actionPrice'
 
           hash
           super.merge(hash)

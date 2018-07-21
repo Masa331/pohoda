@@ -8,10 +8,11 @@ module Pohoda
           array_of_at(Inv::InvoiceType, ['lst:invoice'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:invoice] = invoice.map(&:to_h_with_attrs) if has? 'lst:invoice'
+          hash[:invoice] = invoice.map(&:to_h) if has? 'lst:invoice'
 
           hash
           super.merge(hash)

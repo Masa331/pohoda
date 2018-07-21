@@ -6,16 +6,16 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
-          root << build_element('ilt:id', data[:id]) if data.key? :id
+          root << build_element('ilt:id', data[:id], data[:id_attributes]) if data.key? :id
           if data.key? :number
             root << Typ::NumberType.new('ilt:number', data[:number]).builder
           end
-          root << build_element('ilt:date', data[:date]) if data.key? :date
-          root << build_element('ilt:text', data[:text]) if data.key? :text
+          root << build_element('ilt:date', data[:date], data[:date_attributes]) if data.key? :date
+          root << build_element('ilt:text', data[:text], data[:text_attributes]) if data.key? :text
           if data.key? :store
             root << Typ::RefType.new('ilt:store', data[:store]).builder
           end
@@ -28,8 +28,8 @@ module Pohoda
           if data.key? :contract
             root << Typ::RefType.new('ilt:contract', data[:contract]).builder
           end
-          root << build_element('ilt:note', data[:note]) if data.key? :note
-          root << build_element('ilt:markRecord', data[:mark_record]) if data.key? :mark_record
+          root << build_element('ilt:note', data[:note], data[:note_attributes]) if data.key? :note
+          root << build_element('ilt:markRecord', data[:mark_record], data[:mark_record_attributes]) if data.key? :mark_record
 
           root
         end

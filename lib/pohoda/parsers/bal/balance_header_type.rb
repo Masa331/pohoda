@@ -8,10 +8,16 @@ module Pohoda
           at 'bal:dateTo'
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def date_to_attributes
+          attributes_at 'bal:dateTo'
+        end
+
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
           hash[:date_to] = date_to if has? 'bal:dateTo'
+          hash[:date_to_attributes] = date_to_attributes if has? 'bal:dateTo'
 
           hash
         end

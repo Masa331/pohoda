@@ -8,10 +8,11 @@ module Pohoda
           submodel_at(Ftr::RequestGroupStocksType, 'lst:requestGroupStocks')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:request_group_stocks] = request_group_stocks.to_h_with_attrs if has? 'lst:requestGroupStocks'
+          hash[:request_group_stocks] = request_group_stocks.to_h if has? 'lst:requestGroupStocks'
 
           hash
         end

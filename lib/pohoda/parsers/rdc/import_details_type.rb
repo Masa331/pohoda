@@ -8,10 +8,11 @@ module Pohoda
           array_of_at(Rdc::DetailType, ['rdc:detail'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:detail] = detail.map(&:to_h_with_attrs) if has? 'rdc:detail'
+          hash[:detail] = detail.map(&:to_h) if has? 'rdc:detail'
 
           hash
         end

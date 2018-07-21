@@ -6,23 +6,23 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
-          root << build_element('pri:id', data[:id]) if data.key? :id
-          root << build_element('pri:quantity', data[:quantity]) if data.key? :quantity
-          root << build_element('pri:payVAT', data[:pay_vat]) if data.key? :pay_vat
-          root << build_element('pri:rateVAT', data[:rate_vat]) if data.key? :rate_vat
-          root << build_element('pri:percentVAT', data[:percent_vat]) if data.key? :percent_vat
-          root << build_element('pri:discountPercentage', data[:discount_percentage]) if data.key? :discount_percentage
+          root << build_element('pri:id', data[:id], data[:id_attributes]) if data.key? :id
+          root << build_element('pri:quantity', data[:quantity], data[:quantity_attributes]) if data.key? :quantity
+          root << build_element('pri:payVAT', data[:pay_vat], data[:pay_vat_attributes]) if data.key? :pay_vat
+          root << build_element('pri:rateVAT', data[:rate_vat], data[:rate_vat_attributes]) if data.key? :rate_vat
+          root << build_element('pri:percentVAT', data[:percent_vat], data[:percent_vat_attributes]) if data.key? :percent_vat
+          root << build_element('pri:discountPercentage', data[:discount_percentage], data[:discount_percentage_attributes]) if data.key? :discount_percentage
           if data.key? :home_currency
             root << Typ::TypeCurrencyHomeItem.new('pri:homeCurrency', data[:home_currency]).builder
           end
           if data.key? :foreign_currency
             root << Typ::TypeCurrencyForeignItem.new('pri:foreignCurrency', data[:foreign_currency]).builder
           end
-          root << build_element('pri:note', data[:note]) if data.key? :note
+          root << build_element('pri:note', data[:note], data[:note_attributes]) if data.key? :note
           if data.key? :centre
             root << Typ::RefType.new('pri:centre', data[:centre]).builder
           end

@@ -6,13 +6,13 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
-          root << build_element('mKasa:identifiedPerson', data[:identified_person]) if data.key? :identified_person
-          root << build_element('mKasa:taxPeriod', data[:tax_period]) if data.key? :tax_period
-          root << build_element('mKasa:modeCalendar', data[:mode_calendar]) if data.key? :mode_calendar
+          root << build_element('mKasa:identifiedPerson', data[:identified_person], data[:identified_person_attributes]) if data.key? :identified_person
+          root << build_element('mKasa:taxPeriod', data[:tax_period], data[:tax_period_attributes]) if data.key? :tax_period
+          root << build_element('mKasa:modeCalendar', data[:mode_calendar], data[:mode_calendar_attributes]) if data.key? :mode_calendar
 
           root
         end

@@ -6,14 +6,14 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.respond_to? :attributes
-            data.attributes.each { |k, v| root[k] = v }
+          if data.key? :attributes
+            data[:attributes].each { |k, v| root[k] = v }
           end
 
-          root << build_element('mKasa:id', data[:id]) if data.key? :id
-          root << build_element('mKasa:name', data[:name]) if data.key? :name
-          root << build_element('mKasa:description', data[:description]) if data.key? :description
-          root << build_element('mKasa:deviceGuid', data[:device_guid]) if data.key? :device_guid
+          root << build_element('mKasa:id', data[:id], data[:id_attributes]) if data.key? :id
+          root << build_element('mKasa:name', data[:name], data[:name_attributes]) if data.key? :name
+          root << build_element('mKasa:description', data[:description], data[:description_attributes]) if data.key? :description
+          root << build_element('mKasa:deviceGuid', data[:device_guid], data[:device_guid_attributes]) if data.key? :device_guid
           if data.key? :establishment
             root << MKasa::KasaEstablishmentType.new('mKasa:establishment', data[:establishment]).builder
           end
@@ -29,9 +29,9 @@ module Pohoda
           if data.key? :default_payment_type
             root << Typ::RefType.new('mKasa:defaultPaymentType', data[:default_payment_type]).builder
           end
-          root << build_element('mKasa:text', data[:text]) if data.key? :text
-          root << build_element('mKasa:footer', data[:footer]) if data.key? :footer
-          root << build_element('mKasa:payVat', data[:pay_vat]) if data.key? :pay_vat
+          root << build_element('mKasa:text', data[:text], data[:text_attributes]) if data.key? :text
+          root << build_element('mKasa:footer', data[:footer], data[:footer_attributes]) if data.key? :footer
+          root << build_element('mKasa:payVat', data[:pay_vat], data[:pay_vat_attributes]) if data.key? :pay_vat
 
           root
         end

@@ -8,10 +8,11 @@ module Pohoda
           array_of_at(Typ::NumberType, ['ftr:number'])
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:number] = number.map(&:to_h_with_attrs) if has? 'ftr:number'
+          hash[:number] = number.map(&:to_h) if has? 'ftr:number'
 
           hash
         end

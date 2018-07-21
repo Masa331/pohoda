@@ -28,7 +28,7 @@ RSpec.describe Pohoda::Parsers::Rsp::ResponsePackType do
 
   describe '#to_h' do
     it 'returns proper hash' do
-      numbers = response_pack.to_h_with_attrs[:response_pack_item].first[:list_invoice][:invoice]
+      numbers = response_pack.to_h[:response_pack_item].first[:list_invoice][:invoice]
         .map { |invoice| invoice[:invoice_header][:number][:number_requested] }
 
       expect(numbers).to eq ["4721703283", "4721703284"]

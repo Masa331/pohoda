@@ -8,10 +8,11 @@ module Pohoda
           submodel_at(Lst::ItemNumericSeriesType, 'lst:itemNumericSeries')
         end
 
-        def to_h_with_attrs
-          hash = ParserCore::HashWithAttributes.new({}, attributes)
+        def to_h
+          hash = {}
+          hash[:attributes] = attributes
 
-          hash[:item_numeric_series] = item_numeric_series.to_h_with_attrs if has? 'lst:itemNumericSeries'
+          hash[:item_numeric_series] = item_numeric_series.to_h if has? 'lst:itemNumericSeries'
 
           hash
           super.merge(hash)
