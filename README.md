@@ -191,8 +191,10 @@ In Pohoda XSD there are some situations when there is a node defined as complex 
 </dat:dataPack>
 ```
 
-This `<inv:parameters>` element can't contain(from it's definition) nothing else than `<inv:parameter>` element(multiple times possibly). In such cases i'v made a shortcut and when you call `invoice.invoice_header.parameters` you already get array with actuall parameters. If the shortcut wasn't there, you would have to get to them like this `invoice.invoice_header.parameters.parameter` which just felt so awkward to me so i made the shortcut.
+This `<inv:parameters>` element can't contain(from it's definition) nothing else than `<inv:parameter>` element(multiple times possibly). In such cases i'v made a shortcut and when you call `invoice.invoice_header.parameters` you already get array with actuall parameters. If the shortcut wasn't there, you would have to get to them like this `invoice.invoice_header.parameters.parameter` which just felt so awkward to me so i made the shortcut. But this is true only if the container element really can't contain anything else. If it could contain one more different element, then the shortcut isn't there, so beware.
 
 #### Building with namespaces
 
 #### Parsing and building something other than invoices
+
+#### Attributes
