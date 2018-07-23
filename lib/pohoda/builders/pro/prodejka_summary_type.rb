@@ -6,9 +6,7 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.key? :attributes
-            data[:attributes].each { |k, v| root[k] = v }
-          end
+          root = add_attributes_and_namespaces(root)
 
           root << build_element('pro:roundingDocument', data[:rounding_document], data[:rounding_document_attributes]) if data.key? :rounding_document
           root << build_element('pro:roundingVAT', data[:rounding_vat], data[:rounding_vat_attributes]) if data.key? :rounding_vat

@@ -6,9 +6,7 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.key? :attributes
-            data[:attributes].each { |k, v| root[k] = v }
-          end
+          root = add_attributes_and_namespaces(root)
 
           root << build_element('typ:priceNone', data[:price_none], data[:price_none_attributes]) if data.key? :price_none
           root << build_element('typ:priceLow', data[:price_low], data[:price_low_attributes]) if data.key? :price_low

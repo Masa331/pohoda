@@ -6,9 +6,7 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.key? :attributes
-            data[:attributes].each { |k, v| root[k] = v }
-          end
+          root = add_attributes_and_namespaces(root)
 
           if data.key? :attach_item
             data[:attach_item].each { |i| root << Stk::AttachItemType.new('stk:attachItem', i).builder }

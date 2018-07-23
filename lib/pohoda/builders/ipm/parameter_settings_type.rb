@@ -6,9 +6,7 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.key? :attributes
-            data[:attributes].each { |k, v| root[k] = v }
-          end
+          root = add_attributes_and_namespaces(root)
 
           root << build_element('ipm:unit', data[:unit], data[:unit_attributes]) if data.key? :unit
           root << build_element('ipm:length', data[:length], data[:length_attributes]) if data.key? :length

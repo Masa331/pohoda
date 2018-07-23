@@ -195,6 +195,10 @@ This `<inv:parameters>` element can't contain(from it's definition) nothing else
 
 #### Building with namespaces
 
+To have your xml builded with explicit namespace declarations you have to pass all namespaces to builder like so:
+
+
+
 #### Parsing and building something other than invoices
 
 #### Attributes

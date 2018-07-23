@@ -6,9 +6,7 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.key? :attributes
-            data[:attributes].each { |k, v| root[k] = v }
-          end
+          root = add_attributes_and_namespaces(root)
 
           root << build_element('mKasa:name', data[:name], data[:name_attributes]) if data.key? :name
           root << build_element('mKasa:deviceGuid', data[:device_guid], data[:device_guid_attributes]) if data.key? :device_guid

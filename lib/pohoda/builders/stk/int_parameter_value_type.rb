@@ -6,9 +6,7 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.key? :attributes
-            data[:attributes].each { |k, v| root[k] = v }
-          end
+          root = add_attributes_and_namespaces(root)
 
           root << build_element('stk:parameterValueID', data[:parameter_value_id], data[:parameter_value_id_attributes]) if data.key? :parameter_value_id
           root << build_element('stk:parameterValue', data[:parameter_value], data[:parameter_value_attributes]) if data.key? :parameter_value

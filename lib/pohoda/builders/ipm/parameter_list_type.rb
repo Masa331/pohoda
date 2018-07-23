@@ -6,9 +6,7 @@ module Pohoda
 
         def builder
           root = Ox::Element.new(name)
-          if data.key? :attributes
-            data[:attributes].each { |k, v| root[k] = v }
-          end
+          root = add_attributes_and_namespaces(root)
 
           if data.key? :parameter_list_item
             data[:parameter_list_item].each { |i| root << Ipm::ParameterListItemType.new('ipm:parameterListItem', i).builder }
