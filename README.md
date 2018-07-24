@@ -1,6 +1,12 @@
 # Pohoda XML parsers and builders [![Build Status](https://travis-ci.org/Masa331/pohoda.svg?branch=master)](https://travis-ci.org/Masa331/pohoda)
 
-Simple parser and builder for Pohoda XML invoices.
+This gem allows to parse and build any Pohoda entity defined in theirs v2 XML schemas. All the names and structure are preserved as in the original definitions which can be found in
+
+[Original Pohoda site](https://www.stormware.cz/pohoda/xml/seznamschemat/)
+
+or
+
+[My repo](https://github.com/Masa331/pohoda_xsd)
 
 ## Fast overview
 
@@ -187,9 +193,9 @@ This feature felt really cool at the start but i'm not so sure about it now. How
 To have your xml builded with explicit namespace declarations you have to pass all namespaces to builder like so:
 
 ```ruby
-hash = { data_pack_item: [{ invoice: { invoice_header: { invoice_type: 'issuedInvoice',
-                                                         number: { number_requested: '123' } } } }] }
-Pohoda.build(hash)
+hash = { data_pack_item: [{ invoice: { invoice_header: { invoice_type: 'issuedInvoice' } } }] }
+options = { namespaces: { dat: '...namespace...' } }
+Pohoda.build(hash, options)
 ```
 
 =>
@@ -208,11 +214,10 @@ Pohoda.build(hash)
 ```
 
 
-#### Parsing and building something other than invoices
+### Parsing and building something other than invoices
 
-This gem was build at first for my own purposes with my personal project damedata.cz where i need to work with invoices in Pohoda XML so main focus were always on invoices. They are currently only Pohoda entity which can be directly parsed and build through `Pohoda#parse` and `Pohoda#build` method. However, with just a little bit more work it's also possible to work with any other Pohoda entity. You just have to directly interact with Parser and Builder classes like so:
+I built this gem for my project [damedata.cz](https://damedata.cz) where i need to work with invoices in Pohoda XML so main focus were always on invoices. They are currently only Pohoda entity which can be directly parsed and build through `Pohoda#parse` and `Pohoda#build`. However, with just a little bit more work it's also possible to work with any other Pohoda entity. You just have to directly interact with Parser and Builder classes like so:
 
-I will use invoice again for the demonstration but it's exaclty the same for anything else:
 ```ruby
 xml = <<-XML
 <?xml version="1.0" encoding="UTF-8"?>
@@ -237,9 +242,10 @@ parsed = Ox.load(xml, skip: :skip_none)
 # 2) Get the element with entity you want to parse:
 entity = parsed.locate('dat:dataPack/dat:dataPackItem/inv:invoice').first
 # 3) Use proper parser class:
-paPohoda::Parsers::Inv::InvoiceType.new(entity)
-# => the api on result is exactly the same as if you would use `Pohoda#parse`
+result = Pohoda::Parsers::Inv::InvoiceType.new(entity)
 ```
+
+The api on `result` is exactly the same as if you would use `Pohoda#parse` and then get to the actuall invoice as showed in the examples at the start.
 
 Building is very similar:
 ```ruby
@@ -266,26 +272,31 @@ results in:
 
 Notice that in the builder instantiation we had to provide root element node name as first argument. Unfortunatelly that's necesarry. I do no longer remember why but that's how it is. Oh, i do remember now. In XSD you can have variously named nodes which share the same type, that's why.
 
-If you would like to have you entity to be parseable directly with `Pohoda#parse`, just open up an issue and tell me which one. I will gladly enchance the method if someone needs so. Or better yet, look into source code and make a pull request. It should be pretty easy!
+If you would like to have you entity to be parseable directly with `Pohoda#parse`, just open up an issue and tell me which one. I will gladly enchance the method if someone needs so. Or better yet, look into source code and make a pull request. It should be easy!
 
-#### Attributes
+### Attributes
 
 As i showed at the very start of the docs, it is possible to get attributes from parsed elements like so:
 
 ```ruby
-# To get it's attributes:
 first_invoice.attributes
 => { version: "2.0" }
-
-# To get the data as a hash:
-first_invoice.to_h
-=> { attributes: {:version=>"2.0"},
-     invoice_header: { attributes: {},
-                       invoice_type: "issuedInvoice",
-                       invoice_type_attributes: {},
-                       number: { attributes: {},
-                                 number_requested: "2016001938",
-                                 number_requested_attributes: {} } } }
 ```
 
-However in XML every node can have attributes, even the simple one. How cute! That's why every element has also it's `_attributes` version method which returns hash with it's attributes. Most of the time they will be empty. And these methods exists even for nodes which don't have attributes defined in theirs XSD definitions. That's because i didn't have time to make the scaffold_parser even better to define these methods only on elements with attributes defined in XSD.
+However in XML every node can have attributes. That's why every element method has also it's `<name>_attributes` version which returns hash with it's attributes:
+
+```ruby
+first_invoice.invoice_header.invoice_type_attributes
+=> {}
+```
+
+Most of the time they will be empty. And these methods exists even for nodes which don't have attributes defined in theirs XSD definitions. That's because i didn't have time to make the scaffold_parser even better to define these methods only on elements with attributes defined in XSD.
+
+### Epilogue
+
+I created this gem because i needed it for my own project [damedata.cz](https://damedata.cz). But as i spent countless and countless hours on building it, i would be really happy if it helps to anyone else. So if it does help you, please please star the repo so i know it wasn't worthless and i won't feel so misserably in case my project fails.
+
+On the other hand, if you don't like it or you have some problem with using it(bad design/docs/features) please please let me know also. I want to know what the problem and your usecase is and i will try to help you.
+
+Allright, have a good one!
+Premysl Donat
