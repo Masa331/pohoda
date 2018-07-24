@@ -197,8 +197,106 @@ This `<inv:parameters>` element can't contain(from it's definition) nothing else
 
 To have your xml builded with explicit namespace declarations you have to pass all namespaces to builder like so:
 
+```ruby
+hash = { data_pack_item: [{ invoice: { invoice_header: { invoice_type: 'issuedInvoice',
+                                                         number: { number_requested: '123' } } } }] }
+Pohoda.build(hash)
+```
+
+=>
+
+```xml
+<?xml version="1.0"?>
+<dat:dataPack xmlns:dat="...namespace...">
+  <dat:dataPackItem>
+    <inv:invoice>
+      <inv:invoiceHeader>
+        <inv:invoiceType>issuedInvoice</inv:invoiceType>
+      </inv:invoiceHeader>
+    </inv:invoice>
+  </dat:dataPackItem>
+</dat:dataPack>
+```
 
 
 #### Parsing and building something other than invoices
 
+This gem was build at first for my own purposes with my personal project damedata.cz where i need to work with invoices in Pohoda XML so main focus were always on invoices. They are currently only Pohoda entity which can be directly parsed and build through `Pohoda#parse` and `Pohoda#build` method. However, with just a little bit more work it's also possible to work with any other Pohoda entity. You just have to directly interact with Parser and Builder classes like so:
+
+I will use invoice again for the demonstration but it's exaclty the same for anything else:
+```ruby
+xml = <<-XML
+<?xml version="1.0" encoding="UTF-8"?>
+<dat:dataPack >
+  <dat:dataPackItem>
+    <inv:invoice>
+      <inv:invoiceHeader>
+        <inv:invoiceType>issuedInvoice</inv:invoiceType>
+        <inv:number>
+          <typ:numberRequested>2016001938</typ:numberRequested>
+        </inv:number>
+      </inv:invoiceHeader>
+    </inv:invoice>
+  </dat:dataPackItem>
+</dat:dataPack>
+XML
+```
+
+```ruby
+# 1) Parse your xml with Ox with following options:
+parsed = Ox.load(xml, skip: :skip_none)
+# 2) Get the element with entity you want to parse:
+entity = parsed.locate('dat:dataPack/dat:dataPackItem/inv:invoice').first
+# 3) Use proper parser class:
+paPohoda::Parsers::Inv::InvoiceType.new(entity)
+# => the api on result is exactly the same as if you would use `Pohoda#parse`
+```
+
+Building is very similar:
+```ruby
+# 1) prepare data as hash:
+hash = { invoice_header: { invoice_type: 'issuedInvoice', number: { number_requested: '123' } } }
+# 2) instantiate builder:
+builder = Pohoda::Builders::Inv::InvoiceType.new('inv:invoice', hash)
+# 3) call to xml:
+builder.to_xml
+```
+results in:
+
+```xml
+<?xml version="1.0"?>
+<inv:invoice>
+  <inv:invoiceHeader>
+    <inv:invoiceType>issuedInvoice</inv:invoiceType>
+    <inv:number>
+      <typ:numberRequested>123</typ:numberRequested>
+    </inv:number>
+  </inv:invoiceHeader>
+</inv:invoice>
+```
+
+Notice that in the builder instantiation we had to provide root element node name as first argument. Unfortunatelly that's necesarry. I do no longer remember why but that's how it is. Oh, i do remember now. In XSD you can have variously named nodes which share the same type, that's why.
+
+If you would like to have you entity to be parseable directly with `Pohoda#parse`, just open up an issue and tell me which one. I will gladly enchance the method if someone needs so. Or better yet, look into source code and make a pull request. It should be pretty easy!
+
 #### Attributes
+
+As i showed at the very start of the docs, it is possible to get attributes from parsed elements like so:
+
+```ruby
+# To get it's attributes:
+first_invoice.attributes
+=> { version: "2.0" }
+
+# To get the data as a hash:
+first_invoice.to_h
+=> { attributes: {:version=>"2.0"},
+     invoice_header: { attributes: {},
+                       invoice_type: "issuedInvoice",
+                       invoice_type_attributes: {},
+                       number: { attributes: {},
+                                 number_requested: "2016001938",
+                                 number_requested_attributes: {} } } }
+```
+
+However in XML every node can have attributes, even the simple one. How cute! That's why every element has also it's `_attributes` version method which returns hash with it's attributes. Most of the time they will be empty. And these methods exists even for nodes which don't have attributes defined in theirs XSD definitions. That's because i didn't have time to make the scaffold_parser even better to define these methods only on elements with attributes defined in XSD.
