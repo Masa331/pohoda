@@ -18,6 +18,3 @@ module Pohoda
     Builders::Dat::DataPackType.new('dat:dataPack', data, options).to_xml
   end
 end
-
-# rm lib/pohoda/parsers/* -rf; cp ~/code/xml/pohoda_xsd/tmp/parsers/* lib/pohoda/parsers/ -r; rm lib/pohoda/builders/* -rf; cp ~/code/xml/pohoda_xsd/tmp/builders/* lib/pohoda/builders/ -r; cp ~/code/xml/pohoda_xsd/tmp/requires.rb lib/pohoda/
-# rm lib/pohoda/parsers -rf; rm lib/pohoda/builders -rf; cp ~/code/xml/pohoda_xsd/tmp/* lib/pohoda/ -r
