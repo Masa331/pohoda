@@ -12,6 +12,10 @@ module Pohoda
           attributes_at 'pay:id'
         end
 
+        def ext_id
+          submodel_at(Typ::ExtIdType, 'pay:extId')
+        end
+
         def name
           at 'pay:name'
         end
@@ -94,6 +98,7 @@ module Pohoda
 
           hash[:id] = id if has? 'pay:id'
           hash[:id_attributes] = id_attributes if has? 'pay:id'
+          hash[:ext_id] = ext_id.to_h if has? 'pay:extId'
           hash[:name] = name if has? 'pay:name'
           hash[:name_attributes] = name_attributes if has? 'pay:name'
           hash[:text] = text if has? 'pay:text'

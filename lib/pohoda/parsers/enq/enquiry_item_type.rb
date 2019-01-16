@@ -84,6 +84,22 @@ module Pohoda
           submodel_at(Typ::TypeCurrencyForeignItem, 'enq:foreignCurrency')
         end
 
+        def pdp
+          at 'enq:PDP'
+        end
+
+        def pdp_attributes
+          attributes_at 'enq:PDP'
+        end
+
+        def code_pdp
+          at 'enq:CodePDP'
+        end
+
+        def code_pdp_attributes
+          attributes_at 'enq:CodePDP'
+        end
+
         def centre
           submodel_at(Typ::RefType, 'enq:centre')
         end
@@ -152,6 +168,10 @@ module Pohoda
           hash[:discount_percentage_attributes] = discount_percentage_attributes if has? 'enq:discountPercentage'
           hash[:home_currency] = home_currency.to_h if has? 'enq:homeCurrency'
           hash[:foreign_currency] = foreign_currency.to_h if has? 'enq:foreignCurrency'
+          hash[:pdp] = pdp if has? 'enq:PDP'
+          hash[:pdp_attributes] = pdp_attributes if has? 'enq:PDP'
+          hash[:code_pdp] = code_pdp if has? 'enq:CodePDP'
+          hash[:code_pdp_attributes] = code_pdp_attributes if has? 'enq:CodePDP'
           hash[:centre] = centre.to_h if has? 'enq:centre'
           hash[:activity] = activity.to_h if has? 'enq:activity'
           hash[:contract] = contract.to_h if has? 'enq:contract'

@@ -26,6 +26,8 @@ module Pohoda
           if data.key? :type_service_moss
             root << Typ::MOSStype.new('ofr:typeServiceMOSS', data[:type_service_moss]).builder
           end
+          root << build_element('ofr:PDP', data[:pdp], data[:pdp_attributes]) if data.key? :pdp
+          root << build_element('ofr:CodePDP', data[:code_pdp], data[:code_pdp_attributes]) if data.key? :code_pdp
           if data.key? :centre
             root << Typ::RefType.new('ofr:centre', data[:centre]).builder
           end

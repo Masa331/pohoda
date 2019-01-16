@@ -5,14 +5,19 @@ module Pohoda
         include ParserCore::BaseParser
 
         def item_activity
-          submodel_at(Lst::ItemNameType, 'lst:itemActivity')
+          at 'lst:itemActivity'
+        end
+
+        def item_activity_attributes
+          attributes_at 'lst:itemActivity'
         end
 
         def to_h
           hash = {}
           hash[:attributes] = attributes
 
-          hash[:item_activity] = item_activity.to_h if has? 'lst:itemActivity'
+          hash[:item_activity] = item_activity if has? 'lst:itemActivity'
+          hash[:item_activity_attributes] = item_activity_attributes if has? 'lst:itemActivity'
 
           hash
           super.merge(hash)

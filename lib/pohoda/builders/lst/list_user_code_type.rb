@@ -8,9 +8,7 @@ module Pohoda
           root = Ox::Element.new(name)
           root = add_attributes_and_namespaces(root)
 
-          if data.key? :item_user_code
-            root << Lst::ItemUserCodeType.new('lst:itemUserCode', data[:item_user_code]).builder
-          end
+          root << build_element('lst:itemUserCode', data[:item_user_code], data[:item_user_code_attributes]) if data.key? :item_user_code
 
           root
         end

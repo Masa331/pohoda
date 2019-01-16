@@ -228,6 +228,22 @@ module Pohoda
           submodel_at(Inv::PaymentAccount, 'inv:paymentAccount')
         end
 
+        def message_for_recipient
+          at 'inv:messageForRecipient'
+        end
+
+        def message_for_recipient_attributes
+          attributes_at 'inv:messageForRecipient'
+        end
+
+        def date_of_payment_order
+          at 'inv:dateOfPaymentOrder'
+        end
+
+        def date_of_payment_order_attributes
+          attributes_at 'inv:dateOfPaymentOrder'
+        end
+
         def payment_terminal
           at 'inv:paymentTerminal'
         end
@@ -269,7 +285,7 @@ module Pohoda
         end
 
         def carrier
-          submodel_at(Typ::RefType, 'inv:carrier')
+          submodel_at(Typ::CarrierType, 'inv:carrier')
         end
 
         def note
@@ -290,6 +306,22 @@ module Pohoda
 
         def liquidation
           submodel_at(Typ::LiquidationType, 'inv:liquidation')
+        end
+
+        def applied
+          at 'inv:applied'
+        end
+
+        def applied_attributes
+          attributes_at 'inv:applied'
+        end
+
+        def hist_rate
+          at 'inv:histRate'
+        end
+
+        def hist_rate_attributes
+          attributes_at 'inv:histRate'
         end
 
         def mark_record
@@ -376,6 +408,10 @@ module Pohoda
           hash[:sym_spec] = sym_spec if has? 'inv:symSpec'
           hash[:sym_spec_attributes] = sym_spec_attributes if has? 'inv:symSpec'
           hash[:payment_account] = payment_account.to_h if has? 'inv:paymentAccount'
+          hash[:message_for_recipient] = message_for_recipient if has? 'inv:messageForRecipient'
+          hash[:message_for_recipient_attributes] = message_for_recipient_attributes if has? 'inv:messageForRecipient'
+          hash[:date_of_payment_order] = date_of_payment_order if has? 'inv:dateOfPaymentOrder'
+          hash[:date_of_payment_order_attributes] = date_of_payment_order_attributes if has? 'inv:dateOfPaymentOrder'
           hash[:payment_terminal] = payment_terminal if has? 'inv:paymentTerminal'
           hash[:payment_terminal_attributes] = payment_terminal_attributes if has? 'inv:paymentTerminal'
           hash[:centre] = centre.to_h if has? 'inv:centre'
@@ -392,6 +428,10 @@ module Pohoda
           hash[:int_note] = int_note if has? 'inv:intNote'
           hash[:int_note_attributes] = int_note_attributes if has? 'inv:intNote'
           hash[:liquidation] = liquidation.to_h if has? 'inv:liquidation'
+          hash[:applied] = applied if has? 'inv:applied'
+          hash[:applied_attributes] = applied_attributes if has? 'inv:applied'
+          hash[:hist_rate] = hist_rate if has? 'inv:histRate'
+          hash[:hist_rate_attributes] = hist_rate_attributes if has? 'inv:histRate'
           hash[:mark_record] = mark_record if has? 'inv:markRecord'
           hash[:mark_record_attributes] = mark_record_attributes if has? 'inv:markRecord'
           hash[:labels] = labels.map(&:to_h) if has? 'inv:labels'

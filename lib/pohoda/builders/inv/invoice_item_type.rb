@@ -11,7 +11,11 @@ module Pohoda
           if data.key? :link
             root << Typ::LinkItemType.new('inv:link', data[:link]).builder
           end
+          if data.key? :linked_document
+            root << Typ::LinkedDocumentType.new('inv:linkedDocument', data[:linked_document]).builder
+          end
           root << build_element('inv:id', data[:id], data[:id_attributes]) if data.key? :id
+          root << build_element('inv:extId', data[:ext_id], data[:ext_id_attributes]) if data.key? :ext_id
           root << build_element('inv:text', data[:text], data[:text_attributes]) if data.key? :text
           root << build_element('inv:quantity', data[:quantity], data[:quantity_attributes]) if data.key? :quantity
           root << build_element('inv:unit', data[:unit], data[:unit_attributes]) if data.key? :unit
@@ -45,6 +49,8 @@ module Pohoda
           if data.key? :classification_kvdph
             root << Typ::RefType.new('inv:classificationKVDPH', data[:classification_kvdph]).builder
           end
+          root << build_element('inv:PDP', data[:pdp], data[:pdp_attributes]) if data.key? :pdp
+          root << build_element('inv:CodePDP', data[:code_pdp], data[:code_pdp_attributes]) if data.key? :code_pdp
           if data.key? :centre
             root << Typ::RefType.new('inv:centre', data[:centre]).builder
           end

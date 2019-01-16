@@ -9,6 +9,9 @@ module Pohoda
           root = add_attributes_and_namespaces(root)
 
           root << build_element('pay:id', data[:id], data[:id_attributes]) if data.key? :id
+          if data.key? :ext_id
+            root << Typ::ExtIdType.new('pay:extId', data[:ext_id]).builder
+          end
           root << build_element('pay:name', data[:name], data[:name_attributes]) if data.key? :name
           root << build_element('pay:text', data[:text], data[:text_attributes]) if data.key? :text
           root << build_element('pay:paymentType', data[:payment_type], data[:payment_type_attributes]) if data.key? :payment_type

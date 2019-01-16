@@ -132,6 +132,22 @@ module Pohoda
           attributes_at 'vyd:acc'
         end
 
+        def pdp
+          at 'vyd:PDP'
+        end
+
+        def pdp_attributes
+          attributes_at 'vyd:PDP'
+        end
+
+        def code_pdp
+          at 'vyd:CodePDP'
+        end
+
+        def code_pdp_attributes
+          attributes_at 'vyd:CodePDP'
+        end
+
         def centre
           submodel_at(Typ::RefType, 'vyd:centre')
         end
@@ -192,6 +208,10 @@ module Pohoda
           hash[:stock_item] = stock_item.to_h if has? 'vyd:stockItem'
           hash[:acc] = acc if has? 'vyd:acc'
           hash[:acc_attributes] = acc_attributes if has? 'vyd:acc'
+          hash[:pdp] = pdp if has? 'vyd:PDP'
+          hash[:pdp_attributes] = pdp_attributes if has? 'vyd:PDP'
+          hash[:code_pdp] = code_pdp if has? 'vyd:CodePDP'
+          hash[:code_pdp_attributes] = code_pdp_attributes if has? 'vyd:CodePDP'
           hash[:centre] = centre.to_h if has? 'vyd:centre'
           hash[:activity] = activity.to_h if has? 'vyd:activity'
           hash[:contract] = contract.to_h if has? 'vyd:contract'

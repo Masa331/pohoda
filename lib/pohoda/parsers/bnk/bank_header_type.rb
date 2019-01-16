@@ -144,6 +144,14 @@ module Pohoda
           attributes_at 'bnk:intNote'
         end
 
+        def hist_rate
+          at 'bnk:histRate'
+        end
+
+        def hist_rate_attributes
+          attributes_at 'bnk:histRate'
+        end
+
         def labels
           array_of_at(Typ::LabelType, ['bnk:labels', 'typ:label'])
         end
@@ -191,6 +199,8 @@ module Pohoda
           hash[:note_attributes] = note_attributes if has? 'bnk:note'
           hash[:int_note] = int_note if has? 'bnk:intNote'
           hash[:int_note_attributes] = int_note_attributes if has? 'bnk:intNote'
+          hash[:hist_rate] = hist_rate if has? 'bnk:histRate'
+          hash[:hist_rate_attributes] = hist_rate_attributes if has? 'bnk:histRate'
           hash[:labels] = labels.map(&:to_h) if has? 'bnk:labels'
           hash[:parameters] = parameters.map(&:to_h) if has? 'bnk:parameters'
 

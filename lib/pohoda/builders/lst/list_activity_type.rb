@@ -12,9 +12,7 @@ module Pohoda
             root << n
           end
 
-          if data.key? :item_activity
-            root << Lst::ItemNameType.new('lst:itemActivity', data[:item_activity]).builder
-          end
+          root << build_element('lst:itemActivity', data[:item_activity], data[:item_activity_attributes]) if data.key? :item_activity
 
           root
         end

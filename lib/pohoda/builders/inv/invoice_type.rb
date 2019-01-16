@@ -19,6 +19,11 @@ module Pohoda
           if data.key? :invoice_header
             root << Inv::InvoiceHeaderType.new('inv:invoiceHeader', data[:invoice_header]).builder
           end
+          if data.key? :invoice_retentions
+            element = Ox::Element.new('inv:invoiceRetentions')
+            data[:invoice_retentions].each { |i| element << Inv::InvoiceRetentionType.new('inv:invoiceRetention', i).builder }
+            root << element
+          end
           if data.key? :invoice_detail
             root << Inv::InvoiceDetailType.new('inv:invoiceDetail', data[:invoice_detail]).builder
           end

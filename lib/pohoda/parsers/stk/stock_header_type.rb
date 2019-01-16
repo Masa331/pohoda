@@ -388,6 +388,30 @@ module Pohoda
           attributes_at 'stk:controlLimitTaxLiability'
         end
 
+        def pdp
+          at 'stk:PDP'
+        end
+
+        def pdp_attributes
+          attributes_at 'stk:PDP'
+        end
+
+        def pd_pclassification_vat_issue
+          submodel_at(Typ::ClassificationVATType, 'stk:PDPclassificationVATIssue')
+        end
+
+        def pd_pclassification_kvdph_issue
+          submodel_at(Typ::RefType, 'stk:PDPclassificationKVDPHIssue')
+        end
+
+        def code_pdp
+          at 'stk:CodePDP'
+        end
+
+        def code_pdp_attributes
+          attributes_at 'stk:CodePDP'
+        end
+
         def intrastat
           submodel_at(Stk::InstrastatType, 'stk:intrastat')
         end
@@ -656,6 +680,12 @@ module Pohoda
           hash[:type_service_moss] = type_service_moss.to_h if has? 'stk:typeServiceMOSS'
           hash[:control_limit_tax_liability] = control_limit_tax_liability if has? 'stk:controlLimitTaxLiability'
           hash[:control_limit_tax_liability_attributes] = control_limit_tax_liability_attributes if has? 'stk:controlLimitTaxLiability'
+          hash[:pdp] = pdp if has? 'stk:PDP'
+          hash[:pdp_attributes] = pdp_attributes if has? 'stk:PDP'
+          hash[:pd_pclassification_vat_issue] = pd_pclassification_vat_issue.to_h if has? 'stk:PDPclassificationVATIssue'
+          hash[:pd_pclassification_kvdph_issue] = pd_pclassification_kvdph_issue.to_h if has? 'stk:PDPclassificationKVDPHIssue'
+          hash[:code_pdp] = code_pdp if has? 'stk:CodePDP'
+          hash[:code_pdp_attributes] = code_pdp_attributes if has? 'stk:CodePDP'
           hash[:intrastat] = intrastat.to_h if has? 'stk:intrastat'
           hash[:news] = news if has? 'stk:news'
           hash[:news_attributes] = news_attributes if has? 'stk:news'

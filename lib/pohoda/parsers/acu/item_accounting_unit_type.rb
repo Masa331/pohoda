@@ -72,6 +72,14 @@ module Pohoda
           attributes_at 'acu:dataFile'
         end
 
+        def key
+          at 'acu:key'
+        end
+
+        def key_attributes
+          attributes_at 'acu:key'
+        end
+
         def to_h
           hash = {}
           hash[:attributes] = attributes
@@ -93,6 +101,8 @@ module Pohoda
           hash[:accounting_unit_identity] = accounting_unit_identity.to_h if has? 'acu:accountingUnitIdentity'
           hash[:data_file] = data_file if has? 'acu:dataFile'
           hash[:data_file_attributes] = data_file_attributes if has? 'acu:dataFile'
+          hash[:key] = key if has? 'acu:key'
+          hash[:key_attributes] = key_attributes if has? 'acu:key'
 
           hash
         end

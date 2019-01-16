@@ -12,6 +12,14 @@ module Pohoda
           attributes_at 'ord:id'
         end
 
+        def ext_id
+          at 'ord:extId'
+        end
+
+        def ext_id_attributes
+          attributes_at 'ord:extId'
+        end
+
         def text
           at 'ord:text'
         end
@@ -116,6 +124,22 @@ module Pohoda
           submodel_at(Typ::StockItemType, 'ord:stockItem')
         end
 
+        def pdp
+          at 'ord:PDP'
+        end
+
+        def pdp_attributes
+          attributes_at 'ord:PDP'
+        end
+
+        def code_pdp
+          at 'ord:CodePDP'
+        end
+
+        def code_pdp_attributes
+          attributes_at 'ord:CodePDP'
+        end
+
         def centre
           submodel_at(Typ::RefType, 'ord:centre')
         end
@@ -146,6 +170,8 @@ module Pohoda
 
           hash[:id] = id if has? 'ord:id'
           hash[:id_attributes] = id_attributes if has? 'ord:id'
+          hash[:ext_id] = ext_id if has? 'ord:extId'
+          hash[:ext_id_attributes] = ext_id_attributes if has? 'ord:extId'
           hash[:text] = text if has? 'ord:text'
           hash[:text_attributes] = text_attributes if has? 'ord:text'
           hash[:quantity] = quantity if has? 'ord:quantity'
@@ -172,6 +198,10 @@ module Pohoda
           hash[:code] = code if has? 'ord:code'
           hash[:code_attributes] = code_attributes if has? 'ord:code'
           hash[:stock_item] = stock_item.to_h if has? 'ord:stockItem'
+          hash[:pdp] = pdp if has? 'ord:PDP'
+          hash[:pdp_attributes] = pdp_attributes if has? 'ord:PDP'
+          hash[:code_pdp] = code_pdp if has? 'ord:CodePDP'
+          hash[:code_pdp_attributes] = code_pdp_attributes if has? 'ord:CodePDP'
           hash[:centre] = centre.to_h if has? 'ord:centre'
           hash[:activity] = activity.to_h if has? 'ord:activity'
           hash[:contract] = contract.to_h if has? 'ord:contract'

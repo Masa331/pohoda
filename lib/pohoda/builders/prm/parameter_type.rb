@@ -25,6 +25,9 @@ module Pohoda
             data[:user_form].each { |i| root << Prm::FormItemListType.new('prm:userForm', i).builder }
           end
           root << build_element('prm:userCode', data[:user_code], data[:user_code_attributes]) if data.key? :user_code
+          if data.key? :user_code_part
+            root << Prm::UserCodePartType.new('prm:userCodePart', data[:user_code_part]).builder
+          end
 
           root
         end

@@ -41,6 +41,7 @@ module Pohoda
           root << build_element('enq:details', data[:details], data[:details_attributes]) if data.key? :details
           root << build_element('enq:note', data[:note], data[:note_attributes]) if data.key? :note
           root << build_element('enq:intNote', data[:int_note], data[:int_note_attributes]) if data.key? :int_note
+          root << build_element('enq:histRate', data[:hist_rate], data[:hist_rate_attributes]) if data.key? :hist_rate
           root << build_element('enq:markRecord', data[:mark_record], data[:mark_record_attributes]) if data.key? :mark_record
           if data.key? :labels
             element = Ox::Element.new('enq:labels')

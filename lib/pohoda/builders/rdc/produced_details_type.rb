@@ -15,6 +15,11 @@ module Pohoda
           if data.key? :ext_id
             root << Typ::ExtIdType.new('rdc:extId', data[:ext_id]).builder
           end
+          if data.key? :item_details
+            element = Ox::Element.new('rdc:itemDetails')
+            data[:item_details].each { |i| element << Rdc::ItemType.new('rdc:item', i).builder }
+            root << element
+          end
 
           root
         end

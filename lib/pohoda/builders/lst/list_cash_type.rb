@@ -12,9 +12,7 @@ module Pohoda
             root << n
           end
 
-          if data.key? :item_cash
-            root << Lst::ItemCashType.new('lst:itemCash', data[:item_cash]).builder
-          end
+          root << build_element('lst:itemCash', data[:item_cash], data[:item_cash_attributes]) if data.key? :item_cash
 
           root
         end

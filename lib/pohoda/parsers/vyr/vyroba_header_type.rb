@@ -32,12 +32,36 @@ module Pohoda
           attributes_at 'vyr:time'
         end
 
+        def date_of_receipt
+          at 'vyr:dateOfReceipt'
+        end
+
+        def date_of_receipt_attributes
+          attributes_at 'vyr:dateOfReceipt'
+        end
+
+        def time_of_receipt
+          at 'vyr:timeOfReceipt'
+        end
+
+        def time_of_receipt_attributes
+          attributes_at 'vyr:timeOfReceipt'
+        end
+
         def sym_par
           at 'vyr:symPar'
         end
 
         def sym_par_attributes
           attributes_at 'vyr:symPar'
+        end
+
+        def acc
+          at 'vyr:acc'
+        end
+
+        def acc_attributes
+          attributes_at 'vyr:acc'
         end
 
         def text
@@ -111,8 +135,14 @@ module Pohoda
           hash[:date_attributes] = date_attributes if has? 'vyr:date'
           hash[:time] = time if has? 'vyr:time'
           hash[:time_attributes] = time_attributes if has? 'vyr:time'
+          hash[:date_of_receipt] = date_of_receipt if has? 'vyr:dateOfReceipt'
+          hash[:date_of_receipt_attributes] = date_of_receipt_attributes if has? 'vyr:dateOfReceipt'
+          hash[:time_of_receipt] = time_of_receipt if has? 'vyr:timeOfReceipt'
+          hash[:time_of_receipt_attributes] = time_of_receipt_attributes if has? 'vyr:timeOfReceipt'
           hash[:sym_par] = sym_par if has? 'vyr:symPar'
           hash[:sym_par_attributes] = sym_par_attributes if has? 'vyr:symPar'
+          hash[:acc] = acc if has? 'vyr:acc'
+          hash[:acc_attributes] = acc_attributes if has? 'vyr:acc'
           hash[:text] = text if has? 'vyr:text'
           hash[:text_attributes] = text_attributes if has? 'vyr:text'
           hash[:partner_identity] = partner_identity.to_h if has? 'vyr:partnerIdentity'

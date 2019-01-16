@@ -12,6 +12,10 @@ module Pohoda
           attributes_at 'ord:id'
         end
 
+        def ext_id
+          submodel_at(Typ::ExtIdType, 'ord:extId')
+        end
+
         def order_type
           at 'ord:orderType'
         end
@@ -180,6 +184,14 @@ module Pohoda
           attributes_at 'ord:permamentDocument'
         end
 
+        def permanent_document
+          at 'ord:permanentDocument'
+        end
+
+        def permanent_document_attributes
+          attributes_at 'ord:permanentDocument'
+        end
+
         def note
           at 'ord:note'
         end
@@ -189,7 +201,7 @@ module Pohoda
         end
 
         def carrier
-          submodel_at(Typ::RefType, 'ord:carrier')
+          submodel_at(Typ::CarrierType, 'ord:carrier')
         end
 
         def int_note
@@ -198,6 +210,14 @@ module Pohoda
 
         def int_note_attributes
           attributes_at 'ord:intNote'
+        end
+
+        def hist_rate
+          at 'ord:histRate'
+        end
+
+        def hist_rate_attributes
+          attributes_at 'ord:histRate'
         end
 
         def mark_record
@@ -222,6 +242,7 @@ module Pohoda
 
           hash[:id] = id if has? 'ord:id'
           hash[:id_attributes] = id_attributes if has? 'ord:id'
+          hash[:ext_id] = ext_id.to_h if has? 'ord:extId'
           hash[:order_type] = order_type if has? 'ord:orderType'
           hash[:order_type_attributes] = order_type_attributes if has? 'ord:orderType'
           hash[:storno] = storno if has? 'ord:storno'
@@ -264,11 +285,15 @@ module Pohoda
           hash[:accounting_period_moss_attributes] = accounting_period_moss_attributes if has? 'ord:accountingPeriodMOSS'
           hash[:permament_document] = permament_document if has? 'ord:permamentDocument'
           hash[:permament_document_attributes] = permament_document_attributes if has? 'ord:permamentDocument'
+          hash[:permanent_document] = permanent_document if has? 'ord:permanentDocument'
+          hash[:permanent_document_attributes] = permanent_document_attributes if has? 'ord:permanentDocument'
           hash[:note] = note if has? 'ord:note'
           hash[:note_attributes] = note_attributes if has? 'ord:note'
           hash[:carrier] = carrier.to_h if has? 'ord:carrier'
           hash[:int_note] = int_note if has? 'ord:intNote'
           hash[:int_note_attributes] = int_note_attributes if has? 'ord:intNote'
+          hash[:hist_rate] = hist_rate if has? 'ord:histRate'
+          hash[:hist_rate_attributes] = hist_rate_attributes if has? 'ord:histRate'
           hash[:mark_record] = mark_record if has? 'ord:markRecord'
           hash[:mark_record_attributes] = mark_record_attributes if has? 'ord:markRecord'
           hash[:labels] = labels.map(&:to_h) if has? 'ord:labels'

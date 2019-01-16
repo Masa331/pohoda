@@ -74,6 +74,9 @@ module Pohoda
           if data.key? :numerical_series
             root << Nm::NumericalSeriesType.new('nms:numericalSeries', data[:numerical_series]).builder
           end
+          if data.key? :gdpr
+            root << Gdp::GDPRType.new('gdp:GDPR', data[:gdpr]).builder
+          end
           if data.key? :list_accountancy_request
             root << Lst::ListAccountancyRequestType.new('lst:listAccountancyRequest', data[:list_accountancy_request]).builder
           end
@@ -175,6 +178,18 @@ module Pohoda
           end
           if data.key? :list_numerical_series_request
             root << Lst::ListNumericalSeriesRequestType.new('lst:listNumericalSeriesRequest', data[:list_numerical_series_request]).builder
+          end
+          if data.key? :list_gdpr_request
+            root << Lst::ListGDPRRequestType.new('lst:listGDPRRequest', data[:list_gdpr_request]).builder
+          end
+          if data.key? :list_establishment_request
+            root << Lst::ListEstablishmentRequestType.new('lst:listEstablishmentRequest', data[:list_establishment_request]).builder
+          end
+          if data.key? :list_centre_request
+            root << LCen::ListRequestCentreType.new('lCen:listCentreRequest', data[:list_centre_request]).builder
+          end
+          if data.key? :list_activity_request
+            root << LAcv::ListRequestActivityType.new('lAcv:listActivityRequest', data[:list_activity_request]).builder
           end
           if data.key? :m_kasa_request
             root << MKasa::MKasaRequestType.new('mKasa:mKasaRequest', data[:m_kasa_request]).builder

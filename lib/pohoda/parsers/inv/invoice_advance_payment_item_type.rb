@@ -12,6 +12,14 @@ module Pohoda
           attributes_at 'inv:id'
         end
 
+        def ext_id
+          at 'inv:extId'
+        end
+
+        def ext_id_attributes
+          attributes_at 'inv:extId'
+        end
+
         def source_document
           submodel_at(Typ::SourceDocumentType, 'inv:sourceDocument')
         end
@@ -72,6 +80,14 @@ module Pohoda
           attributes_at 'inv:note'
         end
 
+        def sym_par
+          at 'inv:symPar'
+        end
+
+        def sym_par_attributes
+          attributes_at 'inv:symPar'
+        end
+
         def accounting
           submodel_at(Typ::RefType, 'inv:accounting')
         end
@@ -114,6 +130,8 @@ module Pohoda
 
           hash[:id] = id if has? 'inv:id'
           hash[:id_attributes] = id_attributes if has? 'inv:id'
+          hash[:ext_id] = ext_id if has? 'inv:extId'
+          hash[:ext_id_attributes] = ext_id_attributes if has? 'inv:extId'
           hash[:source_document] = source_document.to_h if has? 'inv:sourceDocument'
           hash[:quantity] = quantity if has? 'inv:quantity'
           hash[:quantity_attributes] = quantity_attributes if has? 'inv:quantity'
@@ -129,6 +147,8 @@ module Pohoda
           hash[:foreign_currency] = foreign_currency.to_h if has? 'inv:foreignCurrency'
           hash[:note] = note if has? 'inv:note'
           hash[:note_attributes] = note_attributes if has? 'inv:note'
+          hash[:sym_par] = sym_par if has? 'inv:symPar'
+          hash[:sym_par_attributes] = sym_par_attributes if has? 'inv:symPar'
           hash[:accounting] = accounting.to_h if has? 'inv:accounting'
           hash[:classification_vat] = classification_vat.to_h if has? 'inv:classificationVAT'
           hash[:classification_kvdph] = classification_kvdph.to_h if has? 'inv:classificationKVDPH'

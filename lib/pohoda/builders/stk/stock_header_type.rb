@@ -81,6 +81,14 @@ module Pohoda
             root << Typ::MOSStype.new('stk:typeServiceMOSS', data[:type_service_moss]).builder
           end
           root << build_element('stk:controlLimitTaxLiability', data[:control_limit_tax_liability], data[:control_limit_tax_liability_attributes]) if data.key? :control_limit_tax_liability
+          root << build_element('stk:PDP', data[:pdp], data[:pdp_attributes]) if data.key? :pdp
+          if data.key? :pd_pclassification_vat_issue
+            root << Typ::ClassificationVATType.new('stk:PDPclassificationVATIssue', data[:pd_pclassification_vat_issue]).builder
+          end
+          if data.key? :pd_pclassification_kvdph_issue
+            root << Typ::RefType.new('stk:PDPclassificationKVDPHIssue', data[:pd_pclassification_kvdph_issue]).builder
+          end
+          root << build_element('stk:CodePDP', data[:code_pdp], data[:code_pdp_attributes]) if data.key? :code_pdp
           if data.key? :intrastat
             root << Stk::InstrastatType.new('stk:intrastat', data[:intrastat]).builder
           end

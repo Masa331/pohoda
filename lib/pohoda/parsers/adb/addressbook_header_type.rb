@@ -312,6 +312,10 @@ module Pohoda
           attributes_at 'adb:toleranceMaturity'
         end
 
+        def foreign_currency
+          submodel_at(Typ::RefType, 'adb:foreignCurrency')
+        end
+
         def centre
           submodel_at(Typ::RefType, 'adb:centre')
         end
@@ -441,6 +445,7 @@ module Pohoda
           hash[:responsible_person] = responsible_person.to_h if has? 'adb:responsiblePerson'
           hash[:tolerance_maturity] = tolerance_maturity if has? 'adb:toleranceMaturity'
           hash[:tolerance_maturity_attributes] = tolerance_maturity_attributes if has? 'adb:toleranceMaturity'
+          hash[:foreign_currency] = foreign_currency.to_h if has? 'adb:foreignCurrency'
           hash[:centre] = centre.to_h if has? 'adb:centre'
           hash[:activity] = activity.to_h if has? 'adb:activity'
           hash[:contract] = contract.to_h if has? 'adb:contract'

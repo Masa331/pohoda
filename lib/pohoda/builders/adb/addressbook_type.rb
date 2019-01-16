@@ -17,6 +17,9 @@ module Pohoda
             data[:addressbook_account].each { |i| element << Adb::AccountItemType.new('adb:accountItem', i).builder }
             root << element
           end
+          if data.key? :addressbook_gdpr
+            root << Adb::AddressbookGDPRType.new('adb:addressbookGDPR', data[:addressbook_gdpr]).builder
+          end
           if data.key? :print
             element = Ox::Element.new('adb:print')
             data[:print].each { |i| element << Prn::PrinterSettingsType.new('prn:printerSettings', i).builder }

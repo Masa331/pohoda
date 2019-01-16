@@ -28,6 +28,10 @@ module Pohoda
           attributes_at 'prm:userCode'
         end
 
+        def user_code_part
+          submodel_at(Prm::UserCodePartType, 'prm:userCodePart')
+        end
+
         def to_h
           hash = {}
           hash[:attributes] = attributes
@@ -38,6 +42,7 @@ module Pohoda
           hash[:user_form] = user_form.map(&:to_h) if has? 'prm:userForm'
           hash[:user_code] = user_code if has? 'prm:userCode'
           hash[:user_code_attributes] = user_code_attributes if has? 'prm:userCode'
+          hash[:user_code_part] = user_code_part.to_h if has? 'prm:userCodePart'
 
           hash
         end

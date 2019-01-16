@@ -113,7 +113,7 @@ module Pohoda
         end
 
         def carrier
-          submodel_at(Typ::RefType, 'vyd:carrier')
+          submodel_at(Typ::CarrierType, 'vyd:carrier')
         end
 
         def reg_va_tin_eu
@@ -150,6 +150,14 @@ module Pohoda
 
         def int_note_attributes
           attributes_at 'vyd:intNote'
+        end
+
+        def hist_rate
+          at 'vyd:histRate'
+        end
+
+        def hist_rate_attributes
+          attributes_at 'vyd:histRate'
         end
 
         def mark_record
@@ -209,6 +217,8 @@ module Pohoda
           hash[:note_attributes] = note_attributes if has? 'vyd:note'
           hash[:int_note] = int_note if has? 'vyd:intNote'
           hash[:int_note_attributes] = int_note_attributes if has? 'vyd:intNote'
+          hash[:hist_rate] = hist_rate if has? 'vyd:histRate'
+          hash[:hist_rate_attributes] = hist_rate_attributes if has? 'vyd:histRate'
           hash[:mark_record] = mark_record if has? 'vyd:markRecord'
           hash[:mark_record_attributes] = mark_record_attributes if has? 'vyd:markRecord'
           hash[:labels] = labels.map(&:to_h) if has? 'vyd:labels'

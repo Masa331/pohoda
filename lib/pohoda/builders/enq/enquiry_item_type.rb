@@ -23,6 +23,8 @@ module Pohoda
           if data.key? :foreign_currency
             root << Typ::TypeCurrencyForeignItem.new('enq:foreignCurrency', data[:foreign_currency]).builder
           end
+          root << build_element('enq:PDP', data[:pdp], data[:pdp_attributes]) if data.key? :pdp
+          root << build_element('enq:CodePDP', data[:code_pdp], data[:code_pdp_attributes]) if data.key? :code_pdp
           if data.key? :centre
             root << Typ::RefType.new('enq:centre', data[:centre]).builder
           end

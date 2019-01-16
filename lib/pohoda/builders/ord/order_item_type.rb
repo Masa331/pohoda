@@ -9,6 +9,7 @@ module Pohoda
           root = add_attributes_and_namespaces(root)
 
           root << build_element('ord:id', data[:id], data[:id_attributes]) if data.key? :id
+          root << build_element('ord:extId', data[:ext_id], data[:ext_id_attributes]) if data.key? :ext_id
           root << build_element('ord:text', data[:text], data[:text_attributes]) if data.key? :text
           root << build_element('ord:quantity', data[:quantity], data[:quantity_attributes]) if data.key? :quantity
           root << build_element('ord:delivered', data[:delivered], data[:delivered_attributes]) if data.key? :delivered
@@ -32,6 +33,8 @@ module Pohoda
           if data.key? :stock_item
             root << Typ::StockItemType.new('ord:stockItem', data[:stock_item]).builder
           end
+          root << build_element('ord:PDP', data[:pdp], data[:pdp_attributes]) if data.key? :pdp
+          root << build_element('ord:CodePDP', data[:code_pdp], data[:code_pdp_attributes]) if data.key? :code_pdp
           if data.key? :centre
             root << Typ::RefType.new('ord:centre', data[:centre]).builder
           end

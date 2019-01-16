@@ -19,6 +19,7 @@ module Pohoda
             root << Typ::MyAddress.new('acu:accountingUnitIdentity', data[:accounting_unit_identity]).builder
           end
           root << build_element('acu:dataFile', data[:data_file], data[:data_file_attributes]) if data.key? :data_file
+          root << build_element('acu:key', data[:key], data[:key_attributes]) if data.key? :key
 
           root
         end

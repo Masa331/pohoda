@@ -36,6 +36,7 @@ module Pohoda
           end
           root << build_element('pri:note', data[:note], data[:note_attributes]) if data.key? :note
           root << build_element('pri:intNote', data[:int_note], data[:int_note_attributes]) if data.key? :int_note
+          root << build_element('pri:histRate', data[:hist_rate], data[:hist_rate_attributes]) if data.key? :hist_rate
           root << build_element('pri:markRecord', data[:mark_record], data[:mark_record_attributes]) if data.key? :mark_record
           if data.key? :labels
             element = Ox::Element.new('pri:labels')

@@ -66,6 +66,8 @@ module Pohoda
           if data.key? :payment_account
             root << Inv::PaymentAccount.new('inv:paymentAccount', data[:payment_account]).builder
           end
+          root << build_element('inv:messageForRecipient', data[:message_for_recipient], data[:message_for_recipient_attributes]) if data.key? :message_for_recipient
+          root << build_element('inv:dateOfPaymentOrder', data[:date_of_payment_order], data[:date_of_payment_order_attributes]) if data.key? :date_of_payment_order
           root << build_element('inv:paymentTerminal', data[:payment_terminal], data[:payment_terminal_attributes]) if data.key? :payment_terminal
           if data.key? :centre
             root << Typ::RefType.new('inv:centre', data[:centre]).builder
@@ -89,13 +91,15 @@ module Pohoda
           end
           root << build_element('inv:accountingPeriodMOSS', data[:accounting_period_moss], data[:accounting_period_moss_attributes]) if data.key? :accounting_period_moss
           if data.key? :carrier
-            root << Typ::RefType.new('inv:carrier', data[:carrier]).builder
+            root << Typ::CarrierType.new('inv:carrier', data[:carrier]).builder
           end
           root << build_element('inv:note', data[:note], data[:note_attributes]) if data.key? :note
           root << build_element('inv:intNote', data[:int_note], data[:int_note_attributes]) if data.key? :int_note
           if data.key? :liquidation
             root << Typ::LiquidationType.new('inv:liquidation', data[:liquidation]).builder
           end
+          root << build_element('inv:applied', data[:applied], data[:applied_attributes]) if data.key? :applied
+          root << build_element('inv:histRate', data[:hist_rate], data[:hist_rate_attributes]) if data.key? :hist_rate
           root << build_element('inv:markRecord', data[:mark_record], data[:mark_record_attributes]) if data.key? :mark_record
           if data.key? :labels
             element = Ox::Element.new('inv:labels')

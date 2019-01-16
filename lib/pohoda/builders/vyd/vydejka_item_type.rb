@@ -34,6 +34,8 @@ module Pohoda
             root << Typ::StockItemType.new('vyd:stockItem', data[:stock_item]).builder
           end
           root << build_element('vyd:acc', data[:acc], data[:acc_attributes]) if data.key? :acc
+          root << build_element('vyd:PDP', data[:pdp], data[:pdp_attributes]) if data.key? :pdp
+          root << build_element('vyd:CodePDP', data[:code_pdp], data[:code_pdp_attributes]) if data.key? :code_pdp
           if data.key? :centre
             root << Typ::RefType.new('vyd:centre', data[:centre]).builder
           end

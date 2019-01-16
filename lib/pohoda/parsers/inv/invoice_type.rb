@@ -16,6 +16,10 @@ module Pohoda
           submodel_at(Inv::InvoiceHeaderType, 'inv:invoiceHeader')
         end
 
+        def invoice_retentions
+          array_of_at(Inv::InvoiceRetentionType, ['inv:invoiceRetentions', 'inv:invoiceRetention'])
+        end
+
         def invoice_detail
           submodel_at(Inv::InvoiceDetailType, 'inv:invoiceDetail')
         end
@@ -39,6 +43,7 @@ module Pohoda
           hash[:links] = links.map(&:to_h) if has? 'inv:links'
           hash[:cancel_document] = cancel_document.to_h if has? 'inv:cancelDocument'
           hash[:invoice_header] = invoice_header.to_h if has? 'inv:invoiceHeader'
+          hash[:invoice_retentions] = invoice_retentions.map(&:to_h) if has? 'inv:invoiceRetentions'
           hash[:invoice_detail] = invoice_detail.to_h if has? 'inv:invoiceDetail'
           hash[:invoice_summary] = invoice_summary.to_h if has? 'inv:invoiceSummary'
           hash[:eet] = eet.to_h if has? 'inv:EET'

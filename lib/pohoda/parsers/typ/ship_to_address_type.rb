@@ -16,6 +16,14 @@ module Pohoda
           attributes_at 'typ:id'
         end
 
+        def ext_id
+          at 'typ:extId'
+        end
+
+        def ext_id_attributes
+          attributes_at 'typ:extId'
+        end
+
         def company
           at 'typ:company'
         end
@@ -99,6 +107,8 @@ module Pohoda
           hash[:action_type] = action_type.to_h if has? 'typ:actionType'
           hash[:id] = id if has? 'typ:id'
           hash[:id_attributes] = id_attributes if has? 'typ:id'
+          hash[:ext_id] = ext_id if has? 'typ:extId'
+          hash[:ext_id_attributes] = ext_id_attributes if has? 'typ:extId'
           hash[:company] = company if has? 'typ:company'
           hash[:company_attributes] = company_attributes if has? 'typ:company'
           hash[:division] = division if has? 'typ:division'

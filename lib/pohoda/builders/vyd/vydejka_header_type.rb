@@ -40,7 +40,7 @@ module Pohoda
             root << Typ::RefType.new('vyd:contract', data[:contract]).builder
           end
           if data.key? :carrier
-            root << Typ::RefType.new('vyd:carrier', data[:carrier]).builder
+            root << Typ::CarrierType.new('vyd:carrier', data[:carrier]).builder
           end
           if data.key? :reg_va_tin_eu
             root << Typ::RefTypeRegVATinEU.new('vyd:regVATinEU', data[:reg_va_tin_eu]).builder
@@ -56,6 +56,7 @@ module Pohoda
           root << build_element('vyd:accountingPeriodMOSS', data[:accounting_period_moss], data[:accounting_period_moss_attributes]) if data.key? :accounting_period_moss
           root << build_element('vyd:note', data[:note], data[:note_attributes]) if data.key? :note
           root << build_element('vyd:intNote', data[:int_note], data[:int_note_attributes]) if data.key? :int_note
+          root << build_element('vyd:histRate', data[:hist_rate], data[:hist_rate_attributes]) if data.key? :hist_rate
           root << build_element('vyd:markRecord', data[:mark_record], data[:mark_record_attributes]) if data.key? :mark_record
           if data.key? :labels
             element = Ox::Element.new('vyd:labels')

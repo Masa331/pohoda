@@ -116,6 +116,10 @@ module Pohoda
           submodel_at(Ctg::CategoryResponseType, 'ctg:categoryResponse')
         end
 
+        def gdpr_response
+          submodel_at(Gdp::GDPRResponseType, 'gdp:GDPRResponse')
+        end
+
         def list_centre
           submodel_at(Lst::ListCentreType, 'lst:listCentre')
         end
@@ -292,6 +296,22 @@ module Pohoda
           submodel_at(Lst::ListNumericalSeriesType, 'lst:listNumericalSeries')
         end
 
+        def list_gdpr
+          submodel_at(Lst::ListGDPRType, 'lst:listGDPR')
+        end
+
+        def list_establishment
+          submodel_at(Lst::ListEstablishmentType, 'lst:listEstablishment')
+        end
+
+        def list_centre
+          submodel_at(LCen::ListCentreType, 'lCen:listCentre')
+        end
+
+        def list_activity
+          submodel_at(LAcv::ListActivityType, 'lAcv:listActivity')
+        end
+
         def to_h
           hash = {}
           hash[:attributes] = attributes
@@ -324,6 +344,7 @@ module Pohoda
           hash[:list_user_code_response] = list_user_code_response.to_h if has? 'lst:listUserCodeResponse'
           hash[:supplier_response] = supplier_response.to_h if has? 'sup:supplierResponse'
           hash[:category_response] = category_response.to_h if has? 'ctg:categoryResponse'
+          hash[:gdpr_response] = gdpr_response.to_h if has? 'gdp:GDPRResponse'
           hash[:list_centre] = list_centre.to_h if has? 'lst:listCentre'
           hash[:list_activity] = list_activity.to_h if has? 'lst:listActivity'
           hash[:list_contract] = list_contract.to_h if has? 'lst:listContract'
@@ -368,6 +389,10 @@ module Pohoda
           hash[:list_inventory_lists] = list_inventory_lists.to_h if has? 'lst:listInventoryLists'
           hash[:list_payment] = list_payment.to_h if has? 'lst:listPayment'
           hash[:list_numerical_series] = list_numerical_series.to_h if has? 'lst:listNumericalSeries'
+          hash[:list_gdpr] = list_gdpr.to_h if has? 'lst:listGDPR'
+          hash[:list_establishment] = list_establishment.to_h if has? 'lst:listEstablishment'
+          hash[:list_centre] = list_centre.to_h if has? 'lCen:listCentre'
+          hash[:list_activity] = list_activity.to_h if has? 'lAcv:listActivity'
 
           hash
         end

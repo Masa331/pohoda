@@ -92,6 +92,9 @@ module Pohoda
           if data.key? :category_response
             root << Ctg::CategoryResponseType.new('ctg:categoryResponse', data[:category_response]).builder
           end
+          if data.key? :gdpr_response
+            root << Gdp::GDPRResponseType.new('gdp:GDPRResponse', data[:gdpr_response]).builder
+          end
           if data.key? :list_centre
             root << Lst::ListCentreType.new('lst:listCentre', data[:list_centre]).builder
           end
@@ -223,6 +226,18 @@ module Pohoda
           end
           if data.key? :list_numerical_series
             root << Lst::ListNumericalSeriesType.new('lst:listNumericalSeries', data[:list_numerical_series]).builder
+          end
+          if data.key? :list_gdpr
+            root << Lst::ListGDPRType.new('lst:listGDPR', data[:list_gdpr]).builder
+          end
+          if data.key? :list_establishment
+            root << Lst::ListEstablishmentType.new('lst:listEstablishment', data[:list_establishment]).builder
+          end
+          if data.key? :list_centre
+            root << LCen::ListCentreType.new('lCen:listCentre', data[:list_centre]).builder
+          end
+          if data.key? :list_activity
+            root << LAcv::ListActivityType.new('lAcv:listActivity', data[:list_activity]).builder
           end
 
           root

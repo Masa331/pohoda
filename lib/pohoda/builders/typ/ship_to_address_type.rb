@@ -12,6 +12,7 @@ module Pohoda
             root << Typ::ActionTypeItem.new('typ:actionType', data[:action_type]).builder
           end
           root << build_element('typ:id', data[:id], data[:id_attributes]) if data.key? :id
+          root << build_element('typ:extId', data[:ext_id], data[:ext_id_attributes]) if data.key? :ext_id
           root << build_element('typ:company', data[:company], data[:company_attributes]) if data.key? :company
           root << build_element('typ:division', data[:division], data[:division_attributes]) if data.key? :division
           root << build_element('typ:name', data[:name], data[:name_attributes]) if data.key? :name

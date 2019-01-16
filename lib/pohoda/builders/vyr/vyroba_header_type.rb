@@ -14,7 +14,10 @@ module Pohoda
           end
           root << build_element('vyr:date', data[:date], data[:date_attributes]) if data.key? :date
           root << build_element('vyr:time', data[:time], data[:time_attributes]) if data.key? :time
+          root << build_element('vyr:dateOfReceipt', data[:date_of_receipt], data[:date_of_receipt_attributes]) if data.key? :date_of_receipt
+          root << build_element('vyr:timeOfReceipt', data[:time_of_receipt], data[:time_of_receipt_attributes]) if data.key? :time_of_receipt
           root << build_element('vyr:symPar', data[:sym_par], data[:sym_par_attributes]) if data.key? :sym_par
+          root << build_element('vyr:acc', data[:acc], data[:acc_attributes]) if data.key? :acc
           root << build_element('vyr:text', data[:text], data[:text_attributes]) if data.key? :text
           if data.key? :partner_identity
             root << Typ::Address.new('vyr:partnerIdentity', data[:partner_identity]).builder

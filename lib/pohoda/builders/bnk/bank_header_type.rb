@@ -53,6 +53,7 @@ module Pohoda
           end
           root << build_element('bnk:note', data[:note], data[:note_attributes]) if data.key? :note
           root << build_element('bnk:intNote', data[:int_note], data[:int_note_attributes]) if data.key? :int_note
+          root << build_element('bnk:histRate', data[:hist_rate], data[:hist_rate_attributes]) if data.key? :hist_rate
           if data.key? :labels
             element = Ox::Element.new('bnk:labels')
             data[:labels].each { |i| element << Typ::LabelType.new('typ:label', i).builder }

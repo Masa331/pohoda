@@ -74,6 +74,9 @@ module Pohoda
             root << Typ::ResponsiblePersonType.new('adb:responsiblePerson', data[:responsible_person]).builder
           end
           root << build_element('adb:toleranceMaturity', data[:tolerance_maturity], data[:tolerance_maturity_attributes]) if data.key? :tolerance_maturity
+          if data.key? :foreign_currency
+            root << Typ::RefType.new('adb:foreignCurrency', data[:foreign_currency]).builder
+          end
           if data.key? :centre
             root << Typ::RefType.new('adb:centre', data[:centre]).builder
           end

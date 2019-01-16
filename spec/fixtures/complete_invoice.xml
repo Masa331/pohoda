@@ -184,7 +184,6 @@
         <inv:carrier>
           <typ:id>2</typ:id>
           <typ:ids>10Zak00002</typ:ids>
-          <typ:valueType>nullValue</typ:valueType>
         </inv:carrier>
         <inv:note>Načteno z XML</inv:note>
         <inv:intNote>Tento doklad byl vytvořen importem přes XML.</inv:intNote>

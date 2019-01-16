@@ -116,6 +116,22 @@ module Pohoda
           submodel_at(Typ::RefType, 'int:classificationKVDPH')
         end
 
+        def pdp
+          at 'int:PDP'
+        end
+
+        def pdp_attributes
+          attributes_at 'int:PDP'
+        end
+
+        def code_pdp
+          at 'int:CodePDP'
+        end
+
+        def code_pdp_attributes
+          attributes_at 'int:CodePDP'
+        end
+
         def centre
           submodel_at(Typ::RefType, 'int:centre')
         end
@@ -164,6 +180,10 @@ module Pohoda
           hash[:accounting] = accounting.to_h if has? 'int:accounting'
           hash[:classification_vat] = classification_vat.to_h if has? 'int:classificationVAT'
           hash[:classification_kvdph] = classification_kvdph.to_h if has? 'int:classificationKVDPH'
+          hash[:pdp] = pdp if has? 'int:PDP'
+          hash[:pdp_attributes] = pdp_attributes if has? 'int:PDP'
+          hash[:code_pdp] = code_pdp if has? 'int:CodePDP'
+          hash[:code_pdp_attributes] = code_pdp_attributes if has? 'int:CodePDP'
           hash[:centre] = centre.to_h if has? 'int:centre'
           hash[:activity] = activity.to_h if has? 'int:activity'
           hash[:contract] = contract.to_h if has? 'int:contract'

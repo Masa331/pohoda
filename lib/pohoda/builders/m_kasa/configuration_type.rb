@@ -15,6 +15,9 @@ module Pohoda
           if data.key? :kasa_info
             root << MKasa::KasaInfoType.new('mKasa:kasaInfo', data[:kasa_info]).builder
           end
+          if data.key? :pohoda_restriction
+            root << MKasa::PohodaRestrictionType.new('mKasa:pohodaRestriction', data[:pohoda_restriction]).builder
+          end
 
           root
         end

@@ -8,6 +8,7 @@ module Pohoda
           root = Ox::Element.new(name)
           root = add_attributes_and_namespaces(root)
 
+          root << build_element('mKasa:key', data[:key], data[:key_attributes]) if data.key? :key
           if data.key? :address
             root << Typ::AddressInternetType.new('mKasa:address', data[:address]).builder
           end

@@ -286,6 +286,12 @@ first_invoice.invoice_header.invoice_type_attributes
 
 Most of the time they will be empty. And these methods exists even for nodes which don't have attributes defined in theirs XSD definitions. That's because i didn't have time to make the scaffold_parser even better to define these methods only on elements with attributes defined in XSD.
 
+### Changelog
+
+#### 16.1.2019, gem version 2.0.0
+
+* Update parsers and builders to Pohoda XSD v2 release 12 100
+
 ### Epilogue
 
 I created this gem because i needed it for my own project [damedata.cz](https://damedata.cz). But as i spent countless and countless hours of my free time on building it, i would be really happy if it helps to anyone else. So if it does help you, please please star the repo so i know it wasn't worthless and i won't feel so misserably in case my project fails.

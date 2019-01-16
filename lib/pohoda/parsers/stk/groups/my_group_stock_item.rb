@@ -11,6 +11,10 @@ module Pohoda
             attributes_at 'stk:id'
           end
 
+          def ext_id
+            submodel_at(Typ::ExtIdType, 'stk:extId')
+          end
+
           def storage
             submodel_at(Typ::RefTypeStorage, 'stk:storage')
           end
@@ -69,6 +73,7 @@ module Pohoda
 
             hash[:id] = id if has? 'stk:id'
             hash[:id_attributes] = id_attributes if has? 'stk:id'
+            hash[:ext_id] = ext_id.to_h if has? 'stk:extId'
             hash[:storage] = storage.to_h if has? 'stk:storage'
             hash[:code] = code if has? 'stk:code'
             hash[:code_attributes] = code_attributes if has? 'stk:code'

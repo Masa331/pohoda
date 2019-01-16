@@ -100,6 +100,14 @@ module Pohoda
           attributes_at 'pro:intNote'
         end
 
+        def hist_rate
+          at 'pro:histRate'
+        end
+
+        def hist_rate_attributes
+          attributes_at 'pro:histRate'
+        end
+
         def mark_record
           at 'pro:markRecord'
         end
@@ -148,6 +156,8 @@ module Pohoda
           hash[:note_attributes] = note_attributes if has? 'pro:note'
           hash[:int_note] = int_note if has? 'pro:intNote'
           hash[:int_note_attributes] = int_note_attributes if has? 'pro:intNote'
+          hash[:hist_rate] = hist_rate if has? 'pro:histRate'
+          hash[:hist_rate_attributes] = hist_rate_attributes if has? 'pro:histRate'
           hash[:mark_record] = mark_record if has? 'pro:markRecord'
           hash[:mark_record_attributes] = mark_record_attributes if has? 'pro:markRecord'
           hash[:labels] = labels.map(&:to_h) if has? 'pro:labels'

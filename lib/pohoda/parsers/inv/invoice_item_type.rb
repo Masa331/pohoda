@@ -8,12 +8,24 @@ module Pohoda
           submodel_at(Typ::LinkItemType, 'inv:link')
         end
 
+        def linked_document
+          submodel_at(Typ::LinkedDocumentType, 'inv:linkedDocument')
+        end
+
         def id
           at 'inv:id'
         end
 
         def id_attributes
           attributes_at 'inv:id'
+        end
+
+        def ext_id
+          at 'inv:extId'
+        end
+
+        def ext_id_attributes
+          attributes_at 'inv:extId'
         end
 
         def text
@@ -140,6 +152,22 @@ module Pohoda
           submodel_at(Typ::RefType, 'inv:classificationKVDPH')
         end
 
+        def pdp
+          at 'inv:PDP'
+        end
+
+        def pdp_attributes
+          attributes_at 'inv:PDP'
+        end
+
+        def code_pdp
+          at 'inv:CodePDP'
+        end
+
+        def code_pdp_attributes
+          attributes_at 'inv:CodePDP'
+        end
+
         def centre
           submodel_at(Typ::RefType, 'inv:centre')
         end
@@ -181,8 +209,11 @@ module Pohoda
           hash[:attributes] = attributes
 
           hash[:link] = link.to_h if has? 'inv:link'
+          hash[:linked_document] = linked_document.to_h if has? 'inv:linkedDocument'
           hash[:id] = id if has? 'inv:id'
           hash[:id_attributes] = id_attributes if has? 'inv:id'
+          hash[:ext_id] = ext_id if has? 'inv:extId'
+          hash[:ext_id_attributes] = ext_id_attributes if has? 'inv:extId'
           hash[:text] = text if has? 'inv:text'
           hash[:text_attributes] = text_attributes if has? 'inv:text'
           hash[:quantity] = quantity if has? 'inv:quantity'
@@ -214,6 +245,10 @@ module Pohoda
           hash[:accounting] = accounting.to_h if has? 'inv:accounting'
           hash[:classification_vat] = classification_vat.to_h if has? 'inv:classificationVAT'
           hash[:classification_kvdph] = classification_kvdph.to_h if has? 'inv:classificationKVDPH'
+          hash[:pdp] = pdp if has? 'inv:PDP'
+          hash[:pdp_attributes] = pdp_attributes if has? 'inv:PDP'
+          hash[:code_pdp] = code_pdp if has? 'inv:CodePDP'
+          hash[:code_pdp_attributes] = code_pdp_attributes if has? 'inv:CodePDP'
           hash[:centre] = centre.to_h if has? 'inv:centre'
           hash[:activity] = activity.to_h if has? 'inv:activity'
           hash[:contract] = contract.to_h if has? 'inv:contract'

@@ -4,6 +4,14 @@ module Pohoda
       class CompanyInfoType
         include ParserCore::BaseParser
 
+        def key
+          at 'mKasa:key'
+        end
+
+        def key_attributes
+          attributes_at 'mKasa:key'
+        end
+
         def address
           submodel_at(Typ::AddressInternetType, 'mKasa:address')
         end
@@ -60,6 +68,8 @@ module Pohoda
           hash = {}
           hash[:attributes] = attributes
 
+          hash[:key] = key if has? 'mKasa:key'
+          hash[:key_attributes] = key_attributes if has? 'mKasa:key'
           hash[:address] = address.to_h if has? 'mKasa:address'
           hash[:establishment] = establishment.to_h if has? 'mKasa:establishment'
           hash[:unit_type] = unit_type if has? 'mKasa:unitType'

@@ -92,6 +92,10 @@ module Pohoda
           submodel_at(Nm::NumericalSeriesType, 'nms:numericalSeries')
         end
 
+        def gdpr
+          submodel_at(Gdp::GDPRType, 'gdp:GDPR')
+        end
+
         def list_accountancy_request
           submodel_at(Lst::ListAccountancyRequestType, 'lst:listAccountancyRequest')
         end
@@ -228,6 +232,22 @@ module Pohoda
           submodel_at(Lst::ListNumericalSeriesRequestType, 'lst:listNumericalSeriesRequest')
         end
 
+        def list_gdpr_request
+          submodel_at(Lst::ListGDPRRequestType, 'lst:listGDPRRequest')
+        end
+
+        def list_establishment_request
+          submodel_at(Lst::ListEstablishmentRequestType, 'lst:listEstablishmentRequest')
+        end
+
+        def list_centre_request
+          submodel_at(LCen::ListRequestCentreType, 'lCen:listCentreRequest')
+        end
+
+        def list_activity_request
+          submodel_at(LAcv::ListRequestActivityType, 'lAcv:listActivityRequest')
+        end
+
         def m_kasa_request
           submodel_at(MKasa::MKasaRequestType, 'mKasa:mKasaRequest')
         end
@@ -266,6 +286,7 @@ module Pohoda
           hash[:int_param_detail] = int_param_detail.to_h if has? 'ipm:intParamDetail'
           hash[:inventory_lists] = inventory_lists.to_h if has? 'ilt:inventoryLists'
           hash[:numerical_series] = numerical_series.to_h if has? 'nms:numericalSeries'
+          hash[:gdpr] = gdpr.to_h if has? 'gdp:GDPR'
           hash[:list_accountancy_request] = list_accountancy_request.to_h if has? 'lst:listAccountancyRequest'
           hash[:list_address_book_request] = list_address_book_request.to_h if has? 'lAdb:listAddressBookRequest'
           hash[:list_invoice_request] = list_invoice_request.to_h if has? 'lst:listInvoiceRequest'
@@ -300,6 +321,10 @@ module Pohoda
           hash[:list_action_price_request] = list_action_price_request.to_h if has? 'lst:listActionPriceRequest'
           hash[:list_payment_request] = list_payment_request.to_h if has? 'lst:listPaymentRequest'
           hash[:list_numerical_series_request] = list_numerical_series_request.to_h if has? 'lst:listNumericalSeriesRequest'
+          hash[:list_gdpr_request] = list_gdpr_request.to_h if has? 'lst:listGDPRRequest'
+          hash[:list_establishment_request] = list_establishment_request.to_h if has? 'lst:listEstablishmentRequest'
+          hash[:list_centre_request] = list_centre_request.to_h if has? 'lCen:listCentreRequest'
+          hash[:list_activity_request] = list_activity_request.to_h if has? 'lAcv:listActivityRequest'
           hash[:m_kasa_request] = m_kasa_request.to_h if has? 'mKasa:mKasaRequest'
           hash[:print] = print.to_h if has? 'prn:print'
           hash[:send_eet] = send_eet.to_h if has? 'sEET:sendEET'

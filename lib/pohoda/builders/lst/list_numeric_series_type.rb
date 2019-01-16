@@ -12,9 +12,7 @@ module Pohoda
             root << n
           end
 
-          if data.key? :item_numeric_series
-            root << Lst::ItemNumericSeriesType.new('lst:itemNumericSeries', data[:item_numeric_series]).builder
-          end
+          root << build_element('lst:itemNumericSeries', data[:item_numeric_series], data[:item_numeric_series_attributes]) if data.key? :item_numeric_series
 
           root
         end

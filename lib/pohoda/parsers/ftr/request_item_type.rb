@@ -5,7 +5,7 @@ module Pohoda
         include ParserCore::BaseParser
 
         def filter
-          submodel_at(Ftr::FilterIDType, 'ftr:filter')
+          submodel_at(Ftr::FilterExtIdType, 'ftr:filter')
         end
 
         def to_h

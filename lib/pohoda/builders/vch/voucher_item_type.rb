@@ -40,6 +40,8 @@ module Pohoda
           if data.key? :classification_kvdph
             root << Typ::RefType.new('vch:classificationKVDPH', data[:classification_kvdph]).builder
           end
+          root << build_element('vch:PDP', data[:pdp], data[:pdp_attributes]) if data.key? :pdp
+          root << build_element('vch:CodePDP', data[:code_pdp], data[:code_pdp_attributes]) if data.key? :code_pdp
           if data.key? :centre
             root << Typ::RefType.new('vch:centre', data[:centre]).builder
           end

@@ -40,6 +40,10 @@ module Pohoda
           submodel_at(Typ::ExtIdType, 'rdc:extId')
         end
 
+        def item_details
+          array_of_at(Rdc::ItemType, ['rdc:itemDetails', 'rdc:item'])
+        end
+
         def to_h
           hash = {}
           hash[:attributes] = attributes
@@ -53,6 +57,7 @@ module Pohoda
           hash[:action_type] = action_type if has? 'rdc:actionType'
           hash[:action_type_attributes] = action_type_attributes if has? 'rdc:actionType'
           hash[:ext_id] = ext_id.to_h if has? 'rdc:extId'
+          hash[:item_details] = item_details.map(&:to_h) if has? 'rdc:itemDetails'
 
           hash
         end

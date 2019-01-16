@@ -9,7 +9,7 @@ module Pohoda
           root = add_attributes_and_namespaces(root)
 
           if data.key? :filter
-            root << Ftr::FilterIDType.new('ftr:filter', data[:filter]).builder
+            root << Ftr::FilterExtIdType.new('ftr:filter', data[:filter]).builder
           end
 
           root

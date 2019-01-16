@@ -88,6 +88,22 @@ module Pohoda
           submodel_at(Typ::MOSStype, 'ofr:typeServiceMOSS')
         end
 
+        def pdp
+          at 'ofr:PDP'
+        end
+
+        def pdp_attributes
+          attributes_at 'ofr:PDP'
+        end
+
+        def code_pdp
+          at 'ofr:CodePDP'
+        end
+
+        def code_pdp_attributes
+          attributes_at 'ofr:CodePDP'
+        end
+
         def centre
           submodel_at(Typ::RefType, 'ofr:centre')
         end
@@ -157,6 +173,10 @@ module Pohoda
           hash[:home_currency] = home_currency.to_h if has? 'ofr:homeCurrency'
           hash[:foreign_currency] = foreign_currency.to_h if has? 'ofr:foreignCurrency'
           hash[:type_service_moss] = type_service_moss.to_h if has? 'ofr:typeServiceMOSS'
+          hash[:pdp] = pdp if has? 'ofr:PDP'
+          hash[:pdp_attributes] = pdp_attributes if has? 'ofr:PDP'
+          hash[:code_pdp] = code_pdp if has? 'ofr:CodePDP'
+          hash[:code_pdp_attributes] = code_pdp_attributes if has? 'ofr:CodePDP'
           hash[:centre] = centre.to_h if has? 'ofr:centre'
           hash[:activity] = activity.to_h if has? 'ofr:activity'
           hash[:contract] = contract.to_h if has? 'ofr:contract'

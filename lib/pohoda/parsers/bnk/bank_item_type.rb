@@ -56,6 +56,22 @@ module Pohoda
           submodel_at(Typ::RefType, 'bnk:classificationKVDPH')
         end
 
+        def pdp
+          at 'bnk:PDP'
+        end
+
+        def pdp_attributes
+          attributes_at 'bnk:PDP'
+        end
+
+        def code_pdp
+          at 'bnk:CodePDP'
+        end
+
+        def code_pdp_attributes
+          attributes_at 'bnk:CodePDP'
+        end
+
         def centre
           submodel_at(Typ::RefType, 'bnk:centre')
         end
@@ -89,6 +105,10 @@ module Pohoda
           hash[:accounting] = accounting.to_h if has? 'bnk:accounting'
           hash[:classification_vat] = classification_vat.to_h if has? 'bnk:classificationVAT'
           hash[:classification_kvdph] = classification_kvdph.to_h if has? 'bnk:classificationKVDPH'
+          hash[:pdp] = pdp if has? 'bnk:PDP'
+          hash[:pdp_attributes] = pdp_attributes if has? 'bnk:PDP'
+          hash[:code_pdp] = code_pdp if has? 'bnk:CodePDP'
+          hash[:code_pdp_attributes] = code_pdp_attributes if has? 'bnk:CodePDP'
           hash[:centre] = centre.to_h if has? 'bnk:centre'
           hash[:activity] = activity.to_h if has? 'bnk:activity'
           hash[:contract] = contract.to_h if has? 'bnk:contract'

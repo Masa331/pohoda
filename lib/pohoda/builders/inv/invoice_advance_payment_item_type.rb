@@ -9,6 +9,7 @@ module Pohoda
           root = add_attributes_and_namespaces(root)
 
           root << build_element('inv:id', data[:id], data[:id_attributes]) if data.key? :id
+          root << build_element('inv:extId', data[:ext_id], data[:ext_id_attributes]) if data.key? :ext_id
           if data.key? :source_document
             root << Typ::SourceDocumentType.new('inv:sourceDocument', data[:source_document]).builder
           end
@@ -24,6 +25,7 @@ module Pohoda
             root << Typ::TypeCurrencyHomeItem2.new('inv:foreignCurrency', data[:foreign_currency]).builder
           end
           root << build_element('inv:note', data[:note], data[:note_attributes]) if data.key? :note
+          root << build_element('inv:symPar', data[:sym_par], data[:sym_par_attributes]) if data.key? :sym_par
           if data.key? :accounting
             root << Typ::RefType.new('inv:accounting', data[:accounting]).builder
           end

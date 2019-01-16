@@ -9,6 +9,9 @@ module Pohoda
           root = add_attributes_and_namespaces(root)
 
           root << build_element('ord:id', data[:id], data[:id_attributes]) if data.key? :id
+          if data.key? :ext_id
+            root << Typ::ExtIdType.new('ord:extId', data[:ext_id]).builder
+          end
           root << build_element('ord:orderType', data[:order_type], data[:order_type_attributes]) if data.key? :order_type
           root << build_element('ord:storno', data[:storno], data[:storno_attributes]) if data.key? :storno
           if data.key? :number
@@ -62,11 +65,13 @@ module Pohoda
           end
           root << build_element('ord:accountingPeriodMOSS', data[:accounting_period_moss], data[:accounting_period_moss_attributes]) if data.key? :accounting_period_moss
           root << build_element('ord:permamentDocument', data[:permament_document], data[:permament_document_attributes]) if data.key? :permament_document
+          root << build_element('ord:permanentDocument', data[:permanent_document], data[:permanent_document_attributes]) if data.key? :permanent_document
           root << build_element('ord:note', data[:note], data[:note_attributes]) if data.key? :note
           if data.key? :carrier
-            root << Typ::RefType.new('ord:carrier', data[:carrier]).builder
+            root << Typ::CarrierType.new('ord:carrier', data[:carrier]).builder
           end
           root << build_element('ord:intNote', data[:int_note], data[:int_note_attributes]) if data.key? :int_note
+          root << build_element('ord:histRate', data[:hist_rate], data[:hist_rate_attributes]) if data.key? :hist_rate
           root << build_element('ord:markRecord', data[:mark_record], data[:mark_record_attributes]) if data.key? :mark_record
           if data.key? :labels
             element = Ox::Element.new('ord:labels')

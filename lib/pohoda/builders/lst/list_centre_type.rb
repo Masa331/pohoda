@@ -12,9 +12,7 @@ module Pohoda
             root << n
           end
 
-          if data.key? :item_centre
-            root << Lst::ItemNameType.new('lst:itemCentre', data[:item_centre]).builder
-          end
+          root << build_element('lst:itemCentre', data[:item_centre], data[:item_centre_attributes]) if data.key? :item_centre
 
           root
         end
