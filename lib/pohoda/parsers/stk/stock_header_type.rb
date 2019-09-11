@@ -312,6 +312,22 @@ module Pohoda
           attributes_at 'stk:producer'
         end
 
+        def unit_of_measure
+          at 'stk:unitOfMeasure'
+        end
+
+        def unit_of_measure_attributes
+          attributes_at 'stk:unitOfMeasure'
+        end
+
+        def coefficient_of_measure
+          at 'stk:coefficientOfMeasure'
+        end
+
+        def coefficient_of_measure_attributes
+          attributes_at 'stk:coefficientOfMeasure'
+        end
+
         def eet_item
           at 'stk:EETItem'
         end
@@ -661,6 +677,10 @@ module Pohoda
           hash[:guarantee_attributes] = guarantee_attributes if has? 'stk:guarantee'
           hash[:producer] = producer if has? 'stk:producer'
           hash[:producer_attributes] = producer_attributes if has? 'stk:producer'
+          hash[:unit_of_measure] = unit_of_measure if has? 'stk:unitOfMeasure'
+          hash[:unit_of_measure_attributes] = unit_of_measure_attributes if has? 'stk:unitOfMeasure'
+          hash[:coefficient_of_measure] = coefficient_of_measure if has? 'stk:coefficientOfMeasure'
+          hash[:coefficient_of_measure_attributes] = coefficient_of_measure_attributes if has? 'stk:coefficientOfMeasure'
           hash[:eet_item] = eet_item if has? 'stk:EETItem'
           hash[:eet_item_attributes] = eet_item_attributes if has? 'stk:EETItem'
           hash[:dic_pp] = dic_pp if has? 'stk:dicPP'

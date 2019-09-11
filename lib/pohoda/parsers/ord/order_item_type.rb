@@ -124,6 +124,10 @@ module Pohoda
           submodel_at(Typ::StockItemType, 'ord:stockItem')
         end
 
+        def link_to_stock
+          submodel_at(Typ::LinkToStockType, 'ord:linkToStock')
+        end
+
         def pdp
           at 'ord:PDP'
         end
@@ -198,6 +202,7 @@ module Pohoda
           hash[:code] = code if has? 'ord:code'
           hash[:code_attributes] = code_attributes if has? 'ord:code'
           hash[:stock_item] = stock_item.to_h if has? 'ord:stockItem'
+          hash[:link_to_stock] = link_to_stock.to_h if has? 'ord:linkToStock'
           hash[:pdp] = pdp if has? 'ord:PDP'
           hash[:pdp_attributes] = pdp_attributes if has? 'ord:PDP'
           hash[:code_pdp] = code_pdp if has? 'ord:CodePDP'

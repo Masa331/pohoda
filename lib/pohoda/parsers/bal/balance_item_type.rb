@@ -104,6 +104,14 @@ module Pohoda
           attributes_at 'bal:amountRemain'
         end
 
+        def home_currency
+          submodel_at(Bal::HomeCurrencyType, 'bal:homeCurrency')
+        end
+
+        def foreign_currency
+          submodel_at(Bal::ForeignCurrencyType, 'bal:foreignCurrency')
+        end
+
         def to_h
           hash = {}
           hash[:attributes] = attributes
@@ -133,6 +141,8 @@ module Pohoda
           hash[:amount_d_attributes] = amount_d_attributes if has? 'bal:amountD'
           hash[:amount_remain] = amount_remain if has? 'bal:amountRemain'
           hash[:amount_remain_attributes] = amount_remain_attributes if has? 'bal:amountRemain'
+          hash[:home_currency] = home_currency.to_h if has? 'bal:homeCurrency'
+          hash[:foreign_currency] = foreign_currency.to_h if has? 'bal:foreignCurrency'
 
           hash
         end

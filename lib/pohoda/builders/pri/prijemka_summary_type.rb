@@ -10,6 +10,7 @@ module Pohoda
 
           root << build_element('pri:roundingDocument', data[:rounding_document], data[:rounding_document_attributes]) if data.key? :rounding_document
           root << build_element('pri:roundingVAT', data[:rounding_vat], data[:rounding_vat_attributes]) if data.key? :rounding_vat
+          root << build_element('pri:typeCalculateVATInclusivePrice', data[:type_calculate_vat_inclusive_price], data[:type_calculate_vat_inclusive_price_attributes]) if data.key? :type_calculate_vat_inclusive_price
           if data.key? :home_currency
             root << Typ::TypeCurrencyHome.new('pri:homeCurrency', data[:home_currency]).builder
           end

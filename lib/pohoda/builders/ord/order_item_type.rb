@@ -33,6 +33,9 @@ module Pohoda
           if data.key? :stock_item
             root << Typ::StockItemType.new('ord:stockItem', data[:stock_item]).builder
           end
+          if data.key? :link_to_stock
+            root << Typ::LinkToStockType.new('ord:linkToStock', data[:link_to_stock]).builder
+          end
           root << build_element('ord:PDP', data[:pdp], data[:pdp_attributes]) if data.key? :pdp
           root << build_element('ord:CodePDP', data[:code_pdp], data[:code_pdp_attributes]) if data.key? :code_pdp
           if data.key? :centre

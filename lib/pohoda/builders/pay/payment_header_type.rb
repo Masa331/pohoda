@@ -16,9 +16,7 @@ module Pohoda
           root << build_element('pay:text', data[:text], data[:text_attributes]) if data.key? :text
           root << build_element('pay:paymentType', data[:payment_type], data[:payment_type_attributes]) if data.key? :payment_type
           root << build_element('pay:paymentTypeFM', data[:payment_type_fm], data[:payment_type_fm_attributes]) if data.key? :payment_type_fm
-          if data.key? :foreign_currency
-            root << Pay::ForeignCurrencyType.new('pay:foreignCurrency', data[:foreign_currency]).builder
-          end
+          root << build_element('pay:foreignCurrency', data[:foreign_currency], data[:foreign_currency_attributes]) if data.key? :foreign_currency
           if data.key? :ticket
             root << Pay::TicketType.new('pay:ticket', data[:ticket]).builder
           end

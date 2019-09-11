@@ -16,6 +16,11 @@ module Pohoda
             data[:prodejka_detail].each { |i| element << Pro::ProdejkaItemType.new('pro:prodejkaItem', i).builder }
             root << element
           end
+          if data.key? :prodejka_payments
+            element = Ox::Element.new('pro:prodejkaPayments')
+            data[:prodejka_payments].each { |i| element << Pro::PaymentItemType.new('pro:paymentItem', i).builder }
+            root << element
+          end
           if data.key? :prodejka_summary
             root << Pro::ProdejkaSummaryType.new('pro:prodejkaSummary', data[:prodejka_summary]).builder
           end

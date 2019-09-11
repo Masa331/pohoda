@@ -312,6 +312,10 @@ module Pohoda
           submodel_at(LAcv::ListActivityType, 'lAcv:listActivity')
         end
 
+        def list_accounting_form_of_payment
+          submodel_at(Lst::ListAccountingFormOfPaymentType, 'lst:listAccountingFormOfPayment')
+        end
+
         def to_h
           hash = {}
           hash[:attributes] = attributes
@@ -393,6 +397,7 @@ module Pohoda
           hash[:list_establishment] = list_establishment.to_h if has? 'lst:listEstablishment'
           hash[:list_centre] = list_centre.to_h if has? 'lCen:listCentre'
           hash[:list_activity] = list_activity.to_h if has? 'lAcv:listActivity'
+          hash[:list_accounting_form_of_payment] = list_accounting_form_of_payment.to_h if has? 'lst:listAccountingFormOfPayment'
 
           hash
         end

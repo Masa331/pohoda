@@ -16,6 +16,9 @@ module Pohoda
           if data.key? :settings_source_document_order_item
             root << Typ::SettingsSourceDocumentOrderItemType.new('typ:settingsSourceDocumentOrderItem', data[:settings_source_document_order_item]).builder
           end
+          if data.key? :settings_source_document_item
+            root << Typ::SettingsSourceDocumentItemType.new('typ:settingsSourceDocumentItem', data[:settings_source_document_item]).builder
+          end
 
           root
         end

@@ -104,6 +104,10 @@ module Pohoda
           submodel_at(Typ::StockItemType, 'pri:stockItem')
         end
 
+        def link_to_stock
+          submodel_at(Typ::LinkToStockType, 'pri:linkToStock')
+        end
+
         def acc
           at 'pri:acc'
         end
@@ -165,6 +169,7 @@ module Pohoda
           hash[:code] = code if has? 'pri:code'
           hash[:code_attributes] = code_attributes if has? 'pri:code'
           hash[:stock_item] = stock_item.to_h if has? 'pri:stockItem'
+          hash[:link_to_stock] = link_to_stock.to_h if has? 'pri:linkToStock'
           hash[:acc] = acc if has? 'pri:acc'
           hash[:acc_attributes] = acc_attributes if has? 'pri:acc'
           hash[:centre] = centre.to_h if has? 'pri:centre'

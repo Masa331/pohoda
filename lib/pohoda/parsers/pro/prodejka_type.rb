@@ -12,6 +12,10 @@ module Pohoda
           array_of_at(Pro::ProdejkaItemType, ['pro:prodejkaDetail', 'pro:prodejkaItem'])
         end
 
+        def prodejka_payments
+          array_of_at(Pro::PaymentItemType, ['pro:prodejkaPayments', 'pro:paymentItem'])
+        end
+
         def prodejka_summary
           submodel_at(Pro::ProdejkaSummaryType, 'pro:prodejkaSummary')
         end
@@ -30,6 +34,7 @@ module Pohoda
 
           hash[:prodejka_header] = prodejka_header.to_h if has? 'pro:prodejkaHeader'
           hash[:prodejka_detail] = prodejka_detail.map(&:to_h) if has? 'pro:prodejkaDetail'
+          hash[:prodejka_payments] = prodejka_payments.map(&:to_h) if has? 'pro:prodejkaPayments'
           hash[:prodejka_summary] = prodejka_summary.to_h if has? 'pro:prodejkaSummary'
           hash[:eet] = eet.to_h if has? 'pro:EET'
           hash[:print] = print.map(&:to_h) if has? 'pro:print'

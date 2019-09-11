@@ -28,6 +28,9 @@ module Pohoda
           if data.key? :stock_item
             root << Typ::StockItemType.new('pri:stockItem', data[:stock_item]).builder
           end
+          if data.key? :link_to_stock
+            root << Typ::LinkToStockType.new('pri:linkToStock', data[:link_to_stock]).builder
+          end
           root << build_element('pri:acc', data[:acc], data[:acc_attributes]) if data.key? :acc
           if data.key? :centre
             root << Typ::RefType.new('pri:centre', data[:centre]).builder

@@ -140,6 +140,10 @@ module Pohoda
           submodel_at(Typ::StockItemType, 'inv:stockItem')
         end
 
+        def link_to_stock
+          submodel_at(Typ::LinkToStockType, 'inv:linkToStock')
+        end
+
         def accounting
           submodel_at(Typ::RefType, 'inv:accounting')
         end
@@ -242,6 +246,7 @@ module Pohoda
           hash[:guarantee_type] = guarantee_type if has? 'inv:guaranteeType'
           hash[:guarantee_type_attributes] = guarantee_type_attributes if has? 'inv:guaranteeType'
           hash[:stock_item] = stock_item.to_h if has? 'inv:stockItem'
+          hash[:link_to_stock] = link_to_stock.to_h if has? 'inv:linkToStock'
           hash[:accounting] = accounting.to_h if has? 'inv:accounting'
           hash[:classification_vat] = classification_vat.to_h if has? 'inv:classificationVAT'
           hash[:classification_kvdph] = classification_kvdph.to_h if has? 'inv:classificationKVDPH'

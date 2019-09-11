@@ -28,6 +28,10 @@ module Pohoda
           submodel_at(Typ::SettingsSourceDocumentOrderItemType, 'typ:settingsSourceDocumentOrderItem')
         end
 
+        def settings_source_document_item
+          submodel_at(Typ::SettingsSourceDocumentItemType, 'typ:settingsSourceDocumentItem')
+        end
+
         def to_h
           hash = {}
           hash[:attributes] = attributes
@@ -38,6 +42,7 @@ module Pohoda
           hash[:source_item_id_attributes] = source_item_id_attributes if has? 'typ:sourceItemId'
           hash[:source_item_ext_id] = source_item_ext_id.to_h if has? 'typ:sourceItemExtId'
           hash[:settings_source_document_order_item] = settings_source_document_order_item.to_h if has? 'typ:settingsSourceDocumentOrderItem'
+          hash[:settings_source_document_item] = settings_source_document_item.to_h if has? 'typ:settingsSourceDocumentItem'
 
           hash
         end

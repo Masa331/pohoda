@@ -8,6 +8,9 @@ module Pohoda
           root = Ox::Element.new(name)
           root = add_attributes_and_namespaces(root)
 
+          if data.key? :link
+            root << Typ::LinkItemType.new('vyd:link', data[:link]).builder
+          end
           root << build_element('vyd:id', data[:id], data[:id_attributes]) if data.key? :id
           root << build_element('vyd:text', data[:text], data[:text_attributes]) if data.key? :text
           root << build_element('vyd:quantity', data[:quantity], data[:quantity_attributes]) if data.key? :quantity
@@ -32,6 +35,9 @@ module Pohoda
           root << build_element('vyd:guaranteeType', data[:guarantee_type], data[:guarantee_type_attributes]) if data.key? :guarantee_type
           if data.key? :stock_item
             root << Typ::StockItemType.new('vyd:stockItem', data[:stock_item]).builder
+          end
+          if data.key? :link_to_stock
+            root << Typ::LinkToStockType.new('vyd:linkToStock', data[:link_to_stock]).builder
           end
           root << build_element('vyd:acc', data[:acc], data[:acc_attributes]) if data.key? :acc
           root << build_element('vyd:PDP', data[:pdp], data[:pdp_attributes]) if data.key? :pdp

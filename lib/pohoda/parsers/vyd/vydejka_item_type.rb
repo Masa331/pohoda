@@ -4,6 +4,10 @@ module Pohoda
       class VydejkaItemType
         include ParserCore::BaseParser
 
+        def link
+          submodel_at(Typ::LinkItemType, 'vyd:link')
+        end
+
         def id
           at 'vyd:id'
         end
@@ -124,6 +128,10 @@ module Pohoda
           submodel_at(Typ::StockItemType, 'vyd:stockItem')
         end
 
+        def link_to_stock
+          submodel_at(Typ::LinkToStockType, 'vyd:linkToStock')
+        end
+
         def acc
           at 'vyd:acc'
         end
@@ -176,6 +184,7 @@ module Pohoda
           hash = {}
           hash[:attributes] = attributes
 
+          hash[:link] = link.to_h if has? 'vyd:link'
           hash[:id] = id if has? 'vyd:id'
           hash[:id_attributes] = id_attributes if has? 'vyd:id'
           hash[:text] = text if has? 'vyd:text'
@@ -206,6 +215,7 @@ module Pohoda
           hash[:guarantee_type] = guarantee_type if has? 'vyd:guaranteeType'
           hash[:guarantee_type_attributes] = guarantee_type_attributes if has? 'vyd:guaranteeType'
           hash[:stock_item] = stock_item.to_h if has? 'vyd:stockItem'
+          hash[:link_to_stock] = link_to_stock.to_h if has? 'vyd:linkToStock'
           hash[:acc] = acc if has? 'vyd:acc'
           hash[:acc_attributes] = acc_attributes if has? 'vyd:acc'
           hash[:pdp] = pdp if has? 'vyd:PDP'

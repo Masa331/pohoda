@@ -49,7 +49,11 @@ module Pohoda
         end
 
         def foreign_currency
-          submodel_at(Pay::ForeignCurrencyType, 'pay:foreignCurrency')
+          at 'pay:foreignCurrency'
+        end
+
+        def foreign_currency_attributes
+          attributes_at 'pay:foreignCurrency'
         end
 
         def ticket
@@ -107,7 +111,8 @@ module Pohoda
           hash[:payment_type_attributes] = payment_type_attributes if has? 'pay:paymentType'
           hash[:payment_type_fm] = payment_type_fm if has? 'pay:paymentTypeFM'
           hash[:payment_type_fm_attributes] = payment_type_fm_attributes if has? 'pay:paymentTypeFM'
-          hash[:foreign_currency] = foreign_currency.to_h if has? 'pay:foreignCurrency'
+          hash[:foreign_currency] = foreign_currency if has? 'pay:foreignCurrency'
+          hash[:foreign_currency_attributes] = foreign_currency_attributes if has? 'pay:foreignCurrency'
           hash[:ticket] = ticket.to_h if has? 'pay:ticket'
           hash[:cash] = cash.to_h if has? 'pay:cash'
           hash[:use_in_sales] = use_in_sales if has? 'pay:useInSales'

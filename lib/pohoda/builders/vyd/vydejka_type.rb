@@ -8,6 +8,11 @@ module Pohoda
           root = Ox::Element.new(name)
           root = add_attributes_and_namespaces(root)
 
+          if data.key? :links
+            element = Ox::Element.new('vyd:links')
+            data[:links].each { |i| element << Typ::LinkElemetType.new('typ:link', i).builder }
+            root << element
+          end
           if data.key? :vydejka_header
             root << Vyd::VydejkaHeaderType.new('vyd:vydejkaHeader', data[:vydejka_header]).builder
           end

@@ -28,6 +28,14 @@ module Pohoda
           attributes_at 'pro:calculateVAT'
         end
 
+        def type_calculate_vat_inclusive_price
+          at 'pro:typeCalculateVATInclusivePrice'
+        end
+
+        def type_calculate_vat_inclusive_price_attributes
+          attributes_at 'pro:typeCalculateVATInclusivePrice'
+        end
+
         def home_currency
           submodel_at(Typ::TypeCurrencyHome, 'pro:homeCurrency')
         end
@@ -42,6 +50,8 @@ module Pohoda
           hash[:rounding_vat_attributes] = rounding_vat_attributes if has? 'pro:roundingVAT'
           hash[:calculate_vat] = calculate_vat if has? 'pro:calculateVAT'
           hash[:calculate_vat_attributes] = calculate_vat_attributes if has? 'pro:calculateVAT'
+          hash[:type_calculate_vat_inclusive_price] = type_calculate_vat_inclusive_price if has? 'pro:typeCalculateVATInclusivePrice'
+          hash[:type_calculate_vat_inclusive_price_attributes] = type_calculate_vat_inclusive_price_attributes if has? 'pro:typeCalculateVATInclusivePrice'
           hash[:home_currency] = home_currency.to_h if has? 'pro:homeCurrency'
 
           hash

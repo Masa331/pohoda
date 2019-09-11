@@ -32,6 +32,10 @@ module Pohoda
           attributes_at 'typ:priceSum'
         end
 
+        def round
+          submodel_at(Typ::TypeRound, 'typ:round')
+        end
+
         def to_h
           hash = {}
           hash[:attributes] = attributes
@@ -43,6 +47,7 @@ module Pohoda
           hash[:amount_attributes] = amount_attributes if has? 'typ:amount'
           hash[:price_sum] = price_sum if has? 'typ:priceSum'
           hash[:price_sum_attributes] = price_sum_attributes if has? 'typ:priceSum'
+          hash[:round] = round.to_h if has? 'typ:round'
 
           hash
         end

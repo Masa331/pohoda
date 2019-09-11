@@ -40,6 +40,9 @@ module Pohoda
           if data.key? :stock_item
             root << Typ::StockItemType.new('inv:stockItem', data[:stock_item]).builder
           end
+          if data.key? :link_to_stock
+            root << Typ::LinkToStockType.new('inv:linkToStock', data[:link_to_stock]).builder
+          end
           if data.key? :accounting
             root << Typ::RefType.new('inv:accounting', data[:accounting]).builder
           end

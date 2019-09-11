@@ -23,6 +23,12 @@ module Pohoda
           root << build_element('bal:amountMD', data[:amount_md], data[:amount_md_attributes]) if data.key? :amount_md
           root << build_element('bal:amountD', data[:amount_d], data[:amount_d_attributes]) if data.key? :amount_d
           root << build_element('bal:amountRemain', data[:amount_remain], data[:amount_remain_attributes]) if data.key? :amount_remain
+          if data.key? :home_currency
+            root << Bal::HomeCurrencyType.new('bal:homeCurrency', data[:home_currency]).builder
+          end
+          if data.key? :foreign_currency
+            root << Bal::ForeignCurrencyType.new('bal:foreignCurrency', data[:foreign_currency]).builder
+          end
 
           root
         end

@@ -59,6 +59,8 @@ module Pohoda
           root << build_element('stk:guaranteeType', data[:guarantee_type], data[:guarantee_type_attributes]) if data.key? :guarantee_type
           root << build_element('stk:guarantee', data[:guarantee], data[:guarantee_attributes]) if data.key? :guarantee
           root << build_element('stk:producer', data[:producer], data[:producer_attributes]) if data.key? :producer
+          root << build_element('stk:unitOfMeasure', data[:unit_of_measure], data[:unit_of_measure_attributes]) if data.key? :unit_of_measure
+          root << build_element('stk:coefficientOfMeasure', data[:coefficient_of_measure], data[:coefficient_of_measure_attributes]) if data.key? :coefficient_of_measure
           root << build_element('stk:EETItem', data[:eet_item], data[:eet_item_attributes]) if data.key? :eet_item
           root << build_element('stk:dicPP', data[:dic_pp], data[:dic_pp_attributes]) if data.key? :dic_pp
           root << build_element('stk:yield', data[:yield], data[:yield_attributes]) if data.key? :yield

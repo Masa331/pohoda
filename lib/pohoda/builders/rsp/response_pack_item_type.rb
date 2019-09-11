@@ -239,6 +239,9 @@ module Pohoda
           if data.key? :list_activity
             root << LAcv::ListActivityType.new('lAcv:listActivity', data[:list_activity]).builder
           end
+          if data.key? :list_accounting_form_of_payment
+            root << Lst::ListAccountingFormOfPaymentType.new('lst:listAccountingFormOfPayment', data[:list_accounting_form_of_payment]).builder
+          end
 
           root
         end
