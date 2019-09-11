@@ -288,6 +288,10 @@ Most of the time they will be empty. And these methods exists even for nodes whi
 
 ### Changelog
 
+#### 11.9.2019, gem version 3.0.0
+
+* Update parsers and builders to newer Pohoda XSD v2 release
+
 #### 16.1.2019, gem version 2.0.0
 
 * Update parsers and builders to Pohoda XSD v2 release 12 100
