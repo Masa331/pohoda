@@ -288,6 +288,10 @@ Most of the time they will be empty. And these methods exists even for nodes whi
 
 ### Changelog
 
+#### 28.12.2019, gem version 3.1.1
+
+* Fix wrong dependency
+
 #### 28.12.2019, gem version 3.1.0
 
 * Parse text out of CDATA nodes same as from normal terminate nodes
