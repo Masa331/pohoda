@@ -288,6 +288,10 @@ Most of the time they will be empty. And these methods exists even for nodes whi
 
 ### Changelog
 
+#### 28.12.2019, gem version 3.1.0
+
+* Parse text out of CDATA nodes same as from normal terminate nodes
+
 #### 11.9.2019, gem version 3.0.0
 
 * Update parsers and builders to newer Pohoda XSD v2 release
